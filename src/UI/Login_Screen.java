@@ -16,6 +16,7 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -33,6 +34,7 @@ public class Login_Screen extends JFrame {
 
 	public void createUI() {
 		Font f1 = new Font(null, Font.BOLD, 20);
+//		save();
 
 		setSize(500, 500);
 		setLayout(null);
@@ -45,19 +47,19 @@ public class Login_Screen extends JFrame {
 //			e.printStackTrace();
 //		} 
 
-//		BufferedImage img = null;
-//		try {
-//			img = ImageIO.read(new File("C:\\Dvlp2\\NSU\\NSU-Java\\ASL.Java - Restaurant Management System\\img\\Untitled-1.png"));
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//		
-//
-//		JLabel lll = new JLabel();
-//		lll.setBounds(150, 20, 150, 150);
-//		Image dimg = img.getScaledInstance(lll.getWidth(), lll.getHeight(),
-//				Image.SCALE_SMOOTH);
-//		lll.setIcon(new ImageIcon(dimg));
+		BufferedImage img = null;
+		try {
+			img = ImageIO.read(new File("C:\\Dvlp2\\NSU\\NSU-Java\\ASL.Java - Restaurant Management System\\img\\Untitled-1.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+
+		JLabel lll = new JLabel();
+		lll.setBounds(150, 20, 150, 150);
+		Image dimg = img.getScaledInstance(lll.getWidth(), lll.getHeight(),
+				Image.SCALE_SMOOTH);
+		lll.setIcon(new ImageIcon(dimg));
 		//lll.setOpaque(true);
 		//lll.setBackground(Color.red);
 
@@ -103,7 +105,7 @@ public class Login_Screen extends JFrame {
 			}
 		});
 
-//		add(lll);
+		add(lll);
 		add(lbl_userId);
 		add(txt_userId);
 		add(lbl_pass);
@@ -119,7 +121,7 @@ public class Login_Screen extends JFrame {
 //		FileWriter fr;
 //		try {
 //			fr = new FileWriter(file, false);
-//			fr.write("Arman | 123 | " + AccountType.SuperAdmin);
+//			fr.write("Arman\t123\tSuperAdmin\tArman Mokammel\tarmanmokammel@gmail.com\t12");
 //			
 //			fr.close();
 //			
@@ -142,7 +144,7 @@ public class Login_Screen extends JFrame {
 				if (datas[0].equals(userID)) {
 					if (datas[1].equals(password)) {
 						sc.close();
-						return new Account(datas[0], datas[1], AccountType.valueOf(datas[2]), datas[3], Integer.parseInt(datas[4]), datas[5]);
+						return new Account(datas[0], datas[1], AccountType.valueOf(datas[2]), datas[3], datas[4], Integer.parseInt(datas[5]));
 					} else {
 						sc.close();
 						JOptionPane.showMessageDialog(this, "Incorrect Password!");
