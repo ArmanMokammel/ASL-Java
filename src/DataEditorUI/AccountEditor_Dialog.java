@@ -101,6 +101,7 @@ public class AccountEditor_Dialog extends JDialog{
 	
 	public void setAccountDetails(String userID, String password, AccountType accountType, String name, String email, int employeeID) {
 		txt_userID.setText(userID);
+		txt_userID.setEditable(false);
 		txt_password.setText(password);
 		cmbx_accountType.setSelectedItem(accountType);
 		txt_name.setText(name);

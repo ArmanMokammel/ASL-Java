@@ -53,12 +53,17 @@ public class Welcome_Panel extends JPanel {
 		MenuButton btn2 = new MenuButton("Order", img, Color.white);
 		btn2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(window, "Not implemented yet!");
-				
+				JOptionPane.showMessageDialog(window, "Not implemented yet!");				
 			}
 		});
 		
 		MenuButton btn3 = new MenuButton("Items", img, Color.white);
+		btn3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				window.swapPanel(new Item_Panel(window));				
+			}
+		});
+		
 		MenuButton btn4 = new MenuButton("Employees", img, Color.white);
 
 		pnl.setBounds(210, 150, 800, 300);
