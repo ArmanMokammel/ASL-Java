@@ -46,7 +46,7 @@ public class MainWindow extends JFrame{
 		
 		pnl_Head.setBackground(Color.orange);
 		ImageIcon img = null;
-//	    img = new ImageIcon("C:\\Dvlp2\\NSU\\NSU-Java\\ASL.Java - Restaurant Management System\\test.png");
+	    img = new ImageIcon("img\\test.png");
 		MenuButton btn = new MenuButton("Vouchers", img, null);
 		btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
