@@ -7,15 +7,36 @@ public class Account {
 	private String password;
 	private AccountType accountType;
 	private String name;
+	private String email;
+	private int employeeID;
+	
 	
 
-	public Account(String userID, String password, AccountType accountType, String name) {
+	public Account(String userID, String password, AccountType accountType, String name, String email, int employeeID) {
 		this.userID = userID;
 		this.password = password;
 		this.accountType = accountType;
 		this.name = name;
+		this.email = email;
+		this.employeeID = employeeID;
 	}
 	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public int getEmployeeID() {
+		return employeeID;
+	}
+
+	public void setEmployeeID(int employeeID) {
+		this.employeeID = employeeID;
+	}
+
 	public AccountType getAccountType() {
 		return accountType;
 	}
@@ -42,5 +63,9 @@ public class Account {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}		
+	}
+	
+	public String toString() {
+		return userID + "\t" + password + "\t" + accountType + "\t" + name + "\t" + employeeID + "\t" + email + "\n";
+	}
 }
