@@ -142,7 +142,7 @@ public class Login_Screen extends JFrame {
 				if (datas[0].equals(userID)) {
 					if (datas[1].equals(password)) {
 						sc.close();
-						return new Account(datas[0], datas[1], AccountType.valueOf(datas[2]), datas[3]);
+						return new Account(datas[0], datas[1], AccountType.valueOf(datas[2]), datas[3], Integer.parseInt(datas[4]), datas[5]);
 					} else {
 						sc.close();
 						JOptionPane.showMessageDialog(this, "Incorrect Password!");
