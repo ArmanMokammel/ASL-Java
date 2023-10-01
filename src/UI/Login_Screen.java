@@ -45,19 +45,19 @@ public class Login_Screen extends JFrame {
 //			e.printStackTrace();
 //		} 
 
-		BufferedImage img = null;
-		try {
-			img = ImageIO.read(new File("C:\\Dvlp2\\NSU\\NSU-Java\\ASL.Java - Restaurant Management System\\img\\Untitled-1.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-
-		JLabel lll = new JLabel();
-		lll.setBounds(150, 20, 150, 150);
-		Image dimg = img.getScaledInstance(lll.getWidth(), lll.getHeight(),
-				Image.SCALE_SMOOTH);
-		lll.setIcon(new ImageIcon(dimg));
+//		BufferedImage img = null;
+//		try {
+//			img = ImageIO.read(new File("C:\\Dvlp2\\NSU\\NSU-Java\\ASL.Java - Restaurant Management System\\img\\Untitled-1.png"));
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//		
+//
+//		JLabel lll = new JLabel();
+//		lll.setBounds(150, 20, 150, 150);
+//		Image dimg = img.getScaledInstance(lll.getWidth(), lll.getHeight(),
+//				Image.SCALE_SMOOTH);
+//		lll.setIcon(new ImageIcon(dimg));
 		//lll.setOpaque(true);
 		//lll.setBackground(Color.red);
 
@@ -103,7 +103,7 @@ public class Login_Screen extends JFrame {
 			}
 		});
 
-		add(lll);
+//		add(lll);
 		add(lbl_userId);
 		add(txt_userId);
 		add(lbl_pass);

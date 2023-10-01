@@ -30,7 +30,7 @@ public class Welcome_Panel extends JPanel {
 		lbl_Welcome2.setFont(f2);
 		
 		ImageIcon img = null;
-	    img = new ImageIcon("C:\\Dvlp2\\NSU\\NSU-Java\\ASL.Java - Restaurant Management System\\test.png");
+//	    img = new ImageIcon("C:\\Dvlp2\\NSU\\NSU-Java\\ASL.Java - Restaurant Management System\\test.png");
 		
 	    FlowLayout layout = new FlowLayout();
 	    layout.setHgap(15);
