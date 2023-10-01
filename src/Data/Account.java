@@ -66,6 +66,6 @@ public class Account {
 	}
 	
 	public String toString() {
-		return userID + "\t" + password + "\t" + accountType + "\t" + name + "\t" + employeeID + "\t" + email + "\n";
+		return userID + "\t" + password + "\t" + accountType + "\t" + name + "\t" + email + "\t" + employeeID + "\n";
 	}
 }

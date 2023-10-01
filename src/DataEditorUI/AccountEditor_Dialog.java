@@ -65,7 +65,7 @@ public class AccountEditor_Dialog extends JDialog{
 		add(cmbx_accountType);
 		
 		JButton btn_submit = new JButton("Submit");
-		btn_submit.setBounds(180, 260, 80, 35);
+		btn_submit.setBounds(180, 350, 80, 35);
 		btn_submit.addActionListener(new ActionListener() {
 		
 			public void actionPerformed(ActionEvent e) {
@@ -86,12 +86,12 @@ public class AccountEditor_Dialog extends JDialog{
 				if (row != -1) {
 					parent.accountList.set(row, account);
 					parent.model.removeRow(row);
-					parent.model.insertRow(row, new Object[] {row + 1, account.getUserID(), account.getPassword(), account.getAccountType(), account.getName(), account.getEmail(), account.getEmployeeID()});
-					Utility.writeAllToFile("Account-Editor.ASL", false, parent.accountList);
+					parent.model.insertRow(row, new Object[] {row + 1, account.getUserID(), account.getAccountType(), account.getName(), account.getEmail(), account.getEmployeeID()});
+					Utility.writeAllToFile("Accounts.ASL", false, parent.accountList);
 				} else {
 					parent.accountList.add(account);
-					parent.model.addRow(new Object[] {parent.accountList.size(), account.getUserID(), account.getPassword(), account.getAccountType(), account.getName(), account.getEmail(), account.getEmployeeID()});
-					Utility.writeToFile("Account-Editor.ASL", true, account);
+					parent.model.addRow(new Object[] {parent.accountList.size(), account.getUserID(), account.getAccountType(), account.getName(), account.getEmail(), account.getEmployeeID()});
+					Utility.writeToFile("Accounts.ASL", true, account);
 				}
 				dispose();
 			}

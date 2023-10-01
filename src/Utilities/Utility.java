@@ -23,12 +23,12 @@ public class Utility {
 	}
 	
 	public static String checkString(JComboBox<?> component, JLabel label) throws Exception {
-		if(((String)component.getSelectedItem()).isBlank())
+		if(component.getSelectedItem().toString().isBlank())
 		{
 			component.requestFocus();
 			throw new Exception("Error at " + label.getText() + "\n" + "Please enter a value");
 		}
-		return (String)component.getSelectedItem();
+		return component.getSelectedItem().toString();
 	}
 	
 	public static int checkInt(JTextField component, JLabel label) throws Exception {
@@ -115,7 +115,7 @@ public class Utility {
 	}
 	
 	public static ArrayList<String> readFile(String fileName) {
-		File file = new File("Discount-Vouchers.ASL");
+		File file = new File(fileName);
 		Scanner sc;
 		ArrayList<String> data = new ArrayList<String>();
 		try {

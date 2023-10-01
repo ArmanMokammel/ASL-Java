@@ -116,20 +116,20 @@ public class Login_Screen extends JFrame {
 		setVisible(true);
 	}
 
-//	private void save() {
-//		File file = new File("Accounts.ASL");
-//		FileWriter fr;
-//		try {
-//			fr = new FileWriter(file, false);
-//			fr.write("Arman\t123\tSuperAdmin\tArman Mokammel\tarmanmokammel@gmail.com\t12");
-//			
-//			fr.close();
-//			
-//			JOptionPane.showMessageDialog(Login_Screen.this, "Saved Successfully!");
-//		} catch (IOException e1) {
-//			System.out.println("SZZ Error");
-//		}
-//	}
+	private void save() {
+		File file = new File("Accounts.ASL");
+		FileWriter fr;
+		try {
+			fr = new FileWriter(file, false);
+			fr.write("Arman\t123\tSuperAdmin\tArman Mokammel\tarmanmokammel@gmail.com\t12\n");
+			
+			fr.close();
+			
+			JOptionPane.showMessageDialog(Login_Screen.this, "Saved Successfully!");
+		} catch (IOException e1) {
+			System.out.println("SZZ Error");
+		}
+	}
 
 	private Account checkAccountDetails(String userID, String password) {
 		File file = new File("Accounts.ASL");

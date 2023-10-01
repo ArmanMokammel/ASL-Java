@@ -2,13 +2,16 @@ package UI;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 import Data.Account;
+import Data.Discount_Voucher;
 import DataEditorUI.*;
+import Enum.AccountType;
 import TableCellCustom.TableEditRemove_Editor;
 import TableCellCustom.TableEditRemove_Renderer;
 import Utilities.Utility;
@@ -55,8 +58,8 @@ public class Account_Panel extends JPanelX{
 		table.setRowHeight(30);
 		table.getTableHeader().setReorderingAllowed(false);
 		TableEditRemove_Renderer renderer = new TableEditRemove_Renderer();
-		table.getColumnModel().getColumn(5).setCellRenderer(renderer);
-		table.getColumnModel().getColumn(5).setCellEditor(new TableEditRemove_Editor(model, window, this));
+		table.getColumnModel().getColumn(6).setCellRenderer(renderer);
+		table.getColumnModel().getColumn(6).setCellEditor(new TableEditRemove_Editor(model, window, this));
 		
 		JScrollPane sp = new JScrollPane(table);
 		sp.setBounds(70, 60, getWidth() - 180, 400);
@@ -64,15 +67,20 @@ public class Account_Panel extends JPanelX{
 		add(btn_Add);
 		add(sp);
 		
-//		JComboBox<AccountType> x = new JComboBox<>(AccountType.values());
+		ArrayList<String> lines = Utility.readFile("Accounts.ASL");
+		for(String line: lines) {
+			String[] datas = line.split("\t");
+			accountList.add(new Account(datas[0], datas[1], AccountType.valueOf(datas[2]), datas[3], datas[4], Integer.parseInt(datas[5])));
+			model.addRow(new Object[] {accountList.size(), datas[0], AccountType.valueOf(datas[2]),datas[3], datas[4], Integer.parseInt(datas[5])});
+		}
 	}
 
 
 	public void editRow(int row) {
 		Account account = accountList.get(row);
-//		AccountEditor_Dialog dialog = new AccountEditor_Dialog(window, this, "Edit Account" , row);
-//		dialog.setAccountDetails(account.getUserID(), account.getAccountType(), account.getName(), account.getEmail(), account.getEmployeeID());
-//		dialog.setVisible(true);
+		AccountEditor_Dialog dialog = new AccountEditor_Dialog(window, this, "Edit Account" , row);
+		dialog.setAccountDetails(account.getUserID(), account.getPassword(), account.getAccountType(), account.getName(), account.getEmail(), account.getEmployeeID());
+		dialog.setVisible(true);
 		
 	}
 
