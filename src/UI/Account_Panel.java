@@ -28,8 +28,8 @@ public class Account_Panel extends JPanelX{
 		btn_Add.setBounds(getWidth() - 245, 0, 130, 40);
 		btn_Add.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//AccountEditor_Dialog dialog = new AccountEditor_Dialog(window, Account_Panel.this,"New Account", -1);
-				//dialog.setVisible(true);
+				AccountEditor_Dialog dialog = new AccountEditor_Dialog(window, Account_Panel.this,"New Account", -1);
+				dialog.setVisible(true);
 			}
 		});
 		
