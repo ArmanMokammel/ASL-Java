@@ -47,6 +47,6 @@ public class MenuItem {
 	}
 	
 	public String toString() {
-		return itemId + "\t" + itemName + "\t" + costPrice + "\t" + sellingPrice;
+		return itemId + "\t" + itemName + "\t" + costPrice + "\t" + sellingPrice + "\n";
 	}
 }

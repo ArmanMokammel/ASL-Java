@@ -5,15 +5,11 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-import javax.swing.JButton;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-import Data.Account;
-import Data.Discount_Voucher;
 import Data.MenuItem;
-import DataEditorUI.AccountEditor_Dialog;
+import DataEditorUI.MenuItemEditor_Dialog;
 import TableCellCustom.TableEditRemove_Editor;
 import TableCellCustom.TableEditRemove_Renderer;
 import Utilities.Utility;
@@ -33,8 +29,8 @@ public class Item_Panel extends JPanelX{
 		btn_Add.setBounds(getWidth() - 245, 0, 130, 40);
 		btn_Add.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				MenuItemEditor_Dialog dialog = new MenuItemEditor_Dialog(window, Item_Panel.this,"New Item", -1);
-//				dialog.setVisible(true);
+				MenuItemEditor_Dialog dialog = new MenuItemEditor_Dialog(window, Item_Panel.this,"New Item", -1);
+				dialog.setVisible(true);
 			}
 		});
 		
@@ -78,9 +74,9 @@ public class Item_Panel extends JPanelX{
 
 	public void editRow(int row) {
 		MenuItem menuItem = itemList.get(row);
-//		MenuItemEditor_Dialog dialog = new MenuItemEditor_Dialog(window, this, "Edit Item" , row);
-//		dialog.setItemDetails(menuItem.getItemId(), menuItem.getItemName(), menuItem.getCostPrice(), menuItem.getSellingPrice());
-//		dialog.setVisible(true);
+		MenuItemEditor_Dialog dialog = new MenuItemEditor_Dialog(window, this, "Edit Item" , row);
+		dialog.setItemDetails(menuItem.getItemId(), menuItem.getItemName(), menuItem.getCostPrice(), menuItem.getSellingPrice());
+		dialog.setVisible(true);
 	}
 
 	public void removeRow(int row) {

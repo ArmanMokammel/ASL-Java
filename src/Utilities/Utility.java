@@ -1,5 +1,6 @@
 package Utilities;
 
+import java.awt.Color;
 import java.awt.Window;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -10,6 +11,7 @@ import java.util.LinkedList;
 import java.util.Scanner;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 
 public class Utility {
 	
@@ -17,8 +19,10 @@ public class Utility {
 		if(component.getText().isBlank())
 		{
 			component.requestFocus();
+			component.setBorder(new LineBorder(Color.red));
 			throw new Exception("Error at " + label.getText() + "\n" + "Please enter a value");
 		}
+		component.setBorder(new LineBorder(Color.green));
 		return component.getText();
 	}
 	
@@ -26,8 +30,10 @@ public class Utility {
 		if(component.getSelectedItem().toString().isBlank())
 		{
 			component.requestFocus();
+			component.setBorder(new LineBorder(Color.red));
 			throw new Exception("Error at " + label.getText() + "\n" + "Please enter a value");
 		}
+		component.setBorder(new LineBorder(Color.green));
 		return component.getSelectedItem().toString();
 	}
 	
@@ -35,13 +41,16 @@ public class Utility {
 		if(component.getText().isBlank())
 		{
 			component.requestFocus();
+			component.setBorder(new LineBorder(Color.red));
 			throw new Exception("Error at " + label.getText() + "\n" + "Please enter a value");
 		}
 		else if(tryParseInt(component.getText())) {
+			component.setBorder(new LineBorder(Color.green));
 			return Integer.parseInt(component.getText());
 		}
 		else {
 			component.requestFocus();
+			component.setBorder(new LineBorder(Color.red));
 			throw new Exception("Error at " + label.getText() + "\n" + "Integer Values Only");
 		}
 	}
@@ -50,13 +59,16 @@ public class Utility {
 		if(component.getText().isBlank())
 		{
 			component.requestFocus();
+			component.setBorder(new LineBorder(Color.red));
 			throw new Exception("Error at " + label.getText() + "\n" + "Please enter a value");
 		}
 		else if(tryParseDouble(component.getText())) {
+			component.setBorder(new LineBorder(Color.green));
 			return Double.parseDouble(component.getText());
 		}
 		else {
 			component.requestFocus();
+			component.setBorder(new LineBorder(Color.red));
 			throw new Exception("Error at " + label.getText() + "\n" + "Double Values Only");
 		}
 	}
@@ -126,7 +138,7 @@ public class Utility {
     		sc.close();
     		return data;
 		} catch (FileNotFoundException e1) {
-			System.out.println("SZZ Error");
+			System.out.println("File not found");
 			return data;
 		}
 	}
