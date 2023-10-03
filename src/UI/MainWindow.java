@@ -87,6 +87,15 @@ public class MainWindow extends JFrame{
 			}
 		});
 		
+		MenuButton btn_Logout = new MenuButton("Logout", img, null);
+		btn_Logout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Login_Screen lg = new Login_Screen("ASL - Restaurant Management System");
+				lg.createUI();
+				dispose();
+			}
+		});
+		
 		pnl_Items.setBorder(new EmptyBorder(0, 0, 0, 60));
 		pnl_Items.setBackground(Color.orange);
 		pnl_Items.add(btn);
@@ -94,6 +103,7 @@ public class MainWindow extends JFrame{
 		pnl_Items.add(btn2);
 		pnl_Items.add(btn3);
 		pnl_Items.add(btn4);
+		add(btn_Logout);
 		pnl_Head.add(pnl_Items);
 		pnl_Head.add(btnA);
 		
@@ -108,6 +118,7 @@ public class MainWindow extends JFrame{
 
 		setVisible(true);
 		pnl_Head.setBounds(0,0, getWidth(), 110);
+		btn_Logout.setBounds(getWidth() - 120, getHeight() - 200, 100, 100);
 		lb2.setBounds(0, getHeight() - 88, getWidth(), 50);
 		pnl.setBounds(30, 150, getWidth() - 70, 550);
 		currentPanel = pnl;				

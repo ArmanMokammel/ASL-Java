@@ -140,7 +140,6 @@ public class Login_Screen extends JFrame {
 			while (sc.hasNextLine()) {
 				data = sc.nextLine();
 				String datas[] = data.split("\t");
-				System.out.println(data);
 				if (datas[0].equals(userID)) {
 					if (datas[1].equals(password)) {
 						sc.close();
