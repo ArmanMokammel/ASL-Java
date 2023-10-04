@@ -16,15 +16,14 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 
 import Enum.InputType;
+import Exception.InputException;
 
 public class Utility {
 	
-	public static String checkString(JTextField component, JLabel label, InputType inputType) throws Exception {
+	public static String checkString(JTextField component, JLabel label, InputType inputType) throws InputException {
 		if(component.getText().isBlank())
 		{
-			component.requestFocus();
-			component.setBorder(new LineBorder(Color.red));
-			throw new Exception("Error at " + label.getText() + "\n" + "Please enter a value");
+			throwException(component, "Error at " + label.getText() + "\n" + "Please enter a value");
 		}
 		
 		Pattern digit = Pattern.compile("[0-9]");
@@ -37,25 +36,19 @@ public class Utility {
 		
 		if(inputType == InputType.Alphabetic) {
 			if(hasDigit.find() || hasSpecial.find()) {
-				component.requestFocus();
-				component.setBorder(new LineBorder(Color.red));
-				throw new Exception("Error at " + label.getText() + "\n" + "Digits and Special characters not allowed");
+				throwException(component, "Error at " + label.getText() + "\n" + "Digits and Special characters not allowed");
 			}
 		}
 		
 		if(inputType == InputType.Alphanumeric) {
 			if(hasSpecial.find()) {
-				component.requestFocus();
-				component.setBorder(new LineBorder(Color.red));
-				throw new Exception("Error at " + label.getText() + "\n" + "Special characters not allowed");
+				throwException(component, "Error at " + label.getText() + "\n" + "Special characters not allowed");
 			}
 		}
 		
 		if(inputType == InputType.Email) {
 			if(!component.getText().contains("@") || !component.getText().contains(".") || hasSpecial2.find()) {
-				component.requestFocus();
-				component.setBorder(new LineBorder(Color.red));
-				throw new Exception("Error at " + label.getText() + "\n" + "Invalid email type");
+				throwException(component, "Error at " + label.getText() + "\n" + "Invalid email type");
 			}
 		}
 
@@ -63,56 +56,58 @@ public class Utility {
 		return component.getText();
 	}
 	
-	public static String checkString(JComboBox<?> component, JLabel label) throws Exception {
+	public static String checkString(JComboBox<?> component, JLabel label) throws InputException {
 		if(component.getSelectedItem().toString().isBlank())
 		{
-			component.requestFocus();
-			component.setBorder(new LineBorder(Color.red));
-			throw new Exception("Error at " + label.getText() + "\n" + "Please enter a value");
+			throwException(component, "Error at " + label.getText() + "\n" + "Please enter a value");
 		}
 		component.setBorder(new LineBorder(Color.green));
 		return component.getSelectedItem().toString();
 	}
 	
-	public static int checkInt(JTextField component, JLabel label) throws Exception {
+	public static int checkInt(JTextField component, JLabel label) throws InputException {
 		if(component.getText().isBlank())
 		{
-			component.requestFocus();
-			component.setBorder(new LineBorder(Color.red));
-			throw new Exception("Error at " + label.getText() + "\n" + "Please enter a value");
+			throwException(component, "Error at " + label.getText() + "\n" + "Please enter a value");
 		}
 		else if(tryParseInt(component.getText())) {
 			component.setBorder(new LineBorder(Color.green));
 			return Integer.parseInt(component.getText());
 		}
 		else {
-			component.requestFocus();
-			component.setBorder(new LineBorder(Color.red));
-			throw new Exception("Error at " + label.getText() + "\n" + "Integer Values Only");
+			throwException(component, "Error at " + label.getText() + "\n" + "Integer Values Only");
 		}
+		return -1;
 	}
 	
-	public static double checkDouble(JTextField component, JLabel label) throws Exception {
+	public static double checkDouble(JTextField component, JLabel label) throws InputException {
 		if(component.getText().isBlank())
 		{
-			component.requestFocus();
-			component.setBorder(new LineBorder(Color.red));
-			throw new Exception("Error at " + label.getText() + "\n" + "Please enter a value");
+			throwException(component, "Error at " + label.getText() + "\n" + "Please enter a value");
 		}
 		else if(tryParseDouble(component.getText())) {
 			component.setBorder(new LineBorder(Color.green));
 			return Double.parseDouble(component.getText());
 		}
 		else {
-			component.requestFocus();
-			component.setBorder(new LineBorder(Color.red));
-			throw new Exception("Error at " + label.getText() + "\n" + "Double Values Only");
+			throwException(component, "Error at " + label.getText() + "\n" + "Double Values Only");
 		}
+		return -1;
 	}
 	
 	public static void showErrorMessage(Exception ex) {
 		Window activeWindow = FocusManager.getCurrentManager().getActiveWindow();
 		JOptionPane.showMessageDialog(activeWindow, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+	}
+	
+	private static void throwException(JTextField component, String message) throws InputException {
+		component.setBorder(new LineBorder(Color.red));
+		throw new InputException(component, message);
+	}
+	
+	private static void throwException(JComboBox<?> component, String message) throws InputException {
+		component.setBorder(new LineBorder(Color.red));
+		throw new InputException(component, message);
 	}
 	
 	private static boolean tryParseInt(String s) {

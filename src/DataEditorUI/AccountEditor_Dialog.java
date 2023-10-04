@@ -8,6 +8,7 @@ import javax.swing.*;
 import Data.Account;
 import Enum.AccountType;
 import Enum.InputType;
+import Exception.InputException;
 import UI.*;
 import Utilities.Utility;
 
@@ -80,7 +81,7 @@ public class AccountEditor_Dialog extends JDialog{
 				    F = Utility.checkInt(txt_employeeID, lbl_employeeID);
 				    account = new Account(A, B, AccountType.valueOf(C), D, E, F);
 				}
-				catch (Exception e2) {
+				catch (InputException e2) {
 					Utility.showErrorMessage(e2);
 					return;
 				}

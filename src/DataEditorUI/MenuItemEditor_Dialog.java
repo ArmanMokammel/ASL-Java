@@ -7,6 +7,7 @@ import javax.swing.*;
 
 import Data.MenuItem;
 import Enum.InputType;
+import Exception.InputException;
 import UI.*;
 import Utilities.Utility;
 
@@ -64,7 +65,7 @@ public class MenuItemEditor_Dialog extends JDialog{
 					D = Utility.checkDouble(txt_sellingPrice, lbl_sellingPrice);
 					
 					item = new MenuItem(A, B, C, D);
-				} catch (Exception e2) {
+				} catch (InputException e2) {
 					Utility.showErrorMessage(e2);
 					return;
 				}

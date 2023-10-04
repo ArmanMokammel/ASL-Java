@@ -8,6 +8,7 @@ import javax.swing.*;
 import Data.Discount_Voucher;
 import Enum.AccountType;
 import Enum.InputType;
+import Exception.InputException;
 import UI.MainWindow;
 import UI.Voucher_Panel;
 import Utilities.Utility;
@@ -65,7 +66,7 @@ public class VoucherEditor_Dialog extends JDialog{
 					C = Utility.checkString(txt_voucher, lbl_voucher, InputType.Alphanumeric);
 					D = Utility.checkDouble(txt_value, lbl_value);
 					voucher = new Discount_Voucher(A, B, C, D);
-				} catch (Exception e2) {
+				} catch (InputException e2) {
 					Utility.showErrorMessage(e2);
 					return;
 				}
