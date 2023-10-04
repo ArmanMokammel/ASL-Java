@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -21,6 +23,18 @@ public class Utility {
 			component.requestFocus();
 			component.setBorder(new LineBorder(Color.red));
 			throw new Exception("Error at " + label.getText() + "\n" + "Please enter a value");
+		}
+		
+		Pattern digit = Pattern.compile("[0-9]");
+        Pattern special = Pattern.compile ("[!@#$%&*()_+=|<>?{}\\[\\]~-]");
+        
+        Matcher hasDigit =  digit.matcher(component.getText());
+        Matcher hasSpecial =  special.matcher(component.getText());
+        
+		if(hasDigit.find() || hasSpecial.find()) {
+			component.requestFocus();
+			component.setBorder(new LineBorder(Color.red));
+			throw new Exception("Error at " + label.getText() + "\n" + "Digits and Special characters not allowed");
 		}
 		component.setBorder(new LineBorder(Color.green));
 		return component.getText();
