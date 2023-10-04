@@ -7,6 +7,7 @@ import javax.swing.*;
 
 import Data.Discount_Voucher;
 import Enum.AccountType;
+import Enum.InputType;
 import UI.MainWindow;
 import UI.Voucher_Panel;
 import Utilities.Utility;
@@ -59,9 +60,9 @@ public class VoucherEditor_Dialog extends JDialog{
 			public void actionPerformed(ActionEvent e) {
 				Discount_Voucher voucher = null;
 				try {
-					A = txt_customer.getText();
+					A = Utility.checkString(txt_customer, lbl_customer, InputType.Alphabetic) ;
 					B = Utility.checkInt(txt_voucherId, lbl_voucherId);
-					C = Utility.checkString(txt_voucher, lbl_voucher);
+					C = Utility.checkString(txt_voucher, lbl_voucher, InputType.Alphanumeric);
 					D = Utility.checkDouble(txt_value, lbl_value);
 					voucher = new Discount_Voucher(A, B, C, D);
 				} catch (Exception e2) {

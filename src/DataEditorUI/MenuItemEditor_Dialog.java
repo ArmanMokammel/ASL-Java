@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 import Data.MenuItem;
+import Enum.InputType;
 import UI.*;
 import Utilities.Utility;
 
@@ -58,7 +59,7 @@ public class MenuItemEditor_Dialog extends JDialog{
 				MenuItem item = null;
 				try {
 					A = Utility.checkInt(txt_itemId, lbl_itemId);
-					B = Utility.checkString(txt_itemName, lbl_itemName);
+					B = Utility.checkString(txt_itemName, lbl_itemName, InputType.Text);
 					C = Utility.checkDouble(txt_costPrice, lbl_costPrice);
 					D = Utility.checkDouble(txt_sellingPrice, lbl_sellingPrice);
 					

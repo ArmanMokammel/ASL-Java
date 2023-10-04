@@ -7,6 +7,7 @@ import javax.swing.*;
 
 import Data.Account;
 import Enum.AccountType;
+import Enum.InputType;
 import UI.*;
 import Utilities.Utility;
 
@@ -71,11 +72,11 @@ public class AccountEditor_Dialog extends JDialog{
 			public void actionPerformed(ActionEvent e) {
 				Account account = null;
 				try{
-					A = Utility.checkString(txt_userID, lbl_userID);
-					B = Utility.checkString(txt_password, lbl_password);
+					A = Utility.checkString(txt_userID, lbl_userID, InputType.Alphanumeric);
+					B = Utility.checkString(txt_password, lbl_password, InputType.Password);
 					C = Utility.checkString(cmbx_accountType, lbl_accountType);
-					D = Utility.checkString(txt_name, lbl_name);
-					E = Utility.checkString(txt_email, lbl_email);
+					D = Utility.checkString(txt_name, lbl_name, InputType.Alphabetic);
+					E = Utility.checkString(txt_email, lbl_email, InputType.Email);
 				    F = Utility.checkInt(txt_employeeID, lbl_employeeID);
 				    account = new Account(A, B, AccountType.valueOf(C), D, E, F);
 				}

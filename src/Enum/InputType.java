@@ -1,7 +1,9 @@
 package Enum;
 
 public enum InputType {
-	STRING,
-	INT,
-	Double
+	Alphanumeric,
+	Password,
+	Alphabetic,
+	Email,
+	Text
 }

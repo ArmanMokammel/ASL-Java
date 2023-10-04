@@ -15,9 +15,11 @@ import java.util.regex.Pattern;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 
+import Enum.InputType;
+
 public class Utility {
 	
-	public static String checkString(JTextField component, JLabel label) throws Exception {
+	public static String checkString(JTextField component, JLabel label, InputType inputType) throws Exception {
 		if(component.getText().isBlank())
 		{
 			component.requestFocus();
@@ -26,16 +28,37 @@ public class Utility {
 		}
 		
 		Pattern digit = Pattern.compile("[0-9]");
-        Pattern special = Pattern.compile ("[!@#$%&*()_+=|<>?{}\\[\\]~-]");
-        
-        Matcher hasDigit =  digit.matcher(component.getText());
-        Matcher hasSpecial =  special.matcher(component.getText());
-        
-		if(hasDigit.find() || hasSpecial.find()) {
-			component.requestFocus();
-			component.setBorder(new LineBorder(Color.red));
-			throw new Exception("Error at " + label.getText() + "\n" + "Digits and Special characters not allowed");
+		Pattern special = Pattern.compile ("[!@#$%&*()_+=|<>?{}\\[\\]~-]");
+		Pattern special2 = Pattern.compile ("[!#$%&*()_+=|<>?{}\\[\\]~-]");
+		
+		Matcher hasDigit =  digit.matcher(component.getText());
+		Matcher hasSpecial =  special.matcher(component.getText());
+		Matcher hasSpecial2 =  special2.matcher(component.getText());
+		
+		if(inputType == InputType.Alphabetic) {
+			if(hasDigit.find() || hasSpecial.find()) {
+				component.requestFocus();
+				component.setBorder(new LineBorder(Color.red));
+				throw new Exception("Error at " + label.getText() + "\n" + "Digits and Special characters not allowed");
+			}
 		}
+		
+		if(inputType == InputType.Alphanumeric) {
+			if(hasSpecial.find()) {
+				component.requestFocus();
+				component.setBorder(new LineBorder(Color.red));
+				throw new Exception("Error at " + label.getText() + "\n" + "Special characters not allowed");
+			}
+		}
+		
+		if(inputType == InputType.Email) {
+			if(!component.getText().contains("@") || !component.getText().contains(".") || hasSpecial2.find()) {
+				component.requestFocus();
+				component.setBorder(new LineBorder(Color.red));
+				throw new Exception("Error at " + label.getText() + "\n" + "Invalid email type");
+			}
+		}
+
 		component.setBorder(new LineBorder(Color.green));
 		return component.getText();
 	}
