@@ -1,13 +1,19 @@
 package UI;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.KeyStroke;
 
 import Enum.AccountType;
+import UI.OrderSystem.*;
 
 public class Order_Screen extends JFrame{
 	
@@ -25,16 +31,34 @@ public class Order_Screen extends JFrame{
 				super.windowClosing(e);
 			}
 		});
+		setSize(1500, 800);
 	}
 	
 	public void createUI() {
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setLayout(null);
+		//setUndecorated(true);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setSize(1500, 800);
+		addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				System.out.println(e.getKeyCode());
+			}
+		});
 		
-		JPanel pnl_1 = new JPanel();
-		JPanel pnl_2 = new JPanel();
+		this.getRootPane().registerKeyboardAction (new ActionListener ()
+        {
+            @Override
+            public void actionPerformed (final ActionEvent e)
+            {
+            	dispose();
+                setUndecorated(isUndecorated() ? false : true);
+                setVisible(true);
+            }
+        }, KeyStroke.getKeyStroke ( KeyEvent.VK_F1, 0 ), JComponent.WHEN_IN_FOCUSED_WINDOW );
+		
+		Panel_A pnl_1 = new Panel_A();
+		Panel_B pnl_2 = new Panel_B();
 		JPanel pnl_3 = new JPanel();
 		JPanel pnl_4 = new JPanel();
 		JPanel pnl_5 = new JPanel();
@@ -52,8 +76,8 @@ public class Order_Screen extends JFrame{
 		add(pnl_5);
 		
 		setVisible(true);
-		pnl_1.setBounds(0,0,getWidth() - 450,150);
-		pnl_2.setBounds(pnl_1.getWidth(),0,450,150);
+		pnl_1.setBounds(0,0,getWidth() - 510, 150);
+		pnl_2.setBounds(pnl_1.getWidth(),0,495,150);
 		pnl_3.setBounds(0,150,getWidth() - 450,getHeight() - 220);
 		pnl_4.setBounds(pnl_1.getWidth(), 150, 450, getHeight() - 220);
 		pnl_5.setBounds(0, getHeight() - 150, getWidth(), 150);
