@@ -9,8 +9,10 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
+import javax.swing.SwingConstants;
 
 import Enum.AccountType;
 import UI.OrderSystem.*;
@@ -59,15 +61,16 @@ public class Order_Screen extends JFrame{
 		
 		Panel_A pnl_1 = new Panel_A();
 		Panel_B pnl_2 = new Panel_B();
-		JPanel pnl_3 = new JPanel();
-		JPanel pnl_4 = new JPanel();
-		JPanel pnl_5 = new JPanel();
+		Panel_C pnl_3 = new Panel_C();
+		Panel_D pnl_4 = new Panel_D();
+		JLabel pnl_5 = new JLabel("Copyright my shit 2.0", SwingConstants.CENTER);
 		
 		pnl_1.setBackground(Color.red);		
 		pnl_2.setBackground(Color.green);		
 		pnl_3.setBackground(Color.blue);		
 		pnl_4.setBackground(Color.magenta);
 		pnl_5.setBackground(Color.yellow);
+		pnl_5.setOpaque(true);
 		
 		add(pnl_1);
 		add(pnl_2);
@@ -77,9 +80,9 @@ public class Order_Screen extends JFrame{
 		
 		setVisible(true);
 		pnl_1.setBounds(0,0,getWidth() - 510, 150);
-		pnl_2.setBounds(pnl_1.getWidth(),0,495,150);
-		pnl_3.setBounds(0,150,getWidth() - 450,getHeight() - 220);
-		pnl_4.setBounds(pnl_1.getWidth(), 150, 450, getHeight() - 220);
-		pnl_5.setBounds(0, getHeight() - 150, getWidth(), 150);
+		pnl_2.setBounds(pnl_1.getWidth(),0,495, 220);
+		pnl_3.setBounds(0,150,getWidth() - 510, getHeight() - 220);
+		pnl_4.setBounds(pnl_1.getWidth(), 150, 495, getHeight() - 220);
+		pnl_5.setBounds(0, getHeight() - 70, getWidth(), 35);
 	}
 }
