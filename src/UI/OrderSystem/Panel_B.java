@@ -49,24 +49,16 @@ public class Panel_B extends JPanel{
 		lbl_6.setOpaque(true);
 		lbl_6.setBackground(Color.cyan);
 		
-		JLabel lbl_7 = new JLabel("Email:");
+		JLabel lbl_7 = new JLabel("Discount %:");
 		lbl_7.setBounds(10, 100, 70, 30);
 		
-		JLabel lbl_8 = new JLabel(" armanmokammel@gmail.com");
+		JLabel lbl_8 = new JLabel(" 50.00%");
 		lbl_8.setBounds(90, 100, 370, 30);
 		lbl_8.setOpaque(true);
 		lbl_8.setBackground(Color.cyan);
 		
-		JLabel lbl_9 = new JLabel("Discount %:");
-		lbl_9.setBounds(10, 140, 70, 30);
-		
-		JLabel lbl_10 = new JLabel(" 50.00%");
-		lbl_10.setBounds(90, 140, 370, 30);
-		lbl_10.setOpaque(true);
-		lbl_10.setBackground(Color.cyan);
-		
 		JButton btn_2 = new JButton("Remove Customer");
-		btn_2.setBounds(180, 180, 140, 30);
+		btn_2.setBounds(180, 150, 140, 30);
 		
 		add(lbl_3);
 		add(lbl_4);
@@ -74,8 +66,6 @@ public class Panel_B extends JPanel{
 		add(lbl_6);
 		add(lbl_7);
 		add(lbl_8);
-		add(lbl_9);
-		add(lbl_10);
 		add(btn_2);
 	}
 }

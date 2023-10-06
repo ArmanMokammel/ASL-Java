@@ -80,9 +80,9 @@ public class Order_Screen extends JFrame{
 		
 		setVisible(true);
 		pnl_1.setBounds(0,0,getWidth() - 510, 150);
-		pnl_2.setBounds(pnl_1.getWidth(),0,495, 220);
+		pnl_2.setBounds(pnl_1.getWidth(),0,495, 190);
 		pnl_3.setBounds(0,150,getWidth() - 510, getHeight() - 220);
-		pnl_4.setBounds(pnl_1.getWidth(), 150, 495, getHeight() - 220);
+		pnl_4.setBounds(pnl_1.getWidth(), pnl_2.getHeight(), 495, getHeight() - 260);
 		pnl_5.setBounds(0, getHeight() - 70, getWidth(), 35);
 	}
 }
