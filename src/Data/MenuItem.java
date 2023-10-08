@@ -3,12 +3,14 @@ package Data;
 public class MenuItem {
 	
 	private int itemId;
+	private String category;
 	private String itemName;
 	private double costPrice;
 	private double sellingPrice;
 	
-	public MenuItem(int itemId, String itemName, double costPrice, double sellingPrice) {
+	public MenuItem(int itemId, String category, String itemName, double costPrice, double sellingPrice) {
 		this.itemId = itemId;
+		this.category = category;
 		this.itemName = itemName;
 		this.costPrice = costPrice;
 		this.sellingPrice = sellingPrice;
@@ -46,7 +48,15 @@ public class MenuItem {
 		this.sellingPrice = sellingPrice;
 	}
 	
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
 	public String toString() {
-		return itemId + "\t" + itemName + "\t" + costPrice + "\t" + sellingPrice + "\n";
+		return itemId + "\t" + category + "\t" + itemName + "\t" + costPrice + "\t" + sellingPrice + "\n";
 	}
 }

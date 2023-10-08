@@ -9,6 +9,13 @@ public class Panel_C extends JPanel{
 		setLayout(null);
 		
 		DefaultTableModel model = new DefaultTableModel();
+		model.addColumn("Delete");
+		model.addColumn("Item ID");
+		model.addColumn("Item Name");
+		model.addColumn("Price");
+		model.addColumn("Discounted Price");
+		model.addColumn("Quantity");
+		model.addColumn("Total");
 		
 		JTable table = new JTable(model);
 		
