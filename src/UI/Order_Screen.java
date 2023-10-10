@@ -68,12 +68,12 @@ public class Order_Screen extends JFrame{
 		
 		pnl_1.setBackground(new Color(198, 198, 198));		
 		pnl_2.setBackground(new Color(182, 169, 140));		
-//		pnl_3.setBackground(Color.blue);		
-//		pnl_4.setBackground(Color.magenta);
+		pnl_3.setBackground(Color.blue);		
+		pnl_4.setBackground(Color.magenta);
 		pnl_5.setBackground(Color.yellow);
 		
-		pnl_3.setBackground(Color.black);
-		pnl_4.setBackground(Color.black);
+//		pnl_3.setBackground(Color.black);
+//		pnl_4.setBackground(Color.black);
 		
 		pnl_5.setOpaque(true);
 		
@@ -84,10 +84,10 @@ public class Order_Screen extends JFrame{
 		add(pnl_5);
 		
 		setVisible(true);
-		pnl_1.setBounds(0,0,getWidth() - 510, 150);
-		pnl_2.setBounds(pnl_1.getWidth(),0,495, 190);
-		pnl_3.setBounds(0,150,getWidth() - 510, getHeight() - 220);
-		pnl_4.setBounds(pnl_1.getWidth(), pnl_2.getHeight(), 495, getHeight() - 260);
+		pnl_1.setBounds(0,0,getWidth() - 600, 150);
+		pnl_2.setBounds(pnl_1.getWidth(),0,590, 190);
+		pnl_3.setBounds(0,150,getWidth() - 600, getHeight() - 220);
+		pnl_4.setBounds(pnl_3.getWidth(), pnl_2.getHeight(), 590, getHeight() - 260);
 		pnl_5.setBounds(0, getHeight() - 70, getWidth(), 35);
 	}
 }

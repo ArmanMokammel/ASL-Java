@@ -4,8 +4,11 @@ import java.awt.Color;
 import java.awt.ComponentOrientation;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 import java.util.concurrent.Flow;
 
 import javax.imageio.ImageIO;
@@ -29,8 +32,16 @@ public class Welcome_Panel extends JPanel {
 		lbl_Welcome2.setBounds(210, 70, 500, 30);
 		lbl_Welcome2.setFont(f2);
 		
-		ImageIcon img = null;
-	    img = new ImageIcon("img\\test.png");
+		Image image = null;
+		try {
+			image = ImageIO.read(new File("img\\Placeholder.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		Image dimg = image.getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+		
+		ImageIcon img = new ImageIcon(dimg);
 		
 	    FlowLayout layout = new FlowLayout();
 	    layout.setHgap(15);

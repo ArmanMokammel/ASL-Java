@@ -3,9 +3,13 @@ package UI;
 import java.awt.Color;
 import java.awt.ComponentOrientation;
 import java.awt.FlowLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -45,8 +49,17 @@ public class MainWindow extends JFrame{
 		pnl_Items.setOpaque(false);
 		
 		pnl_Head.setBackground(Color.orange);
-		ImageIcon img = null;
-	    img = new ImageIcon("img\\test.png");
+		Image image = null;
+		try {
+			image = ImageIO.read(new File("img\\Placeholder.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		Image dimg = image.getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+		
+		ImageIcon img = new ImageIcon(dimg);
+		
 		MenuButton btn = new MenuButton("Vouchers", img, null);
 		btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

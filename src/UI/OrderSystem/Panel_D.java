@@ -6,6 +6,9 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
+import TableCellCustom.TableRemove_Editor;
+import TableCellCustom.TableRemove_Renderer;
+
 public class Panel_D extends JPanel{
 	
 	public Panel_D() {
@@ -101,10 +104,14 @@ public class Panel_D extends JPanel{
 		model.addColumn("Type");
 		model.addColumn("Amount");
 		
-		model.addRow(new Object[] {"2", "234"});
+		model.addRow(new Object[] {"", "234"});
 		
 		JTable table = new JTable(model);
 		table.setBackground(new Color(214, 241, 216));
+		table.setRowHeight(30);
+		
+		table.getColumnModel().getColumn(0).setCellRenderer(new TableRemove_Renderer());
+		table.getColumnModel().getColumn(0).setCellEditor(new TableRemove_Editor());
 		
 		JTableHeader tableHeader = table.getTableHeader();
 		tableHeader.setBackground(Color.black);
