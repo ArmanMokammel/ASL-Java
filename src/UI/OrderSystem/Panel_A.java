@@ -36,7 +36,7 @@ public class Panel_A extends JPanel {
 		JPanel pnl_2 = new JPanel();
 		pnl_2.setLayout(null);
 		pnl_2.setBounds(250, 10, 310, 120);
-		pnl_2.setBackground(Color.yellow);
+		pnl_2.setBackground(new Color(255, 220, 113));
 		
 		JLabel lbl_3 = new JLabel("Branch:");
 		lbl_3.setBounds(10, 10, 70, 30);		
@@ -66,10 +66,12 @@ public class Panel_A extends JPanel {
 		JPanel pnl_3 = new JPanel();
 		pnl_3.setLayout(null);
 		pnl_3.setBounds(570, 10, 400, 120);
-		pnl_3.setBackground(Color.magenta);
+		pnl_3.setBackground(null);
 		
 		JButton btn_1 = new JButton("<html><center>"+"Open"+"<br>"+"Item Menu"+"</center></html>");
 		btn_1.setBounds(10, 20, 120, 80);
+		btn_1.setBackground(new Color(255, 220, 113));
+		btn_1.setOpaque(true);
 		
 		JPanel pnl_3_A = new JPanel();
 		pnl_3_A.setLayout(null);
@@ -78,9 +80,13 @@ public class Panel_A extends JPanel {
 				
 		JButton btn_3 = new JButton("Shortcuts");
 		btn_3.setBounds(0, 0, 125, 60);
+		btn_3.setBackground(new Color(255, 220, 113));
+		btn_3.setOpaque(true);
 		
 		JButton btn_4 = new JButton("Sell History");
 		btn_4.setBounds(125, 0, 125, 60);
+		btn_4.setBackground(new Color(255, 220, 113));
+		btn_4.setOpaque(true);
 		
 		JButton btn_2 = new JButton("Suspended Orders");
 		btn_2.setBounds(0, 70, 250, 50);

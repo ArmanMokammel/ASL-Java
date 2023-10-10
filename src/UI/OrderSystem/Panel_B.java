@@ -39,7 +39,6 @@ public class Panel_B extends JPanel{
 		JLabel lbl_4 = new JLabel(" Customer Name");
 		lbl_4.setBounds(90, 20, 370, 30);
 		lbl_4.setOpaque(true);
-		lbl_4.setBackground(Color.cyan);
 		
 		JLabel lbl_5 = new JLabel("ID:");
 		lbl_5.setBounds(10, 60, 70, 30);
@@ -47,7 +46,6 @@ public class Panel_B extends JPanel{
 		JLabel lbl_6 = new JLabel(" 2232450642");
 		lbl_6.setBounds(90, 60, 370, 30);
 		lbl_6.setOpaque(true);
-		lbl_6.setBackground(Color.cyan);
 		
 		JLabel lbl_7 = new JLabel("Discount %:");
 		lbl_7.setBounds(10, 100, 70, 30);
@@ -55,10 +53,12 @@ public class Panel_B extends JPanel{
 		JLabel lbl_8 = new JLabel(" 50.00%");
 		lbl_8.setBounds(90, 100, 370, 30);
 		lbl_8.setOpaque(true);
-		lbl_8.setBackground(Color.cyan);
 		
 		JButton btn_2 = new JButton("Remove Customer");
 		btn_2.setBounds(180, 150, 140, 30);
+		btn_2.setBackground(new Color(255, 49, 49));
+		btn_2.setForeground(Color.white);
+		btn_2.setOpaque(true);
 		
 		add(lbl_3);
 		add(lbl_4);

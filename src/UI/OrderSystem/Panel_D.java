@@ -4,6 +4,7 @@ import java.awt.Color;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 
 public class Panel_D extends JPanel{
 	
@@ -21,7 +22,6 @@ public class Panel_D extends JPanel{
 		JLabel lbl_2 = new JLabel("  123123.00");
 		lbl_2.setBounds(80, 20, 100, 30);
 		lbl_2.setOpaque(true);
-		lbl_2.setBackground(Color.cyan);
 		
 		JLabel lbl_3 = new JLabel("VAT:");
 		lbl_3.setBounds(10, 60, 70, 30);
@@ -38,7 +38,6 @@ public class Panel_D extends JPanel{
 		JLabel lbl_5 = new JLabel("  4523492.00");
 		lbl_5.setBounds(80, 120, 100, 30);
 		lbl_5.setOpaque(true);
-		lbl_5.setBackground(Color.cyan);
 		
 		JSeparator sp2 = new JSeparator();
 		sp2.setBounds(0, 160, 485, 10);
@@ -49,7 +48,6 @@ public class Panel_D extends JPanel{
 		JLabel lbl_7 = new JLabel("  651635.00");
 		lbl_7.setBounds(90, 170, 100, 30);
 		lbl_7.setOpaque(true);
-		lbl_7.setBackground(Color.cyan);
 		
 		JLabel lbl_8 = new JLabel("Amount Due:");
 		lbl_8.setBounds(10, 210, 80, 30);
@@ -57,7 +55,6 @@ public class Panel_D extends JPanel{
 		JLabel lbl_9 = new JLabel("  0.00");
 		lbl_9.setBounds(90, 210, 100, 30);
 		lbl_9.setOpaque(true);
-		lbl_9.setBackground(Color.cyan);
 		
 		pnl_1.add(lbl_1);
 		pnl_1.add(lbl_2);
@@ -95,15 +92,27 @@ public class Panel_D extends JPanel{
 		
 		JButton btn_1 = new JButton("Add Payment");
 		btn_1.setBounds(100, 110, 110, 30);
+		btn_1.setBackground(new Color(93, 130, 84));
+		btn_1.setForeground(Color.white);
+		btn_1.setOpaque(true);
 		
 		DefaultTableModel model = new DefaultTableModel();
 		model.addColumn("Delete");
 		model.addColumn("Type");
 		model.addColumn("Amount");
 		
+		model.addRow(new Object[] {"2", "234"});
+		
 		JTable table = new JTable(model);
+		table.setBackground(new Color(214, 241, 216));
+		
+		JTableHeader tableHeader = table.getTableHeader();
+		tableHeader.setBackground(Color.black);
+		tableHeader.setForeground(Color.white);
+		
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setBounds(10, 155, 465, 100);
+		scrollPane.getViewport().setBackground(new Color(145, 214, 150));
 		
 		JButton btn_2 = new JButton("Hold");
 		btn_2.setBounds(10, 260, 100, 30);

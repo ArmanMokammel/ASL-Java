@@ -39,6 +39,7 @@ public class Order_Screen extends JFrame{
 	public void createUI() {
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setLayout(null);
+		this.getContentPane().setBackground(Color.black);
 		//setUndecorated(true);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		addKeyListener(new KeyAdapter() {
@@ -65,11 +66,15 @@ public class Order_Screen extends JFrame{
 		Panel_D pnl_4 = new Panel_D();
 		JLabel pnl_5 = new JLabel("Copyright my shit 2.0", SwingConstants.CENTER);
 		
-		pnl_1.setBackground(Color.red);		
-		pnl_2.setBackground(Color.green);		
-		pnl_3.setBackground(Color.blue);		
-		pnl_4.setBackground(Color.magenta);
+		pnl_1.setBackground(new Color(198, 198, 198));		
+		pnl_2.setBackground(new Color(182, 169, 140));		
+//		pnl_3.setBackground(Color.blue);		
+//		pnl_4.setBackground(Color.magenta);
 		pnl_5.setBackground(Color.yellow);
+		
+		pnl_3.setBackground(Color.black);
+		pnl_4.setBackground(Color.black);
+		
 		pnl_5.setOpaque(true);
 		
 		add(pnl_1);
