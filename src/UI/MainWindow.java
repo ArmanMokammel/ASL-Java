@@ -138,10 +138,10 @@ public class MainWindow extends JFrame{
 	}
 	
 	public void swapPanel(JPanel newPanel) {
-		MainWindow.this.remove(MainWindow.this.currentPanel);
-		MainWindow.this.add(newPanel);
-		MainWindow.this.revalidate();
-		MainWindow.this.repaint();
+		remove(currentPanel);
+		add(newPanel);
+		revalidate();
+		repaint();
 		currentPanel = newPanel;
 		System.gc();
 	}
