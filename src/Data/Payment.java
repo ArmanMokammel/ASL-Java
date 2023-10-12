@@ -5,7 +5,7 @@ public class Payment {
 	private String paymentType;
 	private double amount;
 	
-	public Payment (String paymentType, double amount) {
+	public Payment(String paymentType, double amount) {
 		this.paymentType = paymentType;
 		this.amount = amount;
 	}
