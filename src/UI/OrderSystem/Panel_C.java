@@ -15,7 +15,7 @@ public class Panel_C extends JPanel{
 		setLayout(null);
 		
 		DefaultTableModel model = new DefaultTableModel();
-		model.addColumn("Delete");
+		model.addColumn("");
 		model.addColumn("Item ID");
 		model.addColumn("Item Name");
 		model.addColumn("Price");

@@ -16,8 +16,12 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 
 public class Welcome_Panel extends JPanel {
+	
+	private MainWindow window;
 
 	public Welcome_Panel(MainWindow window, String name) {
+		
+		this.window = window;
 		
 		Font f1 = new Font(null, Font.BOLD, 20);
 		Font f2 = new Font(null, Font.PLAIN, 17);
@@ -64,7 +68,9 @@ public class Welcome_Panel extends JPanel {
 		MenuButton btn2 = new MenuButton("Order", img, Color.white);
 		btn2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(window, "Not implemented yet!");				
+				Order_Screen window = new Order_Screen(name, MainWindow.accountType);
+				window.createUI();
+				Welcome_Panel.this.window.dispose();				
 			}
 		});
 		

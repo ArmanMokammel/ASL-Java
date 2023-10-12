@@ -15,7 +15,7 @@ public class Panel_D extends JPanel{
 		setLayout(null);
 		
 		JPanel pnl_1 = new JPanel();
-		pnl_1.setBounds(10, 10, 485, 250);
+		pnl_1.setBounds(10, 10, 565, 250);
 		pnl_1.setBackground(Color.lightGray);
 		pnl_1.setLayout(null);
 		
@@ -78,7 +78,7 @@ public class Panel_D extends JPanel{
 		
 		JPanel pnl_2 = new JPanel();
 		pnl_2.setLayout(null);
-		pnl_2.setBounds(10, 270, 485, 300);
+		pnl_2.setBounds(10, 270, 565, 300);
 		pnl_2.setBackground(Color.lightGray);
 		
 		JLabel lbl_10 = new JLabel("Payment Type:");
@@ -100,7 +100,7 @@ public class Panel_D extends JPanel{
 		btn_1.setOpaque(true);
 		
 		DefaultTableModel model = new DefaultTableModel();
-		model.addColumn("Delete");
+		model.addColumn("");
 		model.addColumn("Type");
 		model.addColumn("Amount");
 		

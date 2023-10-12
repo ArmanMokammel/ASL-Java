@@ -1,9 +1,14 @@
 package UI.OrderSystem;
 
 import java.awt.Color;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.*;
-import javax.swing.SwingConstants;
+
+import UI.SearchableComboBox;
 
 public class Panel_B extends JPanel{
 	
@@ -19,16 +24,42 @@ public class Panel_B extends JPanel{
 		JLabel lbl_2 = new JLabel("Customer:");
 		lbl_2.setBounds(10, 50, 60, 30);
 		
-		JTextField txt_1 = new JTextField();
+		List<String> myWords = new ArrayList<String>();
+
+		myWords.add("bike");
+		myWords.add("car");
+		myWords.add("cap");
+		myWords.add("cape");
+		myWords.add("canadian");
+		myWords.add("caprecious");
+		myWords.add("catepult abs");
+		
+		SearchableComboBox txt_1 = new SearchableComboBox(myWords);		
 		txt_1.setBounds(80, 50, 380, 30);
+		txt_1.setMaximumRowCount(5);
+		txt_1.addItemListener(new ItemListener() {
+			
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				if(e.getStateChange() == ItemEvent.SELECTED)
+				{				
+					if(txt_1.isTyping) {					
+						txt_1.isTyping = false;
+						return;
+					}
+					JOptionPane.showMessageDialog(null, (String)txt_1.getSelectedItem());
+					txt_1.isTyping = false;
+				}
+			}
+		});
 		
 		JButton btn_1 = new JButton("New Customer");
 		btn_1.setBounds(190, 100, 120, 30);
 		
-//		add(lbl_1);
-//		add(lbl_2);
-//		add(txt_1);
-//		add(btn_1);
+		add(lbl_1);
+		add(lbl_2);
+		add(txt_1);
+		add(btn_1);
 		
 		
 		
@@ -60,12 +91,12 @@ public class Panel_B extends JPanel{
 		btn_2.setForeground(Color.white);
 		btn_2.setOpaque(true);
 		
-		add(lbl_3);
-		add(lbl_4);
-		add(lbl_5);
-		add(lbl_6);
-		add(lbl_7);
-		add(lbl_8);
-		add(btn_2);
+//		add(lbl_3);
+//		add(lbl_4);
+//		add(lbl_5);
+//		add(lbl_6);
+//		add(lbl_7);
+//		add(lbl_8);
+//		add(btn_2);
 	}
 }
