@@ -92,6 +92,14 @@ public class MainWindow extends JFrame{
 		
 		MenuButton btn4 = new MenuButton("Employees", img, null);
 		
+		MenuButton btn5 = new MenuButton("Customers", img, null);
+		btn5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				/* Swap Panel code goes here */
+				
+			}
+		});
+		
 		MenuButton btnA = new MenuButton("Profile", img, null);
 		btnA.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -116,6 +124,7 @@ public class MainWindow extends JFrame{
 		pnl_Items.add(btn2);
 		pnl_Items.add(btn3);
 		pnl_Items.add(btn4);
+		pnl_Items.add(btn5);
 		add(btn_Logout);
 		pnl_Head.add(pnl_Items);
 		pnl_Head.add(btnA);

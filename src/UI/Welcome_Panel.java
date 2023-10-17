@@ -82,6 +82,14 @@ public class Welcome_Panel extends JPanel {
 		});
 		
 		MenuButton btn4 = new MenuButton("Employees", img, Color.white);
+		
+		MenuButton btn5 = new MenuButton("Customers", img, Color.white);
+		btn5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				/* Swap Panel code goes here */
+				
+			}
+		});
 
 		pnl.setBounds(210, 150, 800, 300);
 		
@@ -90,6 +98,7 @@ public class Welcome_Panel extends JPanel {
 		pnl.add(btn2);
 		pnl.add(btn3);
 		pnl.add(btn4);
+		pnl.add(btn5);
 		
 		add(lbl_Welcome);
 		add(lbl_Welcome2);
