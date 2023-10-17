@@ -87,7 +87,7 @@ public class Welcome_Panel extends JPanel {
 		btn5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				/* Swap Panel code goes here */
-				
+				window.swapPanel(new Customer_Panel(window));
 			}
 		});
 

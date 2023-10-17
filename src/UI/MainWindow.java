@@ -96,7 +96,7 @@ public class MainWindow extends JFrame{
 		btn5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				/* Swap Panel code goes here */
-				
+				MainWindow.this.swapPanel(new Customer_Panel(MainWindow.this));
 			}
 		});
 		
