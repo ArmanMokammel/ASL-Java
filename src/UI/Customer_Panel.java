@@ -77,7 +77,7 @@ public class Customer_Panel extends JPanelX{
 		for(String line: lines) {
 			String[] datas = line.split("\t");
 			customerList.add(new Customer(Integer.parseInt(datas[0]), datas[1], datas[2], datas[3], datas[4], DiscountType.valueOf(datas[5]), Integer.parseInt(datas[6])));
-			model.addRow(new Object[] {customerList.size(), Integer.parseInt(datas[0]), datas[1], datas[2], datas[3], datas[4], DiscountType.valueOf(datas[5]), Integer.parseInt(datas[6])});
+			model.addRow(new Object[] {customerList.size(), Integer.parseInt(datas[0]), datas[1], datas[2], datas[3], datas[4], DiscountType.valueOf(datas[5]), Double.parseDouble(datas[6])});
 		}
 	}
 	
