@@ -1,6 +1,7 @@
 package Utilities;
 
 import java.awt.Color;
+import java.awt.Image;
 import java.awt.Window;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -13,6 +14,7 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 
@@ -191,5 +193,16 @@ public class Utility {
 			System.out.println("File not found");
 			return data;
 		}
+	}
+	
+	public static ImageIcon getImageIcon(String file, int width, int height) {
+		Image img = null;
+		try {
+			img = ImageIO.read(new File(file));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		Image dimg = img.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+		return new ImageIcon(dimg);
 	}
 }

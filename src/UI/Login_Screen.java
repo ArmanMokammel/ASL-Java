@@ -25,6 +25,7 @@ import javax.swing.*;
 
 import Data.Account;
 import Enum.AccountType;
+import Utilities.Utility;
 
 public class Login_Screen extends JFrame {
 
@@ -36,7 +37,7 @@ public class Login_Screen extends JFrame {
 		Font f1 = new Font(null, Font.BOLD, 20);
 //		save();
 
-		setSize(500, 500);
+		setSize(600, 600);
 		setLayout(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
@@ -45,15 +46,8 @@ public class Login_Screen extends JFrame {
 		
 		JLabel lll = new JLabel();
 		lll.setBounds(70, 40, 310, 90);
-		Image img = null;
-		try {
-			img = ImageIO.read(new File("img\\Logo.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		Image dimg = img.getScaledInstance(lll.getWidth(), lll.getHeight(),
-				Image.SCALE_SMOOTH);
-		lll.setIcon(new ImageIcon(dimg));
+		ImageIcon icon_1 = Utility.getImageIcon("img\\Logo.png", 310, 90);
+		lll.setIcon(icon_1);
 		//lll.setOpaque(true);
 		//lll.setBackground(Color.red);
 
