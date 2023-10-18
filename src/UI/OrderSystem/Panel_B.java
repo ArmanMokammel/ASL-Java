@@ -1,6 +1,8 @@
 package UI.OrderSystem;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
@@ -37,12 +39,19 @@ public class Panel_B extends JPanel{
 		SearchableComboBox txt_1 = new SearchableComboBox(myWords);		
 		txt_1.setBounds(80, 50, 380, 30);
 		txt_1.setMaximumRowCount(5);
+		txt_1.setSelectedItem(null);
+		txt_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if((String)((SearchableComboBox)e.getSource()).getSelectedItem() == (String)((SearchableComboBox)e.getSource()).getItemAt(0)) {					
+					JOptionPane.showMessageDialog(null, "234");
+				}
+			}
+		});
 		txt_1.addItemListener(new ItemListener() {
-			
-			@Override
+
 			public void itemStateChanged(ItemEvent e) {
 				if(e.getStateChange() == ItemEvent.SELECTED)
-				{				
+				{	
 					if(txt_1.isTyping) {					
 						txt_1.isTyping = false;
 						return;

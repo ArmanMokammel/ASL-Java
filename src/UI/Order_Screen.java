@@ -14,21 +14,20 @@ import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
 
+import Data.Account;
 import Enum.AccountType;
 import UI.OrderSystem.*;
 
 public class Order_Screen extends JFrame{
 	
-	private String name;
-	private AccountType accountType;
+	private Account account;
 	
-	public Order_Screen(String name, AccountType accountType) {
-		super("Take Order - " + name);
-		this.name = name;
-		this.accountType = accountType;
+	public Order_Screen(Account account) {
+		super("Take Order - " + account.getName());
+		this.account = account;
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
-				MainWindow window = new MainWindow(name, Order_Screen.this.accountType);
+				MainWindow window = new MainWindow(account);
 				window.createUI();
 				super.windowClosing(e);
 			}

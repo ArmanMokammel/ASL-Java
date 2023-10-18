@@ -8,6 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -150,6 +151,23 @@ public class Utility {
 			for(Object object : obj) {
 				fr.write(object.toString());
 			}
+			
+			fr.close();
+			
+		} catch (IOException e1) {
+			System.out.println("SZZ Error");
+		}
+	}
+	
+	public static void writeAllToFile(String fileName, boolean append, List<String> aa) {
+		File file = new File(fileName);
+		FileWriter fr;
+		try {
+			fr = new FileWriter(file, append);
+			for(String object : aa) {
+				fr.write(object);
+			}
+			fr.write("\n");
 			
 			fr.close();
 			

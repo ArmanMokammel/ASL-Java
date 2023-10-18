@@ -98,26 +98,27 @@ public class Profile_Screen extends JDialog {
 					}
 				}
 				
-				Utility.writeAllToFile("Accounts.ASL", false, new LinkedList(accountList));
+				Utility.writeAllToFile("Accounts.ASL", false, accountList);
 
-
+				dispose();
 			}
 		});
 		
-		add(btn_submit);
-		
-		setVisible(true);		
+		add(btn_submit);	
 	}
-		public void setAccountDetails(String userID, String password, AccountType accountType, String name, String email, int employeeID) {
-			txt_userID.setText(userID);
+		public void setAccountDetails(Account account) {
+			txt_userID.setText(account.getUserID());
 			txt_userID.setEditable(false);
-			txt_password.setText(password);
-			txt_accountType.setText(accountType.toString());
+			A = account.getUserID();
+			txt_password.setText(account.getPassword());
+			txt_accountType.setText(account.getAccountType().toString());
 			txt_accountType.setEditable(false);
-			txt_name.setText(name);
-			txt_email.setText(email);
-			txt_employeeID.setText(Integer.toString(employeeID));
+			C = account.getAccountType().toString();
+			txt_name.setText(account.getName());
+			txt_email.setText(account.getEmail());
+			txt_employeeID.setText(Integer.toString(account.getEmployeeID()));
 			txt_employeeID.setEditable(false);
+			F = account.getEmployeeID();
 		}
 	
 }

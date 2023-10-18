@@ -15,6 +15,8 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 
+import Data.Account;
+
 public class Welcome_Panel extends JPanel {
 	
 	private MainWindow window;
@@ -68,7 +70,7 @@ public class Welcome_Panel extends JPanel {
 		MenuButton btn2 = new MenuButton("Order", img, Color.white);
 		btn2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Order_Screen window = new Order_Screen(name, MainWindow.accountType);
+				Order_Screen window = new Order_Screen(MainWindow.account);
 				window.createUI();
 				Welcome_Panel.this.window.dispose();				
 			}

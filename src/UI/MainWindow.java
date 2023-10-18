@@ -17,22 +17,21 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import Data.Account;
 import DataEditorUI.Profile_Screen;
 import Enum.AccountType;
 
 public class MainWindow extends JFrame{
 	
-	private String name;
+	public static Account account;
 	private String employeeId;
-	public static AccountType accountType;
 	public JPanel currentPanel = null;
 	
-	public MainWindow(String name, AccountType type) {
-		super("ASL.Java - Welcome " + name + " (" + type + ")");
-		this.name = name;
-		MainWindow.accountType = type;
+	public MainWindow(Account account) {
+		super("ASL.Java - Welcome " + account.getName() + " (" + account.getAccountType() + ")");
+		this.account = account;
 	}
-	
+
 	public void createUI() {
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setLayout(null);
@@ -77,7 +76,7 @@ public class MainWindow extends JFrame{
 		MenuButton btn2 = new MenuButton("Order", img, null);
 		btn2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Order_Screen window = new Order_Screen(name, accountType);
+				Order_Screen window = new Order_Screen(account);
 				window.createUI();
 				MainWindow.this.dispose();
 			}
@@ -103,7 +102,9 @@ public class MainWindow extends JFrame{
 		MenuButton btnA = new MenuButton("Profile", img, null);
 		btnA.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new Profile_Screen(MainWindow.this, "Profile");			
+				Profile_Screen profileScreen = new Profile_Screen(MainWindow.this, "Profile");
+				profileScreen.setAccountDetails(MainWindow.account);
+				profileScreen.setVisible(true);
 			}
 		});
 		
@@ -134,7 +135,7 @@ public class MainWindow extends JFrame{
 		
 		add(pnl_Head);
 		add(lb2);
-		Welcome_Panel pnl = new Welcome_Panel(this, name);
+		Welcome_Panel pnl = new Welcome_Panel(this, account.getName());
 		add(pnl);
 
 		setVisible(true);

@@ -92,7 +92,7 @@ public class Login_Screen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Account ac = checkAccountDetails(txt_userId.getText(), txt_pass.getText());
 				if (ac != null) {
-					MainWindow window = new MainWindow(ac.getName(), ac.getAccountType());
+					MainWindow window = new MainWindow(ac);
 					window.createUI();
 					Login_Screen.this.dispose();
 				}
