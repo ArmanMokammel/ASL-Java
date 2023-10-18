@@ -1,11 +1,13 @@
 package UI;
 
+import java.awt.Color;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.*;
+import javax.swing.plaf.basic.BasicComboBoxUI;
 
 /**
  * A class for filtered combo box.
@@ -19,6 +21,22 @@ public class SearchableComboBox extends JComboBox {
 
 	public List<String> getEntries() {
 		return entries;
+	}
+
+	@Override
+	public void updateUI() {
+		super.updateUI();
+		UIManager.put("ComboBox.squareButton", Boolean.FALSE);
+		setUI(new BasicComboBoxUI() {
+			@Override
+			protected JButton createArrowButton() {
+				JButton b = new JButton();
+				b.setBorder(BorderFactory.createEmptyBorder());
+				b.setVisible(false);
+				return b;
+			}
+		});
+		setBorder(BorderFactory.createLineBorder(Color.GRAY));
 	}
 
 	public SearchableComboBox(List<String> entries) {
@@ -67,6 +85,4 @@ public class SearchableComboBox extends JComboBox {
 			this.hidePopup();
 		}
 	}
-	
-	
 }

@@ -88,5 +88,4 @@ public class Customer_Panel extends JPanelX{
 	public void removeRow(int row) {
 			
 	}
-
 }

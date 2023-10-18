@@ -8,7 +8,6 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -145,31 +144,25 @@ public class Utility {
 		}
 	}
 	
-	public static void writeAllToFile(String fileName, boolean append, LinkedList<?> obj) {
+	public static void writeAllToFile(String fileName, boolean append, List<?> obj) {
 		File file = new File(fileName);
 		FileWriter fr;
+		boolean string = false;
 		try {
 			fr = new FileWriter(file, append);
 			for(Object object : obj) {
-				fr.write(object.toString());
+				if(object instanceof String) {
+					string = true;
+					fr.write(object.toString());
+				}
+				else {					
+					fr.write(object.toString());
+				}
 			}
 			
-			fr.close();
-			
-		} catch (IOException e1) {
-			System.out.println("SZZ Error");
-		}
-	}
-	
-	public static void writeAllToFile(String fileName, boolean append, List<String> aa) {
-		File file = new File(fileName);
-		FileWriter fr;
-		try {
-			fr = new FileWriter(file, append);
-			for(String object : aa) {
-				fr.write(object);
+			if(string) {
+				fr.write("\n");
 			}
-			fr.write("\n");
 			
 			fr.close();
 			

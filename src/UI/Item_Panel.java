@@ -123,7 +123,7 @@ public class Item_Panel extends JPanelX{
 		File file = new File("Menu-Items.ASL");
 		file.delete();
 		for(Map.Entry<String, ArrayList<MenuItem>> itms : items.entrySet()) {
-			Utility.writeAllToFile("Menu-Items.ASL", true, new LinkedList<MenuItem>(itms.getValue()));
+			Utility.writeAllToFile("Menu-Items.ASL", true, itms.getValue());
 		}		
 	}
 }
