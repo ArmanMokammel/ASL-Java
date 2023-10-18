@@ -2,13 +2,21 @@ package UI.OrderSystem;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 
+import UI.MainWindow;
+import UI.Order_Screen;
+
 public class Panel_A extends JPanel {
 	
-	public Panel_A() {
+	private Order_Screen frame;
+	
+	public Panel_A(Order_Screen frame) {
+		this.frame = frame;
 		setLayout(null);
 		
 		JPanel pnl_1 = new JPanel();
@@ -72,6 +80,12 @@ public class Panel_A extends JPanel {
 		btn_1.setBounds(10, 20, 120, 80);
 		btn_1.setBackground(new Color(255, 220, 113));
 		btn_1.setOpaque(true);
+		btn_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new ItemMenu(frame, "Select Item");
+				
+			}
+		});
 		
 		JPanel pnl_3_A = new JPanel();
 		pnl_3_A.setLayout(null);

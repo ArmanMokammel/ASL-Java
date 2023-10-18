@@ -8,10 +8,10 @@ import java.util.LinkedList;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
+import CustomCell.TableEditRemove_Editor;
+import CustomCell.TableEditRemove_Renderer;
 import Data.Discount_Voucher;
 import DataEditorUI.VoucherEditor_Dialog;
-import TableCellCustom.TableEditRemove_Editor;
-import TableCellCustom.TableEditRemove_Renderer;
 import Utilities.Utility;
 
 public class Voucher_Panel extends JPanelX{

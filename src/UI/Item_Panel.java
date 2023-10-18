@@ -11,10 +11,10 @@ import java.util.Map;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
+import CustomCell.TableEditRemove_Editor;
+import CustomCell.TableEditRemove_Renderer;
 import Data.MenuItem;
 import DataEditorUI.MenuItemEditor_Dialog;
-import TableCellCustom.TableEditRemove_Editor;
-import TableCellCustom.TableEditRemove_Renderer;
 import Utilities.Utility;
 
 public class Item_Panel extends JPanelX{

@@ -8,12 +8,12 @@ import java.util.LinkedList;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
+import CustomCell.TableEditRemove_Editor;
+import CustomCell.TableEditRemove_Renderer;
 import Data.Account;
 import Data.Discount_Voucher;
 import DataEditorUI.*;
 import Enum.AccountType;
-import TableCellCustom.TableEditRemove_Editor;
-import TableCellCustom.TableEditRemove_Renderer;
 import Utilities.Utility;
 
 public class Account_Panel extends JPanelX{

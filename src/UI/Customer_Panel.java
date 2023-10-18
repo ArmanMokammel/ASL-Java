@@ -10,13 +10,13 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import CustomCell.TableEditRemove_Editor;
+import CustomCell.TableEditRemove_Renderer;
 import Data.Account;
 import Data.Customer;
 import DataEditorUI.AccountEditor_Dialog;
 import DataEditorUI.CustomerEditor_Dialog;
 import Enum.AccountType;
-import TableCellCustom.TableEditRemove_Editor;
-import TableCellCustom.TableEditRemove_Renderer;
 import Utilities.Utility;
 
 import Enum.DiscountType; 

@@ -6,8 +6,8 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
-import TableCellCustom.TableRemove_Editor;
-import TableCellCustom.TableRemove_Renderer;
+import CustomCell.TableRemove_Editor;
+import CustomCell.TableRemove_Renderer;
 
 public class Panel_D extends JPanel{
 	
