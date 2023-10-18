@@ -103,8 +103,7 @@ public class MainWindow extends JFrame{
 		MenuButton btnA = new MenuButton("Profile", img, null);
 		btnA.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new Profile_Screen(MainWindow.this, "Profile");
-				
+				new Profile_Screen(MainWindow.this, "Profile");			
 			}
 		});
 		

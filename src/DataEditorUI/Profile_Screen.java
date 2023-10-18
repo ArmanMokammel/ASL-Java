@@ -2,10 +2,17 @@ package DataEditorUI;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.LinkedList;
 
+import javax.sound.sampled.Line;
 import javax.swing.*;
 
 import Data.Account;
+import Enum.AccountType;
+import Enum.InputType;
+import Exception.InputException;
+import Utilities.Utility;
 
 public class Profile_Screen extends JDialog {
 
@@ -16,11 +23,19 @@ public class Profile_Screen extends JDialog {
 	private JTextField txt_employeeID = new JTextField();
 	private JTextField txt_accountType = new JTextField();
 
+	private String A, B, D, E;
+	private String C;
+	private int F;
+
 	public Profile_Screen(JFrame frame, String title) {
 		super(frame, title, true);
 		setSize(500, 500);
 		setLayout(null);
 		setLocationRelativeTo(null);
+
+		txt_userID.setEditable(false);
+		txt_employeeID.setEditable(false);
+		txt_accountType.setEditable(false);
 
 		JLabel lbl_userID = new JLabel("User ID:");
 		JLabel lbl_password = new JLabel("Password:");
@@ -56,24 +71,53 @@ public class Profile_Screen extends JDialog {
 		add(txt_employeeID);
 		add(txt_email);
 		add(txt_accountType);
-		
-		JButton btn_submit = new JButton ("Save");
+
+		JButton btn_submit = new JButton("Save");
 		btn_submit.setBounds(180, 350, 80, 35);
 		btn_submit.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+
 				Account account = null;
-//				try {
-//					
-//					
-//				}
+				try {
+					B = Utility.checkString(txt_password, lbl_password, InputType.Password);
+					D = Utility.checkString(txt_name, lbl_name, InputType.Alphabetic);
+					E = Utility.checkString(txt_email, lbl_email, InputType.Email);
+					account = new Account(A, B, AccountType.valueOf(C), D, E, F);
+				} catch (InputException e2) {
+					Utility.showErrorMessage(e2);
+					return;
+				}
 				
+				ArrayList<String> accountList = Utility.readFile("Accounts.ASL");
 				
+				for(int i = 0; i < accountList.size(); i++){
+					if(accountList.get(i).split("\t")[0].equals(A)) {
+						accountList.set(i, account.toString());
+					}
+				}
+				
+				Utility.writeAllToFile("Accounts.ASL", false, new LinkedList(accountList));
+
+
 			}
 		});
-
-		setVisible(true);
+		
+		add(btn_submit);
+		
+		setVisible(true);		
 	}
+		public void setAccountDetails(String userID, String password, AccountType accountType, String name, String email, int employeeID) {
+			txt_userID.setText(userID);
+			txt_userID.setEditable(false);
+			txt_password.setText(password);
+			txt_accountType.setText(accountType.toString());
+			txt_accountType.setEditable(false);
+			txt_name.setText(name);
+			txt_email.setText(email);
+			txt_employeeID.setText(Integer.toString(employeeID));
+			txt_employeeID.setEditable(false);
+		}
+	
 }
