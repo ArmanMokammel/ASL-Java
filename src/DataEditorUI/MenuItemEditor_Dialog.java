@@ -108,6 +108,7 @@ public class MenuItemEditor_Dialog extends JDialog{
 							c.add(item);
 						}
 					}
+					parent.cmbx_ItemCategory.setSelectedItem(item.getCategory());
 					Utility.writeToFile("Menu-Items.ASL", true, item);
 				}
 				dispose();

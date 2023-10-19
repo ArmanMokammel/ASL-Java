@@ -59,7 +59,7 @@ public class Utility {
 	}
 	
 	public static String checkString(JComboBox<?> component, JLabel label) throws InputException {
-		if(component.getSelectedItem().toString().isBlank())
+		if(component.getSelectedItem() == null)
 		{
 			throwException(component, "Error at " + label.getText() + "\n" + "Please enter a value");
 		}

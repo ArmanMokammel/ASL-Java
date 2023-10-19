@@ -23,7 +23,7 @@ public class Item_Panel extends JPanelX{
 	public LinkedList<MenuItem> itemList = new LinkedList<MenuItem>();
 	private MainWindow window;
 	public HashMap<String, ArrayList<MenuItem>> items = new HashMap<String, ArrayList<MenuItem>>();
-	private JComboBox<String> cmbx_ItemCategory;
+	public JComboBox<String> cmbx_ItemCategory;
 	
 	public Item_Panel(MainWindow window) {
 		this.window = window;
