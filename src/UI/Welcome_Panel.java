@@ -70,7 +70,7 @@ public class Welcome_Panel extends JPanel {
 		MenuButton btn2 = new MenuButton("Order", img, Color.white);
 		btn2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Order_Screen window = new Order_Screen(MainWindow.account);
+				Order_Screen window = new Order_Screen();
 				window.createUI();
 				Welcome_Panel.this.window.dispose();				
 			}
@@ -88,7 +88,6 @@ public class Welcome_Panel extends JPanel {
 		MenuButton btn5 = new MenuButton("Customers", img, Color.white);
 		btn5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				/* Swap Panel code goes here */
 				window.swapPanel(new Customer_Panel(window));
 			}
 		});

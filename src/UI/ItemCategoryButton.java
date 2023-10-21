@@ -5,9 +5,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 import UI.OrderSystem.Panel_C;
 import Data.MenuItem;
+import Data.OrderMenuItem;
 
 public class ItemCategoryButton extends JButton implements ActionListener{
 	
@@ -23,8 +25,14 @@ public class ItemCategoryButton extends JButton implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		Panel_C.addItem(item);
+		JOptionPane p = new JOptionPane();
+		String input = p.showInputDialog("Enter Quantity:");
 		
+		if(input == null || input.isBlank())
+			return;
+		
+		int quantity = Integer.parseInt(input);
+		Panel_C.addItem(new OrderMenuItem(item, quantity));		
 	}
 
 }

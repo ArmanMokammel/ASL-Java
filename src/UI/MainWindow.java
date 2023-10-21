@@ -24,12 +24,10 @@ import Enum.AccountType;
 public class MainWindow extends JFrame{
 	
 	public static Account account;
-	private String employeeId;
 	public JPanel currentPanel = null;
 	
-	public MainWindow(Account account) {
+	public MainWindow() {
 		super("ASL.Java - Welcome " + account.getName() + " (" + account.getAccountType() + ")");
-		this.account = account;
 	}
 
 	public void createUI() {
@@ -76,7 +74,7 @@ public class MainWindow extends JFrame{
 		MenuButton btn2 = new MenuButton("Order", img, null);
 		btn2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Order_Screen window = new Order_Screen(account);
+				Order_Screen window = new Order_Screen();
 				window.createUI();
 				MainWindow.this.dispose();
 			}

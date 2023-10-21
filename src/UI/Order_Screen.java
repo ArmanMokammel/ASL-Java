@@ -19,15 +19,12 @@ import Enum.AccountType;
 import UI.OrderSystem.*;
 
 public class Order_Screen extends JFrame{
-	
-	private Account account;
-	
-	public Order_Screen(Account account) {
-		super("Take Order - " + account.getName());
-		this.account = account;
+		
+	public Order_Screen() {
+		super("Take Order - " + MainWindow.account.getName());
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
-				MainWindow window = new MainWindow(account);
+				MainWindow window = new MainWindow();
 				window.createUI();
 				super.windowClosing(e);
 			}
@@ -92,5 +89,6 @@ public class Order_Screen extends JFrame{
 		pnl_6.setBounds(pnl_3.getWidth(), pnl_2.getHeight(), 890, getHeight() - 260);
 		pnl_5.setBounds(0, getHeight() - 70, getWidth(), 35);
 		pnl_4.setBounds(0, pnl_1.getHeight() + pnl_3.getHeight(), getWidth() - 900, 300);
+		System.gc();
 	}
 }

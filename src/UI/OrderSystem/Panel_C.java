@@ -1,7 +1,9 @@
 package UI.OrderSystem;
 
 import java.awt.Color;
+
 import Data.MenuItem;
+import Data.OrderMenuItem;
 import UI.JPanelX;
 
 import javax.swing.*;
@@ -34,6 +36,7 @@ public class Panel_C extends JPanelX{
 		table.getColumnModel().getColumn(0).setCellEditor(new TableRemove_Editor(this));
 		
 		JTableHeader tableHeader = table.getTableHeader();
+		tableHeader.setReorderingAllowed(false);
 		tableHeader.setBackground(new Color(0, 51, 118));
 		tableHeader.setForeground(Color.white);
 		
@@ -43,8 +46,8 @@ public class Panel_C extends JPanelX{
 		add(sp);
 	}
 	
-	public static void addItem(MenuItem item) {
-		model.addRow(new Object[] {"", item.getItemId(), item.getItemName(), item.getSellingPrice(), item.getSellingPrice(), 1, 123.00});
+	public static void addItem(OrderMenuItem ordItem) {
+		model.addRow(new Object[] {"", ordItem.getItem().getItemId(), ordItem.getItem().getItemName(), ordItem.getItem().getSellingPrice(), ordItem.getItem().getSellingPrice(), ordItem.getQuantity(), ordItem.getQuantity() * ordItem.getItem().getSellingPrice()});
 	}
 
 	@Override

@@ -10,6 +10,7 @@ import javax.swing.border.LineBorder;
 
 import UI.MainWindow;
 import UI.Order_Screen;
+import Utilities.Utility;
 
 public class Panel_A extends JPanel {
 	
@@ -18,32 +19,36 @@ public class Panel_A extends JPanel {
 	public Panel_A(Order_Screen frame) {
 		this.frame = frame;
 		setLayout(null);
+//		
+//		JPanel pnl_1 = new JPanel();
+//		pnl_1.setLayout(null);
+//		pnl_1.setBounds(20, 10, 200, 100);
+//		
+//		JLabel lbl_1 = new JLabel("Total Cost", SwingConstants.CENTER);
+//		lbl_1.setSize(pnl_1.getWidth(), 30);
+//		lbl_1.setBackground(Color.black);
+//		lbl_1.setForeground(Color.orange);
+//		lbl_1.setOpaque(true);
+//		
+//		JLabel lbl_2 = new JLabel("1234.00", SwingConstants.CENTER);
+//		lbl_2.setBounds(0, 30, pnl_1.getWidth(), pnl_1.getHeight() - 30);
+//		lbl_2.setBackground(Color.LIGHT_GRAY);
+//		lbl_2.setForeground(Color.red);
+//		lbl_2.setOpaque(true);
+//		lbl_2.setBorder(new LineBorder(Color.black, 3));
+//			
+//		pnl_1.add(lbl_1);
+//		pnl_1.add(lbl_2);		
+//		add(pnl_1);
 		
-		JPanel pnl_1 = new JPanel();
-		pnl_1.setLayout(null);
-		pnl_1.setBounds(20, 10, 200, 100);
-		
-		JLabel lbl_1 = new JLabel("Total Cost", SwingConstants.CENTER);
-		lbl_1.setSize(pnl_1.getWidth(), 30);
-		lbl_1.setBackground(Color.black);
-		lbl_1.setForeground(Color.orange);
-		lbl_1.setOpaque(true);
-		
-		JLabel lbl_2 = new JLabel("1234.00", SwingConstants.CENTER);
-		lbl_2.setBounds(0, 30, pnl_1.getWidth(), pnl_1.getHeight() - 30);
-		lbl_2.setBackground(Color.LIGHT_GRAY);
-		lbl_2.setForeground(Color.red);
-		lbl_2.setOpaque(true);
-		lbl_2.setBorder(new LineBorder(Color.black, 3));
-			
-		pnl_1.add(lbl_1);
-		pnl_1.add(lbl_2);		
-		add(pnl_1);
-		
+		ImageIcon logo = Utility.getImageIcon("img\\Logo.png", 310, 90);
+		JLabel lbl_Logo = new JLabel(logo);
+		lbl_Logo.setBounds(370, 30, 310, 90);
+		add(lbl_Logo);		
 		
 		JPanel pnl_2 = new JPanel();
 		pnl_2.setLayout(null);
-		pnl_2.setBounds(250, 10, 310, 120);
+		pnl_2.setBounds(20, 10, 310, 120);
 		pnl_2.setBackground(new Color(255, 220, 113));
 		
 		JLabel lbl_3 = new JLabel("Branch:");
@@ -73,7 +78,7 @@ public class Panel_A extends JPanel {
 		
 		JPanel pnl_3 = new JPanel();
 		pnl_3.setLayout(null);
-		pnl_3.setBounds(570, 10, 400, 120);
+		pnl_3.setBounds(700, 10, 400, 120);
 		pnl_3.setBackground(null);
 		
 		JButton btn_1 = new JButton("<html><center>"+"Open"+"<br>"+"Item Menu"+"</center></html>");

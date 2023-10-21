@@ -198,4 +198,14 @@ public class Utility {
 		Image dimg = img.getScaledInstance(width, height, Image.SCALE_SMOOTH);
 		return new ImageIcon(dimg);
 	}
+	
+	public static Image getImage(String file, int width, int height) {
+		Image img = null;
+		try {
+			img = ImageIO.read(new File(file));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return img;
+	}
 }

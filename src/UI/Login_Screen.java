@@ -40,7 +40,7 @@ public class Login_Screen extends JFrame {
 		setSize(600, 600);
 		setLayout(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setResizable(false);
+//		setResizable(false);
 		setLocationRelativeTo(null);
 
 		
@@ -48,9 +48,15 @@ public class Login_Screen extends JFrame {
 		lll.setBounds(70, 40, 310, 90);
 		ImageIcon icon_1 = Utility.getImageIcon("img\\Logo.png", 310, 90);
 		lll.setIcon(icon_1);
-		//lll.setOpaque(true);
-		//lll.setBackground(Color.red);
-
+		
+		
+		JLabel Bg_Icon = new JLabel();
+		ImageIcon background = Utility.getImageIcon("img\\Login_Screen.png", 585, 550);
+		Bg_Icon.setIcon(background);
+		Bg_Icon.setBackground(Color.red);
+		Bg_Icon.setOpaque(true);
+		setContentPane(Bg_Icon);
+		
 		JLabel lbl_userId = new JLabel("User ID: ");
 		lbl_userId.setBounds(40, 170, 90, 30);
 		lbl_userId.setFont(f1);
@@ -86,7 +92,8 @@ public class Login_Screen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Account ac = checkAccountDetails(txt_userId.getText(), txt_pass.getText());
 				if (ac != null) {
-					MainWindow window = new MainWindow(ac);
+					MainWindow.account = ac;
+					MainWindow window = new MainWindow();
 					window.createUI();
 					Login_Screen.this.dispose();
 				}
