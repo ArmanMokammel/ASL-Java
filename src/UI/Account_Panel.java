@@ -55,7 +55,7 @@ public class Account_Panel extends JPanelX{
 			}
 		};
 		
-		table.setRowHeight(30);
+		table.setRowHeight(40);
 		table.getTableHeader().setReorderingAllowed(false);
 		TableEditRemove_Renderer renderer = new TableEditRemove_Renderer();
 		table.getColumnModel().getColumn(6).setCellRenderer(renderer);

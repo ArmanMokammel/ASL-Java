@@ -1,16 +1,13 @@
 package SettingsPanels;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.LinkedList;
 
 import javax.swing.*;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 
 import CustomCell.TableRemove_Editor;
 import CustomCell.TableRemove_Renderer;
@@ -66,9 +63,12 @@ public class ItemSettings extends JPanelX{
 		model.addColumn("");
 		
 		JTable table = new JTable(model);
-//		table.setBackground(new Color(253, 253, 214));
+		table.setBackground(new Color(253, 253, 214));
 		table.setRowHeight(30);
-		table.getTableHeader().setReorderingAllowed(false);
+		JTableHeader tableHeader = table.getTableHeader();
+		tableHeader.setReorderingAllowed(false);
+		tableHeader.setBackground(new Color(117, 68, 0));
+		tableHeader.setForeground(Color.white);
 		table.getColumnModel().getColumn(2).setCellRenderer(new TableRemove_Renderer());
 		table.getColumnModel().getColumn(2).setCellEditor(new TableRemove_Editor(this));
 		table.putClientProperty("terminateEditOnFocusLost", true);

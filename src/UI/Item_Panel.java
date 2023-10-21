@@ -15,6 +15,7 @@ import CustomCell.TableEditRemove_Editor;
 import CustomCell.TableEditRemove_Renderer;
 import Data.MenuItem;
 import DataEditorUI.MenuItemEditor_Dialog;
+import Enum.DiscountType;
 import Utilities.Utility;
 
 public class Item_Panel extends JPanelX{
@@ -43,7 +44,7 @@ public class Item_Panel extends JPanelX{
 			for(String line: lines) {
 				String[] datas = line.split("\t");
 				if(category.equals(datas[1])) {
-					itm.add(new MenuItem(Integer.parseInt(datas[0]), datas[1], datas[2], Double.parseDouble(datas[3]), Double.parseDouble(datas[4])));
+					itm.add(new MenuItem(Integer.parseInt(datas[0]), datas[1], datas[2], Double.parseDouble(datas[3]), Double.parseDouble(datas[4]), DiscountType.valueOf(datas[5]), Double.parseDouble(datas[6])));
 				}
 			}
 			items.put(category, itm);
@@ -67,23 +68,25 @@ public class Item_Panel extends JPanelX{
 		model.addColumn("Item Name");
 		model.addColumn("Cost Price");
 		model.addColumn("Selling Price");
+		model.addColumn("Discount");
+		model.addColumn("DiscountType");
 		model.addColumn("");
 		
 		JTable table = new JTable(model) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
-				if(column == 5)
+				if(column == 7)
 					return true;
 				else
 					return false;
 			}
 		};
 		
-		table.setRowHeight(30);
+		table.setRowHeight(40);
 		table.getTableHeader().setReorderingAllowed(false);
 		TableEditRemove_Renderer renderer = new TableEditRemove_Renderer();
-		table.getColumnModel().getColumn(5).setCellRenderer(renderer);
-		table.getColumnModel().getColumn(5).setCellEditor(new TableEditRemove_Editor(model, window, this));
+		table.getColumnModel().getColumn(7).setCellRenderer(renderer);
+		table.getColumnModel().getColumn(7).setCellEditor(new TableEditRemove_Editor(model, window, this));
 		
 		JScrollPane sp = new JScrollPane(table);
 		sp.setBounds(70, 60, getWidth() - 180, 400);
@@ -96,7 +99,7 @@ public class Item_Panel extends JPanelX{
 				itemList.addAll(itm);
 				int sl = 1;
 				for(MenuItem i : itm) {
-					model.addRow(new Object[] {sl, i.getItemId(), i.getItemName(), i.getCostPrice(), i.getSellingPrice()});
+					model.addRow(new Object[] {sl, i.getItemId(), i.getItemName(), i.getCostPrice(), i.getSellingPrice(), i.getDiscountValue(), i.getDiscountType()});
 					sl++;
 				}
 			}

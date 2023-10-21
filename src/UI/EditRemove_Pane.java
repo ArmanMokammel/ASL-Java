@@ -1,6 +1,6 @@
 package UI;
 
-import java.awt.GridBagLayout;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
@@ -13,9 +13,16 @@ public class EditRemove_Pane extends JPanel{
 	public int row;
 	
 	public EditRemove_Pane(DefaultTableModel model, MainWindow frame, JPanelX parent, AbstractCellEditor editor){
-        setLayout(new GridBagLayout());
-        edit = new JButton("Edit");
-        delete = new JButton("Remove");
+		setLayout(new FlowLayout(FlowLayout.CENTER, 10, 3));
+		
+		ImageIcon ic1 = new ImageIcon("img\\edit.png");
+		ImageIcon ic2 = new ImageIcon("img\\remove.png");
+		
+        edit = new JButton(ic1);
+        delete = new JButton(ic2);
+        
+        edit.setBackground(null);
+        delete.setBackground(null);
         
         edit.addActionListener(new ActionListener() {			
 			public void actionPerformed(ActionEvent e) {

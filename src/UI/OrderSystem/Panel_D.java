@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import Data.MenuItem;
+import Enum.DiscountType;
 import UI.ItemCategoryButton;
 import UI.Order_Screen;
 import UI.WrapLayout;
@@ -50,7 +51,7 @@ public class Panel_D extends JPanel implements ActionListener{
 			for(String line: lines) {
 				String[] datas = line.split("\t");
 				if(category.equals(datas[1])) {
-					itm.add(new MenuItem(Integer.parseInt(datas[0]), datas[1], datas[2], Double.parseDouble(datas[3]), Double.parseDouble(datas[4])));
+					itm.add(new MenuItem(Integer.parseInt(datas[0]), datas[1], datas[2], Double.parseDouble(datas[3]), Double.parseDouble(datas[4]), DiscountType.valueOf(datas[5]), Double.parseDouble(datas[6])));
 				}
 			}
 			items.put(category, itm);

@@ -1,11 +1,10 @@
 Burger
-MilkShake
+Sandwich
+Appetizer
 Fries
-Chicken
-Beef
-Soft Drinks
-Test
-Test2
 Sushi
-Bla
-Bla34
+Beverage
+Hot Coffee
+Cold Coffee
+Iced Drinks
+Wraptor

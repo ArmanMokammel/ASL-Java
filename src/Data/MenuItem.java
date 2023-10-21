@@ -1,5 +1,7 @@
 package Data;
 
+import Enum.DiscountType;
+
 public class MenuItem {
 	
 	private int itemId;
@@ -7,13 +9,17 @@ public class MenuItem {
 	private String itemName;
 	private double costPrice;
 	private double sellingPrice;
+	private DiscountType discountType;
+	private double discountValue;
 	
-	public MenuItem(int itemId, String category, String itemName, double costPrice, double sellingPrice) {
+	public MenuItem(int itemId, String category, String itemName, double costPrice, double sellingPrice, DiscountType discountType, double discountValue) {
 		this.itemId = itemId;
 		this.category = category;
 		this.itemName = itemName;
 		this.costPrice = costPrice;
 		this.sellingPrice = sellingPrice;
+		this.discountType = discountType;
+		this.discountValue = discountValue;
 	}
 
 	public int getItemId() {
@@ -56,7 +62,23 @@ public class MenuItem {
 		this.category = category;
 	}
 
+	public DiscountType getDiscountType() {
+		return discountType;
+	}
+
+	public void setDiscountType(DiscountType discountType) {
+		this.discountType = discountType;
+	}
+
+	public double getDiscountValue() {
+		return discountValue;
+	}
+
+	public void setDiscountValue(double discountValue) {
+		this.discountValue = discountValue;
+	}
+
 	public String toString() {
-		return itemId + "\t" + category + "\t" + itemName + "\t" + costPrice + "\t" + sellingPrice + "\n";
+		return itemId + "\t" + category + "\t" + itemName + "\t" + costPrice + "\t" + sellingPrice + "\t" + discountType + "\t" + discountValue + "\n";
 	}
 }
