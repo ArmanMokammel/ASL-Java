@@ -62,7 +62,8 @@ public class Order_Screen extends JFrame{
 		Panel_A pnl_1 = new Panel_A(this);
 		Panel_B pnl_2 = new Panel_B();
 		Panel_C pnl_3 = new Panel_C();
-		Panel_D pnl_4 = new Panel_D();
+		Panel_D pnl_6 = new Panel_D();
+		Panel_E pnl_4 = new Panel_E();
 		JLabel pnl_5 = new JLabel("Copyright my shit 2.0", SwingConstants.CENTER);
 		
 		pnl_1.setBackground(new Color(198, 198, 198));		
@@ -70,6 +71,7 @@ public class Order_Screen extends JFrame{
 		pnl_3.setBackground(Color.blue);		
 		pnl_4.setBackground(Color.magenta);
 		pnl_5.setBackground(Color.yellow);
+		pnl_6.setBackground(Color.red);
 		
 //		pnl_3.setBackground(Color.black);
 //		pnl_4.setBackground(Color.black);
@@ -79,14 +81,16 @@ public class Order_Screen extends JFrame{
 		add(pnl_1);
 		add(pnl_2);
 		add(pnl_3);
+		add(pnl_6);
 		add(pnl_4);
 		add(pnl_5);
 		
 		setVisible(true);
 		pnl_1.setBounds(0,0,getWidth() - 600, 150);
 		pnl_2.setBounds(pnl_1.getWidth(),0,590, 190);
-		pnl_3.setBounds(0,150,getWidth() - 600, getHeight() - 220);
-		pnl_4.setBounds(pnl_3.getWidth(), pnl_2.getHeight(), 590, getHeight() - 260);
+		pnl_3.setBounds(0,150,getWidth() - 900, getHeight() - 550);
+		pnl_6.setBounds(pnl_3.getWidth(), pnl_2.getHeight(), 890, getHeight() - 260);
 		pnl_5.setBounds(0, getHeight() - 70, getWidth(), 35);
+		pnl_4.setBounds(0, pnl_1.getHeight() + pnl_3.getHeight(), getWidth() - 900, 300);
 	}
 }

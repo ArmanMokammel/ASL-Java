@@ -10,9 +10,12 @@ import java.util.List;
 
 import javax.swing.*;
 
+import Data.Customer;
 import UI.SearchableComboBox;
 
 public class Panel_B extends JPanel{
+	
+	public Customer customer = null;
 	
 	public Panel_B() {
 		setLayout(null);
@@ -42,8 +45,11 @@ public class Panel_B extends JPanel{
 		txt_1.setSelectedItem(null);
 		txt_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if((String)((SearchableComboBox)e.getSource()).getSelectedItem() == (String)((SearchableComboBox)e.getSource()).getItemAt(0)) {					
-					JOptionPane.showMessageDialog(null, "234");
+				if(customer == null) {
+					if((String)((SearchableComboBox)e.getSource()).getSelectedItem() == (String)((SearchableComboBox)e.getSource()).getItemAt(0)) {					
+						//JOptionPane.showMessageDialog(null, "123");
+						//customer = new Customer(0, null, null, null, null, null, 0);
+					}
 				}
 			}
 		});
@@ -56,8 +62,13 @@ public class Panel_B extends JPanel{
 						txt_1.isTyping = false;
 						return;
 					}
-					JOptionPane.showMessageDialog(null, (String)txt_1.getSelectedItem());
 					txt_1.isTyping = false;
+					
+					//Add customer
+					//To be changed later
+					JOptionPane.showMessageDialog(null, "123");
+
+					customer = new Customer(0, null, null, null, null, null, 0);
 				}
 			}
 		});

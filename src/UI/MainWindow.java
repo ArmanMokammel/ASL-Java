@@ -99,6 +99,14 @@ public class MainWindow extends JFrame{
 			}
 		});
 		
+		MenuButton btn6 = new MenuButton("Settings", img, null);
+		btn6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Settings_Screen screen = new Settings_Screen("Settings");
+				
+			}
+		});
+		
 		MenuButton btnA = new MenuButton("Profile", img, null);
 		btnA.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -125,6 +133,8 @@ public class MainWindow extends JFrame{
 		pnl_Items.add(btn3);
 		pnl_Items.add(btn4);
 		pnl_Items.add(btn5);
+		pnl_Items.add(btn6);
+		
 		add(btn_Logout);
 		pnl_Head.add(pnl_Items);
 		pnl_Head.add(btnA);

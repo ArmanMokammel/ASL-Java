@@ -82,7 +82,6 @@ public class Panel_A extends JPanel {
 		btn_1.setOpaque(true);
 		btn_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new ItemMenu(frame, "Select Item");
 				
 			}
 		});
