@@ -32,7 +32,7 @@ public class Customer_Panel extends JPanelX{
 		setLayout(null);
 		setBounds(30, 150, window.getWidth() - 70, 550);
 		
-		JButton btn_Add = new JButton("New Coustomer");
+		JButton btn_Add = new JButton("New Customer");
 		btn_Add.setBounds(getWidth() - 245, 0, 130, 40);
 		btn_Add.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -42,6 +42,7 @@ public class Customer_Panel extends JPanelX{
 		});
 		
 		model = new DefaultTableModel();
+		model.addColumn("SL");
 		model.addColumn("Customer ID");
 		model.addColumn("Customer Name");
 		model.addColumn("Gender");
@@ -54,7 +55,7 @@ public class Customer_Panel extends JPanelX{
 		JTable table = new JTable(model) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
-				if(column == 7)
+				if(column == 8)
 					return true;
 				else
 					return false;
@@ -64,8 +65,8 @@ public class Customer_Panel extends JPanelX{
 		table.setRowHeight(40);
 		table.getTableHeader().setReorderingAllowed(false);
 		TableEditRemove_Renderer renderer = new TableEditRemove_Renderer();
-		table.getColumnModel().getColumn(7).setCellRenderer(renderer);
-		table.getColumnModel().getColumn(7).setCellEditor(new TableEditRemove_Editor(model, window, this));
+		table.getColumnModel().getColumn(8).setCellRenderer(renderer);
+		table.getColumnModel().getColumn(8).setCellEditor(new TableEditRemove_Editor(model, window, this));
 		
 		JScrollPane sp = new JScrollPane(table);
 		sp.setBounds(70, 60, getWidth() - 180, 400);
@@ -73,7 +74,7 @@ public class Customer_Panel extends JPanelX{
 		add(btn_Add);
 		add(sp);
 		
-		ArrayList<String> lines = Utility.readFile("Customer.ASL");
+		ArrayList<String> lines = Utility.readFile("Customers.ASL");
 		for(String line: lines) {
 			String[] datas = line.split("\t");
 			customerList.add(new Customer(Integer.parseInt(datas[0]), datas[1], datas[2], datas[3], datas[4], DiscountType.valueOf(datas[5]), Double.parseDouble(datas[6])));
@@ -94,6 +95,6 @@ public class Customer_Panel extends JPanelX{
 		for(int i = 0; i < customerList.size(); i++) {
 			model.setValueAt(i+1, i, 0);
 		}
-		Utility.writeAllToFile("Customer.ASL", false, customerList);
+		Utility.writeAllToFile("Customers.ASL", false, customerList);
 	}
 }

@@ -103,11 +103,11 @@ public class CustomerEditor_Dialog extends JDialog{
 					parent.customerList.set(row, customer);
 					parent.model.removeRow(row);
 					parent.model.insertRow(row, new Object[] {row + 1, customer.getCustomerId(), customer.getCustomerName(), customer.getGender(), customer.getEmail(), customer.getPhoneNo(), customer.getSpecialDiscountType(), customer.getSpecialDiscount()});
-					Utility.writeAllToFile("Customer.ASL", false, parent.customerList);
+					Utility.writeAllToFile("Customers.ASL", false, parent.customerList);
 				} else {
 					parent.customerList.add(customer);
 					parent.model.addRow(new Object[] {parent.customerList.size(), customer.getCustomerId(), customer.getCustomerName(), customer.getGender(), customer.getEmail(), customer.getPhoneNo(), customer.getSpecialDiscountType(), customer.getSpecialDiscount()});
-					Utility.writeToFile("Customer.ASL", true, customer);
+					Utility.writeToFile("Customers.ASL", true, customer);
 				}
 				dispose();
 			}
