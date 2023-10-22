@@ -108,7 +108,7 @@ public class MenuItemEditor_Dialog extends JDialog{
 				if(row != -1) {
 					parent.itemList.set(row, item);
 					parent.model.removeRow(row);
-					parent.model.insertRow(row, new Object[] {row + 1, item.getItemId(), item.getItemName(), item.getCostPrice(), item.getSellingPrice()});
+					parent.model.insertRow(row, new Object[] {row + 1, item.getItemId(), item.getItemName(), item.getCostPrice(), item.getSellingPrice(), item.getDiscountValue(), item.getDiscountType()});
 					parent.items.put(item.getCategory(), new ArrayList<MenuItem>(parent.itemList));
 					File file = new File("Menu-Items.ASL");
 					file.delete();
@@ -118,7 +118,7 @@ public class MenuItemEditor_Dialog extends JDialog{
 				}
 				else {
 					parent.itemList.add(item);
-					parent.model.addRow(new Object[] {parent.itemList.size(), item.getItemId(), item.getItemName(), item.getCostPrice(), item.getSellingPrice()});
+					parent.model.addRow(new Object[] {parent.itemList.size(), item.getItemId(), item.getItemName(), item.getCostPrice(), item.getSellingPrice(), item.getDiscountValue(), item.getDiscountType()});
 					for(Map.Entry<String, ArrayList<MenuItem>> itms : parent.items.entrySet()) {
 						if(itms.getKey().equals(item.getCategory())) {
 							ArrayList<MenuItem> c = itms.getValue();
@@ -134,13 +134,16 @@ public class MenuItemEditor_Dialog extends JDialog{
 		add(btn_Submit);
 	}
 
-	public void setItemDetails(int itemId, String category, String itemName, double costPrice, double sellingPrice) {
+	public void setItemDetails(int itemId, String category, String itemName, double costPrice, double sellingPrice, DiscountType discountType, double discountValue) {
 		txt_itemId.setText(Integer.toString(itemId));
 		txt_itemId.setEditable(false);
 		cmbx_category.setSelectedItem(category);
+		cmbx_category.setEditable(false);
 		txt_itemName.setText(itemName);
 		txt_costPrice.setText(Double.toString(costPrice));
 		txt_sellingPrice.setText(Double.toString(sellingPrice));
+		cmbx_discountType.setSelectedItem(discountType);
+		txt_discountValue.setText(Double.toString(discountValue));
 	}
 
 }

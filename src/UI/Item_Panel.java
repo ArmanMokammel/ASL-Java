@@ -112,7 +112,7 @@ public class Item_Panel extends JPanelX{
 	public void editRow(int row) {
 		MenuItem menuItem = itemList.get(row);
 		MenuItemEditor_Dialog dialog = new MenuItemEditor_Dialog(window, this, "Edit Item" , row);
-		dialog.setItemDetails(menuItem.getItemId(), menuItem.getCategory(), menuItem.getItemName(), menuItem.getCostPrice(), menuItem.getSellingPrice());
+		dialog.setItemDetails(menuItem.getItemId(), menuItem.getCategory(), menuItem.getItemName(), menuItem.getCostPrice(), menuItem.getSellingPrice(), menuItem.getDiscountType(), menuItem.getDiscountValue());
 		dialog.setVisible(true);
 	}
 
