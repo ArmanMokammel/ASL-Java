@@ -58,7 +58,6 @@ public class Panel_C extends JPanelX{
 
 	@Override
 	public void removeRow(int row) {
-		// TODO Auto-generated method stub
-		
+		model.removeRow(row);		
 	}
 }

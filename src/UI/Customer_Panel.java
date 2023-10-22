@@ -12,11 +12,8 @@ import javax.swing.table.DefaultTableModel;
 
 import CustomCell.TableEditRemove_Editor;
 import CustomCell.TableEditRemove_Renderer;
-import Data.Account;
 import Data.Customer;
-import DataEditorUI.AccountEditor_Dialog;
 import DataEditorUI.CustomerEditor_Dialog;
-import Enum.AccountType;
 import Utilities.Utility;
 
 import Enum.DiscountType; 

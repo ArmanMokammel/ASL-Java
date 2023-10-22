@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 import SettingsPanels.ItemSettings;
+import SettingsPanels.PaymentMethods;
 import UI.OrderSystem.Panel_A;
 
 public class Settings_Screen extends JFrame{
@@ -32,15 +33,20 @@ public class Settings_Screen extends JFrame{
 		
 		JButton btnItemSettings = new Settings_Button("Item Settings");
 		btnItemSettings.addActionListener(new ActionListener() {
-			
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				Settings_Screen.this.swapPanel(new ItemSettings());
 			}
 		});
 		
+		JButton btnPaymentMethods = new Settings_Button("Payment Methods");
+		btnPaymentMethods.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Settings_Screen.this.swapPanel(new PaymentMethods());
+			}
+		});
+		
 		panelA.add(btnItemSettings);
-		panelA.add(new Settings_Button("Settings 2"));
+		panelA.add(btnPaymentMethods);
 		panelA.add(new Settings_Button("Settings 3"));
 		panelA.add(new Settings_Button("Settings 4"));
 		panelA.add(new Settings_Button("Settings 5"));

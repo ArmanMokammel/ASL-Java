@@ -1,6 +1,10 @@
 package UI.OrderSystem;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.LinkedList;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -8,12 +12,23 @@ import javax.swing.table.JTableHeader;
 
 import CustomCell.TableRemove_Editor;
 import CustomCell.TableRemove_Renderer;
+import Data.Payment;
+import Exception.InputException;
 import UI.JPanelX;
+import Utilities.Utility;
 
 public class Panel_E extends JPanelX{
 	
+	private LinkedList<Payment> paymentsList;
+	private DefaultTableModel model ;
+	
+	private String A;
+	private double B;
+	
 	public Panel_E() {
 		setLayout(null);
+		
+		paymentsList = new LinkedList<Payment>();
 		
 		JPanel pnl_1 = new JPanel();
 		pnl_1.setBounds(10, 0, 400, 250);
@@ -85,7 +100,9 @@ public class Panel_E extends JPanelX{
 		JLabel lbl_10 = new JLabel("Payment Type:");
 		lbl_10.setBounds(10, 20, 90, 30);
 		
-		JComboBox<String> cmbx_1 = new JComboBox<String>(new String[] {"Cash", "Debit Card", "Credit Card", "Gift Card", "Due"});
+		ArrayList<String> options = Utility.readFile("Payment-Methods.ASL");
+		
+		JComboBox<String> cmbx_1 = new JComboBox<String>(options.toArray(new String[options.size()]));
 		cmbx_1.setBounds(110, 20, 150, 30);
 		
 		JLabel lbl_11 = new JLabel("Amount:");
@@ -94,19 +111,37 @@ public class Panel_E extends JPanelX{
 		JTextField txt_2 = new JTextField();
 		txt_2.setBounds(110, 60, 150, 30);
 		
-		JButton btn_1 = new JButton("Add Payment");
-		btn_1.setBounds(100, 110, 110, 30);
+		JButton btn_1 = new JButton("<html><center>"+"Add"+"<br>"+"Payment"+"</center></html>");
+		btn_1.setBounds(280, 20, 85, 70);
 		btn_1.setBackground(new Color(93, 130, 84));
 		btn_1.setForeground(Color.white);
 		btn_1.setOpaque(true);
+		btn_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					A = (String)cmbx_1.getSelectedItem();
+					B = Utility.checkDouble(txt_2, lbl_11);
+					
+					paymentsList.add(new Payment(A, B));
+					Panel_E.this.model.addRow(new Object[] {"", A, B});
+				} catch (InputException e1) {
+					Utility.showErrorMessage(e1);
+				}
+			}
+		});
 		
-		DefaultTableModel model = new DefaultTableModel();
+		model = new DefaultTableModel() {
+			public boolean isCellEditable(int row, int column) {
+				if(column == 0)
+					return true;
+				else
+					return false;
+			}
+		};
 		model.addColumn("");
 		model.addColumn("Type");
 		model.addColumn("Amount");
-		
-		model.addRow(new Object[] {"", "234"});
-		
+				
 		JTable table = new JTable(model);
 		table.setBackground(new Color(214, 241, 216));
 		table.setRowHeight(30);
@@ -119,7 +154,7 @@ public class Panel_E extends JPanelX{
 		tableHeader.setForeground(Color.white);
 		
 		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(10, 155, 465, 100);
+		scrollPane.setBounds(10, 100, 465, 100);
 		scrollPane.getViewport().setBackground(new Color(145, 214, 150));
 		
 		JButton btn_2 = new JButton("Hold");
@@ -148,7 +183,7 @@ public class Panel_E extends JPanelX{
 
 	@Override
 	public void removeRow(int row) {
-		// TODO Auto-generated method stub
-		
+		model.removeRow(row);
+		paymentsList.remove(row);		
 	}
 }

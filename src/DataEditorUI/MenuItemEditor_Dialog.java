@@ -138,7 +138,7 @@ public class MenuItemEditor_Dialog extends JDialog{
 		txt_itemId.setText(Integer.toString(itemId));
 		txt_itemId.setEditable(false);
 		cmbx_category.setSelectedItem(category);
-		cmbx_category.setEditable(false);
+		cmbx_category.setEnabled(false);
 		txt_itemName.setText(itemName);
 		txt_costPrice.setText(Double.toString(costPrice));
 		txt_sellingPrice.setText(Double.toString(sellingPrice));
