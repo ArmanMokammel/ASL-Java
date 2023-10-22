@@ -82,10 +82,18 @@ public class Customer_Panel extends JPanelX{
 	}
 	
 	public void editRow(int row) {
-		
+		Customer customer = customerList.get(row);
+		CustomerEditor_Dialog dialog = new CustomerEditor_Dialog(window, this, "Edit Customer Details" , row);
+		dialog.setCustomerDetails(customer.getCustomerId(), customer.getCustomerName(), customer.getGender(), customer.getEmail(), customer.getPhoneNo(), customer.getSpecialDiscountType(), customer.getSpecialDiscount());
+		dialog.setVisible(true);
 	}
 	
 	public void removeRow(int row) {
-			
+		model.removeRow(row);
+		customerList.remove(row);
+		for(int i = 0; i < customerList.size(); i++) {
+			model.setValueAt(i+1, i, 0);
+		}
+		Utility.writeAllToFile("Customer.ASL", false, customerList);
 	}
 }
