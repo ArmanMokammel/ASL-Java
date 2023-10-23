@@ -10,7 +10,7 @@ import Enum.AccountType;
 import Enum.InputType;
 import Exception.InputException;
 import UI.MainWindow;
-import UI.Voucher_Panel;
+import UI.Panels.Voucher_Panel;
 import Utilities.Utility;
 
 public class VoucherEditor_Dialog extends JDialog{

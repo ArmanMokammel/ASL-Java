@@ -1,7 +1,6 @@
 package UI;
 
 import java.awt.Color;
-import java.awt.ComponentOrientation;
 import java.awt.FlowLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -10,16 +9,13 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import Data.Account;
 import DataEditorUI.Profile_Screen;
-import Enum.AccountType;
+import UI.Panels.*;
 
 public class MainWindow extends JFrame{
 	

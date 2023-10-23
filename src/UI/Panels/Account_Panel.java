@@ -1,4 +1,4 @@
-package UI;
+package UI.Panels;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,6 +14,8 @@ import Data.Account;
 import Data.Discount_Voucher;
 import DataEditorUI.*;
 import Enum.AccountType;
+import UI.JPanelX;
+import UI.MainWindow;
 import Utilities.Utility;
 
 public class Account_Panel extends JPanelX{

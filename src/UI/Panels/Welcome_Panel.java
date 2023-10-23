@@ -1,4 +1,4 @@
-package UI;
+package UI.Panels;
 
 import java.awt.Color;
 import java.awt.ComponentOrientation;
@@ -16,6 +16,7 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 
 import Data.Account;
+import UI.*;
 
 public class Welcome_Panel extends JPanel {
 	

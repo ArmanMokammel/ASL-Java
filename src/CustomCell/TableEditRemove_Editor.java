@@ -16,7 +16,7 @@ import Data.Discount_Voucher;
 import UI.EditRemove_Pane;
 import UI.JPanelX;
 import UI.MainWindow;
-import UI.Voucher_Panel;
+import UI.Panels.Voucher_Panel;
 
 public class TableEditRemove_Editor extends AbstractCellEditor implements TableCellEditor {
 

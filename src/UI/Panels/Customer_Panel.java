@@ -1,10 +1,12 @@
-package UI;
+package UI.Panels;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -16,7 +18,9 @@ import Data.Customer;
 import DataEditorUI.CustomerEditor_Dialog;
 import Utilities.Utility;
 
-import Enum.DiscountType; 
+import Enum.DiscountType;
+import UI.JPanelX;
+import UI.MainWindow; 
 
 public class Customer_Panel extends JPanelX{
 	

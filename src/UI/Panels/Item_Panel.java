@@ -1,4 +1,4 @@
-package UI;
+package UI.Panels;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,6 +16,8 @@ import CustomCell.TableEditRemove_Renderer;
 import Data.MenuItem;
 import DataEditorUI.MenuItemEditor_Dialog;
 import Enum.DiscountType;
+import UI.JPanelX;
+import UI.MainWindow;
 import Utilities.Utility;
 
 public class Item_Panel extends JPanelX{

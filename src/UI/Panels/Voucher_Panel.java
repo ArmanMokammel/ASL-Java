@@ -1,4 +1,4 @@
-package UI;
+package UI.Panels;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,6 +12,8 @@ import CustomCell.TableEditRemove_Editor;
 import CustomCell.TableEditRemove_Renderer;
 import Data.Discount_Voucher;
 import DataEditorUI.VoucherEditor_Dialog;
+import UI.JPanelX;
+import UI.MainWindow;
 import Utilities.Utility;
 
 public class Voucher_Panel extends JPanelX{

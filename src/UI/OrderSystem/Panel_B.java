@@ -1,24 +1,32 @@
 package UI.OrderSystem;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.*;
 
 import Data.Customer;
-import UI.SearchableComboBox;
+import Enum.DiscountType;
+import UI.CustomerWindow;
+import UI.Order_Screen;
 
 public class Panel_B extends JPanel{
 	
 	public Customer customer = null;
+	public Order_Screen window;
+	public JPanel currentPanel = null;
 	
-	public Panel_B() {
-		setLayout(null);
+	public JPanel pnl_1;
+	public JPanel pnl_2;
+	
+	public Panel_B(Order_Screen window) {
+		this.window = window;
+		
+		pnl_1 = new JPanel();
+		pnl_1.setLayout(null);
+		pnl_1.setBackground(null);
 		
 		JLabel lbl_1 = new JLabel("Select Customer (Required for Due Payments)", SwingConstants.CENTER);
 		lbl_1.setBounds(0, 10, 495, 30);
@@ -29,60 +37,43 @@ public class Panel_B extends JPanel{
 		JLabel lbl_2 = new JLabel("Customer:");
 		lbl_2.setBounds(10, 50, 60, 30);
 		
-		List<String> myWords = new ArrayList<String>();
-
-		myWords.add("bike");
-		myWords.add("car");
-		myWords.add("cap");
-		myWords.add("cape");
-		myWords.add("canadian");
-		myWords.add("caprecious");
-		myWords.add("catepult abs");
-		
-		SearchableComboBox txt_1 = new SearchableComboBox(myWords);		
+		JTextField txt_1 = new JTextField();
 		txt_1.setBounds(80, 50, 380, 30);
-		txt_1.setMaximumRowCount(5);
-		txt_1.setSelectedItem(null);
-		txt_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(customer == null) {
-					if((String)((SearchableComboBox)e.getSource()).getSelectedItem() == (String)((SearchableComboBox)e.getSource()).getItemAt(0)) {					
-						//JOptionPane.showMessageDialog(null, "123");
-						//customer = new Customer(0, null, null, null, null, null, 0);
-					}
-				}
-			}
-		});
-		txt_1.addItemListener(new ItemListener() {
-
-			public void itemStateChanged(ItemEvent e) {
-				if(e.getStateChange() == ItemEvent.SELECTED)
-				{	
-					if(txt_1.isTyping) {					
-						txt_1.isTyping = false;
-						return;
-					}
-					txt_1.isTyping = false;
-					
-					//Add customer
-					//To be changed later
-					JOptionPane.showMessageDialog(null, "123");
-
-					customer = new Customer(0, null, null, null, null, null, 0);
-				}
-			}
-		});
 		
 		JButton btn_1 = new JButton("New Customer");
-		btn_1.setBounds(190, 100, 120, 30);
+		btn_1.setBounds(100, 100, 120, 30);
+		btn_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Thread t = new Thread() {
+					@Override
+					public void run() {
+						new CustomerWindow(window, Panel_B.this, true);
+					}
+				};
+				t.start();
+			}
+		});
 		
-		add(lbl_1);
-		add(lbl_2);
-		add(txt_1);
-		add(btn_1);
+		JButton btn_3 = new JButton("View Customers");
+		btn_3.setBounds(230, 100, 130, 30);
+		btn_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new CustomerWindow(window, Panel_B.this, false);			
+			}
+		});
 		
+		pnl_1.add(lbl_1);
+		pnl_1.add(txt_1);
+		pnl_1.add(lbl_2);
+		pnl_1.add(btn_1);
+		pnl_1.add(btn_3);
 		
+		add(pnl_1);
+		currentPanel = pnl_1;
 		
+		pnl_2 = new JPanel();
+		pnl_2.setLayout(null);
+		pnl_2.setBackground(null);
 		
 		JLabel lbl_3 = new JLabel("Customer:");
 		lbl_3.setBounds(10, 20, 70, 30);
@@ -111,12 +102,32 @@ public class Panel_B extends JPanel{
 		btn_2.setForeground(Color.white);
 		btn_2.setOpaque(true);
 		
-//		add(lbl_3);
-//		add(lbl_4);
-//		add(lbl_5);
-//		add(lbl_6);
-//		add(lbl_7);
-//		add(lbl_8);
-//		add(btn_2);
+		pnl_2.add(lbl_3);
+		pnl_2.add(lbl_4);
+		pnl_2.add(lbl_5);
+		pnl_2.add(lbl_6);
+		pnl_2.add(lbl_7);
+		pnl_2.add(lbl_8);
+		pnl_2.add(btn_2);
 	}
+	
+	@Override
+	public void setBounds(int x, int y, int width, int height) {
+		super.setBounds(x, y, width, height);
+		pnl_1.setPreferredSize(new Dimension(590, 190));
+		pnl_2.setPreferredSize(new Dimension(590, 190));
+	}
+	
+	public void setValues(String customerName, int id, DiscountType discountType, double discount) {
+		
+	}
+	
+//	public void swapPanel(JPanel newPanel) {
+//		remove(currentPanel);
+//		add(newPanel);
+//		revalidate();
+//		repaint();
+//		currentPanel = newPanel;
+//		System.gc();
+//	}
 }

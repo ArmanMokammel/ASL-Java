@@ -81,8 +81,7 @@ public class Login_Screen extends JFrame {
 		lbl_forgetPass.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				System.out.println("Clicked");
-
+				JOptionPane.showMessageDialog(Login_Screen.this, "Sorry, Arman decided you shall not get access");
 			}
 		});
 

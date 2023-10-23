@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
@@ -14,9 +15,10 @@ import Enum.AccountType;
 import Enum.DiscountType;
 import Enum.InputType;
 import Exception.InputException;
-import UI.Account_Panel;
-import UI.Customer_Panel;
+import UI.JPanelX;
 import UI.MainWindow;
+import UI.Panels.Account_Panel;
+import UI.Panels.Customer_Panel;
 import Utilities.Utility;
 
 public class CustomerEditor_Dialog extends JDialog{
@@ -33,7 +35,7 @@ public class CustomerEditor_Dialog extends JDialog{
 	private String B, C, D, E, F;
 	private double G;
 	
-	public CustomerEditor_Dialog(MainWindow frame, Customer_Panel parent, String title, int row) {
+	public CustomerEditor_Dialog(JFrame frame, JPanelX parent, String title, int row) {
 		super(frame, title, true);
 		setSize(500,500);
 		setLayout(null);

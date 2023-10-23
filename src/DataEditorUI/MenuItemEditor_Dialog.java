@@ -14,6 +14,7 @@ import Enum.DiscountType;
 import Enum.InputType;
 import Exception.InputException;
 import UI.*;
+import UI.Panels.Item_Panel;
 import Utilities.Utility;
 
 public class MenuItemEditor_Dialog extends JDialog{
