@@ -26,7 +26,7 @@ public class AccountEditor_Dialog extends JDialog{
 	private String C;
 	private int F;
 	
-	public AccountEditor_Dialog(MainWindow frame, Account_Panel parent, String title, int row) {
+	public AccountEditor_Dialog(MainWindow frame, JPanelX parent, String title, int row) {
 		super(frame, title, true);
 		setSize(500,500);
 		setLayout(null);
@@ -87,13 +87,13 @@ public class AccountEditor_Dialog extends JDialog{
 					return;
 				}
 				if (row != -1) {
-					parent.accountList.set(row, account);
+					parent.list.set(row, account);
 					parent.model.removeRow(row);
 					parent.model.insertRow(row, new Object[] {row + 1, account.getUserID(), account.getAccountType(), account.getName(), account.getEmail(), account.getEmployeeID()});
-					Utility.writeAllToFile("Accounts.ASL", false, parent.accountList);
+					Utility.writeAllToFile("Accounts.ASL", false, parent.list);
 				} else {
-					parent.accountList.add(account);
-					parent.model.addRow(new Object[] {parent.accountList.size(), account.getUserID(), account.getAccountType(), account.getName(), account.getEmail(), account.getEmployeeID()});
+					parent.list.add(account);
+					parent.model.addRow(new Object[] {parent.list.size(), account.getUserID(), account.getAccountType(), account.getName(), account.getEmail(), account.getEmployeeID()});
 					Utility.writeToFile("Accounts.ASL", true, account);
 				}
 				dispose();

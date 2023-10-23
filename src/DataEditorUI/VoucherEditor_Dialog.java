@@ -9,6 +9,7 @@ import Data.Discount_Voucher;
 import Enum.AccountType;
 import Enum.InputType;
 import Exception.InputException;
+import UI.JPanelX;
 import UI.MainWindow;
 import UI.Panels.Voucher_Panel;
 import Utilities.Utility;
@@ -24,7 +25,7 @@ public class VoucherEditor_Dialog extends JDialog{
 	private int B;
 	private double D;
 		
-	public VoucherEditor_Dialog(MainWindow frame, Voucher_Panel parent, String title, int row) {
+	public VoucherEditor_Dialog(MainWindow frame, JPanelX parent, String title, int row) {
 		super(frame, title, true);
 		setSize(500,500);
 		setLayout(null);
@@ -61,7 +62,7 @@ public class VoucherEditor_Dialog extends JDialog{
 			public void actionPerformed(ActionEvent e) {
 				Discount_Voucher voucher = null;
 				try {
-					A = Utility.checkString(txt_customer, lbl_customer, InputType.Alphabetic) ;
+					A = txt_customer.getText().isBlank() ? "" : Utility.checkString(txt_customer, lbl_customer, InputType.Alphabetic);
 					B = Utility.checkInt(txt_voucherId, lbl_voucherId);
 					C = Utility.checkString(txt_voucher, lbl_voucher, InputType.Alphanumeric);
 					D = Utility.checkDouble(txt_value, lbl_value);
@@ -71,14 +72,14 @@ public class VoucherEditor_Dialog extends JDialog{
 					return;
 				}
 				if(row != -1) {
-					parent.voucherList.set(row, voucher);
+					parent.list.set(row, voucher);
 					parent.model.removeRow(row);
 					parent.model.insertRow(row, new Object[] {row + 1, voucher.getCustomer(), voucher.getVoucherId(), voucher.getVoucher(), voucher.getValue()});
-					Utility.writeAllToFile("Discount-Vouchers.ASL", false, parent.voucherList);
+					Utility.writeAllToFile("Discount-Vouchers.ASL", false, parent.list);
 				}
 				else {
-					parent.voucherList.add(voucher);
-					parent.model.addRow(new Object[] {parent.voucherList.size(), voucher.getCustomer(), voucher.getVoucherId(), voucher.getVoucher(), voucher.getValue()});
+					parent.list.add(voucher);
+					parent.model.addRow(new Object[] {parent.list.size(), voucher.getCustomer(), voucher.getVoucherId(), voucher.getVoucher(), voucher.getValue()});
 					Utility.writeToFile("Discount-Vouchers.ASL", true, voucher);
 				}
 				dispose();

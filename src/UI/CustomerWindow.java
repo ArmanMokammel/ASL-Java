@@ -72,7 +72,8 @@ public class CustomerWindow extends JDialog{
 			}
 		};
 		pnl.model = model;
-		pnl.customerList = customerList;
+		pnl.list = new LinkedList<Customer>();
+		pnl.list = customerList;
 		model.addColumn("SL");
 		model.addColumn("Customer ID");
 		model.addColumn("Customer Name");
@@ -109,8 +110,11 @@ public class CustomerWindow extends JDialog{
 		btn_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(table.getSelectedRow() != -1) {
+					selCustomer = customerList.get(table.getSelectedRow());
+					parent.setCustomer(selCustomer);
 					parent.remove(parent.currentPanel);
 					parent.add(parent.pnl_2);
+					parent.currentPanel = parent.pnl_2;
 					parent.revalidate();
 					parent.repaint();
 					dispose();
@@ -161,6 +165,8 @@ public class CustomerWindow extends JDialog{
 			Thread t = new Thread() {
 				public void run() {
 					CustomerEditor_Dialog dlg = new CustomerEditor_Dialog(window, pnl, "New Customer", -1);
+					if(parent.txt_1.getText() != null)
+						dlg.txt_customerName.setText(parent.txt_1.getText());
 					dlg.setVisible(true);
 				}
 			};

@@ -8,8 +8,8 @@ import Data.Customer;
 
 public abstract class JPanelX extends JPanel{
 	
-	public LinkedList<Customer> customerList = new LinkedList<Customer>();
-	public DefaultTableModel model = new DefaultTableModel();
+	public LinkedList list;
+	public DefaultTableModel model;
 
 	public abstract void editRow(int row);
 	public abstract void removeRow(int row);

@@ -24,7 +24,7 @@ import Utilities.Utility;
 public class CustomerEditor_Dialog extends JDialog{
 	
 	private JTextField txt_customerID = new JTextField();
-	private JTextField txt_customerName = new JTextField();
+	public JTextField txt_customerName = new JTextField();
 	private JComboBox<String> cmbx_gender = new JComboBox<> (new String[] {"Male", "Female"});
 	private JTextField txt_email = new JTextField();
 	private JTextField txt_phoneNo = new JTextField();
@@ -102,13 +102,13 @@ public class CustomerEditor_Dialog extends JDialog{
 					return;
 				}
 				if (row != -1) {
-					parent.customerList.set(row, customer);
+					parent.list.set(row, customer);
 					parent.model.removeRow(row);
 					parent.model.insertRow(row, new Object[] {row + 1, customer.getCustomerId(), customer.getCustomerName(), customer.getGender(), customer.getEmail(), customer.getPhoneNo(), customer.getSpecialDiscountType(), customer.getSpecialDiscount()});
-					Utility.writeAllToFile("Customers.ASL", false, parent.customerList);
+					Utility.writeAllToFile("Customers.ASL", false, parent.list);
 				} else {
-					parent.customerList.add(customer);
-					parent.model.addRow(new Object[] {parent.customerList.size(), customer.getCustomerId(), customer.getCustomerName(), customer.getGender(), customer.getEmail(), customer.getPhoneNo(), customer.getSpecialDiscountType(), customer.getSpecialDiscount()});
+					parent.list.add(customer);
+					parent.model.addRow(new Object[] {parent.list.size(), customer.getCustomerId(), customer.getCustomerName(), customer.getGender(), customer.getEmail(), customer.getPhoneNo(), customer.getSpecialDiscountType(), customer.getSpecialDiscount()});
 					Utility.writeToFile("Customers.ASL", true, customer);
 				}
 				dispose();

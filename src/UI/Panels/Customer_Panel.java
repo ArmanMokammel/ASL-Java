@@ -24,12 +24,11 @@ import UI.MainWindow;
 
 public class Customer_Panel extends JPanelX{
 	
-	public DefaultTableModel model;
-	public LinkedList<Customer> customerList = new LinkedList<Customer>();
 	private MainWindow window;
 	
 	public Customer_Panel(MainWindow window){
 		this.window = window;
+		this.list = new LinkedList<Customer>();
 		setLayout(null);
 		setBounds(30, 150, window.getWidth() - 70, 550);
 		
@@ -42,18 +41,18 @@ public class Customer_Panel extends JPanelX{
 			}
 		});
 		
-		model = new DefaultTableModel();
-		model.addColumn("SL");
-		model.addColumn("Customer ID");
-		model.addColumn("Customer Name");
-		model.addColumn("Gender");
-		model.addColumn("Email");
-		model.addColumn("Phone No");
-		model.addColumn("Special Discount Type");
-		model.addColumn("Special Discount");
-		model.addColumn("");
+		this.model = new DefaultTableModel();
+		this.model.addColumn("SL");
+		this.model.addColumn("Customer ID");
+		this.model.addColumn("Customer Name");
+		this.model.addColumn("Gender");
+		this.model.addColumn("Email");
+		this.model.addColumn("Phone No");
+		this.model.addColumn("Special Discount Type");
+		this.model.addColumn("Special Discount");
+		this.model.addColumn("");
 		
-		JTable table = new JTable(model) {
+		JTable table = new JTable(this.model) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				if(column == 8)
@@ -78,24 +77,24 @@ public class Customer_Panel extends JPanelX{
 		ArrayList<String> lines = Utility.readFile("Customers.ASL");
 		for(String line: lines) {
 			String[] datas = line.split("\t");
-			customerList.add(new Customer(Integer.parseInt(datas[0]), datas[1], datas[2], datas[3], datas[4], DiscountType.valueOf(datas[5]), Double.parseDouble(datas[6])));
-			model.addRow(new Object[] {customerList.size(), Integer.parseInt(datas[0]), datas[1], datas[2], datas[3], datas[4], DiscountType.valueOf(datas[5]), Double.parseDouble(datas[6])});
+			this.list.add(new Customer(Integer.parseInt(datas[0]), datas[1], datas[2], datas[3], datas[4], DiscountType.valueOf(datas[5]), Double.parseDouble(datas[6])));
+			this.model.addRow(new Object[] {this.list.size(), Integer.parseInt(datas[0]), datas[1], datas[2], datas[3], datas[4], DiscountType.valueOf(datas[5]), Double.parseDouble(datas[6])});
 		}
 	}
 	
 	public void editRow(int row) {
-		Customer customer = customerList.get(row);
+		Customer customer = (Customer) this.list.get(row);
 		CustomerEditor_Dialog dialog = new CustomerEditor_Dialog(window, this, "Edit Customer Details" , row);
 		dialog.setCustomerDetails(customer.getCustomerId(), customer.getCustomerName(), customer.getGender(), customer.getEmail(), customer.getPhoneNo(), customer.getSpecialDiscountType(), customer.getSpecialDiscount());
 		dialog.setVisible(true);
 	}
 	
 	public void removeRow(int row) {
-		model.removeRow(row);
-		customerList.remove(row);
-		for(int i = 0; i < customerList.size(); i++) {
-			model.setValueAt(i+1, i, 0);
+		this.model.removeRow(row);
+		this.list.remove(row);
+		for(int i = 0; i < this.list.size(); i++) {
+			this.model.setValueAt(i+1, i, 0);
 		}
-		Utility.writeAllToFile("Customers.ASL", false, customerList);
+		Utility.writeAllToFile("Customers.ASL", false, this.list);
 	}
 }

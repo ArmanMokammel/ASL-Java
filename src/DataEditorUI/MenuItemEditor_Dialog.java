@@ -107,10 +107,10 @@ public class MenuItemEditor_Dialog extends JDialog{
 					return;
 				}
 				if(row != -1) {
-					parent.itemList.set(row, item);
+					parent.list.set(row, item);
 					parent.model.removeRow(row);
 					parent.model.insertRow(row, new Object[] {row + 1, item.getItemId(), item.getItemName(), item.getCostPrice(), item.getSellingPrice(), item.getDiscountValue(), item.getDiscountType()});
-					parent.items.put(item.getCategory(), new ArrayList<MenuItem>(parent.itemList));
+					parent.items.put(item.getCategory(), new ArrayList<MenuItem>(parent.list));
 					File file = new File("Menu-Items.ASL");
 					file.delete();
 					for(Map.Entry<String, ArrayList<MenuItem>> itms : parent.items.entrySet()) {
@@ -118,8 +118,8 @@ public class MenuItemEditor_Dialog extends JDialog{
 					}
 				}
 				else {
-					parent.itemList.add(item);
-					parent.model.addRow(new Object[] {parent.itemList.size(), item.getItemId(), item.getItemName(), item.getCostPrice(), item.getSellingPrice(), item.getDiscountValue(), item.getDiscountType()});
+					parent.list.add(item);
+					parent.model.addRow(new Object[] {parent.list.size(), item.getItemId(), item.getItemName(), item.getCostPrice(), item.getSellingPrice(), item.getDiscountValue(), item.getDiscountType()});
 					for(Map.Entry<String, ArrayList<MenuItem>> itms : parent.items.entrySet()) {
 						if(itms.getKey().equals(item.getCategory())) {
 							ArrayList<MenuItem> c = itms.getValue();

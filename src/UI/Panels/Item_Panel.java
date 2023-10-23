@@ -22,14 +22,13 @@ import Utilities.Utility;
 
 public class Item_Panel extends JPanelX{
 	
-	public DefaultTableModel model;
-	public LinkedList<MenuItem> itemList = new LinkedList<MenuItem>();
 	private MainWindow window;
 	public HashMap<String, ArrayList<MenuItem>> items = new HashMap<String, ArrayList<MenuItem>>();
 	public JComboBox<String> cmbx_ItemCategory;
 	
 	public Item_Panel(MainWindow window) {
 		this.window = window;
+		this.list = new LinkedList<MenuItem>();
 		setLayout(null);
 		setBounds(30, 150, window.getWidth() - 70, 550);
 		
@@ -64,17 +63,17 @@ public class Item_Panel extends JPanelX{
 			}
 		});
 		
-		model = new DefaultTableModel();
-		model.addColumn("SL");
-		model.addColumn("Item ID");
-		model.addColumn("Item Name");
-		model.addColumn("Cost Price");
-		model.addColumn("Selling Price");
-		model.addColumn("Discount");
-		model.addColumn("DiscountType");
-		model.addColumn("");
+		this.model = new DefaultTableModel();
+		this.model.addColumn("SL");
+		this.model.addColumn("Item ID");
+		this.model.addColumn("Item Name");
+		this.model.addColumn("Cost Price");
+		this.model.addColumn("Selling Price");
+		this.model.addColumn("Discount");
+		this.model.addColumn("DiscountType");
+		this.model.addColumn("");
 		
-		JTable table = new JTable(model) {
+		JTable table = new JTable(this.model) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				if(column == 7)
@@ -95,13 +94,13 @@ public class Item_Panel extends JPanelX{
 				
 		cmbx_ItemCategory.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				itemList.clear();
-				model.setRowCount(0);
+				Item_Panel.this.list.clear();
+				Item_Panel.this.model.setRowCount(0);
 				ArrayList<MenuItem> itm = items.get((String)cmbx_ItemCategory.getSelectedItem());
-				itemList.addAll(itm);
+				Item_Panel.this.list.addAll(itm);
 				int sl = 1;
 				for(MenuItem i : itm) {
-					model.addRow(new Object[] {sl, i.getItemId(), i.getItemName(), i.getCostPrice(), i.getSellingPrice(), i.getDiscountValue(), i.getDiscountType()});
+					Item_Panel.this.model.addRow(new Object[] {sl, i.getItemId(), i.getItemName(), i.getCostPrice(), i.getSellingPrice(), i.getDiscountValue(), i.getDiscountType()});
 					sl++;
 				}
 			}
@@ -112,19 +111,19 @@ public class Item_Panel extends JPanelX{
 	}
 
 	public void editRow(int row) {
-		MenuItem menuItem = itemList.get(row);
+		MenuItem menuItem = (MenuItem) this.list.get(row);
 		MenuItemEditor_Dialog dialog = new MenuItemEditor_Dialog(window, this, "Edit Item" , row);
 		dialog.setItemDetails(menuItem.getItemId(), menuItem.getCategory(), menuItem.getItemName(), menuItem.getCostPrice(), menuItem.getSellingPrice(), menuItem.getDiscountType(), menuItem.getDiscountValue());
 		dialog.setVisible(true);
 	}
 
 	public void removeRow(int row) {
-		model.removeRow(row);
-		itemList.remove(row);
-		for(int i = 0; i < itemList.size(); i++) {
-			model.setValueAt(i+1, i, 0);
+		this.model.removeRow(row);
+		this.list.remove(row);
+		for(int i = 0; i < this.list.size(); i++) {
+			this.model.setValueAt(i+1, i, 0);
 		}
-		items.put((String)cmbx_ItemCategory.getSelectedItem(), new ArrayList<MenuItem>(itemList));
+		items.put((String)cmbx_ItemCategory.getSelectedItem(), new ArrayList<MenuItem>(this.list));
 		File file = new File("Menu-Items.ASL");
 		file.delete();
 		for(Map.Entry<String, ArrayList<MenuItem>> itms : items.entrySet()) {

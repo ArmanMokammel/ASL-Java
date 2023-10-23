@@ -21,6 +21,12 @@ public class Panel_B extends JPanel{
 	public JPanel pnl_1;
 	public JPanel pnl_2;
 	
+	public JTextField txt_1 = new JTextField();
+	
+	private JLabel lbl_4 = new JLabel();
+	private JLabel lbl_6 = new JLabel();
+	private JLabel lbl_8 = new JLabel();
+	
 	public Panel_B(Order_Screen window) {
 		this.window = window;
 		
@@ -37,7 +43,6 @@ public class Panel_B extends JPanel{
 		JLabel lbl_2 = new JLabel("Customer:");
 		lbl_2.setBounds(10, 50, 60, 30);
 		
-		JTextField txt_1 = new JTextField();
 		txt_1.setBounds(80, 50, 380, 30);
 		
 		JButton btn_1 = new JButton("New Customer");
@@ -78,21 +83,18 @@ public class Panel_B extends JPanel{
 		JLabel lbl_3 = new JLabel("Customer:");
 		lbl_3.setBounds(10, 20, 70, 30);
 		
-		JLabel lbl_4 = new JLabel(" Customer Name");
 		lbl_4.setBounds(90, 20, 370, 30);
 		lbl_4.setOpaque(true);
 		
 		JLabel lbl_5 = new JLabel("ID:");
 		lbl_5.setBounds(10, 60, 70, 30);
 		
-		JLabel lbl_6 = new JLabel(" 2232450642");
 		lbl_6.setBounds(90, 60, 370, 30);
 		lbl_6.setOpaque(true);
 		
 		JLabel lbl_7 = new JLabel("Discount %:");
 		lbl_7.setBounds(10, 100, 70, 30);
 		
-		JLabel lbl_8 = new JLabel(" 50.00%");
 		lbl_8.setBounds(90, 100, 370, 30);
 		lbl_8.setOpaque(true);
 		
@@ -101,6 +103,16 @@ public class Panel_B extends JPanel{
 		btn_2.setBackground(new Color(255, 49, 49));
 		btn_2.setForeground(Color.white);
 		btn_2.setOpaque(true);
+		btn_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				remove(currentPanel);
+				add(pnl_1);
+				currentPanel = pnl_1;
+				revalidate();
+				repaint();
+				
+			}
+		});
 		
 		pnl_2.add(lbl_3);
 		pnl_2.add(lbl_4);
@@ -118,8 +130,11 @@ public class Panel_B extends JPanel{
 		pnl_2.setPreferredSize(new Dimension(590, 190));
 	}
 	
-	public void setValues(String customerName, int id, DiscountType discountType, double discount) {
-		
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+		lbl_4.setText(customer.getCustomerName());
+		lbl_6.setText(Integer.toString(customer.getCustomerId()));
+		lbl_8.setText(customer.getSpecialDiscountType() == DiscountType.Percentage ? Double.toString(customer.getSpecialDiscount()) + "%" : Double.toString(customer.getSpecialDiscount()));
 	}
 	
 //	public void swapPanel(JPanel newPanel) {
