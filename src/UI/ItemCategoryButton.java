@@ -14,10 +14,12 @@ import Data.OrderMenuItem;
 public class ItemCategoryButton extends JButton implements ActionListener{
 	
 	private MenuItem item;
+	private Panel_C itemsPanel;
 	
-	public ItemCategoryButton(MenuItem item) {
+	public ItemCategoryButton(MenuItem item, Panel_C itemsPanel) {
 		super(item.getItemName());
 		this.item = item;
+		this.itemsPanel = itemsPanel;
 		setMaximumSize(new Dimension(550, 100));
 		setPreferredSize(new Dimension(550, 100));
 		addActionListener(this);
@@ -32,7 +34,7 @@ public class ItemCategoryButton extends JButton implements ActionListener{
 			return;
 		
 		int quantity = Integer.parseInt(input);
-		Panel_C.addItem(new OrderMenuItem(item, quantity));		
+		itemsPanel.addItem(new OrderMenuItem(item, quantity));		
 	}
 
 }

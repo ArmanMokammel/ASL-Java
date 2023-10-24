@@ -15,10 +15,13 @@ import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
 
 import Data.Account;
+import Data.Order;
 import Enum.AccountType;
 import UI.OrderSystem.*;
 
 public class Order_Screen extends JFrame{
+	
+	public static Order order;
 		
 	public Order_Screen() {
 		super("Take Order - " + MainWindow.account.getName());
@@ -30,13 +33,13 @@ public class Order_Screen extends JFrame{
 			}
 		});
 		setSize(1500, 800);
+		order = new Order("TEST", 11111, MainWindow.account.getUserID());
 	}
 	
 	public void createUI() {
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setLayout(null);
 		this.getContentPane().setBackground(Color.black);
-		//setUndecorated(true);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		addKeyListener(new KeyAdapter() {
 			@Override
@@ -47,7 +50,6 @@ public class Order_Screen extends JFrame{
 		
 		this.getRootPane().registerKeyboardAction (new ActionListener ()
         {
-            @Override
             public void actionPerformed (final ActionEvent e)
             {
             	dispose();
@@ -56,11 +58,12 @@ public class Order_Screen extends JFrame{
             }
         }, KeyStroke.getKeyStroke ( KeyEvent.VK_F1, 0 ), JComponent.WHEN_IN_FOCUSED_WINDOW );
 		
-		Panel_A pnl_1 = new Panel_A(this);
+		Panel_A pnl_1 = new Panel_A();
 		Panel_B pnl_2 = new Panel_B(this);
 		Panel_C pnl_3 = new Panel_C();
-		Panel_D pnl_6 = new Panel_D();
-		Panel_E pnl_4 = new Panel_E();
+		Panel_D pnl_6 = new Panel_D(pnl_3);
+		Panel_E pnl_4 = new Panel_E(pnl_3);
+		pnl_3.setDisplayPanel(pnl_4);
 		JLabel pnl_5 = new JLabel("Copyright my shit 2.0", SwingConstants.CENTER);
 		
 		pnl_1.setBackground(new Color(198, 198, 198));		

@@ -14,7 +14,7 @@ import UI.Order_Screen;
 
 public class Panel_B extends JPanel{
 	
-	public Customer customer = null;
+	public static Customer customer = null;
 	public Order_Screen window;
 	public JPanel currentPanel = null;
 	
@@ -131,7 +131,7 @@ public class Panel_B extends JPanel{
 	}
 	
 	public void setCustomer(Customer customer) {
-		this.customer = customer;
+		Panel_B.customer = customer;
 		lbl_4.setText(customer.getCustomerName());
 		lbl_6.setText(Integer.toString(customer.getCustomerId()));
 		lbl_8.setText(customer.getSpecialDiscountType() == DiscountType.Percentage ? Double.toString(customer.getSpecialDiscount()) + "%" : Double.toString(customer.getSpecialDiscount()));

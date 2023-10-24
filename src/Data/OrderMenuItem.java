@@ -25,4 +25,8 @@ public class OrderMenuItem{
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
+	
+	public String toString() {
+		return item.toString() + quantity;
+	}
 }

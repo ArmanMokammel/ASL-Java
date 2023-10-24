@@ -1,0 +1,97 @@
+package UI.Panels;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.LinkedList;
+
+import javax.swing.JButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
+import CustomCell.TableEditRemove_Editor;
+import CustomCell.TableEditRemove_Renderer;
+import Data.Employee;
+import UI.JPanelX;
+import UI.MainWindow;
+import Utilities.Utility;
+
+public class Employee_Panel extends JPanelX{
+	
+	private MainWindow window;
+	
+	public Employee_Panel(MainWindow window) {
+		this.window = window;
+		this.list = new LinkedList<Employee>();
+		setLayout(null);
+		setBounds(30, 150, window.getWidth() - 70, 550);
+		
+		JButton btn_Add = new JButton("New Employee");
+		btn_Add.setBounds(getWidth() - 245, 0, 130, 40);
+		btn_Add.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+//				AccountEditor_Dialog dialog = new AccountEditor_Dialog(window, Account_Panel.this,"New Account", -1);
+//				dialog.setVisible(true);
+			}
+		});
+		
+		this.model = new DefaultTableModel();
+		this.model.addColumn("SL");
+		this.model.addColumn("Employee ID");
+		this.model.addColumn("Employee Name");
+		this.model.addColumn("Gender");
+		this.model.addColumn("Phone No");
+		this.model.addColumn("Email");
+		this.model.addColumn("Account ID");
+		this.model.addColumn("");
+		
+		JTable table = new JTable(this.model) {
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				if(column == 7)
+					return true;
+				else
+					return false;
+			}
+		};
+		
+		table.setRowHeight(40);
+		table.getTableHeader().setReorderingAllowed(false);
+		TableEditRemove_Renderer renderer = new TableEditRemove_Renderer();
+		table.getColumnModel().getColumn(7).setCellRenderer(renderer);
+		table.getColumnModel().getColumn(7).setCellEditor(new TableEditRemove_Editor(model, window, this));
+		
+		JScrollPane sp = new JScrollPane(table);
+		sp.setBounds(70, 60, getWidth() - 180, 400);
+				
+		add(btn_Add);
+		add(sp);
+		
+		ArrayList<String> lines = Utility.readFile("Employees.ASL");
+		for(String line: lines) {
+			String[] datas = line.split("\t");
+			this.list.add(new Employee(Integer.parseInt(datas[0]), datas[1], datas[2], datas[3], datas[4], datas[5]));
+			this.model.addRow(new Object[] {this.list.size(), Integer.parseInt(datas[0]), datas[1], datas[2], datas[3], datas[4], datas[5]});
+		}
+	}
+
+	@Override
+	public void editRow(int row) {
+		Employee account = (Employee) this.list.get(row);
+//		AccountEditor_Dialog dialog = new AccountEditor_Dialog(window, this, "Edit Account" , row);
+//		dialog.setAccountDetails(account.getUserID(), account.getPassword(), account.getAccountType(), account.getName(), account.getEmail(), account.getEmployeeID());
+//		dialog.setVisible(true);
+	}
+
+	@Override
+	public void removeRow(int row) {
+		this.model.removeRow(row);
+		this.list.remove(row);
+		for(int i = 0; i < this.list.size(); i++) {
+			this.model.setValueAt(i+1, i, 0);
+		}
+		Utility.writeAllToFile("Employees.ASL", false, this.list);
+	}
+
+}

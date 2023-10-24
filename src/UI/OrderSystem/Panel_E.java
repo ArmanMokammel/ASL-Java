@@ -15,17 +15,26 @@ import CustomCell.TableRemove_Renderer;
 import Data.Payment;
 import Exception.InputException;
 import UI.JPanelX;
+import UI.Order_Screen;
 import Utilities.Utility;
 
 public class Panel_E extends JPanelX{
 	
-	private LinkedList<Payment> paymentsList;
+	public static LinkedList<Payment> paymentsList;
 	private DefaultTableModel model ;
 	
 	private String A;
 	private double B;
 	
-	public Panel_E() {
+	public JLabel lbl_2 = new JLabel();
+	public JLabel lbl_5 = new JLabel();
+	public JTextField txt_1 = new JTextField();
+	public JLabel lbl_7 = new JLabel();
+	public JLabel lbl_9 = new JLabel();
+	
+	private double amountPaid = 0;
+	
+	public Panel_E(Panel_C itemsPanel) {
 		setLayout(null);
 		
 		paymentsList = new LinkedList<Payment>();
@@ -38,14 +47,12 @@ public class Panel_E extends JPanelX{
 		JLabel lbl_1 = new JLabel("Sub-Total:");
 		lbl_1.setBounds(10, 20, 70, 30);
 		
-		JLabel lbl_2 = new JLabel("  123123.00");
 		lbl_2.setBounds(80, 20, 100, 30);
 		lbl_2.setOpaque(true);
 		
 		JLabel lbl_3 = new JLabel("VAT:");
 		lbl_3.setBounds(10, 60, 70, 30);
 		
-		JTextField txt_1 = new JTextField();
 		txt_1.setBounds(80, 60, 100, 30);
 		
 		JSeparator sp = new JSeparator();
@@ -54,7 +61,6 @@ public class Panel_E extends JPanelX{
 		JLabel lbl_4 = new JLabel("Total:");
 		lbl_4.setBounds(10, 120, 70, 30);
 		
-		JLabel lbl_5 = new JLabel("  4523492.00");
 		lbl_5.setBounds(80, 120, 100, 30);
 		lbl_5.setOpaque(true);
 		
@@ -64,14 +70,12 @@ public class Panel_E extends JPanelX{
 		JLabel lbl_6 = new JLabel("Amount Paid:");
 		lbl_6.setBounds(10, 170, 80, 30);
 		
-		JLabel lbl_7 = new JLabel("  651635.00");
 		lbl_7.setBounds(90, 170, 100, 30);
 		lbl_7.setOpaque(true);
 		
 		JLabel lbl_8 = new JLabel("Amount Due:");
 		lbl_8.setBounds(10, 210, 80, 30);
 		
-		JLabel lbl_9 = new JLabel("  0.00");
 		lbl_9.setBounds(90, 210, 100, 30);
 		lbl_9.setOpaque(true);
 		
@@ -123,6 +127,8 @@ public class Panel_E extends JPanelX{
 					B = Utility.checkDouble(txt_2, lbl_11);
 					
 					paymentsList.add(new Payment(A, B));
+					amountPaid += B;
+					lbl_7.setText(Double.toString(amountPaid));
 					Panel_E.this.model.addRow(new Object[] {"", A, B});
 				} catch (InputException e1) {
 					Utility.showErrorMessage(e1);
@@ -163,6 +169,17 @@ public class Panel_E extends JPanelX{
 		JButton btn_3 = new JButton("Cancel");
 		btn_3.setBounds(140, 260, 100, 30);
 		
+		JButton btn_4 = new JButton("Finish");
+		btn_4.setBounds(250, 260, 100, 30);
+		btn_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Order_Screen.order.setCustomer(Panel_B.customer);
+				Order_Screen.order.setItems(itemsPanel.list);
+				Order_Screen.order.setPayments(Panel_E.paymentsList);
+				JOptionPane.showMessageDialog(Panel_E.this, Order_Screen.order.toString());
+			}
+		});
+		
 		pnl_2.add(lbl_10);
 		pnl_2.add(cmbx_1);
 		pnl_2.add(lbl_11);
@@ -171,19 +188,19 @@ public class Panel_E extends JPanelX{
 		pnl_2.add(scrollPane);
 		pnl_2.add(btn_2);
 		pnl_2.add(btn_3);
+		pnl_2.add(btn_4);
 		
 		add(pnl_2);
 	}
 
 	@Override
-	public void editRow(int row) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void editRow(int row) {}
 
 	@Override
 	public void removeRow(int row) {
-		model.removeRow(row);
+		amountPaid -= paymentsList.get(row).getAmount();
+		lbl_7.setText(Double.toString(amountPaid));
 		paymentsList.remove(row);		
+		model.removeRow(row);
 	}
 }

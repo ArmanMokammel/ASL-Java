@@ -84,6 +84,11 @@ public class MainWindow extends JFrame{
 		});
 		
 		MenuButton btn4 = new MenuButton("Employees", img, null);
+		btn4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainWindow.this.swapPanel(new Employee_Panel(MainWindow.this));				
+			}
+		});
 		
 		MenuButton btn5 = new MenuButton("Customers", img, null);
 		btn5.addActionListener(new ActionListener() {

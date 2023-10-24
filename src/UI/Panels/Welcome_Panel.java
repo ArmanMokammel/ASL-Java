@@ -85,6 +85,11 @@ public class Welcome_Panel extends JPanel {
 		});
 		
 		MenuButton btn4 = new MenuButton("Employees", img, Color.white);
+		btn4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				window.swapPanel(new Employee_Panel(window));
+			}
+		});
 		
 		MenuButton btn5 = new MenuButton("Customers", img, Color.white);
 		btn5.addActionListener(new ActionListener() {

@@ -26,9 +26,11 @@ public class Panel_D extends JPanel implements ActionListener{
 	
 	public HashMap<String, ArrayList<MenuItem>> items = new HashMap<String, ArrayList<MenuItem>>();
 	private JPanel pannal = new JPanel();
+	private Panel_C itemsPanel;
 	
-	public Panel_D() {
+	public Panel_D(Panel_C itemsPanel) {
 		setLayout(null);
+		this.itemsPanel = itemsPanel;
 		
 		ArrayList<String> categoryList = Utility.readFile("Item-Categories.ASL");
 		ArrayList<String> lines = Utility.readFile("Menu-Items.ASL");
@@ -79,7 +81,7 @@ public class Panel_D extends JPanel implements ActionListener{
 		ArrayList<MenuItem> itm = items.get(((JButton)e.getSource()).getText());
 		pannal.removeAll();
 		for(MenuItem s : itm) {
-			pannal.add(new ItemCategoryButton(s));
+			pannal.add(new ItemCategoryButton(s, Panel_D.this.itemsPanel));
 			pannal.add(Box.createRigidArea(new Dimension(0, 10)));
 		}
 		pannal.revalidate();
