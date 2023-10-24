@@ -13,6 +13,7 @@ import javax.swing.table.DefaultTableModel;
 import CustomCell.TableEditRemove_Editor;
 import CustomCell.TableEditRemove_Renderer;
 import Data.Employee;
+import DataEditorUI.EmployeeEditor_Dialog;
 import UI.JPanelX;
 import UI.MainWindow;
 import Utilities.Utility;
@@ -31,8 +32,8 @@ public class Employee_Panel extends JPanelX{
 		btn_Add.setBounds(getWidth() - 245, 0, 130, 40);
 		btn_Add.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				AccountEditor_Dialog dialog = new AccountEditor_Dialog(window, Account_Panel.this,"New Account", -1);
-//				dialog.setVisible(true);
+				EmployeeEditor_Dialog dialog = new EmployeeEditor_Dialog(window, Employee_Panel.this,"New Employee", -1);
+				dialog.setVisible(true);
 			}
 		});
 		
@@ -78,10 +79,10 @@ public class Employee_Panel extends JPanelX{
 
 	@Override
 	public void editRow(int row) {
-		Employee account = (Employee) this.list.get(row);
-//		AccountEditor_Dialog dialog = new AccountEditor_Dialog(window, this, "Edit Account" , row);
-//		dialog.setAccountDetails(account.getUserID(), account.getPassword(), account.getAccountType(), account.getName(), account.getEmail(), account.getEmployeeID());
-//		dialog.setVisible(true);
+		Employee employee = (Employee) this.list.get(row);
+		EmployeeEditor_Dialog dialog = new EmployeeEditor_Dialog(window, this, "Edit Employee" , row);
+		dialog.setEmployeeDetails(employee.getEmployeeId(), employee.getEmployeeName(), employee.getGender(), employee.getPhoneNo(), employee.getEmail(), employee.getAccountId());
+		dialog.setVisible(true);
 	}
 
 	@Override
