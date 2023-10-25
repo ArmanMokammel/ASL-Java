@@ -8,3 +8,4 @@ Hot Coffee
 Cold Coffee
 Iced Drinks
 Wraptor
+Chicken Kabab
