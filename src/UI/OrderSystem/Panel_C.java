@@ -10,8 +10,8 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
-import CustomCell.TableRemove_Editor;
-import CustomCell.TableRemove_Renderer;
+import CustomCell.TableEditRemove_Editor;
+import CustomCell.TableEditRemove_Renderer;
 
 public class Panel_C extends JPanelX{
 	
@@ -30,11 +30,19 @@ public class Panel_C extends JPanelX{
 		model.addColumn("Quantity");
 		model.addColumn("Total");
 		
-		JTable table = new JTable(model);
+		JTable table = new JTable(model) {
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				if(column == 0)
+					return true;
+				else
+					return false;
+			}
+		};
 		table.setBackground(new Color(253, 253, 214));
-		table.setRowHeight(30);
-		table.getColumnModel().getColumn(0).setCellRenderer(new TableRemove_Renderer());
-		table.getColumnModel().getColumn(0).setCellEditor(new TableRemove_Editor(this));
+		table.setRowHeight(40);
+		table.getColumnModel().getColumn(0).setCellRenderer(new TableEditRemove_Renderer());
+		table.getColumnModel().getColumn(0).setCellEditor(new TableEditRemove_Editor(model, this));
 		
 		JTableHeader tableHeader = table.getTableHeader();
 		tableHeader.setReorderingAllowed(false);
@@ -60,7 +68,21 @@ public class Panel_C extends JPanelX{
 
 	@Override
 	public void editRow(int row) {
-		// TODO Auto-generated method stub
+		JOptionPane p = new JOptionPane();
+		String input = p.showInputDialog("Update Quantity:");
+		
+		if(input == null || input.isBlank())
+			return;
+		
+		int quantity = Integer.parseInt(input);
+		
+		OrderMenuItem ordItem = Order.getItems().get(row);
+		Order.setTotal(Order.getTotal() - ordItem.getQuantity() * ordItem.getItem().getSellingPrice());
+		ordItem.setQuantity(quantity);
+		Order.setTotal(Order.getTotal() + quantity * ordItem.getItem().getSellingPrice());
+		displayPanel.subTotal.setText(Double.toString(Order.getTotal()));
+		model.removeRow(row);
+		model.insertRow(row, new Object[] {"", ordItem.getItem().getItemId(), ordItem.getItem().getItemName(), ordItem.getItem().getSellingPrice(), ordItem.getItem().getSellingPrice(), ordItem.getQuantity(), ordItem.getQuantity() * ordItem.getItem().getSellingPrice()});
 		
 	}
 

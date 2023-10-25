@@ -13,16 +13,16 @@ public class TableEditRemove_Renderer extends DefaultTableCellRenderer{
 	private EditRemove_Pane pane;
 	
 	public TableEditRemove_Renderer() {
-		pane = new EditRemove_Pane(null, null, null, null);
+		pane = new EditRemove_Pane(null, null, null);
 	}
 	
 	@Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-        if (isSelected) {
-        	pane.setBackground(table.getSelectionBackground());
-        } else {
-        	pane.setBackground(table.getBackground());
-        }
+//        if (isSelected) {
+//        	pane.setBackground(table.getSelectionBackground());
+//        } else {
+//        	pane.setBackground(table.getBackground());
+//        }
         return pane;
     }
 }

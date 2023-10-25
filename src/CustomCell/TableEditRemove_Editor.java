@@ -22,8 +22,8 @@ public class TableEditRemove_Editor extends AbstractCellEditor implements TableC
 
 	private EditRemove_Pane pane;
 
-	public TableEditRemove_Editor(DefaultTableModel model, MainWindow frame, JPanelX parent) {
-		pane = new EditRemove_Pane(model, frame, parent, this);
+	public TableEditRemove_Editor(DefaultTableModel model, JPanelX parent) {
+		pane = new EditRemove_Pane(model, parent, this);
 		pane.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -45,11 +45,6 @@ public class TableEditRemove_Editor extends AbstractCellEditor implements TableC
 	@Override
 	public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
 		pane.row = row;
-		if (isSelected) {
-			pane.setBackground(table.getSelectionBackground());
-		} else {
-			pane.setBackground(table.getBackground());
-		}
 		return pane;
 	}
 
