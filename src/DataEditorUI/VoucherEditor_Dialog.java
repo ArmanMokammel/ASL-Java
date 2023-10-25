@@ -25,7 +25,7 @@ public class VoucherEditor_Dialog extends JDialog{
 	private int B;
 	private double D;
 		
-	public VoucherEditor_Dialog(MainWindow frame, JPanelX parent, String title, int row) {
+	public VoucherEditor_Dialog(MainWindow frame, Voucher_Panel parent, String title, int row) {
 		super(frame, title, true);
 		setSize(500,500);
 		setLayout(null);
@@ -72,14 +72,14 @@ public class VoucherEditor_Dialog extends JDialog{
 					return;
 				}
 				if(row != -1) {
-					parent.list.set(row, voucher);
+					parent.voucherList.set(row, voucher);
 					parent.model.removeRow(row);
 					parent.model.insertRow(row, new Object[] {row + 1, voucher.getCustomer(), voucher.getVoucherId(), voucher.getVoucher(), voucher.getValue()});
-					Utility.writeAllToFile("Discount-Vouchers.ASL", false, parent.list);
+					Utility.writeAllToFile("Discount-Vouchers.ASL", false, parent.voucherList);
 				}
 				else {
-					parent.list.add(voucher);
-					parent.model.addRow(new Object[] {parent.list.size(), voucher.getCustomer(), voucher.getVoucherId(), voucher.getVoucher(), voucher.getValue()});
+					parent.voucherList.add(voucher);
+					parent.model.addRow(new Object[] {parent.voucherList.size(), voucher.getCustomer(), voucher.getVoucherId(), voucher.getVoucher(), voucher.getValue()});
 					Utility.writeToFile("Discount-Vouchers.ASL", true, voucher);
 				}
 				dispose();

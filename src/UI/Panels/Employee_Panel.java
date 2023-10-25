@@ -20,11 +20,13 @@ import Utilities.Utility;
 
 public class Employee_Panel extends JPanelX{
 	
+	public DefaultTableModel model;
+	public LinkedList<Employee> employeeList = new LinkedList<Employee>();
 	private MainWindow window;
 	
 	public Employee_Panel(MainWindow window) {
 		this.window = window;
-		this.list = new LinkedList<Employee>();
+		employeeList = new LinkedList<Employee>();
 		setLayout(null);
 		setBounds(30, 150, window.getWidth() - 70, 550);
 		
@@ -37,17 +39,17 @@ public class Employee_Panel extends JPanelX{
 			}
 		});
 		
-		this.model = new DefaultTableModel();
-		this.model.addColumn("SL");
-		this.model.addColumn("Employee ID");
-		this.model.addColumn("Employee Name");
-		this.model.addColumn("Gender");
-		this.model.addColumn("Phone No");
-		this.model.addColumn("Email");
-		this.model.addColumn("Account ID");
-		this.model.addColumn("");
+		model = new DefaultTableModel();
+		model.addColumn("SL");
+		model.addColumn("Employee ID");
+		model.addColumn("Employee Name");
+		model.addColumn("Gender");
+		model.addColumn("Phone No");
+		model.addColumn("Email");
+		model.addColumn("Account ID");
+		model.addColumn("");
 		
-		JTable table = new JTable(this.model) {
+		JTable table = new JTable(model) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				if(column == 7)
@@ -72,14 +74,14 @@ public class Employee_Panel extends JPanelX{
 		ArrayList<String> lines = Utility.readFile("Employees.ASL");
 		for(String line: lines) {
 			String[] datas = line.split("\t");
-			this.list.add(new Employee(Integer.parseInt(datas[0]), datas[1], datas[2], datas[3], datas[4], datas[5]));
-			this.model.addRow(new Object[] {this.list.size(), Integer.parseInt(datas[0]), datas[1], datas[2], datas[3], datas[4], datas[5]});
+			employeeList.add(new Employee(Integer.parseInt(datas[0]), datas[1], datas[2], datas[3], datas[4], datas[5]));
+			model.addRow(new Object[] {employeeList.size(), Integer.parseInt(datas[0]), datas[1], datas[2], datas[3], datas[4], datas[5]});
 		}
 	}
 
 	@Override
 	public void editRow(int row) {
-		Employee employee = (Employee) this.list.get(row);
+		Employee employee = (Employee) employeeList.get(row);
 		EmployeeEditor_Dialog dialog = new EmployeeEditor_Dialog(window, this, "Edit Employee" , row);
 		dialog.setEmployeeDetails(employee.getEmployeeId(), employee.getEmployeeName(), employee.getGender(), employee.getPhoneNo(), employee.getEmail(), employee.getAccountId());
 		dialog.setVisible(true);
@@ -87,12 +89,12 @@ public class Employee_Panel extends JPanelX{
 
 	@Override
 	public void removeRow(int row) {
-		this.model.removeRow(row);
-		this.list.remove(row);
-		for(int i = 0; i < this.list.size(); i++) {
-			this.model.setValueAt(i+1, i, 0);
+		model.removeRow(row);
+		employeeList.remove(row);
+		for(int i = 0; i < employeeList.size(); i++) {
+			model.setValueAt(i+1, i, 0);
 		}
-		Utility.writeAllToFile("Employees.ASL", false, this.list);
+		Utility.writeAllToFile("Employees.ASL", false, employeeList);
 	}
 
 }

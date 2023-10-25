@@ -8,13 +8,13 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 import Data.Customer;
+import Data.Order;
 import Enum.DiscountType;
 import UI.CustomerWindow;
 import UI.Order_Screen;
 
 public class Panel_B extends JPanel{
 	
-	public static Customer customer = null;
 	public Order_Screen window;
 	public JPanel currentPanel = null;
 	
@@ -105,6 +105,7 @@ public class Panel_B extends JPanel{
 		btn_2.setOpaque(true);
 		btn_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Order.setCustomer(null);
 				remove(currentPanel);
 				add(pnl_1);
 				currentPanel = pnl_1;
@@ -131,7 +132,6 @@ public class Panel_B extends JPanel{
 	}
 	
 	public void setCustomer(Customer customer) {
-		Panel_B.customer = customer;
 		lbl_4.setText(customer.getCustomerName());
 		lbl_6.setText(Integer.toString(customer.getCustomerId()));
 		lbl_8.setText(customer.getSpecialDiscountType() == DiscountType.Percentage ? Double.toString(customer.getSpecialDiscount()) + "%" : Double.toString(customer.getSpecialDiscount()));

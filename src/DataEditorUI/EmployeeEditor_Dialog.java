@@ -16,6 +16,7 @@ import Enum.InputType;
 import Exception.InputException;
 import UI.JPanelX;
 import UI.MainWindow;
+import UI.Panels.Employee_Panel;
 import Utilities.Utility;
 
 public class EmployeeEditor_Dialog extends JDialog{
@@ -30,7 +31,7 @@ public class EmployeeEditor_Dialog extends JDialog{
 	int A;
 	String B, C, D, E, F;
 	
-	public EmployeeEditor_Dialog(MainWindow frame, JPanelX parent, String title, int row) {
+	public EmployeeEditor_Dialog(MainWindow frame, Employee_Panel parent, String title, int row) {
 		super(frame, title, true);
 		setSize(500,500);
 		setLayout(null);
@@ -91,13 +92,13 @@ public class EmployeeEditor_Dialog extends JDialog{
 					return;
 				}
 				if (row != -1) {
-					parent.list.set(row, employee);
+					parent.employeeList.set(row, employee);
 					parent.model.removeRow(row);
 					parent.model.insertRow(row, new Object[] {row + 1, employee.getEmployeeId(), employee.getEmployeeName(), employee.getGender(), employee.getPhoneNo(), employee.getEmail(), employee.getAccountId()});
-					Utility.writeAllToFile("Employees.ASL", false, parent.list);
+					Utility.writeAllToFile("Employees.ASL", false, parent.employeeList);
 				} else {
-					parent.list.add(employee);
-					parent.model.addRow(new Object[] {parent.list.size(), employee.getEmployeeId(), employee.getEmployeeName(), employee.getGender(), employee.getPhoneNo(), employee.getEmail(), employee.getAccountId()});
+					parent.employeeList.add(employee);
+					parent.model.addRow(new Object[] {parent.employeeList.size(), employee.getEmployeeId(), employee.getEmployeeName(), employee.getGender(), employee.getPhoneNo(), employee.getEmail(), employee.getAccountId()});
 					Utility.writeToFile("Employees.ASL", true, employee);
 				}
 				dispose();

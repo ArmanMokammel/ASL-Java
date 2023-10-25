@@ -1,8 +1,8 @@
 package UI.OrderSystem;
 
 import java.awt.Color;
-import java.util.LinkedList;
 
+import Data.Order;
 import Data.OrderMenuItem;
 import UI.JPanelX;
 
@@ -16,13 +16,10 @@ import CustomCell.TableRemove_Renderer;
 public class Panel_C extends JPanelX{
 	
 	private static DefaultTableModel model;
-	private double total;
 	private Panel_E displayPanel;
 	
 	public Panel_C() {
 		setLayout(null);
-		this.list = new LinkedList<OrderMenuItem>();
-		this.displayPanel = displayPanel;
 		
 		model = new DefaultTableModel();
 		model.addColumn("");
@@ -55,9 +52,9 @@ public class Panel_C extends JPanelX{
 	}
 	
 	public void addItem(OrderMenuItem ordItem) {
-		this.list.add(ordItem);
-		total += ordItem.getQuantity() * ordItem.getItem().getSellingPrice();
-		displayPanel.lbl_2.setText(Double.toString(total));
+		Order.addItem(ordItem);
+		Order.setTotal(Order.getTotal() + ordItem.getQuantity() * ordItem.getItem().getSellingPrice());
+		displayPanel.subTotal.setText(Double.toString(Order.getTotal()));
 		model.addRow(new Object[] {"", ordItem.getItem().getItemId(), ordItem.getItem().getItemName(), ordItem.getItem().getSellingPrice(), ordItem.getItem().getSellingPrice(), ordItem.getQuantity(), ordItem.getQuantity() * ordItem.getItem().getSellingPrice()});
 	}
 
@@ -69,10 +66,10 @@ public class Panel_C extends JPanelX{
 
 	@Override
 	public void removeRow(int row) {
-		OrderMenuItem item = (OrderMenuItem)list.get(row);
-		total -= item.getQuantity() * item.getItem().getSellingPrice();
-		this.list.remove(row);
-		displayPanel.lbl_2.setText(Double.toString(total));
+		OrderMenuItem item = Order.getItems().get(row);
+		Order.setTotal(Order.getTotal() - item.getQuantity() * item.getItem().getSellingPrice());
+		Order.removeItem(row);
+		displayPanel.subTotal.setText(Double.toString(Order.getTotal()));
 		model.removeRow(row);		
 	}
 }

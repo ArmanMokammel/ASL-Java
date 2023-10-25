@@ -4,76 +4,93 @@ import java.util.LinkedList;
 
 public class Order {
 	
-	private String branch;
-	private int orderNo;
-	private String accountId;
+	private static String branch;
+	private static int orderNo;
+	private static String accountId;
 	
-	private Customer customer;
-	private LinkedList<OrderMenuItem> items;
-	private LinkedList<Payment> payments;
+	private static Customer customer;
+	private static LinkedList<OrderMenuItem> items;
+	private static LinkedList<Payment> payments;
 		
-	private double total;
-	private double amountPaid;
+	private static double total = 0;
+	private static double amountPaid = 0;
 	
-	public Order(String branch, int orderNo, String accountId) {
-		this.branch = branch;
-		this.orderNo = orderNo;
-		this.accountId = accountId;
+	public static void init(String branch, String accountId) {
+		Order.branch = branch;
+		Order.accountId = accountId;
+		items = new LinkedList<OrderMenuItem>();
+		payments = new LinkedList<Payment>();
 	}
 
-	public String getBranch() {
+	public static String getBranch() {
 		return branch;
 	}
 
-	public int getOrderNo() {
+	public static int getOrderNo() {
 		return orderNo;
 	}
 
-	public String getAccountId() {
+	public static String getAccountId() {
 		return accountId;
 	}
 
-	public Customer getCustomer() {
+	public static Customer getCustomer() {
 		return customer;
 	}
 
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
+	public static void setCustomer(Customer customer) {
+		Order.customer = customer;
 	}
 
-	public double getTotal() {
+	public static double getTotal() {
 		return total;
 	}
 
-	public void setTotal(double total) {
-		this.total = total;
+	public static void setTotal(double total) {
+		Order.total = total;
 	}
 
-	public double getAmountPaid() {
+	public static double getAmountPaid() {
 		return amountPaid;
 	}
 
-	public void setAmountPaid(double amountPaid) {
-		this.amountPaid = amountPaid;
+	public static void setAmountPaid(double amountPaid) {
+		Order.amountPaid = amountPaid;
 	}
 	
-	public LinkedList<OrderMenuItem> getItems() {
+	public static LinkedList<OrderMenuItem> getItems() {
 		return items;
 	}
 
-	public void setItems(LinkedList<OrderMenuItem> items) {
-		this.items = items;
+	public static void addItem(OrderMenuItem item) {
+		Order.items.add(item);
+	}
+	
+	public static void removeItem(int index) {
+		Order.items.remove(index);
 	}
 
-	public LinkedList<Payment> getPayments() {
+	public static LinkedList<Payment> getPayments() {
 		return payments;
 	}
 
-	public void setPayments(LinkedList<Payment> payments) {
-		this.payments = payments;
+	public static void addPayment(Payment payment) {
+		Order.payments.add(payment);
 	}
 	
-	public String toString() {
-		return customer.toString() + items.toString() + payments.toString();
+	public static void removePayment(int index) {
+		Order.payments.remove(index);
+	}
+	
+	public static String generateOrderInfo() {
+		return Order.customer.toString() + Order.items.toString() + Order.payments.toString();
+	}
+	
+	public static void resetOrder() {
+		Order.items.clear();
+		Order.payments.clear();
+		Order.customer = null;
+		Order.total = 0;
+		Order.amountPaid = 0;
 	}
 }

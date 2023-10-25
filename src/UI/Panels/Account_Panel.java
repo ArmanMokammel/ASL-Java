@@ -11,7 +11,6 @@ import javax.swing.table.DefaultTableModel;
 import CustomCell.TableEditRemove_Editor;
 import CustomCell.TableEditRemove_Renderer;
 import Data.Account;
-import Data.Discount_Voucher;
 import DataEditorUI.*;
 import Enum.AccountType;
 import UI.JPanelX;
@@ -20,11 +19,13 @@ import Utilities.Utility;
 
 public class Account_Panel extends JPanelX{
 	
+	public DefaultTableModel model;
+	public LinkedList<Account> accountList = new LinkedList<Account>();
 	private MainWindow window;
 
 	public Account_Panel(MainWindow window){
 		this.window = window;
-		this.list = new LinkedList<Account>();
+		accountList = new LinkedList<Account>();
 		setLayout(null);
 		setBounds(30, 150, window.getWidth() - 70, 550);
 
@@ -37,16 +38,16 @@ public class Account_Panel extends JPanelX{
 			}
 		});
 		
-		this.model = new DefaultTableModel();
-		this.model.addColumn("SL");
-		this.model.addColumn("Account ID");
-		this.model.addColumn("Account Type");
-		this.model.addColumn("Name");
-		this.model.addColumn("Email");
-		this.model.addColumn("EmployeeID");
-		this.model.addColumn("");
+		model = new DefaultTableModel();
+		model.addColumn("SL");
+		model.addColumn("Account ID");
+		model.addColumn("Account Type");
+		model.addColumn("Name");
+		model.addColumn("Email");
+		model.addColumn("EmployeeID");
+		model.addColumn("");
 		
-		JTable table = new JTable(this.model) {
+		JTable table = new JTable(model) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				if(column == 6)
@@ -71,14 +72,14 @@ public class Account_Panel extends JPanelX{
 		ArrayList<String> lines = Utility.readFile("Accounts.ASL");
 		for(String line: lines) {
 			String[] datas = line.split("\t");
-			this.list.add(new Account(datas[0], datas[1], AccountType.valueOf(datas[2]), datas[3], datas[4], Integer.parseInt(datas[5])));
-			this.model.addRow(new Object[] {this.list.size(), datas[0], AccountType.valueOf(datas[2]),datas[3], datas[4], Integer.parseInt(datas[5])});
+			accountList.add(new Account(datas[0], datas[1], AccountType.valueOf(datas[2]), datas[3], datas[4], Integer.parseInt(datas[5])));
+			model.addRow(new Object[] {accountList.size(), datas[0], AccountType.valueOf(datas[2]),datas[3], datas[4], Integer.parseInt(datas[5])});
 		}
 	}
 
 
 	public void editRow(int row) {
-		Account account = (Account) this.list.get(row);
+		Account account = accountList.get(row);
 		AccountEditor_Dialog dialog = new AccountEditor_Dialog(window, this, "Edit Account" , row);
 		dialog.setAccountDetails(account.getUserID(), account.getPassword(), account.getAccountType(), account.getName(), account.getEmail(), account.getEmployeeID());
 		dialog.setVisible(true);
@@ -86,11 +87,11 @@ public class Account_Panel extends JPanelX{
 	}
 
 	public void removeRow(int row) {
-		this.model.removeRow(row);
-		this.list.remove(row);
-		for(int i = 0; i < this.list.size(); i++) {
-			this.model.setValueAt(i+1, i, 0);
+		model.removeRow(row);
+		accountList.remove(row);
+		for(int i = 0; i < accountList.size(); i++) {
+			model.setValueAt(i+1, i, 0);
 		}
-		Utility.writeAllToFile("Accounts.ASL", false, this.list);		
+		Utility.writeAllToFile("Accounts.ASL", false, accountList);		
 	}
 }

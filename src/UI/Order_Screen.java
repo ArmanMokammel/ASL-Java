@@ -20,9 +20,7 @@ import Enum.AccountType;
 import UI.OrderSystem.*;
 
 public class Order_Screen extends JFrame{
-	
-	public static Order order;
-		
+			
 	public Order_Screen() {
 		super("Take Order - " + MainWindow.account.getName());
 		addWindowListener(new WindowAdapter() {
@@ -33,7 +31,7 @@ public class Order_Screen extends JFrame{
 			}
 		});
 		setSize(1500, 800);
-		order = new Order("TEST", 11111, MainWindow.account.getUserID());
+		Order.init("TEST", MainWindow.account.getUserID());
 	}
 	
 	public void createUI() {
@@ -62,7 +60,7 @@ public class Order_Screen extends JFrame{
 		Panel_B pnl_2 = new Panel_B(this);
 		Panel_C pnl_3 = new Panel_C();
 		Panel_D pnl_6 = new Panel_D(pnl_3);
-		Panel_E pnl_4 = new Panel_E(pnl_3);
+		Panel_E pnl_4 = new Panel_E();
 		pnl_3.setDisplayPanel(pnl_4);
 		JLabel pnl_5 = new JLabel("Copyright my shit 2.0", SwingConstants.CENTER);
 		

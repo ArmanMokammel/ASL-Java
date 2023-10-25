@@ -18,11 +18,13 @@ import Utilities.Utility;
 
 public class Voucher_Panel extends JPanelX{
 	
+	public DefaultTableModel model;
+	public LinkedList<Discount_Voucher> voucherList = new LinkedList<Discount_Voucher>();
 	private MainWindow window;
 	
 	public Voucher_Panel(MainWindow window){
 		this.window = window;
-		this.list = new LinkedList<Discount_Voucher>();
+		voucherList = new LinkedList<Discount_Voucher>();
 		setLayout(null);
 		setBounds(30, 150, window.getWidth() - 70, 550);
 
@@ -35,15 +37,15 @@ public class Voucher_Panel extends JPanelX{
 			}
 		});
 		
-		this.model = new DefaultTableModel();
-		this.model.addColumn("SL");
-		this.model.addColumn("Customer");
-		this.model.addColumn("Voucher ID");
-		this.model.addColumn("Voucher Code");
-		this.model.addColumn("Value");
-		this.model.addColumn("");
+		model = new DefaultTableModel();
+		model.addColumn("SL");
+		model.addColumn("Customer");
+		model.addColumn("Voucher ID");
+		model.addColumn("Voucher Code");
+		model.addColumn("Value");
+		model.addColumn("");
 		
-		JTable table = new JTable(this.model) {
+		JTable table = new JTable(model) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				if(column == 5)
@@ -68,24 +70,24 @@ public class Voucher_Panel extends JPanelX{
 		ArrayList<String> lines = Utility.readFile("Discount-Vouchers.ASL");
 		for(String line: lines) {
 			String[] datas = line.split("\t");
-			this.list.add(new Discount_Voucher(datas[0], Integer.parseInt(datas[1]), datas[2], Double.parseDouble(datas[3])));
-			this.model.addRow(new Object[] {this.list.size(), datas[0], Integer.parseInt(datas[1]), datas[2], Double.parseDouble(datas[3])});
+			voucherList.add(new Discount_Voucher(datas[0], Integer.parseInt(datas[1]), datas[2], Double.parseDouble(datas[3])));
+			model.addRow(new Object[] {voucherList.size(), datas[0], Integer.parseInt(datas[1]), datas[2], Double.parseDouble(datas[3])});
 		}
 	}
 	
 	public void editRow(int row) {
-		Discount_Voucher voucher = (Discount_Voucher) this.list.get(row);
+		Discount_Voucher voucher = (Discount_Voucher) voucherList.get(row);
 		VoucherEditor_Dialog dialog = new VoucherEditor_Dialog(window, this, "Edit Voucher" , row);
 		dialog.setVoucherDetails(voucher.getCustomer(), voucher.getVoucherId(), voucher.getVoucher(), voucher.getValue());
 		dialog.setVisible(true);
 	}
 	
 	public void removeRow(int row) {		
-		this.model.removeRow(row);
-		this.list.remove(row);
-		for(int i = 0; i < this.list.size(); i++) {
-			this.model.setValueAt(i+1, i, 0);
+		model.removeRow(row);
+		voucherList.remove(row);
+		for(int i = 0; i < voucherList.size(); i++) {
+			model.setValueAt(i+1, i, 0);
 		}
-		Utility.writeAllToFile("Discount-Vouchers.ASL", false, this.list);
+		Utility.writeAllToFile("Discount-Vouchers.ASL", false, voucherList);
 	}
 }

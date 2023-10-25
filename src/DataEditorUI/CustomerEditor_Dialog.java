@@ -2,6 +2,7 @@ package DataEditorUI;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.LinkedList;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -9,12 +10,14 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 import Data.Customer;
 import Enum.AccountType;
 import Enum.DiscountType;
 import Enum.InputType;
 import Exception.InputException;
+import UI.CustomerWindow;
 import UI.JPanelX;
 import UI.MainWindow;
 import UI.Panels.Account_Panel;
@@ -35,8 +38,24 @@ public class CustomerEditor_Dialog extends JDialog{
 	private String B, C, D, E, F;
 	private double G;
 	
-	public CustomerEditor_Dialog(JFrame frame, JPanelX parent, String title, int row) {
+	private DefaultTableModel model;
+	private LinkedList<Customer> customerList;
+	
+	public CustomerEditor_Dialog(JFrame frame, CustomerWindow parent, String title, int row) {
 		super(frame, title, true);
+		this.model = parent.model;
+		this.customerList = parent.customerList;
+		showUI(row);
+	}
+	
+	public CustomerEditor_Dialog(JFrame frame, Customer_Panel parent, String title, int row) {
+		super(frame, title, true);
+		this.model = parent.model;
+		this.customerList = parent.customerList;
+		showUI(row);
+	}
+	
+	public void showUI(int row) {
 		setSize(500,500);
 		setLayout(null);
 		setLocationRelativeTo(null);
@@ -102,13 +121,13 @@ public class CustomerEditor_Dialog extends JDialog{
 					return;
 				}
 				if (row != -1) {
-					parent.list.set(row, customer);
-					parent.model.removeRow(row);
-					parent.model.insertRow(row, new Object[] {row + 1, customer.getCustomerId(), customer.getCustomerName(), customer.getGender(), customer.getEmail(), customer.getPhoneNo(), customer.getSpecialDiscountType(), customer.getSpecialDiscount()});
-					Utility.writeAllToFile("Customers.ASL", false, parent.list);
+					customerList.set(row, customer);
+					model.removeRow(row);
+					model.insertRow(row, new Object[] {row + 1, customer.getCustomerId(), customer.getCustomerName(), customer.getGender(), customer.getEmail(), customer.getPhoneNo(), customer.getSpecialDiscountType(), customer.getSpecialDiscount()});
+					Utility.writeAllToFile("Customers.ASL", false, customerList);
 				} else {
-					parent.list.add(customer);
-					parent.model.addRow(new Object[] {parent.list.size(), customer.getCustomerId(), customer.getCustomerName(), customer.getGender(), customer.getEmail(), customer.getPhoneNo(), customer.getSpecialDiscountType(), customer.getSpecialDiscount()});
+					customerList.add(customer);
+					model.addRow(new Object[] {customerList.size(), customer.getCustomerId(), customer.getCustomerName(), customer.getGender(), customer.getEmail(), customer.getPhoneNo(), customer.getSpecialDiscountType(), customer.getSpecialDiscount()});
 					Utility.writeToFile("Customers.ASL", true, customer);
 				}
 				dispose();

@@ -13,6 +13,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 import Data.Customer;
+import Data.Order;
 import DataEditorUI.CustomerEditor_Dialog;
 import Enum.DiscountType;
 import UI.OrderSystem.Panel_B;
@@ -20,9 +21,9 @@ import Utilities.Utility;
 
 public class CustomerWindow extends JDialog{
 	
-	private LinkedList<Customer> customerList = new LinkedList<Customer>();
+	public LinkedList<Customer> customerList = new LinkedList<Customer>();
 	private ArrayList<Customer> entriesFiltered = new ArrayList<Customer>();
-	private DefaultTableModel model;
+	public DefaultTableModel model;
 	private Customer selCustomer;
 	
 	public CustomerWindow(JFrame window, Panel_B parent, boolean isNewCustomer) {
@@ -37,16 +38,7 @@ public class CustomerWindow extends JDialog{
 		lbl_1.setBounds(330, 20, 350, 50);
 		lbl_1.setFont(f1);
 		
-		JPanelX pnl = new JPanelX() {
-			@Override
-			public void editRow(int row) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void removeRow(int row) {}
-		};
+		JPanel pnl = new JPanel();
 		pnl.setBounds(5, 90, 750, 670);
 		pnl.setBackground(Color.gray);
 		pnl.setLayout(null);
@@ -71,9 +63,7 @@ public class CustomerWindow extends JDialog{
 				return false;
 			}
 		};
-		pnl.model = model;
-		pnl.list = new LinkedList<Customer>();
-		pnl.list = customerList;
+		customerList = new LinkedList<Customer>();
 		model.addColumn("SL");
 		model.addColumn("Customer ID");
 		model.addColumn("Customer Name");
@@ -111,6 +101,7 @@ public class CustomerWindow extends JDialog{
 			public void actionPerformed(ActionEvent e) {
 				if(table.getSelectedRow() != -1) {
 					selCustomer = customerList.get(table.getSelectedRow());
+					Order.setCustomer(selCustomer);
 					parent.setCustomer(selCustomer);
 					parent.remove(parent.currentPanel);
 					parent.add(parent.pnl_2);
@@ -133,7 +124,7 @@ public class CustomerWindow extends JDialog{
 				for(int i = 0; i < customerList.size(); i++) {
 					if(customerList.get(i).getCustomerId() == selCustomer.getCustomerId()) {
 						row = i;
-						CustomerEditor_Dialog dlg = new CustomerEditor_Dialog(window, pnl, getTitle(), row);
+						CustomerEditor_Dialog dlg = new CustomerEditor_Dialog(window, CustomerWindow.this, getTitle(), row);
 						dlg.setCustomerDetails(selCustomer.getCustomerId(), selCustomer.getCustomerName(), selCustomer.getGender(), selCustomer.getEmail(), selCustomer.getPhoneNo(), selCustomer.getSpecialDiscountType(), selCustomer.getSpecialDiscount());
 						comboFilter("");
 						dlg.setVisible(true);
@@ -147,7 +138,7 @@ public class CustomerWindow extends JDialog{
 		btn_3.setBounds(5, 160, 215, 70);
 		btn_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CustomerEditor_Dialog dlg = new CustomerEditor_Dialog(window, pnl, "New Customer", -1);
+				CustomerEditor_Dialog dlg = new CustomerEditor_Dialog(window, CustomerWindow.this, "New Customer", -1);
 				dlg.setVisible(true);				
 			}
 		});
@@ -164,7 +155,7 @@ public class CustomerWindow extends JDialog{
 		if(isNewCustomer) {
 			Thread t = new Thread() {
 				public void run() {
-					CustomerEditor_Dialog dlg = new CustomerEditor_Dialog(window, pnl, "New Customer", -1);
+					CustomerEditor_Dialog dlg = new CustomerEditor_Dialog(window, CustomerWindow.this, "New Customer", -1);
 					if(parent.txt_1.getText() != null)
 						dlg.txt_customerName.setText(parent.txt_1.getText());
 					dlg.setVisible(true);
