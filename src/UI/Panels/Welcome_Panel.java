@@ -71,7 +71,7 @@ public class Welcome_Panel extends JPanel {
 		MenuButton btn2 = new MenuButton("Order", img, Color.white);
 		btn2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Order_Screen window = new Order_Screen();
+				Order_Screen window = new Order_Screen(false);
 				window.createUI();
 				Welcome_Panel.this.window.dispose();				
 			}

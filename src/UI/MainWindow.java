@@ -70,7 +70,7 @@ public class MainWindow extends JFrame{
 		MenuButton btn2 = new MenuButton("Order", img, null);
 		btn2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Order_Screen window = new Order_Screen();
+				Order_Screen window = new Order_Screen(false);
 				window.createUI();
 				MainWindow.this.dispose();
 			}
@@ -118,14 +118,24 @@ public class MainWindow extends JFrame{
 		MenuButton btn_Logout = new MenuButton("Logout", img, null);
 		btn_Logout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Login_Screen lg = new Login_Screen("ASL - Restaurant Management System");
+				Login_Screen lg = new Login_Screen();
 				lg.createUI();
 				dispose();
 			}
 		});
 		
+		ButtonGroup btnGroup = new ButtonGroup();
+		
+		btnGroup.add(btn);
+		btnGroup.add(btn1);
+		btnGroup.add(btn2);
+		btnGroup.add(btn3);
+		btnGroup.add(btn4);
+		btnGroup.add(btn5);
+		btnGroup.add(btn6);
+		
 		pnl_Items.setBorder(new EmptyBorder(0, 0, 0, 60));
-		pnl_Items.setBackground(Color.orange);
+		pnl_Items.setBackground(Color.orange);		
 		pnl_Items.add(btn);
 		pnl_Items.add(btn1);
 		pnl_Items.add(btn2);

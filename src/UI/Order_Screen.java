@@ -21,12 +21,18 @@ import UI.OrderSystem.*;
 
 public class Order_Screen extends JFrame{
 			
-	public Order_Screen() {
+	public Order_Screen(boolean isOrder) {
 		super("Take Order - " + MainWindow.account.getName());
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
-				MainWindow window = new MainWindow();
-				window.createUI();
+				if(isOrder) {
+					Login_Screen lg = new Login_Screen();
+					lg.createUI();
+					lg.setVisible(true);
+				} else {					
+					MainWindow window = new MainWindow();
+					window.createUI();
+				}
 				super.windowClosing(e);
 			}
 		});

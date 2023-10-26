@@ -3,24 +3,16 @@ package UI;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.RenderingHints;
-import java.awt.Toolkit;
-import java.awt.Transparency;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import Data.Account;
@@ -29,54 +21,59 @@ import Utilities.Utility;
 
 public class Login_Screen extends JFrame {
 
-	public Login_Screen(String title) {
-		super(title);
+	public Login_Screen() {
+		super("ASL - Restaurant Management System");
 	}
 
 	public void createUI() {
 		Font f1 = new Font(null, Font.BOLD, 20);
+		Font f2 = new Font(null, Font.PLAIN, 18);
+
 //		save();
 
-		setSize(600, 600);
+		setSize(615, 647);
 		setLayout(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		setResizable(false);
+		setResizable(false);
 		setLocationRelativeTo(null);
 
 		
 		JLabel lll = new JLabel();
-		lll.setBounds(70, 40, 310, 90);
+		lll.setBounds(150, 120, 310, 90);
 		ImageIcon icon_1 = Utility.getImageIcon("img\\Logo.png", 310, 90);
 		lll.setIcon(icon_1);
 		
 		
 		JLabel Bg_Icon = new JLabel();
-		ImageIcon background = Utility.getImageIcon("img\\Login_Screen.png", 585, 550);
+		ImageIcon background = new ImageIcon(Utility.getImage("img\\Login_Screen.png"));
 		Bg_Icon.setIcon(background);
-		Bg_Icon.setBackground(Color.red);
 		Bg_Icon.setOpaque(true);
 		setContentPane(Bg_Icon);
 		
 		JLabel lbl_userId = new JLabel("User ID: ");
-		lbl_userId.setBounds(40, 170, 90, 30);
+		lbl_userId.setBounds(120, 250, 110, 30);
+		lbl_userId.setHorizontalAlignment(SwingConstants.RIGHT);
 		lbl_userId.setFont(f1);
 
 		JTextField txt_userId = new JTextField();
-		txt_userId.setBounds(160, 170, 200, 30);
+		txt_userId.setBounds(240, 250, 200, 30);
+		txt_userId.setFont(f2);
 
 		JLabel lbl_pass = new JLabel("Password: ");
-		lbl_pass.setBounds(40, 220, 110, 30);
+		lbl_pass.setBounds(120, 300, 110, 30);
+		lbl_pass.setHorizontalAlignment(SwingConstants.RIGHT);
 		lbl_pass.setFont(f1);
 
-		JTextField txt_pass = new JTextField();
-		txt_pass.setBounds(160, 220, 200, 30);
+		JPasswordField txt_pass = new JPasswordField();
+		txt_pass.setBounds(240, 300, 200, 30);
+		txt_pass.setFont(f2);
 
 		txt_userId.setText("Arman");
 		txt_pass.setText("123");
 
 		JLabel lbl_forgetPass = new JLabel("forgot password");
 		lbl_forgetPass.setForeground(Color.BLUE.brighter());
-		lbl_forgetPass.setBounds(265, 260, 100, 30);
+		lbl_forgetPass.setBounds(330, 340, 100, 30);
 		lbl_forgetPass.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lbl_forgetPass.addMouseListener(new MouseAdapter() {
 			@Override
@@ -85,16 +82,23 @@ public class Login_Screen extends JFrame {
 			}
 		});
 
-		JButton btn = new JButton("Login");
-		btn.setBounds(190, 320, 80, 30);
+		JButtonT1 btn = new JButtonT1("Login", new Color(255,255,255), "img\\btn.png", 6);
+		btn.setBounds(250, 390, 100, 40);
+		btn.setFont(new Font(null, Font.BOLD, 16));
 		btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Account ac = checkAccountDetails(txt_userId.getText(), txt_pass.getText());
 				if (ac != null) {
 					MainWindow.account = ac;
-					MainWindow window = new MainWindow();
-					window.createUI();
-					Login_Screen.this.dispose();
+					if(ac.getAccountType() == AccountType.Order) {
+						Order_Screen window = new Order_Screen(true);
+						window.createUI();
+						Login_Screen.this.dispose();
+					} else {						
+						MainWindow window = new MainWindow();
+						window.createUI();
+						Login_Screen.this.dispose();
+					}
 				}
 			}
 		});

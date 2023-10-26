@@ -199,7 +199,7 @@ public class Utility {
 		return new ImageIcon(dimg);
 	}
 	
-	public static Image getImage(String file, int width, int height) {
+	public static Image getImage(String file) {
 		Image img = null;
 		try {
 			img = ImageIO.read(new File(file));
