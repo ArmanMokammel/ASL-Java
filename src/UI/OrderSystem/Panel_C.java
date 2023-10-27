@@ -15,7 +15,7 @@ import CustomCell.TableEditRemove_Renderer;
 
 public class Panel_C extends JPanelX{
 	
-	private static DefaultTableModel model;
+	public static DefaultTableModel model;
 	private Panel_E displayPanel;
 	
 	public Panel_C() {

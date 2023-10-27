@@ -15,8 +15,10 @@ import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
 
 import Data.Account;
+import Data.Customer;
 import Data.Order;
 import Enum.AccountType;
+import Enum.DiscountType;
 import UI.OrderSystem.*;
 
 public class Order_Screen extends JFrame{
@@ -97,5 +99,20 @@ public class Order_Screen extends JFrame{
 		pnl_5.setBounds(0, getHeight() - 70, getWidth(), 35);
 		pnl_4.setBounds(0, pnl_1.getHeight() + pnl_3.getHeight(), getWidth() - 900, 300);
 		System.gc();
+	}
+	
+	public static void setCustomer(Customer customer) {
+		if(customer != null) {
+			Panel_B.lbl_4.setText(customer.getCustomerName());
+			Panel_B.lbl_6.setText(Integer.toString(customer.getCustomerId()));
+			Panel_B.lbl_8.setText(customer.getSpecialDiscountType() == DiscountType.Percentage ? Double.toString(customer.getSpecialDiscount()) + "%" : Double.toString(customer.getSpecialDiscount()));
+			Panel_B.swapPanel(2);
+		} 
+		else {
+			Panel_B.lbl_4.setText("");
+			Panel_B.lbl_6.setText("");
+			Panel_B.lbl_8.setText("");
+			Panel_B.swapPanel(1);
+		}
 	}
 }

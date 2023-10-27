@@ -12,6 +12,7 @@ import javax.imageio.ImageIO;
 import javax.swing.AbstractCellEditor;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.TableCellEditor;
@@ -54,8 +55,9 @@ public class TableRemove_Editor extends AbstractCellEditor implements TableCellE
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		this.stopCellEditing();
-		parent.removeRow(row);
-		
+		int confirmation = JOptionPane.showConfirmDialog(parent, "Are you sure you want to remove?", "Info", JOptionPane.YES_NO_OPTION);
+		if(confirmation == 0)
+			parent.removeRow(row);
 	}
 
 }

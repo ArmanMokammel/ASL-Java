@@ -36,7 +36,9 @@ public class EditRemove_Pane extends JPanel{
         delete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				editor.stopCellEditing();
-				parent.removeRow(row);
+				int confirmation = JOptionPane.showConfirmDialog(parent, "Are you sure you want to remove?", "Info", JOptionPane.YES_NO_OPTION);
+				if(confirmation == 0)
+					parent.removeRow(row);
 			}
 		});
         

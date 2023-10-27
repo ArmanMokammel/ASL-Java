@@ -15,20 +15,26 @@ import UI.Order_Screen;
 
 public class Panel_B extends JPanel{
 	
-	public Order_Screen window;
-	public JPanel currentPanel = null;
+	private Order_Screen window;
 	
-	public JPanel pnl_1;
-	public JPanel pnl_2;
+	private static JPanel container;
+	private static JPanel pnl_1;
+	private static  JPanel pnl_2;
 	
 	public JTextField txt_1 = new JTextField();
 	
-	private JLabel lbl_4 = new JLabel();
-	private JLabel lbl_6 = new JLabel();
-	private JLabel lbl_8 = new JLabel();
+	public static JLabel lbl_4 = new JLabel();
+	public static JLabel lbl_6 = new JLabel();
+	public static JLabel lbl_8 = new JLabel();
 	
 	public Panel_B(Order_Screen window) {
 		this.window = window;
+		setLayout(null);
+		
+		container = new JPanel();
+		container.setSize(590, 190);
+		container.setLayout(null);
+		container.setBackground(null);
 		
 		pnl_1 = new JPanel();
 		pnl_1.setLayout(null);
@@ -73,8 +79,7 @@ public class Panel_B extends JPanel{
 		pnl_1.add(btn_1);
 		pnl_1.add(btn_3);
 		
-		add(pnl_1);
-		currentPanel = pnl_1;
+		container.add(pnl_1);
 		
 		pnl_2 = new JPanel();
 		pnl_2.setLayout(null);
@@ -105,13 +110,8 @@ public class Panel_B extends JPanel{
 		btn_2.setOpaque(true);
 		btn_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Order_Screen.setCustomer(null);
 				Order.setCustomer(null);
-				remove(currentPanel);
-				add(pnl_1);
-				currentPanel = pnl_1;
-				revalidate();
-				repaint();
-				
 			}
 		});
 		
@@ -122,27 +122,22 @@ public class Panel_B extends JPanel{
 		pnl_2.add(lbl_7);
 		pnl_2.add(lbl_8);
 		pnl_2.add(btn_2);
+		
+		pnl_2.setSize(new Dimension(590, 190));
+		pnl_1.setSize(new Dimension(590, 190));
+
+		
+		add(container);
 	}
 	
-	@Override
-	public void setBounds(int x, int y, int width, int height) {
-		super.setBounds(x, y, width, height);
-		pnl_1.setPreferredSize(new Dimension(590, 190));
-		pnl_2.setPreferredSize(new Dimension(590, 190));
+	public static void swapPanel(int n) {
+		if(n == 1) {
+			container.remove(pnl_2);
+			container.add(pnl_1);
+		} else if (n == 2) {
+			container.remove(pnl_1);
+			container.add(pnl_2);
+		}
+		container.updateUI();
 	}
-	
-	public void setCustomer(Customer customer) {
-		lbl_4.setText(customer.getCustomerName());
-		lbl_6.setText(Integer.toString(customer.getCustomerId()));
-		lbl_8.setText(customer.getSpecialDiscountType() == DiscountType.Percentage ? Double.toString(customer.getSpecialDiscount()) + "%" : Double.toString(customer.getSpecialDiscount()));
-	}
-	
-//	public void swapPanel(JPanel newPanel) {
-//		remove(currentPanel);
-//		add(newPanel);
-//		revalidate();
-//		repaint();
-//		currentPanel = newPanel;
-//		System.gc();
-//	}
 }

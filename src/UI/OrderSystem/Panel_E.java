@@ -168,6 +168,16 @@ public class Panel_E extends JPanelX{
 		
 		JButton btn_3 = new JButton("Cancel");
 		btn_3.setBounds(140, 260, 100, 30);
+		btn_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Order.resetOrder();
+				Order_Screen.setCustomer(null);
+				model.setRowCount(0);
+				Panel_C.model.setRowCount(0);
+				subTotal.setText("");
+				amtPaid.setText("");
+			}
+		});
 		
 		JButton btn_4 = new JButton("Finish");
 		btn_4.setBounds(250, 260, 100, 30);
@@ -200,5 +210,6 @@ public class Panel_E extends JPanelX{
 		amtPaid.setText(Double.toString(amountPaid));
 		Order.removePayment(row);		
 		model.removeRow(row);
+		Order.setCustomer(null);
 	}
 }

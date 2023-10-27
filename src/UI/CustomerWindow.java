@@ -101,13 +101,8 @@ public class CustomerWindow extends JDialog{
 			public void actionPerformed(ActionEvent e) {
 				if(table.getSelectedRow() != -1) {
 					selCustomer = customerList.get(table.getSelectedRow());
+					Order_Screen.setCustomer(selCustomer);
 					Order.setCustomer(selCustomer);
-					parent.setCustomer(selCustomer);
-					parent.remove(parent.currentPanel);
-					parent.add(parent.pnl_2);
-					parent.currentPanel = parent.pnl_2;
-					parent.revalidate();
-					parent.repaint();
 					dispose();
 				}
 				
