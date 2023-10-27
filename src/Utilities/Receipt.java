@@ -39,7 +39,7 @@ public class Receipt {
 
 	public static void generateReceipt() {
 
-		String path = "Motivation.pdf";
+		String path = Order.getOrderNo() + ".pdf";
 		int pageHeight = 410;
 
 		try {

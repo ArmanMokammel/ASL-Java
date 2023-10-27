@@ -8,13 +8,17 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 
+import Data.Order;
+import UI.Login_Screen;
 import UI.MainWindow;
 import UI.Order_Screen;
 import Utilities.Utility;
 
 public class Panel_A extends JPanel {
-		
-	public Panel_A() {
+	
+	public static JLabel txt_orderNo = new JLabel();
+			
+	public Panel_A(Order_Screen window) {
 		setLayout(null);
 
 		ImageIcon logo = Utility.getImageIcon("img\\Logo.png", 310, 90);
@@ -33,20 +37,21 @@ public class Panel_A extends JPanel {
 		txt_1.setBounds(90, 10, 200, 30);
 		
 		
-		JLabel lbl_4 = new JLabel("Order no:");
-		lbl_4.setBounds(10, 40, 70, 30);	
-		JTextField txt_2 = new JTextField();
-		txt_2.setBounds(90, 40, 200, 30);
+		JLabel lbl_OrderNo = new JLabel("Order no:");
+		lbl_OrderNo.setBounds(10, 45, 70, 30);	
+		txt_orderNo.setBounds(90, 45, 200, 30);
+		txt_orderNo.setOpaque(true);
+		txt_orderNo.setText(Order.getOrderNo());
 		
 		JLabel lbl_5 = new JLabel("Order Type:");
-		lbl_5.setBounds(10, 70, 70, 30);	
+		lbl_5.setBounds(10, 80, 70, 30);	
 		JComboBox<String> cmbx_1 = new JComboBox<String>(new String[] {"Dine-in", "Delivery", "Takeout"});
-		cmbx_1.setBounds(90, 70, 200, 30);
+		cmbx_1.setBounds(90, 80, 200, 30);
 		
 		pnl_2.add(lbl_3);
 		pnl_2.add(txt_1);
-		pnl_2.add(lbl_4);
-		pnl_2.add(txt_2);
+		pnl_2.add(lbl_OrderNo);
+		pnl_2.add(txt_orderNo);
 		pnl_2.add(lbl_5);
 		pnl_2.add(cmbx_1);
 		add(pnl_2);
@@ -57,13 +62,16 @@ public class Panel_A extends JPanel {
 		pnl_3.setBounds(700, 10, 400, 120);
 		pnl_3.setBackground(null);
 		
-		JButton btn_1 = new JButton("<html><center>"+"Open"+"<br>"+"Item Menu"+"</center></html>");
+		JButton btn_1 = new JButton("Logout");
 		btn_1.setBounds(10, 20, 120, 80);
 		btn_1.setBackground(new Color(255, 220, 113));
 		btn_1.setOpaque(true);
 		btn_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				Login_Screen lg = new Login_Screen();
+				lg.createUI();
+				lg.setVisible(true);
+				window.dispose();
 			}
 		});
 		

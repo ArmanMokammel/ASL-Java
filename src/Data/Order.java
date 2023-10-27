@@ -1,11 +1,16 @@
 package Data;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.LinkedList;
+
+import Utilities.Utility;
 
 public class Order {
 	
 	private static String branch;
-	private static int orderNo;
+	private static String orderNo;
 	private static String accountId;
 	
 	private static Customer customer;
@@ -15,9 +20,27 @@ public class Order {
 	private static double total = 0;
 	private static double amountPaid = 0;
 	
+	private static int lastOrderNo;
+	
 	public static void init(String branch, String accountId) {
 		Order.branch = branch;
 		Order.accountId = accountId;
+		
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMdd");
+		ArrayList<String> s = Utility.readFile("Data.ASL");
+		
+		if(s.size() != 0) {			
+			if(s.get(0).equals(dtf.format(date))) {			
+				Order.lastOrderNo = Integer.parseInt(s.get(1));
+			} else {
+				Order.lastOrderNo = 1;
+			}
+		} else {
+			Order.lastOrderNo = 1;
+		}
+		Order.orderNo = dtf.format(date) + lastOrderNo;		
+		
 		items = new LinkedList<OrderMenuItem>();
 		payments = new LinkedList<Payment>();
 	}
@@ -26,7 +49,7 @@ public class Order {
 		return branch;
 	}
 
-	public static int getOrderNo() {
+	public static String getOrderNo() {
 		return orderNo;
 	}
 
@@ -80,6 +103,14 @@ public class Order {
 	
 	public static void removePayment(int index) {
 		Order.payments.remove(index);
+	}
+	
+	public static void incrementOrder() {
+		lastOrderNo++;
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMdd");
+		Utility.writeToFile("Data.ASL", false, dtf.format(date) + "\n" + lastOrderNo + "\n12" + "\n");
+		Order.orderNo = dtf.format(date) + lastOrderNo;
 	}
 	
 	public static String generateOrderInfo() {

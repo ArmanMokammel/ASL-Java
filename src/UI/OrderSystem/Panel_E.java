@@ -28,10 +28,10 @@ public class Panel_E extends JPanelX{
 	private String A;
 	private double B;
 	
-	public JLabel subTotal = new JLabel();
+	public JLabel subTotal = new JLabel("0.0");
 	public JLabel total = new JLabel();
 	public JTextField txt_1 = new JTextField();
-	public JLabel amtPaid = new JLabel();
+	public JLabel amtPaid = new JLabel("0.0");
 	public JLabel amtDue = new JLabel();
 	
 	private double amountPaid = 0;
@@ -50,8 +50,8 @@ public class Panel_E extends JPanelX{
 		subTotal.setBounds(80, 20, 100, 30);
 		subTotal.setOpaque(true);
 		
-		JLabel lbl_vat = new JLabel("VAT:");
-		lbl_vat.setBounds(10, 60, 70, 30);
+		JLabel lbl_discount = new JLabel("Discount:");
+		lbl_discount.setBounds(10, 60, 70, 30);
 		
 		txt_1.setBounds(80, 60, 100, 30);
 		
@@ -81,7 +81,7 @@ public class Panel_E extends JPanelX{
 		
 		pnl_1.add(lbl_subTotal);
 		pnl_1.add(subTotal);
-		pnl_1.add(lbl_vat);
+		pnl_1.add(lbl_discount);
 		pnl_1.add(txt_1);
 		pnl_1.add(sp);
 		pnl_1.add(lbl_total);
@@ -174,8 +174,8 @@ public class Panel_E extends JPanelX{
 				Order_Screen.setCustomer(null);
 				model.setRowCount(0);
 				Panel_C.model.setRowCount(0);
-				subTotal.setText("");
-				amtPaid.setText("");
+				subTotal.setText("0.0");
+				amtPaid.setText("0.0");
 			}
 		});
 		
@@ -185,6 +185,9 @@ public class Panel_E extends JPanelX{
 			public void actionPerformed(ActionEvent e) {
 //				JOptionPane.showMessageDialog(Panel_E.this, Order.generateOrderInfo());
 				Receipt.generateReceipt();
+				Order.incrementOrder();
+				Order.resetOrder();
+				Panel_A.txt_orderNo.setText(Order.getOrderNo());
 			}
 		});
 		

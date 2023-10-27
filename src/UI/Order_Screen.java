@@ -64,7 +64,7 @@ public class Order_Screen extends JFrame{
             }
         }, KeyStroke.getKeyStroke ( KeyEvent.VK_F1, 0 ), JComponent.WHEN_IN_FOCUSED_WINDOW );
 		
-		Panel_A pnl_1 = new Panel_A();
+		Panel_A pnl_1 = new Panel_A(this);
 		Panel_B pnl_2 = new Panel_B(this);
 		Panel_C pnl_3 = new Panel_C();
 		Panel_D pnl_6 = new Panel_D(pnl_3);
