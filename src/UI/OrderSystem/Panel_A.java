@@ -9,9 +9,12 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 
 import Data.Order;
+import Data.OrderController;
 import UI.Login_Screen;
 import UI.MainWindow;
 import UI.Order_Screen;
+import UI.SaleHistory_Window;
+import UI.SuspendedOrders_Screen;
 import Utilities.Utility;
 
 public class Panel_A extends JPanel {
@@ -41,7 +44,7 @@ public class Panel_A extends JPanel {
 		lbl_OrderNo.setBounds(10, 45, 70, 30);	
 		txt_orderNo.setBounds(90, 45, 200, 30);
 		txt_orderNo.setOpaque(true);
-		txt_orderNo.setText(Order.getOrderNo());
+		txt_orderNo.setText(OrderController.getOrder().getOrderNo());
 		
 		JLabel lbl_5 = new JLabel("Order Type:");
 		lbl_5.setBounds(10, 80, 70, 30);	
@@ -85,13 +88,24 @@ public class Panel_A extends JPanel {
 		btn_3.setBackground(new Color(255, 220, 113));
 		btn_3.setOpaque(true);
 		
-		JButton btn_4 = new JButton("Sell History");
+		JButton btn_4 = new JButton("Sale History");
 		btn_4.setBounds(125, 0, 125, 60);
 		btn_4.setBackground(new Color(255, 220, 113));
 		btn_4.setOpaque(true);
+		btn_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				SaleHistory_Window window = new SaleHistory_Window();
+				window.setVisible(true);				
+			}
+		});
 		
 		JButton btn_2 = new JButton("Suspended Orders");
 		btn_2.setBounds(0, 70, 250, 50);
+		btn_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new SuspendedOrders_Screen(window);
+			}
+		});
 		
 		pnl_3_A.add(btn_2);
 		pnl_3_A.add(btn_3);

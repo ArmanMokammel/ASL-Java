@@ -3,6 +3,7 @@ package UI.OrderSystem;
 import java.awt.Color;
 
 import Data.Order;
+import Data.OrderController;
 import Data.OrderMenuItem;
 import UI.JPanelX;
 
@@ -18,8 +19,12 @@ public class Panel_C extends JPanelX{
 	public static DefaultTableModel model;
 	private Panel_E displayPanel;
 	
+	private Order order;
+	
 	public Panel_C() {
 		setLayout(null);
+		
+		order = OrderController.getOrder();
 		
 		model = new DefaultTableModel();
 		model.addColumn("");
@@ -60,27 +65,26 @@ public class Panel_C extends JPanelX{
 	}
 	
 	public void addItem(OrderMenuItem ordItem) {
-		Order.addItem(ordItem);
-		Order.setTotal(Order.getTotal() + ordItem.getQuantity() * ordItem.getItem().getSellingPrice());
-		displayPanel.subTotal.setText(Double.toString(Order.getTotal()));
+		order.addItem(ordItem);
+		order.setTotal(order.getTotal() + ordItem.getQuantity() * ordItem.getItem().getSellingPrice());
+		displayPanel.subTotal.setText(Double.toString(order.getTotal()));
 		model.addRow(new Object[] {"", ordItem.getItem().getItemId(), ordItem.getItem().getItemName(), ordItem.getItem().getSellingPrice(), ordItem.getItem().getSellingPrice(), ordItem.getQuantity(), ordItem.getQuantity() * ordItem.getItem().getSellingPrice()});
 	}
 
 	@Override
 	public void editRow(int row) {
-		JOptionPane p = new JOptionPane();
-		String input = p.showInputDialog("Update Quantity:");
+		String input = JOptionPane.showInputDialog("Update Quantity:");
 		
 		if(input == null || input.isBlank())
 			return;
 		
 		int quantity = Integer.parseInt(input);
 		
-		OrderMenuItem ordItem = Order.getItems().get(row);
-		Order.setTotal(Order.getTotal() - ordItem.getQuantity() * ordItem.getItem().getSellingPrice());
+		OrderMenuItem ordItem = order.getItems().get(row);
+		order.setTotal(order.getTotal() - ordItem.getQuantity() * ordItem.getItem().getSellingPrice());
 		ordItem.setQuantity(quantity);
-		Order.setTotal(Order.getTotal() + quantity * ordItem.getItem().getSellingPrice());
-		displayPanel.subTotal.setText(Double.toString(Order.getTotal()));
+		order.setTotal(order.getTotal() + quantity * ordItem.getItem().getSellingPrice());
+		displayPanel.subTotal.setText(Double.toString(order.getTotal()));
 		model.removeRow(row);
 		model.insertRow(row, new Object[] {"", ordItem.getItem().getItemId(), ordItem.getItem().getItemName(), ordItem.getItem().getSellingPrice(), ordItem.getItem().getSellingPrice(), ordItem.getQuantity(), ordItem.getQuantity() * ordItem.getItem().getSellingPrice()});
 		
@@ -88,10 +92,10 @@ public class Panel_C extends JPanelX{
 
 	@Override
 	public void removeRow(int row) {
-		OrderMenuItem item = Order.getItems().get(row);
-		Order.setTotal(Order.getTotal() - item.getQuantity() * item.getItem().getSellingPrice());
-		Order.removeItem(row);
-		displayPanel.subTotal.setText(Double.toString(Order.getTotal()));
+		OrderMenuItem item = order.getItems().get(row);
+		order.setTotal(order.getTotal() - item.getQuantity() * item.getItem().getSellingPrice());
+		order.removeItem(row);
+		displayPanel.subTotal.setText(Double.toString(order.getTotal()));
 		model.removeRow(row);		
 	}
 }

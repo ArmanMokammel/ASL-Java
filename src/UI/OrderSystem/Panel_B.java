@@ -9,6 +9,7 @@ import javax.swing.*;
 
 import Data.Customer;
 import Data.Order;
+import Data.OrderController;
 import Enum.DiscountType;
 import UI.CustomerWindow;
 import UI.Order_Screen;
@@ -111,7 +112,7 @@ public class Panel_B extends JPanel{
 		btn_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Order_Screen.setCustomer(null);
-				Order.setCustomer(null);
+				OrderController.getOrder().setCustomer(null);
 			}
 		});
 		

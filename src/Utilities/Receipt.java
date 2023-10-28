@@ -31,6 +31,7 @@ import com.itextpdf.layout.properties.TextAlignment;
 
 import Data.MenuItem;
 import Data.Order;
+import Data.OrderController;
 import Data.OrderMenuItem;
 import Data.Payment;
 import UI.MainWindow;
@@ -39,7 +40,8 @@ public class Receipt {
 
 	public static void generateReceipt() {
 
-		String path = Order.getOrderNo() + ".pdf";
+		Order order = OrderController.getOrder();
+		String path = order.getOrderNo() + ".pdf";
 		int pageHeight = 410;
 
 		try {
@@ -52,7 +54,7 @@ public class Receipt {
 
 			PdfDocument pdfDocument = new PdfDocument(pdfWriter);
 			
-			for(int i = 0; i < Order.getItems().size() + Order.getPayments().size(); i++) {
+			for(int i = 0; i < order.getItems().size() + order.getPayments().size(); i++) {
 				pageHeight += 17;
 			}
 			
@@ -84,7 +86,7 @@ public class Receipt {
 			Paragraph para3 = new Paragraph();
 			para3.setFontSize(8).setFixedLeading(10);
 			para3.add("Date: " + dtf.format(date) + "\t\t\t\t\t\t\t\t\t\tTime: " + ttf.format(now) +"\r\n");
-			para3.add("Invoice To: " + (Order.getCustomer() != null ? Order.getCustomer().getCustomerName() : "") +"\r\n");
+			para3.add("Invoice To: " + (order.getCustomer() != null ? order.getCustomer().getCustomerName() : "") +"\r\n");
 			para3.add("Served By: " + MainWindow.account.getUserID());
 			
 			document.add(para3);
@@ -106,7 +108,7 @@ public class Receipt {
 			
 			table.addCell(c_00).addCell(c_01).addCell(c_02).addCell(c_03);
 			
-			for(OrderMenuItem ordItem : Order.getItems()) {
+			for(OrderMenuItem ordItem : order.getItems()) {
 				MenuItem item = ordItem.getItem();
 				table.addCell(new Paragraph(item.getItemName()).setFontSize(8));
 				table.addCell(new Paragraph(Integer.toString(ordItem.getQuantity())).setFontSize(8));
@@ -124,7 +126,7 @@ public class Receipt {
 			Table table2 = new Table(columnWidth2);
 
 			table2.addCell(new Paragraph("Gross Total :").setFontSize(8).setFirstLineIndent(5));
-			table2.addCell(new Paragraph(Double.toString(Order.getTotal())).setFontSize(8).setTextAlignment(TextAlignment.RIGHT));
+			table2.addCell(new Paragraph(Double.toString(order.getTotal())).setFontSize(8).setTextAlignment(TextAlignment.RIGHT));
 			table2.addCell(new Paragraph("Discount @0.0% :").setFontSize(8).setFirstLineIndent(5));
 			table2.addCell(new Paragraph("XX.XX").setFontSize(8).setTextAlignment(TextAlignment.RIGHT));
 			
@@ -163,7 +165,7 @@ public class Receipt {
 			
 			Table table6 = new Table(columnWidth2);
 			
-			for(Payment payment : Order.getPayments()) {
+			for(Payment payment : order.getPayments()) {
 				table6.addCell(new Paragraph(payment.getPaymentType()).setFontSize(8));
 				table6.addCell(new Paragraph(Double.toString(payment.getAmount())).setFontSize(8).setTextAlignment(TextAlignment.RIGHT));
 			}

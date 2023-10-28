@@ -27,6 +27,6 @@ public class OrderMenuItem{
 	}
 	
 	public String toString() {
-		return item.toString() + quantity;
+		return item.toString().substring(0, item.toString().length() - 1) + quantity + "\n";
 	}
 }

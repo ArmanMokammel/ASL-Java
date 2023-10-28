@@ -10,11 +10,11 @@ import java.util.LinkedList;
 import javax.sound.sampled.Line;
 import javax.swing.*;
 
+import CustomComponents.JButtonT1;
 import Data.Account;
 import Enum.AccountType;
 import Enum.InputType;
 import Exception.InputException;
-import UI.JButtonT1;
 import Utilities.Utility;
 
 public class Profile_Screen extends JDialog {

@@ -15,11 +15,11 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import CustomComponents.ItemCategoryButton;
+import CustomComponents.WrapLayout;
 import Data.MenuItem;
 import Enum.DiscountType;
-import UI.ItemCategoryButton;
 import UI.Order_Screen;
-import UI.WrapLayout;
 import Utilities.Utility;
 
 public class Panel_D extends JPanel implements ActionListener{

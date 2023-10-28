@@ -3,6 +3,9 @@ package UI.OrderSystem;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
@@ -13,6 +16,7 @@ import javax.swing.table.JTableHeader;
 import CustomCell.TableRemove_Editor;
 import CustomCell.TableRemove_Renderer;
 import Data.Order;
+import Data.OrderController;
 import Data.Payment;
 import Exception.InputException;
 import UI.JPanelX;
@@ -36,8 +40,12 @@ public class Panel_E extends JPanelX{
 	
 	private double amountPaid = 0;
 	
+	private Order order;
+	
 	public Panel_E() {
 		setLayout(null);
+		
+		order = OrderController.getOrder();
 				
 		JPanel pnl_1 = new JPanel();
 		pnl_1.setBounds(10, 0, 400, 250);
@@ -126,7 +134,7 @@ public class Panel_E extends JPanelX{
 					A = (String)cmbx_1.getSelectedItem();
 					B = Utility.checkDouble(txt_2, lbl_11);
 					
-					Order.addPayment(new Payment(A, B));
+					order.addPayment(new Payment(A, B));
 					amountPaid += B;
 					amtPaid.setText(Double.toString(amountPaid));
 					Panel_E.this.model.addRow(new Object[] {"", A, B});
@@ -165,12 +173,24 @@ public class Panel_E extends JPanelX{
 		
 		JButton btn_2 = new JButton("Hold");
 		btn_2.setBounds(10, 260, 100, 30);
+		btn_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				OrderController.suspendCurrentOrder();
+				Utility.writeAllToFile("SuspendedOrders.ASL", false, OrderController.getSuspendedOrders());
+				OrderController.resetOrder();
+				Order_Screen.setCustomer(null);
+				model.setRowCount(0);
+				Panel_C.model.setRowCount(0);
+				subTotal.setText("0.0");
+				amtPaid.setText("0.0");
+			}
+		});
 		
 		JButton btn_3 = new JButton("Cancel");
 		btn_3.setBounds(140, 260, 100, 30);
 		btn_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Order.resetOrder();
+				OrderController.resetOrder();
 				Order_Screen.setCustomer(null);
 				model.setRowCount(0);
 				Panel_C.model.setRowCount(0);
@@ -183,11 +203,15 @@ public class Panel_E extends JPanelX{
 		btn_4.setBounds(250, 260, 100, 30);
 		btn_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				JOptionPane.showMessageDialog(Panel_E.this, Order.generateOrderInfo());
+				File dir = new File("Orders");
+				if (!dir.exists()){
+				    dir.mkdir();
+				}
+				Utility.writeToFile("Orders\\" + order.getOrderNo() + ".txt", false, order);
 				Receipt.generateReceipt();
-				Order.incrementOrder();
-				Order.resetOrder();
-				Panel_A.txt_orderNo.setText(Order.getOrderNo());
+				OrderController.incrementOrder();
+				OrderController.resetOrder();
+				Panel_A.txt_orderNo.setText(order.getOrderNo());
 			}
 		});
 		
@@ -209,10 +233,10 @@ public class Panel_E extends JPanelX{
 
 	@Override
 	public void removeRow(int row) {
-		amountPaid -= Order.getPayments().get(row).getAmount();
+		amountPaid -= order.getPayments().get(row).getAmount();
 		amtPaid.setText(Double.toString(amountPaid));
-		Order.removePayment(row);		
+		order.removePayment(row);		
 		model.removeRow(row);
-		Order.setCustomer(null);
+		order.setCustomer(null);
 	}
 }

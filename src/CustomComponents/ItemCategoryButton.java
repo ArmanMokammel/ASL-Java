@@ -1,4 +1,4 @@
-package UI;
+package CustomComponents;
 
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;

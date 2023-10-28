@@ -14,6 +14,7 @@ import javax.swing.table.DefaultTableModel;
 
 import Data.Customer;
 import Data.Order;
+import Data.OrderController;
 import DataEditorUI.CustomerEditor_Dialog;
 import Enum.DiscountType;
 import UI.OrderSystem.Panel_B;
@@ -34,9 +35,9 @@ public class CustomerWindow extends JDialog{
 		
 		Font f1 = new Font(null, Font.BOLD, 40);
 		
-		JLabel lbl_1 = new JLabel("Customer Search");
-		lbl_1.setBounds(330, 20, 350, 50);
-		lbl_1.setFont(f1);
+		JLabel lbl_title = new JLabel("Customer Search");
+		lbl_title.setBounds(330, 20, 350, 50);
+		lbl_title.setFont(f1);
 		
 		JPanel pnl = new JPanel();
 		pnl.setBounds(5, 90, 750, 670);
@@ -102,7 +103,7 @@ public class CustomerWindow extends JDialog{
 				if(table.getSelectedRow() != -1) {
 					selCustomer = customerList.get(table.getSelectedRow());
 					Order_Screen.setCustomer(selCustomer);
-					Order.setCustomer(selCustomer);
+					OrderController.getOrder().setCustomer(selCustomer);
 					dispose();
 				}
 				
@@ -142,7 +143,7 @@ public class CustomerWindow extends JDialog{
 		pnl2.add(btn_2);
 		pnl2.add(btn_3);
 		
-		add(lbl_1);
+		add(lbl_title);
 		add(pnl);
 		add(pnl2);
 		

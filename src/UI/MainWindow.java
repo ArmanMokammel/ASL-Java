@@ -13,6 +13,7 @@ import javax.swing.*;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import CustomComponents.MenuButton;
 import Data.Account;
 import DataEditorUI.Profile_Screen;
 import UI.Panels.*;

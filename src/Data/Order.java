@@ -1,127 +1,119 @@
 package Data;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.LinkedList;
-
-import Utilities.Utility;
 
 public class Order {
 	
-	private static String branch;
-	private static String orderNo;
-	private static String accountId;
+	private String branch;
+	private String orderNo;
+	private String accountId;
 	
-	private static Customer customer;
-	private static LinkedList<OrderMenuItem> items;
-	private static LinkedList<Payment> payments;
+	private Customer customer;
+	private LinkedList<OrderMenuItem> items = new LinkedList<OrderMenuItem>();;
+	private LinkedList<Payment> payments = new LinkedList<Payment>();;
 		
-	private static double total = 0;
-	private static double amountPaid = 0;
-	
-	private static int lastOrderNo;
-	
-	public static void init(String branch, String accountId) {
-		Order.branch = branch;
-		Order.accountId = accountId;
-		
-		LocalDate date = LocalDate.now();
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMdd");
-		ArrayList<String> s = Utility.readFile("Data.ASL");
-		
-		if(s.size() != 0) {			
-			if(s.get(0).equals(dtf.format(date))) {			
-				Order.lastOrderNo = Integer.parseInt(s.get(1));
-			} else {
-				Order.lastOrderNo = 1;
-			}
-		} else {
-			Order.lastOrderNo = 1;
-		}
-		Order.orderNo = dtf.format(date) + lastOrderNo;		
-		
-		items = new LinkedList<OrderMenuItem>();
-		payments = new LinkedList<Payment>();
+	private double total = 0;
+	private double amountPaid = 0;
+
+	public void setBranch(String branch) {
+		this.branch = branch;
 	}
 
-	public static String getBranch() {
+	public String getBranch() {
 		return branch;
 	}
 
-	public static String getOrderNo() {
+	public void setOrderNo(String orderNo) {
+		this.orderNo = orderNo;
+	}
+
+	public String getOrderNo() {
 		return orderNo;
 	}
 
-	public static String getAccountId() {
+	public void setAccountId(String accountId) {
+		this.accountId = accountId;
+	}
+
+	public String getAccountId() {
 		return accountId;
 	}
 
-	public static Customer getCustomer() {
+	public Customer getCustomer() {
 		return customer;
 	}
 
-	public static void setCustomer(Customer customer) {
-		Order.customer = customer;
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 
-	public static double getTotal() {
+	public double getTotal() {
 		return total;
 	}
 
-	public static void setTotal(double total) {
-		Order.total = total;
+	public void setTotal(double total) {
+		this.total = total;
 	}
 
-	public static double getAmountPaid() {
+	public double getAmountPaid() {
 		return amountPaid;
 	}
 
-	public static void setAmountPaid(double amountPaid) {
-		Order.amountPaid = amountPaid;
+	public void setAmountPaid(double amountPaid) {
+		this.amountPaid = amountPaid;
 	}
 	
-	public static LinkedList<OrderMenuItem> getItems() {
+	public LinkedList<OrderMenuItem> getItems() {
 		return items;
 	}
 
-	public static void addItem(OrderMenuItem item) {
-		Order.items.add(item);
+	public void addItem(OrderMenuItem item) {
+		this.items.add(item);
 	}
 	
-	public static void removeItem(int index) {
-		Order.items.remove(index);
+	public void removeItem(int index) {
+		this.items.remove(index);
 	}
 
-	public static LinkedList<Payment> getPayments() {
+	public LinkedList<Payment> getPayments() {
 		return payments;
 	}
 
-	public static void addPayment(Payment payment) {
-		Order.payments.add(payment);
+	public void addPayment(Payment payment) {
+		this.payments.add(payment);
 	}
 	
-	public static void removePayment(int index) {
-		Order.payments.remove(index);
+	public void removePayment(int index) {
+		this.payments.remove(index);
+	}
+		
+	public String toString() {
+		String s = branch + "\t" + orderNo + "\t" + accountId + "\n" + customer;
+		
+		for(OrderMenuItem item : items) {
+			s += item;
+		}
+		
+		for(Payment payment : payments) {
+			s += payment;
+		}
+		
+		s += total + "\t" + amountPaid + "\n";
+		
+		return s;
 	}
 	
-	public static void incrementOrder() {
-		lastOrderNo++;
-		LocalDate date = LocalDate.now();
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMdd");
-		Utility.writeToFile("Data.ASL", false, dtf.format(date) + "\n" + lastOrderNo + "\n12" + "\n");
-		Order.orderNo = dtf.format(date) + lastOrderNo;
-	}
-	
-	public static String generateOrderInfo() {
-		return Order.customer.toString() + Order.items.toString() + Order.payments.toString();
-	}
-	
-	public static void resetOrder() {
-		Order.items.clear();
-		Order.payments.clear();
-		Order.customer = null;
-		Order.total = 0;
-		Order.amountPaid = 0;
+	public static Order clone(Order order) {
+		Order ord = new Order();
+		ord.branch = order.getBranch();
+		ord.orderNo = order.getOrderNo();
+		ord.accountId = order.getAccountId();
+		ord.customer = order.getCustomer();
+		ord.items = new LinkedList<OrderMenuItem>(order.getItems());
+		ord.payments = new LinkedList<Payment>(order.getPayments());
+		ord.total = order.getTotal();
+		ord.amountPaid = order.getAmountPaid();
+		
+		return ord;
 	}
 }

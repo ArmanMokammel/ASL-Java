@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+import CustomComponents.Settings_Button;
+import CustomComponents.WrapLayout;
 import SettingsPanels.ItemSettings;
 import SettingsPanels.PaymentMethods;
 import UI.OrderSystem.Panel_A;

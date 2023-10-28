@@ -6,6 +6,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.LinkedList;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -17,12 +18,13 @@ import javax.swing.SwingConstants;
 import Data.Account;
 import Data.Customer;
 import Data.Order;
+import Data.OrderController;
 import Enum.AccountType;
 import Enum.DiscountType;
 import UI.OrderSystem.*;
 
 public class Order_Screen extends JFrame{
-			
+				
 	public Order_Screen(boolean isOrder) {
 		super("Take Order - " + MainWindow.account.getName());
 		addWindowListener(new WindowAdapter() {
@@ -39,7 +41,7 @@ public class Order_Screen extends JFrame{
 			}
 		});
 		setSize(1500, 800);
-		Order.init("TEST", MainWindow.account.getUserID());
+		OrderController.init("TEST", MainWindow.account.getUserID());
 	}
 	
 	public void createUI() {
