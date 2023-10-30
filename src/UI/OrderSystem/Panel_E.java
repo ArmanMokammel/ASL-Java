@@ -18,6 +18,7 @@ import CustomCell.TableRemove_Renderer;
 import Data.Order;
 import Data.OrderController;
 import Data.Payment;
+import Enum.DiscountType;
 import Exception.InputException;
 import UI.JPanelX;
 import UI.MainWindow;
@@ -199,6 +200,7 @@ public class Panel_E extends JPanelX{
 				model.setRowCount(0);
 				Panel_C.model.setRowCount(0);
 				subTotal.setText("0.0");
+				total.setText("0.0");
 				amtPaid.setText("0.0");
 			}
 		});
@@ -214,7 +216,7 @@ public class Panel_E extends JPanelX{
 				Utility.writeToFile("Orders\\" + order.getOrderNo() + ".txt", false, order);
 				Receipt.generateReceipt();
 				OrderController.incrementOrder();
-				OrderController.resetOrder();
+//				OrderController.resetOrder();
 				Panel_A.txt_orderNo.setText(order.getOrderNo());
 			}
 		});

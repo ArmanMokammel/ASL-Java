@@ -27,9 +27,11 @@ public class Panel_B extends JPanel{
 	public static JLabel lbl_4 = new JLabel();
 	public static JLabel lbl_6 = new JLabel();
 	public static JLabel lbl_8 = new JLabel();
+	public Panel_E p;
 	
-	public Panel_B(Order_Screen window) {
+	public Panel_B(Order_Screen window, Panel_E p) {
 		this.window = window;
+		this.p = p;
 		setLayout(null);
 		
 		container = new JPanel();
@@ -110,9 +112,11 @@ public class Panel_B extends JPanel{
 		btn_2.setForeground(Color.white);
 		btn_2.setOpaque(true);
 		btn_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) {			
+				OrderController.getOrder().setTotal(OrderController.getOrder().getSubTotal());
 				Order_Screen.setCustomer(null);
 				OrderController.getOrder().setCustomer(null);
+				p.total.setText(Double.toString(OrderController.getOrder().getTotal()));
 			}
 		});
 		

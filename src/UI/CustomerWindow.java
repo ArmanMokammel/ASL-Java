@@ -102,8 +102,16 @@ public class CustomerWindow extends JDialog{
 			public void actionPerformed(ActionEvent e) {
 				if(table.getSelectedRow() != -1) {
 					selCustomer = customerList.get(table.getSelectedRow());
-					Order_Screen.setCustomer(selCustomer);
 					OrderController.getOrder().setCustomer(selCustomer);
+					Order_Screen.setCustomer(selCustomer);
+					if(selCustomer.getSpecialDiscountType() == DiscountType.Value)
+						OrderController.getOrder().setTotal(OrderController.getOrder().getSubTotal() - selCustomer.getSpecialDiscount());
+					else if (selCustomer.getSpecialDiscountType() == DiscountType.Percentage)
+						OrderController.getOrder().setTotal(Math.round((OrderController.getOrder().getSubTotal() * (100 - selCustomer.getSpecialDiscount()) / 100.0) * 100.0) / 100.0);
+					else
+						OrderController.getOrder().setTotal(OrderController.getOrder().getSubTotal());
+					
+					parent.p.total.setText(Double.toString(OrderController.getOrder().getTotal()));
 					dispose();
 				}
 				

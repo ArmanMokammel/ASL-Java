@@ -112,8 +112,8 @@ public class Receipt {
 				MenuItem item = ordItem.getItem();
 				table.addCell(new Paragraph(item.getItemName()).setFontSize(8));
 				table.addCell(new Paragraph(Integer.toString(ordItem.getQuantity())).setFontSize(8));
-				table.addCell(new Paragraph(Double.toString(item.getSellingPrice())).setFontSize(8));
-				table.addCell(new Paragraph(Double.toString(ordItem.getQuantity() * item.getSellingPrice())).setFontSize(8));
+				table.addCell(new Paragraph(Double.toString(ordItem.getDiscountedPrice())).setFontSize(8));
+				table.addCell(new Paragraph(Double.toString(ordItem.getQuantity() * ordItem.getDiscountedPrice())).setFontSize(8));
 			}
 			
 			document.add(table);
@@ -126,7 +126,7 @@ public class Receipt {
 			Table table2 = new Table(columnWidth2);
 
 			table2.addCell(new Paragraph("Gross Total :").setFontSize(8).setFirstLineIndent(5));
-			table2.addCell(new Paragraph(Double.toString(order.getTotal())).setFontSize(8).setTextAlignment(TextAlignment.RIGHT));
+			table2.addCell(new Paragraph(Double.toString(order.getSubTotal())).setFontSize(8).setTextAlignment(TextAlignment.RIGHT));
 			table2.addCell(new Paragraph("Discount @0.0% :").setFontSize(8).setFirstLineIndent(5));
 			table2.addCell(new Paragraph("XX.XX").setFontSize(8).setTextAlignment(TextAlignment.RIGHT));
 			
@@ -136,7 +136,7 @@ public class Receipt {
 			
 			Table table3 = new Table(columnWidth2);
 			table3.addCell(new Paragraph("Net Total :").setFontSize(8).setFirstLineIndent(5));
-			table3.addCell(new Paragraph("XX.XX").setFontSize(8).setTextAlignment(TextAlignment.RIGHT));
+			table3.addCell(new Paragraph(Double.toString(order.getTotal())).setFontSize(8).setTextAlignment(TextAlignment.RIGHT));
 			
 			RemoveBorder(table3);
 			document.add(table3);
