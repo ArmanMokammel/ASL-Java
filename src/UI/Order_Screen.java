@@ -33,7 +33,8 @@ public class Order_Screen extends JFrame{
 					Login_Screen lg = new Login_Screen();
 					lg.createUI();
 					lg.setVisible(true);
-				} else {					
+				} else {
+					OrderController.resetOrder();
 					MainWindow window = new MainWindow();
 					window.createUI();
 				}

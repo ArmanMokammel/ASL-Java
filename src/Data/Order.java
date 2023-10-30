@@ -12,6 +12,7 @@ public class Order {
 	private LinkedList<OrderMenuItem> items = new LinkedList<OrderMenuItem>();;
 	private LinkedList<Payment> payments = new LinkedList<Payment>();;
 		
+	private double subTotal = 0;
 	private double total = 0;
 	private double amountPaid = 0;
 
@@ -45,6 +46,14 @@ public class Order {
 
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
+	}
+
+	public double getSubTotal() {
+		return subTotal;
+	}
+
+	public void setSubTotal(double subTotal) {
+		this.subTotal = subTotal;
 	}
 
 	public double getTotal() {
@@ -111,6 +120,7 @@ public class Order {
 		ord.customer = order.getCustomer();
 		ord.items = new LinkedList<OrderMenuItem>(order.getItems());
 		ord.payments = new LinkedList<Payment>(order.getPayments());
+		ord.subTotal = order.getSubTotal();
 		ord.total = order.getTotal();
 		ord.amountPaid = order.getAmountPaid();
 		

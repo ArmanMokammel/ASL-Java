@@ -4,6 +4,7 @@ public class OrderMenuItem{
 	
 	private MenuItem item;
 	private int quantity;
+	private double discountedPrice;
 	
 	public OrderMenuItem(MenuItem item, int quantity) {
 		this.item = item;
@@ -26,6 +27,14 @@ public class OrderMenuItem{
 		this.quantity = quantity;
 	}
 	
+	public double getDiscountedPrice() {
+		return discountedPrice;
+	}
+
+	public void setDiscountedPrice(double discountedPrice) {
+		this.discountedPrice = discountedPrice;
+	}
+
 	public String toString() {
 		return item.toString().substring(0, item.toString().length() - 1) + quantity + "\n";
 	}

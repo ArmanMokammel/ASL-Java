@@ -2,9 +2,12 @@ package UI.OrderSystem;
 
 import java.awt.Color;
 
+import Data.Customer;
+import Data.MenuItem;
 import Data.Order;
 import Data.OrderController;
 import Data.OrderMenuItem;
+import Enum.DiscountType;
 import UI.JPanelX;
 
 import javax.swing.*;
@@ -65,10 +68,32 @@ public class Panel_C extends JPanelX{
 	}
 	
 	public void addItem(OrderMenuItem ordItem) {
-		order.addItem(ordItem);
-		order.setTotal(order.getTotal() + ordItem.getQuantity() * ordItem.getItem().getSellingPrice());
-		displayPanel.subTotal.setText(Double.toString(order.getTotal()));
-		model.addRow(new Object[] {"", ordItem.getItem().getItemId(), ordItem.getItem().getItemName(), ordItem.getItem().getSellingPrice(), ordItem.getItem().getSellingPrice(), ordItem.getQuantity(), ordItem.getQuantity() * ordItem.getItem().getSellingPrice()});
+		order.addItem(ordItem);		
+		MenuItem item = ordItem.getItem();
+		
+		if(item.getDiscountType() == DiscountType.Value)
+			ordItem.setDiscountedPrice(item.getSellingPrice() - item.getDiscountValue());
+		else if(item.getDiscountType() == DiscountType.Percentage)
+			ordItem.setDiscountedPrice(Math.round((item.getSellingPrice() * (100.0 - item.getDiscountValue()) / 100.0) * 100.0) / 100.0);
+		else
+			ordItem.setDiscountedPrice(item.getSellingPrice());
+		
+		order.setSubTotal(order.getSubTotal() + ordItem.getQuantity() * ordItem.getDiscountedPrice());
+		if(order.getCustomer() != null) {
+			Customer customer = order.getCustomer();
+			if(customer.getSpecialDiscountType() == DiscountType.Value)
+				order.setTotal(order.getSubTotal() - customer.getSpecialDiscount());
+			else if (customer.getSpecialDiscountType() == DiscountType.Percentage)
+				order.setTotal(Math.round((order.getSubTotal() * (100 - customer.getSpecialDiscount()) / 100.0) * 100.0) / 100.0);
+			else
+				order.setTotal(order.getSubTotal());
+		}
+		else {
+			order.setTotal(order.getSubTotal());
+		}
+		displayPanel.subTotal.setText(Double.toString(order.getSubTotal()));
+		displayPanel.total.setText(Double.toString(order.getTotal()));
+		model.addRow(new Object[] {"", item.getItemId(), item.getItemName(), item.getSellingPrice(), ordItem.getDiscountedPrice(), ordItem.getQuantity(), ordItem.getQuantity() * ordItem.getDiscountedPrice()});
 	}
 
 	@Override
@@ -81,21 +106,47 @@ public class Panel_C extends JPanelX{
 		int quantity = Integer.parseInt(input);
 		
 		OrderMenuItem ordItem = order.getItems().get(row);
-		order.setTotal(order.getTotal() - ordItem.getQuantity() * ordItem.getItem().getSellingPrice());
+		order.setSubTotal(order.getSubTotal() - ordItem.getQuantity() * ordItem.getDiscountedPrice());
 		ordItem.setQuantity(quantity);
-		order.setTotal(order.getTotal() + quantity * ordItem.getItem().getSellingPrice());
-		displayPanel.subTotal.setText(Double.toString(order.getTotal()));
+		order.setSubTotal(order.getSubTotal() + quantity * ordItem.getDiscountedPrice());
+		if(order.getCustomer() != null) {
+			Customer customer = order.getCustomer();
+			if(customer.getSpecialDiscountType() == DiscountType.Value)
+				order.setTotal(order.getSubTotal() - customer.getSpecialDiscount());
+			else if (customer.getSpecialDiscountType() == DiscountType.Percentage)
+				order.setTotal(Math.round((order.getSubTotal() * (100 - customer.getSpecialDiscount()) / 100.0) * 100.0) / 100.0);
+			else
+				order.setTotal(order.getSubTotal());
+		}
+		else {
+			order.setTotal(order.getSubTotal());
+		}
+		displayPanel.subTotal.setText(Double.toString(order.getSubTotal()));
+		displayPanel.total.setText(Double.toString(order.getTotal()));
 		model.removeRow(row);
-		model.insertRow(row, new Object[] {"", ordItem.getItem().getItemId(), ordItem.getItem().getItemName(), ordItem.getItem().getSellingPrice(), ordItem.getItem().getSellingPrice(), ordItem.getQuantity(), ordItem.getQuantity() * ordItem.getItem().getSellingPrice()});
+		model.insertRow(row, new Object[] {"", ordItem.getItem().getItemId(), ordItem.getItem().getItemName(), ordItem.getItem().getSellingPrice(), ordItem.getDiscountedPrice(), ordItem.getQuantity(), ordItem.getQuantity() * ordItem.getDiscountedPrice()});
 		
 	}
 
 	@Override
 	public void removeRow(int row) {
-		OrderMenuItem item = order.getItems().get(row);
-		order.setTotal(order.getTotal() - item.getQuantity() * item.getItem().getSellingPrice());
+		OrderMenuItem ordItem = order.getItems().get(row);
+		order.setSubTotal(order.getSubTotal() - ordItem.getQuantity() * ordItem.getDiscountedPrice());
 		order.removeItem(row);
-		displayPanel.subTotal.setText(Double.toString(order.getTotal()));
+		if(order.getCustomer() != null) {
+			Customer customer = order.getCustomer();
+			if(customer.getSpecialDiscountType() == DiscountType.Value)
+				order.setTotal(order.getSubTotal() - customer.getSpecialDiscount());
+			else if (customer.getSpecialDiscountType() == DiscountType.Percentage)
+				order.setTotal(Math.round((order.getSubTotal() * (100 - customer.getSpecialDiscount()) / 100.0) * 100.0) / 100.0);
+			else
+				order.setTotal(order.getSubTotal());
+		}
+		else {
+			order.setTotal(order.getSubTotal());
+		}
+		displayPanel.subTotal.setText(Double.toString(order.getSubTotal()));
+		displayPanel.total.setText(Double.toString(order.getTotal()));
 		model.removeRow(row);		
 	}
 }

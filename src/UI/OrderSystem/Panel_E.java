@@ -33,7 +33,7 @@ public class Panel_E extends JPanelX{
 	private double B;
 	
 	public JLabel subTotal = new JLabel("0.0");
-	public JLabel total = new JLabel();
+	public JLabel total = new JLabel("0.0");
 	public JTextField txt_1 = new JTextField();
 	public JLabel amtPaid = new JLabel("0.0");
 	public JLabel amtDue = new JLabel();
@@ -58,7 +58,7 @@ public class Panel_E extends JPanelX{
 		subTotal.setBounds(80, 20, 100, 30);
 		subTotal.setOpaque(true);
 		
-		JLabel lbl_discount = new JLabel("Discount:");
+		JLabel lbl_discount = new JLabel("Discount %:");
 		lbl_discount.setBounds(10, 60, 70, 30);
 		
 		txt_1.setBounds(80, 60, 100, 30);
@@ -176,7 +176,11 @@ public class Panel_E extends JPanelX{
 		btn_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				OrderController.suspendCurrentOrder();
-				Utility.writeAllToFile("SuspendedOrders.ASL", false, OrderController.getSuspendedOrders());
+				File dir = new File("Suspended Orders");
+				if (!dir.exists()){
+				    dir.mkdir();
+				}
+				Utility.writeToFile("Suspended Orders\\" + order.getOrderNo() + ".txt", false, order);
 				OrderController.resetOrder();
 				Order_Screen.setCustomer(null);
 				model.setRowCount(0);
