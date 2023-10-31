@@ -1,17 +1,13 @@
 package UI.OrderSystem;
 
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
-import javax.swing.border.LineBorder;
 
-import Data.Order;
 import Data.OrderController;
 import UI.Login_Screen;
-import UI.MainWindow;
 import UI.Order_Screen;
 import UI.SaleHistory_Window;
 import UI.SuspendedOrders_Screen;

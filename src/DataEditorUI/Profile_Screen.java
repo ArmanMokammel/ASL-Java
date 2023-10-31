@@ -5,9 +5,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.LinkedList;
 
-import javax.sound.sampled.Line;
 import javax.swing.*;
 
 import CustomComponents.JButtonT1;

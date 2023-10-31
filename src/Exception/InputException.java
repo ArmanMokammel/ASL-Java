@@ -1,9 +1,6 @@
 package Exception;
 
-import java.awt.Color;
-
 import javax.swing.*;
-import javax.swing.border.LineBorder;
 
 public class InputException extends Exception{
 	

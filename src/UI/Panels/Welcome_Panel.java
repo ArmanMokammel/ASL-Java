@@ -1,7 +1,6 @@
 package UI.Panels;
 
 import java.awt.Color;
-import java.awt.ComponentOrientation;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Image;
@@ -9,14 +8,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
-import java.util.concurrent.Flow;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.border.LineBorder;
 
 import CustomComponents.MenuButton;
-import Data.Account;
 import UI.*;
 
 public class Welcome_Panel extends JPanel {

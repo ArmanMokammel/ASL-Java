@@ -6,7 +6,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
-import UI.EditRemove_Pane;
+import CustomComponents.EditRemove_Pane;
 
 public class TableEditRemove_Renderer extends DefaultTableCellRenderer{
 	

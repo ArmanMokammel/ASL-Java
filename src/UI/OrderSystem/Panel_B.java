@@ -7,10 +7,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-import Data.Customer;
-import Data.Order;
 import Data.OrderController;
-import Enum.DiscountType;
 import UI.CustomerWindow;
 import UI.Order_Screen;
 

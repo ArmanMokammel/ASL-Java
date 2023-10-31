@@ -13,14 +13,10 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import Data.Customer;
-import Enum.AccountType;
 import Enum.DiscountType;
 import Enum.InputType;
 import Exception.InputException;
 import UI.CustomerWindow;
-import UI.JPanelX;
-import UI.MainWindow;
-import UI.Panels.Account_Panel;
 import UI.Panels.Customer_Panel;
 import Utilities.Utility;
 

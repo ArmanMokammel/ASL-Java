@@ -4,7 +4,6 @@ import java.awt.Color;
 
 import Data.Customer;
 import Data.MenuItem;
-import Data.Order;
 import Data.OrderController;
 import Data.OrderMenuItem;
 import Enum.DiscountType;

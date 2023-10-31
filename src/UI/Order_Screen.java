@@ -6,20 +6,15 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.LinkedList;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
 
-import Data.Account;
 import Data.Customer;
-import Data.Order;
 import Data.OrderController;
-import Enum.AccountType;
 import Enum.DiscountType;
 import UI.OrderSystem.*;
 

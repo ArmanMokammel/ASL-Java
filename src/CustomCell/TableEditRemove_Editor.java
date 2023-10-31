@@ -3,20 +3,15 @@ package CustomCell;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.LinkedList;
 
 import javax.swing.AbstractCellEditor;
-import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellEditor;
 
-import Data.Discount_Voucher;
-import UI.EditRemove_Pane;
+import CustomComponents.EditRemove_Pane;
 import UI.JPanelX;
-import UI.MainWindow;
-import UI.Panels.Voucher_Panel;
 
 public class TableEditRemove_Editor extends AbstractCellEditor implements TableCellEditor {
 

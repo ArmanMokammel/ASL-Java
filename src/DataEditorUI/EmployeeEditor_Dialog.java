@@ -9,12 +9,9 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import Data.Account;
 import Data.Employee;
-import Enum.AccountType;
 import Enum.InputType;
 import Exception.InputException;
-import UI.JPanelX;
 import UI.MainWindow;
 import UI.Panels.Employee_Panel;
 import Utilities.Utility;

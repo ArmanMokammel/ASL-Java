@@ -13,7 +13,6 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 import Data.Customer;
-import Data.Order;
 import Data.OrderController;
 import DataEditorUI.CustomerEditor_Dialog;
 import Enum.DiscountType;
@@ -101,7 +100,7 @@ public class CustomerWindow extends JDialog{
 		btn_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(table.getSelectedRow() != -1) {
-					selCustomer = customerList.get(table.getSelectedRow());
+					selCustomer = entriesFiltered.get(table.getSelectedRow());
 					OrderController.getOrder().setCustomer(selCustomer);
 					Order_Screen.setCustomer(selCustomer);
 					if(selCustomer.getSpecialDiscountType() == DiscountType.Value)

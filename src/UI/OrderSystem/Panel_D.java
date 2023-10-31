@@ -2,7 +2,6 @@ package UI.OrderSystem;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -11,7 +10,6 @@ import java.util.HashMap;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
@@ -19,7 +17,6 @@ import CustomComponents.ItemCategoryButton;
 import CustomComponents.WrapLayout;
 import Data.MenuItem;
 import Enum.DiscountType;
-import UI.Order_Screen;
 import Utilities.Utility;
 
 public class Panel_D extends JPanel implements ActionListener{

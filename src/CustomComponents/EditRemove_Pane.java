@@ -1,4 +1,4 @@
-package UI;
+package CustomComponents;
 
 import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
@@ -7,6 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+
+import UI.JPanelX;
 
 public class EditRemove_Pane extends JPanel{
 	

@@ -6,10 +6,8 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 import Data.Discount_Voucher;
-import Enum.AccountType;
 import Enum.InputType;
 import Exception.InputException;
-import UI.JPanelX;
 import UI.MainWindow;
 import UI.Panels.Voucher_Panel;
 import Utilities.Utility;
