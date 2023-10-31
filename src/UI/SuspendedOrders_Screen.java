@@ -43,14 +43,14 @@ public class SuspendedOrders_Screen extends JDialog{
 	
 	public SuspendedOrders_Screen(Order_Screen window) {
 		super(window, "Suspended Orders", true);
-		setSize(1500, 800);
+		setSize(1000, 800);
 		setLocationRelativeTo(null);
 		setLayout(null);
 		
 		Font f1 = new Font(null, Font.BOLD, 40);
 		
 		JLabel lbl_title = new JLabel("Suspended Orders");
-		lbl_title.setBounds(573, 20, 355, 50);
+		lbl_title.setBounds(325, 20, 355, 50);
 		lbl_title.setFont(f1);
 		
 		JPanel pnl = new JPanel();
@@ -154,7 +154,7 @@ public class SuspendedOrders_Screen extends JDialog{
 		btn_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(table.getSelectedRow() != -1) {
-					selOrder = orderList.get(table.getSelectedRow());
+					selOrder = entriesFiltered.get(table.getSelectedRow());
 					OrderController.reinstateOrder(selOrder);
 					Panel_C.model.setRowCount(0);
 					Panel_E.model.setRowCount(0);
