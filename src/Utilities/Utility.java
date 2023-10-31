@@ -188,6 +188,20 @@ public class Utility {
 		}
 	}
 	
+	public static List<File> getFiles(String extension, final File folder)
+	{
+	    extension = extension.toUpperCase();
+
+	    final List<File> files = new ArrayList<File>();
+	    for (final File file : folder.listFiles())
+	    {
+	       if (file.getName().toUpperCase().endsWith(extension))
+	    	   files.add(file);
+	    }
+
+	    return files;
+	}
+	
 	public static ImageIcon getImageIcon(String file, int width, int height) {
 		Image img = null;
 		try {

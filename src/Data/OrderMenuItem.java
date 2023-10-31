@@ -10,10 +10,17 @@ public class OrderMenuItem{
 		this.item = item;
 		this.quantity = quantity;
 	}
-
+	
+	public OrderMenuItem(MenuItem item, double discountedPrice, int quantity) {
+		this.item = item;
+		this.quantity = quantity;
+		this.discountedPrice = discountedPrice;
+	}
+	
 	public MenuItem getItem() {
 		return item;
 	}
+
 
 	public void setItem(MenuItem item) {
 		this.item = item;
@@ -36,6 +43,6 @@ public class OrderMenuItem{
 	}
 
 	public String toString() {
-		return item.toString().substring(0, item.toString().length() - 1) + quantity + "\n";
+		return item.toString().substring(0, item.toString().length() - 1) + "\t" + discountedPrice + "\t" + quantity + "\n";
 	}
 }

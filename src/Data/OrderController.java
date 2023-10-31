@@ -3,14 +3,12 @@ package Data;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 import Utilities.Utility;
 
 public class OrderController {
 	
 	private static Order order = new Order();
-	private static LinkedList<Order> suspendedOrders = new LinkedList<Order>();
 	
 	private static int lastOrderNo;
 	
@@ -38,16 +36,13 @@ public class OrderController {
 		return order;
 	}
 	
-	public static LinkedList<Order> getSuspendedOrders() {
-		return suspendedOrders;
-	}
-	
 	public static void suspendCurrentOrder() {
-		suspendedOrders.add(Order.clone(order));
+		Utility.writeToFile("Suspened Orders\\" + order.getOrderNo() + ".txt", false, order);
+		
 	}
 	
-	public static void reinstateOrder(int row) {
-		
+	public static void reinstateOrder(Order ord) {
+		order = Order.clone(ord);
 	}
 
 	public static void incrementOrder() {

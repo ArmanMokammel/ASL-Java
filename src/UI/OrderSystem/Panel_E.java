@@ -28,26 +28,20 @@ import Utilities.Utility;
 
 public class Panel_E extends JPanelX{
 	
-	private DefaultTableModel model ;
+	public static DefaultTableModel model ;
 	
 	private String A;
 	private double B;
 	
-	public JLabel subTotal = new JLabel("0.0");
-	public JLabel total = new JLabel("0.0");
-	public JTextField txt_1 = new JTextField();
-	public JLabel amtPaid = new JLabel("0.0");
-	public JLabel amtDue = new JLabel();
-	
-	private double amountPaid = 0;
-	
-	private Order order;
-	
+	public static JLabel subTotal = new JLabel("0.0");
+	public static JLabel total = new JLabel("0.0");
+	public static JTextField txt_1 = new JTextField();
+	public static JLabel amtPaid = new JLabel("0.0");
+	public static JLabel amtDue = new JLabel();
+			
 	public Panel_E() {
 		setLayout(null);
-		
-		order = OrderController.getOrder();
-				
+						
 		JPanel pnl_1 = new JPanel();
 		pnl_1.setBounds(10, 0, 400, 250);
 		pnl_1.setBackground(Color.lightGray);
@@ -135,10 +129,10 @@ public class Panel_E extends JPanelX{
 					A = (String)cmbx_1.getSelectedItem();
 					B = Utility.checkDouble(txt_2, lbl_11);
 					
-					order.addPayment(new Payment(A, B));
-					amountPaid += B;
-					amtPaid.setText(Double.toString(amountPaid));
-					Panel_E.this.model.addRow(new Object[] {"", A, B});
+					OrderController.getOrder().addPayment(new Payment(A, B));
+					OrderController.getOrder().setAmountPaid(OrderController.getOrder().getAmountPaid() + B);
+					amtPaid.setText(Double.toString(B));
+					Panel_E.model.addRow(new Object[] {"", A, B});
 				} catch (InputException e1) {
 					Utility.showErrorMessage(e1);
 				}
@@ -181,12 +175,14 @@ public class Panel_E extends JPanelX{
 				if (!dir.exists()){
 				    dir.mkdir();
 				}
-				Utility.writeToFile("Suspended Orders\\" + order.getOrderNo() + ".txt", false, order);
+				Utility.writeToFile("Suspended Orders\\" + OrderController.getOrder().getOrderNo() + ".txt", false, OrderController.getOrder());
+				OrderController.incrementOrder();
 				OrderController.resetOrder();
 				Order_Screen.setCustomer(null);
 				model.setRowCount(0);
 				Panel_C.model.setRowCount(0);
 				subTotal.setText("0.0");
+				total.setText("0.0");
 				amtPaid.setText("0.0");
 			}
 		});
@@ -213,11 +209,16 @@ public class Panel_E extends JPanelX{
 				if (!dir.exists()){
 				    dir.mkdir();
 				}
-				Utility.writeToFile("Orders\\" + order.getOrderNo() + ".txt", false, order);
+				Utility.writeToFile("Orders\\" + OrderController.getOrder().getOrderNo() + ".txt", false, OrderController.getOrder());
 				Receipt.generateReceipt();
 				OrderController.incrementOrder();
-//				OrderController.resetOrder();
-				Panel_A.txt_orderNo.setText(order.getOrderNo());
+				OrderController.resetOrder();
+				Panel_A.txt_orderNo.setText(OrderController.getOrder().getOrderNo());
+				model.setRowCount(0);
+				Panel_C.model.setRowCount(0);
+				subTotal.setText("0.0");
+				total.setText("0.0");
+				amtPaid.setText("0.0");
 			}
 		});
 		
@@ -239,10 +240,10 @@ public class Panel_E extends JPanelX{
 
 	@Override
 	public void removeRow(int row) {
-		amountPaid -= order.getPayments().get(row).getAmount();
-		amtPaid.setText(Double.toString(amountPaid));
-		order.removePayment(row);		
+		OrderController.getOrder().setAmountPaid(OrderController.getOrder().getAmountPaid() - OrderController.getOrder().getPayments().get(row).getAmount());
+		amtPaid.setText(Double.toString(OrderController.getOrder().getAmountPaid()));
+		OrderController.getOrder().removePayment(row);		
 		model.removeRow(row);
-		order.setCustomer(null);
+		OrderController.getOrder().setCustomer(null);
 	}
 }

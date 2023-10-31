@@ -116,7 +116,7 @@ public class Panel_B extends JPanel{
 				OrderController.getOrder().setTotal(OrderController.getOrder().getSubTotal());
 				Order_Screen.setCustomer(null);
 				OrderController.getOrder().setCustomer(null);
-				p.total.setText(Double.toString(OrderController.getOrder().getTotal()));
+				Panel_E.total.setText(Double.toString(OrderController.getOrder().getTotal()));
 			}
 		});
 		

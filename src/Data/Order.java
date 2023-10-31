@@ -15,6 +15,24 @@ public class Order {
 	private double subTotal = 0;
 	private double total = 0;
 	private double amountPaid = 0;
+	
+	public Order()
+	{
+		
+	}
+	
+	public Order(String branch, String orderNo, String accountId, Customer customer, LinkedList<OrderMenuItem> items,
+			LinkedList<Payment> payments, double subTotal, double total, double amountPaid) {
+		this.branch = branch;
+		this.orderNo = orderNo;
+		this.accountId = accountId;
+		this.customer = customer;
+		this.items = items;
+		this.payments = payments;
+		this.subTotal = subTotal;
+		this.total = total;
+		this.amountPaid = amountPaid;
+	}
 
 	public void setBranch(String branch) {
 		this.branch = branch;
@@ -97,7 +115,11 @@ public class Order {
 	}
 		
 	public String toString() {
-		String s = branch + "\t" + orderNo + "\t" + accountId + "\n" + customer;
+		String s = items.size() + "\t" + payments.size() + "\n";
+		
+		s += branch + "\t" + orderNo + "\t" + accountId + "\n" + (customer == null? "None\n" : customer);
+		
+		s += subTotal + "\t" + total + "\t" + amountPaid + "\n";
 		
 		for(OrderMenuItem item : items) {
 			s += item;
@@ -107,7 +129,6 @@ public class Order {
 			s += payment;
 		}
 		
-		s += total + "\t" + amountPaid + "\n";
 		
 		return s;
 	}
