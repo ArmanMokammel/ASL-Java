@@ -57,6 +57,7 @@ public class OrderController {
 		order.getItems().clear();
 		order.getPayments().clear();
 		order.setCustomer(null);
+		order.setSubTotal(0);
 		order.setTotal(0);
 		order.setAmountPaid(0);
 	}

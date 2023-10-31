@@ -15,6 +15,8 @@ import javax.swing.table.JTableHeader;
 
 import CustomCell.TableRemove_Editor;
 import CustomCell.TableRemove_Renderer;
+import CustomComponents.SearchableComboBox;
+import Data.Discount_Voucher;
 import Data.Order;
 import Data.OrderController;
 import Data.Payment;
@@ -33,16 +35,36 @@ public class Panel_E extends JPanelX{
 	private String A;
 	private double B;
 	
-	public static JLabel subTotal = new JLabel("0.0");
-	public static JLabel total = new JLabel("0.0");
+	public static JLabel subTotal;
+	public static JLabel total;
 	public static JTextField txt_1 = new JTextField();
-	public static JLabel amtPaid = new JLabel("0.0");
+	public static JLabel amtPaid;
 	public static JLabel amtDue = new JLabel();
+	
+	private ArrayList<Discount_Voucher> discountVouchers;
+	
+	private JPanel pnl_1;
+	private JPanel pnl_2;
+	private JTextField txt_2;
+	private SearchableComboBox cmbx_2;
 			
 	public Panel_E() {
 		setLayout(null);
+		
+		subTotal = new JLabel("0.0");
+		total = new JLabel("0.0");
+		amtPaid = new JLabel("0.0");
+		
+		ArrayList<String> vouchers = Utility.readFile("Discount-Vouchers.ASL");
+		discountVouchers = new ArrayList<Discount_Voucher>();
+		
+		for(String voucher: vouchers) {
+			String[] datas = voucher.split("\t");
+			Discount_Voucher vch = new Discount_Voucher(datas[0], Integer.parseInt(datas[1]), datas[2], Double.parseDouble(datas[3]));
+			discountVouchers.add(vch);
+		}
 						
-		JPanel pnl_1 = new JPanel();
+		pnl_1 = new JPanel();
 		pnl_1.setBounds(10, 0, 400, 250);
 		pnl_1.setBackground(Color.lightGray);
 		pnl_1.setLayout(null);
@@ -99,7 +121,7 @@ public class Panel_E extends JPanelX{
 		
 		
 		
-		JPanel pnl_2 = new JPanel();
+		pnl_2 = new JPanel();
 		pnl_2.setLayout(null);
 		pnl_2.setBounds(430, 0, 565, 300);
 		pnl_2.setBackground(Color.lightGray);
@@ -111,12 +133,32 @@ public class Panel_E extends JPanelX{
 		
 		JComboBox<String> cmbx_1 = new JComboBox<String>(options.toArray(new String[options.size()]));
 		cmbx_1.setBounds(110, 20, 150, 30);
+		cmbx_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(((String)cmbx_1.getSelectedItem()).equals("Gift Card")) {
+					pnl_2.remove(txt_2);
+					pnl_2.add(cmbx_2);
+					pnl_2.updateUI();
+				} else {
+					pnl_2.remove(cmbx_2);
+					pnl_2.add(txt_2);
+					pnl_2.updateUI();
+				}				
+			}
+		});
 		
 		JLabel lbl_11 = new JLabel("Amount:");
 		lbl_11.setBounds(10, 60, 90, 30);
 		
-		JTextField txt_2 = new JTextField();
+		txt_2 = new JTextField();
 		txt_2.setBounds(110, 60, 150, 30);
+		
+		ArrayList<String> voucherId = new ArrayList<String>();
+		for(Discount_Voucher v : discountVouchers) {
+			voucherId.add(v.getVoucher());
+		}
+		cmbx_2 = new SearchableComboBox(voucherId);
+		cmbx_2.setBounds(110, 60, 150, 30);
 		
 		JButton btn_1 = new JButton("<html><center>"+"Add"+"<br>"+"Payment"+"</center></html>");
 		btn_1.setBounds(280, 20, 85, 70);
@@ -127,11 +169,21 @@ public class Panel_E extends JPanelX{
 			public void actionPerformed(ActionEvent e) {
 				try {
 					A = (String)cmbx_1.getSelectedItem();
-					B = Utility.checkDouble(txt_2, lbl_11);
+					if(A.equals("Gift Card")) {
+						Utility.checkString(cmbx_2, lbl_11);
+						for(Discount_Voucher v : discountVouchers) {
+							if(((String)cmbx_2.getSelectedItem()).equals(v.getVoucher())){								
+								B = v.getValue();
+							}
+						}
+					}
+					else {
+						B = Utility.checkDouble(txt_2, lbl_11);
+					}
 					
 					OrderController.getOrder().addPayment(new Payment(A, B));
 					OrderController.getOrder().setAmountPaid(OrderController.getOrder().getAmountPaid() + B);
-					amtPaid.setText(Double.toString(B));
+					amtPaid.setText(Double.toString(OrderController.getOrder().getAmountPaid()));
 					Panel_E.model.addRow(new Object[] {"", A, B});
 				} catch (InputException e1) {
 					Utility.showErrorMessage(e1);

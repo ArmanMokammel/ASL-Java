@@ -38,6 +38,7 @@ public class Order_Screen extends JFrame{
 					MainWindow window = new MainWindow();
 					window.createUI();
 				}
+				OrderController.resetOrder();
 				super.windowClosing(e);
 			}
 		});
