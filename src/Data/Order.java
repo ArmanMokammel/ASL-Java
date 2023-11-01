@@ -7,6 +7,7 @@ public class Order {
 	private String branch;
 	private String orderNo;
 	private String accountId;
+	private String orderType;
 	
 	private Customer customer;
 	private LinkedList<OrderMenuItem> items = new LinkedList<OrderMenuItem>();;
@@ -15,24 +16,7 @@ public class Order {
 	private double subTotal = 0;
 	private double total = 0;
 	private double amountPaid = 0;
-	
-	public Order()
-	{
-		
-	}
-	
-	public Order(String branch, String orderNo, String accountId, Customer customer, LinkedList<OrderMenuItem> items,
-			LinkedList<Payment> payments, double subTotal, double total, double amountPaid) {
-		this.branch = branch;
-		this.orderNo = orderNo;
-		this.accountId = accountId;
-		this.customer = customer;
-		this.items = items;
-		this.payments = payments;
-		this.subTotal = subTotal;
-		this.total = total;
-		this.amountPaid = amountPaid;
-	}
+	private double amountDue = 0;
 
 	public void setBranch(String branch) {
 		this.branch = branch;
@@ -56,6 +40,14 @@ public class Order {
 
 	public String getAccountId() {
 		return accountId;
+	}
+
+	public String getOrderType() {
+		return orderType;
+	}
+
+	public void setOrderType(String orderType) {
+		this.orderType = orderType;
 	}
 
 	public Customer getCustomer() {
@@ -90,6 +82,14 @@ public class Order {
 		this.amountPaid = amountPaid;
 	}
 	
+	public double getAmountDue() {
+		return amountDue;
+	}
+
+	public void setAmountDue(double amountDue) {
+		this.amountDue = amountDue;
+	}
+
 	public LinkedList<OrderMenuItem> getItems() {
 		return items;
 	}

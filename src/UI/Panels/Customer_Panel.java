@@ -1,5 +1,6 @@
 package UI.Panels;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -31,6 +32,7 @@ public class Customer_Panel extends JPanelX{
 		customerList = new LinkedList<Customer>();
 		setLayout(null);
 		setBounds(30, 150, window.getWidth() - 70, 550);
+		setBackground(new Color(0,0,0,0));
 		
 		JButton btn_Add = new JButton("New Customer");
 		btn_Add.setBounds(getWidth() - 245, 0, 130, 40);
@@ -66,7 +68,7 @@ public class Customer_Panel extends JPanelX{
 		table.getTableHeader().setReorderingAllowed(false);
 		TableEditRemove_Renderer renderer = new TableEditRemove_Renderer();
 		table.getColumnModel().getColumn(8).setCellRenderer(renderer);
-		table.getColumnModel().getColumn(8).setCellEditor(new TableEditRemove_Editor(model, this));
+		table.getColumnModel().getColumn(8).setCellEditor(new TableEditRemove_Editor(this));
 		
 		JScrollPane sp = new JScrollPane(table);
 		sp.setBounds(70, 60, getWidth() - 180, 400);

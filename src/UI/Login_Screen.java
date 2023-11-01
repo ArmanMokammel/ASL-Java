@@ -83,7 +83,7 @@ public class Login_Screen extends JFrame {
 			}
 		});
 
-		JButtonT1 btn = new JButtonT1("Login", new Color(255,255,255), "img\\btn.png", 6);
+		JButtonT1 btn = new JButtonT1("Login", "img\\btn.png", 6);
 		btn.setBounds(250, 390, 100, 40);
 		btn.setFont(new Font(null, Font.BOLD, 16));
 		btn.addActionListener(new ActionListener() {

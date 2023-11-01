@@ -1,5 +1,6 @@
 package DataEditorUI;
 
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -33,9 +34,19 @@ public class MenuItemEditor_Dialog extends JDialog{
 	
 	public MenuItemEditor_Dialog(MainWindow frame, Item_Panel parent, String title, int row) {
 		super(frame, title, true);
-		setSize(500,500);
+		setSize(565, 597);
 		setLayout(null);
 		setLocationRelativeTo(null);
+		
+		Font f1 = new Font(null, Font.BOLD, 32);
+		Font f2 = new Font(null, Font.BOLD, 18);
+		Font f3 = new Font(null, Font.PLAIN, 16);
+		
+		JLabel Bg_Icon = new JLabel();
+		ImageIcon background = new ImageIcon(Utility.getImage("img\\Editor_UI.png"));
+		Bg_Icon.setIcon(background);
+		Bg_Icon.setOpaque(true);
+		setContentPane(Bg_Icon);
 		
 		txt_discountValue.setText("0.0");
 		

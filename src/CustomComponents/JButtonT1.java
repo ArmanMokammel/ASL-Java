@@ -21,10 +21,9 @@ public class JButtonT1 extends JButton implements MouseListener{
 	private int x;
 	private int y;
 	
-	public JButtonT1(String title, Color color, String imgPath, int scale) {
+	public JButtonT1(String title, String imgPath, int scale) {
 		super(title);
 		this.scale = scale;
-		setBackground(color);
 		setFocusPainted(false);
 		setBorderPainted(false);
 		setContentAreaFilled(false);

@@ -31,9 +31,8 @@ public class Panel_E extends JPanelX{
 	
 	public static JLabel subTotal;
 	public static JLabel total;
-	public static JTextField txt_1 = new JTextField();
 	public static JLabel amtPaid;
-	public static JLabel amtDue = new JLabel();
+	public static JLabel amtDue;
 	
 	private ArrayList<Discount_Voucher> discountVouchers;
 	
@@ -48,6 +47,7 @@ public class Panel_E extends JPanelX{
 		subTotal = new JLabel("0.0");
 		total = new JLabel("0.0");
 		amtPaid = new JLabel("0.0");
+		amtDue = new JLabel("0.0");
 		
 		ArrayList<String> vouchers = Utility.readFile("Discount-Vouchers.ASL");
 		discountVouchers = new ArrayList<Discount_Voucher>();
@@ -68,11 +68,6 @@ public class Panel_E extends JPanelX{
 		
 		subTotal.setBounds(80, 20, 100, 30);
 		subTotal.setOpaque(true);
-		
-		JLabel lbl_discount = new JLabel("Discount %:");
-		lbl_discount.setBounds(10, 60, 70, 30);
-		
-		txt_1.setBounds(80, 60, 100, 30);
 		
 		JSeparator sp = new JSeparator();
 		sp.setBounds(0, 110, 485, 10);
@@ -100,8 +95,6 @@ public class Panel_E extends JPanelX{
 		
 		pnl_1.add(lbl_subTotal);
 		pnl_1.add(subTotal);
-		pnl_1.add(lbl_discount);
-		pnl_1.add(txt_1);
 		pnl_1.add(sp);
 		pnl_1.add(lbl_total);
 		pnl_1.add(total);
@@ -124,12 +117,13 @@ public class Panel_E extends JPanelX{
 		lbl_10.setBounds(10, 20, 90, 30);
 		
 		ArrayList<String> options = Utility.readFile("Payment-Methods.ASL");
+		options.add("Voucher");
 		
 		JComboBox<String> cmbx_1 = new JComboBox<String>(options.toArray(new String[options.size()]));
 		cmbx_1.setBounds(110, 20, 150, 30);
 		cmbx_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(((String)cmbx_1.getSelectedItem()).equals("Gift Card")) {
+				if(((String)cmbx_1.getSelectedItem()).equals("Voucher")) {
 					pnl_2.remove(txt_2);
 					pnl_2.add(cmbx_2);
 					pnl_2.updateUI();
@@ -177,7 +171,9 @@ public class Panel_E extends JPanelX{
 					
 					OrderController.getOrder().addPayment(new Payment(A, B));
 					OrderController.getOrder().setAmountPaid(OrderController.getOrder().getAmountPaid() + B);
+					OrderController.getOrder().setAmountDue(OrderController.getOrder().getTotal() - OrderController.getOrder().getAmountPaid());
 					amtPaid.setText(Double.toString(OrderController.getOrder().getAmountPaid()));
+					amtDue.setText(Double.toString(OrderController.getOrder().getAmountDue()));
 					Panel_E.model.addRow(new Object[] {"", A, B});
 				} catch (InputException e1) {
 					Utility.showErrorMessage(e1);
@@ -230,6 +226,7 @@ public class Panel_E extends JPanelX{
 				subTotal.setText("0.0");
 				total.setText("0.0");
 				amtPaid.setText("0.0");
+				amtPaid.setText("0.0");
 			}
 		});
 		
@@ -243,6 +240,7 @@ public class Panel_E extends JPanelX{
 				Panel_C.model.setRowCount(0);
 				subTotal.setText("0.0");
 				total.setText("0.0");
+				amtPaid.setText("0.0");
 				amtPaid.setText("0.0");
 			}
 		});
@@ -264,6 +262,7 @@ public class Panel_E extends JPanelX{
 				Panel_C.model.setRowCount(0);
 				subTotal.setText("0.0");
 				total.setText("0.0");
+				amtPaid.setText("0.0");
 				amtPaid.setText("0.0");
 			}
 		});
@@ -287,9 +286,10 @@ public class Panel_E extends JPanelX{
 	@Override
 	public void removeRow(int row) {
 		OrderController.getOrder().setAmountPaid(OrderController.getOrder().getAmountPaid() - OrderController.getOrder().getPayments().get(row).getAmount());
+		OrderController.getOrder().setAmountDue(OrderController.getOrder().getTotal() - OrderController.getOrder().getAmountPaid());
 		amtPaid.setText(Double.toString(OrderController.getOrder().getAmountPaid()));
+		amtDue.setText(Double.toString(OrderController.getOrder().getAmountDue()));
 		OrderController.getOrder().removePayment(row);		
 		model.removeRow(row);
-		OrderController.getOrder().setCustomer(null);
 	}
 }

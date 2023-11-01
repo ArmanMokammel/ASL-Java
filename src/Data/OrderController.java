@@ -4,17 +4,20 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+import UI.OrderSystem.Panel_A;
 import Utilities.Utility;
 
 public class OrderController {
 	
-	private static Order order = new Order();
+	private static Order order;
 	
 	private static int lastOrderNo;
 	
 	public static void init(String branch, String accountId) {
+		order = new Order();
 		order.setBranch(branch);
 		order.setAccountId(accountId);
+		order.setOrderType("Dine-in");
 		
 		LocalDate date = LocalDate.now();
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMdd");
@@ -60,5 +63,6 @@ public class OrderController {
 		order.setSubTotal(0);
 		order.setTotal(0);
 		order.setAmountPaid(0);
+		order.setAmountDue(0);
 	}
 }

@@ -3,10 +3,11 @@ package CustomComponents;
 import java.awt.Color;
 
 import javax.swing.ImageIcon;
-import javax.swing.JToggleButton;
+import javax.swing.JButton;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 
-public class MenuButton extends JToggleButton  {
+public class MenuButton extends JButton  {
 	
 	private Color c;
 
@@ -17,10 +18,8 @@ public class MenuButton extends JToggleButton  {
 		setVerticalTextPosition(SwingConstants.BOTTOM);
 		setHorizontalTextPosition(SwingConstants.CENTER);
 		setIconTextGap(5);
-		setOpaque(false);
-		setContentAreaFilled(true);
 		setFocusPainted(false);
 
-//		UIManager.put("Button.select", new Color(0.38f, 0.38f, 0.38f, .2f ));
+		UIManager.put("Button.select", new Color(0.38f, 0.38f, 0.38f, .2f ));
 	}
 }

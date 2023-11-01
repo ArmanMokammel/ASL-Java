@@ -2,7 +2,13 @@ package UI;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.GradientPaint;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.LayoutManager;
+import java.awt.Paint;
+import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -10,7 +16,6 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import CustomComponents.MenuButton;
@@ -32,6 +37,31 @@ public class MainWindow extends JFrame{
 		setLayout(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(1500, 800);
+		JPanel p = new JPanel() {
+			@Override
+			public void setLayout(LayoutManager mgr) {
+				// TODO Auto-generated method stub
+				super.setLayout(null);
+			}
+			
+			@Override
+		    public void paintComponent(Graphics g) {
+				if(g instanceof Graphics2D) {					
+					Graphics2D g2d = (Graphics2D) g;
+					g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+					int w = getWidth(), h = getHeight();
+					Color color2 = new Color(242, 228, 70);
+					Color color1 = new Color(240, 240, 201);
+					GradientPaint gp = new GradientPaint(0, 0, color1, 0, h, color2);
+					g2d.setPaint(gp);
+					g2d.fillRect(0, 0, w, h);
+				}
+				else {
+					super.paintComponent(g);
+				}
+		    }
+		};
+		setContentPane(p);
 		
 		FlowLayout layout = new FlowLayout(FlowLayout.RIGHT);
 		FlowLayout layout2 = new FlowLayout(FlowLayout.RIGHT);

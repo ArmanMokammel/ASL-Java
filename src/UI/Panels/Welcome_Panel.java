@@ -27,6 +27,7 @@ public class Welcome_Panel extends JPanel {
 		Font f2 = new Font(null, Font.PLAIN, 17);
 
 		setLayout(null);
+		setBackground(new Color(0, 0, 0, 0));
 
 		JLabel lbl_Welcome = new JLabel("Welcome " + name + "!");
 		lbl_Welcome.setBounds(210, 30, 500, 30);
@@ -50,22 +51,23 @@ public class Welcome_Panel extends JPanel {
 	    FlowLayout layout = new FlowLayout();
 	    layout.setHgap(15);
 	    JPanel pnl = new JPanel(layout);
+	    pnl.setBackground(new Color(0,0,0,0));
 	    
-		MenuButton btn = new MenuButton("Vouchers", img, Color.white);
+		MenuButton btn = new MenuButton("Vouchers", img, new Color(255, 235, 156));
 		btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				window.swapPanel(new Voucher_Panel(window));
 			}
 		});
 		
-		MenuButton btn1 = new MenuButton("Accounts", img, Color.white);
+		MenuButton btn1 = new MenuButton("Accounts", img, new Color(255, 235, 156));
 		btn1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				window.swapPanel(new Account_Panel(window));				
 			}
 		});
 		
-		MenuButton btn2 = new MenuButton("Order", img, Color.white);
+		MenuButton btn2 = new MenuButton("Order", img, new Color(255, 235, 156));
 		btn2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Order_Screen window = new Order_Screen(false);
@@ -74,21 +76,21 @@ public class Welcome_Panel extends JPanel {
 			}
 		});
 		
-		MenuButton btn3 = new MenuButton("Items", img, Color.white);
+		MenuButton btn3 = new MenuButton("Items", img, new Color(255, 235, 156));
 		btn3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				window.swapPanel(new Item_Panel(window));				
 			}
 		});
 		
-		MenuButton btn4 = new MenuButton("Employees", img, Color.white);
+		MenuButton btn4 = new MenuButton("Employees", img, new Color(255, 235, 156));
 		btn4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				window.swapPanel(new Employee_Panel(window));
 			}
 		});
 		
-		MenuButton btn5 = new MenuButton("Customers", img, Color.white);
+		MenuButton btn5 = new MenuButton("Customers", img, new Color(255, 235, 156));
 		btn5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				window.swapPanel(new Customer_Panel(window));

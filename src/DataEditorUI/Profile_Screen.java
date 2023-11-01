@@ -105,7 +105,7 @@ public class Profile_Screen extends JDialog {
 		add(txt_email);
 		add(txt_accountType);
 
-		JButtonT1 btn_submit = new JButtonT1("Save", new Color(94, 23, 235), "img\\Save.png", 6);
+		JButtonT1 btn_submit = new JButtonT1("Save", "img\\Save.png", 6);
 		btn_submit.setBounds(220, 430, 100, 40);
 		btn_submit.setForeground(Color.white);
 		btn_submit.setFont(new Font(null, Font.BOLD, 16));

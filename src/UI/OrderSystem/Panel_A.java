@@ -15,7 +15,8 @@ import Utilities.Utility;
 
 public class Panel_A extends JPanel {
 	
-	public static JLabel txt_orderNo = new JLabel();
+	public static JLabel txt_orderNo;
+	public static JComboBox<String> cmbx_orderType;
 			
 	public Panel_A(Order_Screen window) {
 		setLayout(null);
@@ -38,21 +39,28 @@ public class Panel_A extends JPanel {
 		
 		JLabel lbl_OrderNo = new JLabel("Order no:");
 		lbl_OrderNo.setBounds(10, 45, 70, 30);	
+		
+		txt_orderNo = new JLabel();
 		txt_orderNo.setBounds(90, 45, 200, 30);
 		txt_orderNo.setOpaque(true);
 		txt_orderNo.setText(OrderController.getOrder().getOrderNo());
 		
 		JLabel lbl_5 = new JLabel("Order Type:");
 		lbl_5.setBounds(10, 80, 70, 30);	
-		JComboBox<String> cmbx_1 = new JComboBox<String>(new String[] {"Dine-in", "Delivery", "Takeout"});
-		cmbx_1.setBounds(90, 80, 200, 30);
+		cmbx_orderType = new JComboBox<String>(new String[] {"Dine-in", "Delivery", "Takeout"});
+		cmbx_orderType.setBounds(90, 80, 200, 30);
+		cmbx_orderType.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				OrderController.getOrder().setOrderType((String)cmbx_orderType.getSelectedItem());
+			}
+		});
 		
 		pnl_2.add(lbl_3);
 		pnl_2.add(txt_1);
 		pnl_2.add(lbl_OrderNo);
 		pnl_2.add(txt_orderNo);
 		pnl_2.add(lbl_5);
-		pnl_2.add(cmbx_1);
+		pnl_2.add(cmbx_orderType);
 		add(pnl_2);
 		
 		

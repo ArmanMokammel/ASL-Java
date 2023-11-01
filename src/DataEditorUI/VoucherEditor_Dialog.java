@@ -1,10 +1,13 @@
 package DataEditorUI;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+import CustomComponents.JButtonT1;
 import Data.Discount_Voucher;
 import Enum.InputType;
 import Exception.InputException;
@@ -25,37 +28,64 @@ public class VoucherEditor_Dialog extends JDialog{
 		
 	public VoucherEditor_Dialog(MainWindow frame, Voucher_Panel parent, String title, int row) {
 		super(frame, title, true);
-		setSize(500,500);
+		setSize(565, 597);
 		setLayout(null);
 		setLocationRelativeTo(null);
 		
+		Font f1 = new Font(null, Font.BOLD, 32);
+		Font f2 = new Font(null, Font.BOLD, 18);
+		Font f3 = new Font(null, Font.PLAIN, 16);
+		
+		JLabel Bg_Icon = new JLabel();
+		ImageIcon background = new ImageIcon(Utility.getImage("img\\Editor_UI.png"));
+		Bg_Icon.setIcon(background);
+		Bg_Icon.setOpaque(true);
+		setContentPane(Bg_Icon);
+		
+		JLabel lbl_title = new JLabel("Voucher");
 		JLabel lbl_customer = new JLabel("Customer:");
 		JLabel lbl_voucherId = new JLabel("Voucher ID:");
 		JLabel lbl_voucher = new JLabel("Voucher:");
 		JLabel lbl_value = new JLabel("Value:");
 		
-		lbl_customer.setBounds(50, 50, 70, 30);
-		lbl_voucherId.setBounds(50, 100, 70, 30);
-		lbl_voucher.setBounds(50, 150, 70, 30);
-		lbl_value.setBounds(50, 200, 70, 30);
+		lbl_title.setBounds(200, 60, 130, 30);
+		lbl_title.setFont(f1);
+		lbl_customer.setBounds(30, 150, 140, 30);
+		lbl_customer.setFont(f2);
+		lbl_customer.setHorizontalAlignment(SwingConstants.RIGHT);
+		lbl_voucherId.setBounds(30, 200, 140, 30);
+		lbl_voucherId.setFont(f2);
+		lbl_voucherId.setHorizontalAlignment(SwingConstants.RIGHT);
+		lbl_voucher.setBounds(30, 250, 140, 30);
+		lbl_voucher.setFont(f2);
+		lbl_voucher.setHorizontalAlignment(SwingConstants.RIGHT);
+		lbl_value.setBounds(30, 300, 140, 30);
+		lbl_value.setFont(f2);
+		lbl_value.setHorizontalAlignment(SwingConstants.RIGHT);
 		
+		add(lbl_title);
 		add(lbl_customer);
 		add(lbl_voucherId);
 		add(lbl_voucher);
 		add(lbl_value);		
 		
-		txt_customer.setBounds(130, 50, 200, 30);
-		txt_voucherId.setBounds(130, 100, 200, 30);
-		txt_voucher.setBounds(130, 150, 200, 30);
-		txt_value.setBounds(130, 200, 200, 30);
+		txt_customer.setBounds(180, 150, 240, 30);
+		txt_customer.setFont(f3);
+		txt_voucherId.setBounds(180, 200, 240, 30);
+		txt_voucherId.setFont(f3);
+		txt_voucher.setBounds(180, 250, 240, 30);
+		txt_voucher.setFont(f3);
+		txt_value.setBounds(180, 300, 240, 30);
+		txt_value.setFont(f3);
 
 		add(txt_customer);
 		add(txt_voucherId);
 		add(txt_voucher);
 		add(txt_value);
 		
-		JButton btn_Submit = new JButton("Submit");
-		btn_Submit.setBounds(180, 260, 80, 35);
+		JButtonT1 btn_Submit = new JButtonT1("Submit", "img\\btn.png", 6);
+		btn_Submit.setBounds(220, 400, 100, 40);
+		btn_Submit.setFont(new Font(null, Font.BOLD, 16));
 		btn_Submit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Discount_Voucher voucher = null;

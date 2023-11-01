@@ -16,7 +16,7 @@ public class EditRemove_Pane extends JPanel{
 	private JButton delete;
 	public int row;
 	
-	public EditRemove_Pane(DefaultTableModel model, JPanelX parent, AbstractCellEditor editor){
+	public EditRemove_Pane(JPanelX parent, AbstractCellEditor editor){
 		setLayout(new FlowLayout(FlowLayout.CENTER, 10, 3));
 		setBackground(null);
 		

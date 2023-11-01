@@ -17,20 +17,24 @@ import Data.OrderController;
 import DataEditorUI.CustomerEditor_Dialog;
 import Enum.DiscountType;
 import UI.OrderSystem.Panel_B;
+import UI.OrderSystem.Panel_E;
 import Utilities.Utility;
 
 public class CustomerWindow extends JDialog{
 	
-	public LinkedList<Customer> customerList = new LinkedList<Customer>();
-	private ArrayList<Customer> entriesFiltered = new ArrayList<Customer>();
+	public LinkedList<Customer> customerList;
+	private ArrayList<Customer> entriesFiltered;
 	public DefaultTableModel model;
 	private Customer selCustomer;
 	
-	public CustomerWindow(JFrame window, Panel_B parent, boolean isNewCustomer) {
+	public CustomerWindow(JFrame window, boolean isNewCustomer) {
 		super(window, "Customer", true);
 		setSize(1000, 800);
 		setLayout(null);
 		setLocationRelativeTo(null);
+		
+		customerList = new LinkedList<Customer>();
+		entriesFiltered = new ArrayList<Customer>();
 		
 		Font f1 = new Font(null, Font.BOLD, 40);
 		
@@ -110,7 +114,10 @@ public class CustomerWindow extends JDialog{
 					else
 						OrderController.getOrder().setTotal(OrderController.getOrder().getSubTotal());
 					
-					parent.p.total.setText(Double.toString(OrderController.getOrder().getTotal()));
+					OrderController.getOrder().setAmountDue(OrderController.getOrder().getTotal() - OrderController.getOrder().getAmountPaid());
+
+					Panel_E.total.setText(Double.toString(OrderController.getOrder().getTotal()));
+					Panel_E.amtDue.setText(Double.toString(OrderController.getOrder().getAmountDue()));
 					dispose();
 				}
 				
@@ -159,8 +166,6 @@ public class CustomerWindow extends JDialog{
 			Thread t = new Thread() {
 				public void run() {
 					CustomerEditor_Dialog dlg = new CustomerEditor_Dialog(window, CustomerWindow.this, "New Customer", -1);
-					if(parent.txt_1.getText() != null)
-						dlg.txt_customerName.setText(parent.txt_1.getText());
 					dlg.setVisible(true);
 				}
 			};

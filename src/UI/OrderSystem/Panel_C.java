@@ -1,6 +1,10 @@
 package UI.OrderSystem;
 
 import java.awt.Color;
+import java.awt.GradientPaint;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 
 import Data.Customer;
 import Data.MenuItem;
@@ -19,8 +23,7 @@ import CustomCell.TableEditRemove_Renderer;
 public class Panel_C extends JPanelX{
 	
 	public static DefaultTableModel model;
-	private Panel_E displayPanel;
-		
+	
 	public Panel_C() {
 		setLayout(null);
 		
@@ -42,24 +45,35 @@ public class Panel_C extends JPanelX{
 					return false;
 			}
 		};
+		table.setOpaque(false);
 		table.setBackground(new Color(253, 253, 214));
 		table.setRowHeight(40);
 		table.getColumnModel().getColumn(0).setCellRenderer(new TableEditRemove_Renderer());
-		table.getColumnModel().getColumn(0).setCellEditor(new TableEditRemove_Editor(model, this));
+		table.getColumnModel().getColumn(0).setCellEditor(new TableEditRemove_Editor(this));
 		
 		JTableHeader tableHeader = table.getTableHeader();
 		tableHeader.setReorderingAllowed(false);
 		tableHeader.setBackground(new Color(0, 51, 118));
 		tableHeader.setForeground(Color.white);
 		
-		JScrollPane sp = new JScrollPane(table);
+		JScrollPane sp = new JScrollPane(table) {
+			@Override
+			protected void paintComponent(Graphics g) {
+				super.paintComponent(g);
+				Graphics2D g2d = (Graphics2D) g;
+				g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+				int w = getWidth(), h = getHeight();
+				Color color1 = new Color(242, 228, 70);
+				Color color2 = new Color(240, 240, 201);
+				GradientPaint gp = new GradientPaint(0, 0, color1, 0, h, color2);
+				g2d.setPaint(gp);
+				g2d.fillRect(0, 0, w, h);
+			}
+		};
 		sp.setBounds(20, 20, 1000, 450);
+		sp.getViewport().setOpaque(false);
 						
 		add(sp);
-	}
-	
-	public void setDisplayPanel(Panel_E displayPanel) {
-		this.displayPanel = displayPanel;
 	}
 	
 	public void addItem(OrderMenuItem ordItem) {
@@ -86,8 +100,10 @@ public class Panel_C extends JPanelX{
 		else {
 			OrderController.getOrder().setTotal(OrderController.getOrder().getSubTotal());
 		}
-		displayPanel.subTotal.setText(Double.toString(OrderController.getOrder().getSubTotal()));
-		displayPanel.total.setText(Double.toString(OrderController.getOrder().getTotal()));
+		OrderController.getOrder().setAmountDue(OrderController.getOrder().getTotal() - OrderController.getOrder().getAmountPaid());
+		Panel_E.subTotal.setText(Double.toString(OrderController.getOrder().getSubTotal()));
+		Panel_E.total.setText(Double.toString(OrderController.getOrder().getTotal()));
+		Panel_E.amtDue.setText(Double.toString(OrderController.getOrder().getAmountDue()));
 		model.addRow(new Object[] {"", item.getItemId(), item.getItemName(), item.getSellingPrice(), ordItem.getDiscountedPrice(), ordItem.getQuantity(), ordItem.getQuantity() * ordItem.getDiscountedPrice()});
 	}
 
@@ -116,8 +132,10 @@ public class Panel_C extends JPanelX{
 		else {
 			OrderController.getOrder().setTotal(OrderController.getOrder().getSubTotal());
 		}
-		displayPanel.subTotal.setText(Double.toString(OrderController.getOrder().getSubTotal()));
-		displayPanel.total.setText(Double.toString(OrderController.getOrder().getTotal()));
+		OrderController.getOrder().setAmountDue(OrderController.getOrder().getTotal() - OrderController.getOrder().getAmountPaid());
+		Panel_E.subTotal.setText(Double.toString(OrderController.getOrder().getSubTotal()));
+		Panel_E.total.setText(Double.toString(OrderController.getOrder().getTotal()));
+		Panel_E.amtDue.setText(Double.toString(OrderController.getOrder().getAmountDue()));
 		model.removeRow(row);
 		model.insertRow(row, new Object[] {"", ordItem.getItem().getItemId(), ordItem.getItem().getItemName(), ordItem.getItem().getSellingPrice(), ordItem.getDiscountedPrice(), ordItem.getQuantity(), ordItem.getQuantity() * ordItem.getDiscountedPrice()});
 		
@@ -140,8 +158,10 @@ public class Panel_C extends JPanelX{
 		else {
 			OrderController.getOrder().setTotal(OrderController.getOrder().getSubTotal());
 		}
-		displayPanel.subTotal.setText(Double.toString(OrderController.getOrder().getSubTotal()));
-		displayPanel.total.setText(Double.toString(OrderController.getOrder().getTotal()));
+		OrderController.getOrder().setAmountDue(OrderController.getOrder().getTotal() - OrderController.getOrder().getAmountPaid());
+		Panel_E.subTotal.setText(Double.toString(OrderController.getOrder().getSubTotal()));
+		Panel_E.total.setText(Double.toString(OrderController.getOrder().getTotal()));
+		Panel_E.amtDue.setText(Double.toString(OrderController.getOrder().getAmountDue()));
 		model.removeRow(row);		
 	}
 }

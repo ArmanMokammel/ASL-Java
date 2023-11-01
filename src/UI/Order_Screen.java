@@ -68,7 +68,6 @@ public class Order_Screen extends JFrame{
 		Panel_D pnl_6 = new Panel_D(pnl_3);
 		Panel_E pnl_4 = new Panel_E();
 		Panel_B pnl_2 = new Panel_B(this, pnl_4);
-		pnl_3.setDisplayPanel(pnl_4);
 		JLabel pnl_5 = new JLabel("Copyright my shit 2.0", SwingConstants.CENTER);
 		
 		pnl_1.setBackground(new Color(198, 198, 198));		

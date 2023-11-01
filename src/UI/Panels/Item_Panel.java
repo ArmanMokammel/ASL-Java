@@ -1,5 +1,6 @@
 package UI.Panels;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -23,16 +24,18 @@ import Utilities.Utility;
 public class Item_Panel extends JPanelX{
 	
 	public DefaultTableModel model;
-	public LinkedList<MenuItem> itemList = new LinkedList<MenuItem>();
+	public LinkedList<MenuItem> itemList;
 	private MainWindow window;
-	public HashMap<String, ArrayList<MenuItem>> items = new HashMap<String, ArrayList<MenuItem>>();
+	public HashMap<String, ArrayList<MenuItem>> items;
 	public JComboBox<String> cmbx_ItemCategory;
 	
 	public Item_Panel(MainWindow window) {
 		this.window = window;
 		itemList = new LinkedList<MenuItem>();
+		items = new HashMap<String, ArrayList<MenuItem>>();
 		setLayout(null);
 		setBounds(30, 150, window.getWidth() - 70, 550);
+		setBackground(new Color(0,0,0,0));
 		
 		cmbx_ItemCategory = new JComboBox<String>();
 		cmbx_ItemCategory.setBounds(70, 0, 200, 40);
@@ -89,7 +92,7 @@ public class Item_Panel extends JPanelX{
 		table.getTableHeader().setReorderingAllowed(false);
 		TableEditRemove_Renderer renderer = new TableEditRemove_Renderer();
 		table.getColumnModel().getColumn(7).setCellRenderer(renderer);
-		table.getColumnModel().getColumn(7).setCellEditor(new TableEditRemove_Editor(model, this));
+		table.getColumnModel().getColumn(7).setCellEditor(new TableEditRemove_Editor(this));
 		
 		JScrollPane sp = new JScrollPane(table);
 		sp.setBounds(70, 60, getWidth() - 180, 400);

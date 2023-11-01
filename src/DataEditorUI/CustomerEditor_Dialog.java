@@ -1,9 +1,11 @@
 package DataEditorUI;
 
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.LinkedList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -52,9 +54,19 @@ public class CustomerEditor_Dialog extends JDialog{
 	}
 	
 	public void showUI(int row) {
-		setSize(500,500);
+		setSize(565, 597);
 		setLayout(null);
 		setLocationRelativeTo(null);
+		
+		Font f1 = new Font(null, Font.BOLD, 32);
+		Font f2 = new Font(null, Font.BOLD, 18);
+		Font f3 = new Font(null, Font.PLAIN, 16);
+		
+		JLabel Bg_Icon = new JLabel();
+		ImageIcon background = new ImageIcon(Utility.getImage("img\\Editor_UI.png"));
+		Bg_Icon.setIcon(background);
+		Bg_Icon.setOpaque(true);
+		setContentPane(Bg_Icon);
 		
 		JLabel lbl_customerID = new JLabel("Customer ID:");
 		JLabel lbl_customerName = new JLabel("Customer Name:");

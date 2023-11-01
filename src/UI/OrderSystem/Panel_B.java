@@ -40,8 +40,8 @@ public class Panel_B extends JPanel{
 		pnl_1.setLayout(null);
 		pnl_1.setBackground(null);
 		
-		JLabel lbl_1 = new JLabel("Select Customer (Required for Due Payments)", SwingConstants.CENTER);
-		lbl_1.setBounds(0, 10, 495, 30);
+		JLabel lbl_1 = new JLabel("Select Customer", SwingConstants.CENTER);
+		lbl_1.setBounds(0, 10, 585, 30);
 		lbl_1.setOpaque(true);
 		lbl_1.setBackground(Color.blue);
 		lbl_1.setForeground(Color.white);
@@ -58,7 +58,7 @@ public class Panel_B extends JPanel{
 				Thread t = new Thread() {
 					@Override
 					public void run() {
-						new CustomerWindow(window, Panel_B.this, true);
+						new CustomerWindow(window, true);
 					}
 				};
 				t.start();
@@ -69,7 +69,7 @@ public class Panel_B extends JPanel{
 		btn_3.setBounds(230, 100, 130, 30);
 		btn_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new CustomerWindow(window, Panel_B.this, false);			
+				new CustomerWindow(window, false);			
 			}
 		});
 		
@@ -111,9 +111,11 @@ public class Panel_B extends JPanel{
 		btn_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {			
 				OrderController.getOrder().setTotal(OrderController.getOrder().getSubTotal());
+				OrderController.getOrder().setAmountDue(OrderController.getOrder().getTotal() - OrderController.getOrder().getAmountPaid());
 				Order_Screen.setCustomer(null);
 				OrderController.getOrder().setCustomer(null);
 				Panel_E.total.setText(Double.toString(OrderController.getOrder().getTotal()));
+				Panel_E.amtDue.setText(Double.toString(OrderController.getOrder().getAmountDue()));
 			}
 		});
 		

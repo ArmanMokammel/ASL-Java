@@ -1,5 +1,6 @@
 package DataEditorUI;
 
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -28,9 +29,19 @@ public class AccountEditor_Dialog extends JDialog{
 	
 	public AccountEditor_Dialog(MainWindow frame, Account_Panel parent, String title, int row) {
 		super(frame, title, true);
-		setSize(500,500);
+		setSize(565, 597);
 		setLayout(null);
 		setLocationRelativeTo(null);
+		
+		Font f1 = new Font(null, Font.BOLD, 32);
+		Font f2 = new Font(null, Font.BOLD, 18);
+		Font f3 = new Font(null, Font.PLAIN, 16);
+		
+		JLabel Bg_Icon = new JLabel();
+		ImageIcon background = new ImageIcon(Utility.getImage("img\\Editor_UI.png"));
+		Bg_Icon.setIcon(background);
+		Bg_Icon.setOpaque(true);
+		setContentPane(Bg_Icon);
 		
 		JLabel lbl_userID = new JLabel("User ID:");
 		JLabel lbl_password = new JLabel("Password:");

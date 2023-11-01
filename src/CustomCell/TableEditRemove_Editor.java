@@ -17,8 +17,8 @@ public class TableEditRemove_Editor extends AbstractCellEditor implements TableC
 
 	private EditRemove_Pane pane;
 
-	public TableEditRemove_Editor(DefaultTableModel model, JPanelX parent) {
-		pane = new EditRemove_Pane(model, parent, this);
+	public TableEditRemove_Editor(JPanelX parent) {
+		pane = new EditRemove_Pane(parent, this);
 		pane.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

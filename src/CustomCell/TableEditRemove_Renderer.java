@@ -13,7 +13,7 @@ public class TableEditRemove_Renderer extends DefaultTableCellRenderer{
 	private EditRemove_Pane pane;
 	
 	public TableEditRemove_Renderer() {
-		pane = new EditRemove_Pane(null, null, null);
+		pane = new EditRemove_Pane(null, null);
 	}
 	
 	@Override
