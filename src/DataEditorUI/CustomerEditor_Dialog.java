@@ -12,8 +12,10 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 
+import CustomComponents.JButtonT1;
 import Data.Customer;
 import Enum.DiscountType;
 import Enum.InputType;
@@ -68,22 +70,34 @@ public class CustomerEditor_Dialog extends JDialog{
 		Bg_Icon.setOpaque(true);
 		setContentPane(Bg_Icon);
 		
-		JLabel lbl_customerID = new JLabel("Customer ID:");
-		JLabel lbl_customerName = new JLabel("Customer Name:");
-		JLabel lbl_gender = new JLabel("Gender:");
-		JLabel lbl_email = new JLabel("Email:");
-		JLabel lbl_phoneNo = new JLabel("Phone No:");
-		JLabel lbl_discountType = new JLabel("Discount Type:");
-		JLabel lbl_specialDiscount = new JLabel("Special Discount:");
+		JLabel lbl_title = new JLabel("Item");
+		JLabel lbl_customerID = new JLabel("Customer ID:", SwingConstants.RIGHT);
+		JLabel lbl_customerName = new JLabel("Customer Name:", SwingConstants.RIGHT);
+		JLabel lbl_gender = new JLabel("Gender:", SwingConstants.RIGHT);
+		JLabel lbl_email = new JLabel("Email:", SwingConstants.RIGHT);
+		JLabel lbl_phoneNo = new JLabel("Phone No:", SwingConstants.RIGHT);
+		JLabel lbl_discountType = new JLabel("Discount Type:", SwingConstants.RIGHT);
+		JLabel lbl_specialDiscount = new JLabel("Special Discount:", SwingConstants.RIGHT);
 		
-		lbl_customerID.setBounds(50,  50,  100,  30);
-		lbl_customerName.setBounds(50,  100,  100,  30);
-		lbl_gender.setBounds(50,  150,  100,  30);
-		lbl_email.setBounds(50,  200,  100,  30);
-		lbl_phoneNo.setBounds(50,  250,  100,  30);
-		lbl_discountType.setBounds(50,  300,  100,  30);
-		lbl_specialDiscount.setBounds(50,  350,  100,  30);
+		lbl_title.setBounds(240, 25, 80, 30);
+		lbl_customerID.setBounds(30, 80, 140, 30);
+		lbl_customerName.setBounds(30, 130, 140, 30);
+		lbl_gender.setBounds(30, 180, 140, 30);
+		lbl_email.setBounds(30, 230, 140, 30);
+		lbl_phoneNo.setBounds(30, 280, 140, 30);
+		lbl_discountType.setBounds(30, 330, 140, 30);
+		lbl_specialDiscount.setBounds(30, 380, 140, 30);
 		
+		lbl_title.setFont(f1);
+		lbl_customerID.setFont(f2);
+		lbl_customerName.setFont(f2);
+		lbl_gender.setFont(f2);
+		lbl_email.setFont(f2);
+		lbl_phoneNo.setFont(f2);
+		lbl_discountType.setFont(f2);
+		lbl_specialDiscount.setFont(f2);
+		
+		add(lbl_title);
 		add(lbl_customerID);
 		add(lbl_customerName);
 		add(lbl_gender);
@@ -92,13 +106,21 @@ public class CustomerEditor_Dialog extends JDialog{
 		add(lbl_discountType);
 		add(lbl_specialDiscount);
 		
-		txt_customerID.setBounds(160,  50,  200,  30);
-		txt_customerName.setBounds(160,  100,  200,  30);
-		cmbx_gender.setBounds(160,  150,  200,  30);
-		txt_email.setBounds(160,  200,  200,  30);
-		txt_phoneNo.setBounds(160,  250,  200,  30);
-		cmbx_discountType.setBounds(160,  300,  200,  30);
-		txt_specialDiscount.setBounds(160,  350,  200,  30);
+		txt_customerID.setBounds(180, 80, 240, 30);
+		txt_customerName.setBounds(180, 130, 240, 30);
+		cmbx_gender.setBounds(180, 180, 240, 30);
+		txt_email.setBounds(180, 230, 240, 30);
+		txt_phoneNo.setBounds(180, 280, 240, 30);
+		cmbx_discountType.setBounds(180, 330, 240, 30);
+		txt_specialDiscount.setBounds(180, 380, 240, 30);
+		
+		txt_customerID.setFont(f3);
+		txt_customerName.setFont(f3);
+		cmbx_gender.setFont(f3);
+		txt_email.setFont(f3);
+		txt_phoneNo.setFont(f3);
+		cmbx_discountType.setFont(f3);
+		txt_specialDiscount.setFont(f3);
 		
 		add(txt_customerID);
 		add(txt_customerName);
@@ -108,8 +130,9 @@ public class CustomerEditor_Dialog extends JDialog{
 		add(cmbx_discountType);
 		add(txt_specialDiscount);
 		
-		JButton btn_submit = new JButton("Submit");
-		btn_submit.setBounds(200,  400,  80,  35);
+		JButtonT1 btn_submit = new JButtonT1("Submit", "img\\btn.png", 6);
+		btn_submit.setBounds(220, 440, 100, 40);
+		btn_submit.setFont(new Font(null, Font.BOLD, 16));
 		btn_submit.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {

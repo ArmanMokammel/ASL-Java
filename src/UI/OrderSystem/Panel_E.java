@@ -30,6 +30,7 @@ public class Panel_E extends JPanelX{
 	private double B;
 	
 	public static JLabel subTotal;
+	public static JLabel discount;
 	public static JLabel total;
 	public static JLabel amtPaid;
 	public static JLabel amtDue;
@@ -45,6 +46,7 @@ public class Panel_E extends JPanelX{
 		setLayout(null);
 		
 		subTotal = new JLabel("0.0");
+		discount = new JLabel("0.0");
 		total = new JLabel("0.0");
 		amtPaid = new JLabel("0.0");
 		amtDue = new JLabel("0.0");
@@ -68,6 +70,12 @@ public class Panel_E extends JPanelX{
 		
 		subTotal.setBounds(80, 20, 100, 30);
 		subTotal.setOpaque(true);
+		
+		JLabel lbl_discount = new JLabel("Discount:");
+		lbl_discount.setBounds(10, 60, 70, 30);
+
+		discount.setBounds(80, 60, 100, 30);
+		discount.setOpaque(true);
 		
 		JSeparator sp = new JSeparator();
 		sp.setBounds(0, 110, 485, 10);
@@ -95,6 +103,8 @@ public class Panel_E extends JPanelX{
 		
 		pnl_1.add(lbl_subTotal);
 		pnl_1.add(subTotal);
+		pnl_1.add(lbl_discount);
+		pnl_1.add(discount);
 		pnl_1.add(sp);
 		pnl_1.add(lbl_total);
 		pnl_1.add(total);
@@ -157,11 +167,12 @@ public class Panel_E extends JPanelX{
 			public void actionPerformed(ActionEvent e) {
 				try {
 					A = (String)cmbx_1.getSelectedItem();
-					if(A.equals("Gift Card")) {
+					if(A.equals("Voucher")) {
 						Utility.checkString(cmbx_2, lbl_11);
 						for(Discount_Voucher v : discountVouchers) {
 							if(((String)cmbx_2.getSelectedItem()).equals(v.getVoucher())){								
 								B = v.getValue();
+								A += " (" + v.getVoucher() + ")";
 							}
 						}
 					}
@@ -224,9 +235,10 @@ public class Panel_E extends JPanelX{
 				model.setRowCount(0);
 				Panel_C.model.setRowCount(0);
 				subTotal.setText("0.0");
+				discount.setText("0.0");
 				total.setText("0.0");
 				amtPaid.setText("0.0");
-				amtPaid.setText("0.0");
+				amtDue.setText("0.0");
 			}
 		});
 		
@@ -239,9 +251,10 @@ public class Panel_E extends JPanelX{
 				model.setRowCount(0);
 				Panel_C.model.setRowCount(0);
 				subTotal.setText("0.0");
+				discount.setText("0.0");
 				total.setText("0.0");
 				amtPaid.setText("0.0");
-				amtPaid.setText("0.0");
+				amtDue.setText("0.0");
 			}
 		});
 		
@@ -261,9 +274,10 @@ public class Panel_E extends JPanelX{
 				model.setRowCount(0);
 				Panel_C.model.setRowCount(0);
 				subTotal.setText("0.0");
+				discount.setText("0.0");
 				total.setText("0.0");
 				amtPaid.setText("0.0");
-				amtPaid.setText("0.0");
+				amtDue.setText("0.0");
 			}
 		});
 		

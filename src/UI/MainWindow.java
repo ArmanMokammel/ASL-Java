@@ -40,7 +40,6 @@ public class MainWindow extends JFrame{
 		JPanel p = new JPanel() {
 			@Override
 			public void setLayout(LayoutManager mgr) {
-				// TODO Auto-generated method stub
 				super.setLayout(null);
 			}
 			
@@ -51,7 +50,7 @@ public class MainWindow extends JFrame{
 					g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
 					int w = getWidth(), h = getHeight();
 					Color color2 = new Color(242, 228, 70);
-					Color color1 = new Color(240, 240, 201);
+					Color color1 = new Color(184, 183, 178);
 					GradientPaint gp = new GradientPaint(0, 0, color1, 0, h, color2);
 					g2d.setPaint(gp);
 					g2d.fillRect(0, 0, w, h);
@@ -124,7 +123,6 @@ public class MainWindow extends JFrame{
 		MenuButton btn5 = new MenuButton("Customers", img, null);
 		btn5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				/* Swap Panel code goes here */
 				MainWindow.this.swapPanel(new Customer_Panel(MainWindow.this));
 			}
 		});
@@ -179,7 +177,7 @@ public class MainWindow extends JFrame{
 		pnl_Head.add(pnl_Items);
 		pnl_Head.add(btnA);
 		
-		JLabel lb2 = new JLabel("Copyright my shit", SwingConstants.CENTER);
+		JLabel lb2 = new JLabel("Copyright ASL", SwingConstants.CENTER);
 		lb2.setOpaque(true);
 		lb2.setBackground(Color.lightGray);
 		

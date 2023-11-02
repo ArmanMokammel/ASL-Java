@@ -24,7 +24,7 @@ import Utilities.Utility;
 public class Voucher_Panel extends JPanelX{
 	
 	public DefaultTableModel model;
-	public LinkedList<Discount_Voucher> voucherList = new LinkedList<Discount_Voucher>();
+	public LinkedList<Discount_Voucher> voucherList;
 	private MainWindow window;
 	
 	public Voucher_Panel(MainWindow window){

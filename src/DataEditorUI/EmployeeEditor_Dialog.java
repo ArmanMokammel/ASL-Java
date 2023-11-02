@@ -10,7 +10,9 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
+import CustomComponents.JButtonT1;
 import Data.Employee;
 import Enum.InputType;
 import Exception.InputException;
@@ -46,20 +48,31 @@ public class EmployeeEditor_Dialog extends JDialog{
 		Bg_Icon.setOpaque(true);
 		setContentPane(Bg_Icon);
 		
-		JLabel lbl_employeeID = new JLabel("Employee ID:");
-		JLabel lbl_employeeName = new JLabel("Employee Name:");
-		JLabel lbl_gender = new JLabel("Gender:");
-		JLabel lbl_phoneNo = new JLabel("Phone No:");
-		JLabel lbl_email = new JLabel("Email:");
-		JLabel lbl_accountId = new JLabel("Account ID:");
+		JLabel lbl_title = new JLabel("Employee");
+		JLabel lbl_employeeID = new JLabel("Employee ID:", SwingConstants.RIGHT);
+		JLabel lbl_employeeName = new JLabel("Employee Name:", SwingConstants.RIGHT);
+		JLabel lbl_gender = new JLabel("Gender:", SwingConstants.RIGHT);
+		JLabel lbl_phoneNo = new JLabel("Phone No:", SwingConstants.RIGHT);
+		JLabel lbl_email = new JLabel("Email:", SwingConstants.RIGHT);
+		JLabel lbl_accountId = new JLabel("Account ID:", SwingConstants.RIGHT);
 		
-		lbl_employeeID.setBounds(50, 50, 100, 30);
-		lbl_employeeName.setBounds(50, 100, 100, 30);
-		lbl_gender.setBounds(50, 150, 100, 30);
-		lbl_phoneNo.setBounds(50, 200, 100, 30);
-		lbl_email.setBounds(50, 250, 100, 30);
-		lbl_accountId.setBounds(50, 300, 100, 30);
+		lbl_title.setBounds(200, 40, 150, 30);
+		lbl_employeeID.setBounds(30, 110, 140, 30);
+		lbl_employeeName.setBounds(30, 160, 140, 30);
+		lbl_gender.setBounds(30, 210, 140, 30);
+		lbl_phoneNo.setBounds(30, 260, 140, 30);
+		lbl_email.setBounds(30, 310, 140, 30);
+		lbl_accountId.setBounds(30, 360, 140, 30);
 		
+		lbl_title.setFont(f1);
+		lbl_employeeID.setFont(f2);
+		lbl_employeeName.setFont(f2);
+		lbl_gender.setFont(f2);
+		lbl_phoneNo.setFont(f2);
+		lbl_email.setFont(f2);
+		lbl_accountId.setFont(f2);
+		
+		add(lbl_title);
 		add(lbl_employeeID);
 		add(lbl_employeeName);
 		add(lbl_gender);
@@ -67,12 +80,19 @@ public class EmployeeEditor_Dialog extends JDialog{
 		add(lbl_email);
 		add(lbl_accountId);
 		
-		txt_employeeID.setBounds(160, 50, 200, 30);
-		txt_employeeName.setBounds(160, 100, 200, 30);
-		cmbx_gender.setBounds(160, 150, 200, 30);
-		txt_phoneNo.setBounds(160, 200, 200, 30);
-		txt_email.setBounds(160, 250, 200, 30);
-		txt_accountId.setBounds(160, 300, 200, 30);
+		txt_employeeID.setBounds(180, 110, 240, 30);
+		txt_employeeName.setBounds(180, 160, 240, 30);
+		cmbx_gender.setBounds(180, 210, 240, 30);
+		txt_phoneNo.setBounds(180, 260, 240, 30);
+		txt_email.setBounds(180, 310, 240, 30);
+		txt_accountId.setBounds(180, 360, 240, 30);
+		
+		txt_employeeID.setFont(f3);
+		txt_employeeName.setFont(f3);
+		cmbx_gender.setFont(f3);
+		txt_phoneNo.setFont(f3);
+		txt_email.setFont(f3);
+		txt_accountId.setFont(f3);
 		
 		add(txt_employeeID);
 		add(txt_employeeName);
@@ -81,8 +101,9 @@ public class EmployeeEditor_Dialog extends JDialog{
 		add(txt_email);
 		add(txt_accountId);
 		
-		JButton btn_submit = new JButton("Submit");
-		btn_submit.setBounds(180, 350, 80, 35);
+		JButtonT1 btn_submit = new JButtonT1("Submit", "img\\btn.png", 6);
+		btn_submit.setBounds(220, 430, 100, 40);
+		btn_submit.setFont(new Font(null, Font.BOLD, 16));
 		btn_submit.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {

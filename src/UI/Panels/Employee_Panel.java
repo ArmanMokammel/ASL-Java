@@ -22,7 +22,7 @@ import Utilities.Utility;
 public class Employee_Panel extends JPanelX{
 	
 	public DefaultTableModel model;
-	public LinkedList<Employee> employeeList = new LinkedList<Employee>();
+	public LinkedList<Employee> employeeList;
 	private MainWindow window;
 	
 	public Employee_Panel(MainWindow window) {

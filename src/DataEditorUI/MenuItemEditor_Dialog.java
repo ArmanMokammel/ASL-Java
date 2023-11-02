@@ -10,6 +10,7 @@ import java.util.Map;
 
 import javax.swing.*;
 
+import CustomComponents.JButtonT1;
 import Data.MenuItem;
 import Enum.DiscountType;
 import Enum.InputType;
@@ -50,22 +51,34 @@ public class MenuItemEditor_Dialog extends JDialog{
 		
 		txt_discountValue.setText("0.0");
 		
-		JLabel lbl_itemCategory = new JLabel("Item Category:");
-		JLabel lbl_itemId = new JLabel("Item ID:");
-		JLabel lbl_itemName = new JLabel("Item Name:");
-		JLabel lbl_costPrice = new JLabel("Cost Price:");
-		JLabel lbl_sellingPrice = new JLabel("Selling Price:");
-		JLabel lbl_discountType = new JLabel("Discount Type:");
-		JLabel lbl_discountValue = new JLabel("Discount Value:");
+		JLabel lbl_title = new JLabel("Item");
+		JLabel lbl_itemCategory = new JLabel("Item Category:", SwingConstants.RIGHT);
+		JLabel lbl_itemId = new JLabel("Item ID:", SwingConstants.RIGHT);
+		JLabel lbl_itemName = new JLabel("Item Name:", SwingConstants.RIGHT);
+		JLabel lbl_costPrice = new JLabel("Cost Price:", SwingConstants.RIGHT);
+		JLabel lbl_sellingPrice = new JLabel("Selling Price:", SwingConstants.RIGHT);
+		JLabel lbl_discountType = new JLabel("Discount Type:", SwingConstants.RIGHT);
+		JLabel lbl_discountValue = new JLabel("Discount Value:", SwingConstants.RIGHT);
 		
-		lbl_itemCategory.setBounds(50, 50, 80, 30);
-		lbl_itemId.setBounds(50, 100, 70, 30);
-		lbl_itemName.setBounds(50, 150, 70, 30);
-		lbl_costPrice.setBounds(50, 200, 70, 30);
-		lbl_sellingPrice.setBounds(50, 250, 80, 30);
-		lbl_discountType.setBounds(50, 300, 80, 30);
-		lbl_discountValue.setBounds(50, 350, 80, 30);
+		lbl_title.setBounds(240, 25, 80, 30);
+		lbl_itemCategory.setBounds(30, 80, 140, 30);
+		lbl_itemId.setBounds(30, 130, 140, 30);
+		lbl_itemName.setBounds(30, 180, 140, 30);
+		lbl_costPrice.setBounds(30, 230, 140, 30);
+		lbl_sellingPrice.setBounds(30, 280, 140, 30);
+		lbl_discountType.setBounds(30, 330, 140, 30);
+		lbl_discountValue.setBounds(30, 380, 140, 30);
 		
+		lbl_title.setFont(f1);
+		lbl_itemCategory.setFont(f2);
+		lbl_itemId.setFont(f2);
+		lbl_itemName.setFont(f2);
+		lbl_costPrice.setFont(f2);
+		lbl_sellingPrice.setFont(f2);
+		lbl_discountType.setFont(f2);
+		lbl_discountValue.setFont(f2);
+		
+		add(lbl_title);
 		add(lbl_itemCategory);
 		add(lbl_itemId);
 		add(lbl_itemName);
@@ -74,13 +87,21 @@ public class MenuItemEditor_Dialog extends JDialog{
 		add(lbl_discountType);
 		add(lbl_discountValue);
 		
-		cmbx_category.setBounds(140, 50, 200, 30);
-		txt_itemId.setBounds(140, 100, 200, 30);
-		txt_itemName.setBounds(140, 150, 200, 30);
-		txt_costPrice.setBounds(140, 200, 200, 30);
-		txt_sellingPrice.setBounds(140, 250, 200, 30);
-		cmbx_discountType.setBounds(140, 300, 200, 30);
-		txt_discountValue.setBounds(140, 350, 200, 30);
+		cmbx_category.setBounds(180, 80, 240, 30);
+		txt_itemId.setBounds(180, 130, 240, 30);
+		txt_itemName.setBounds(180, 180, 240, 30);
+		txt_costPrice.setBounds(180, 230, 240, 30);
+		txt_sellingPrice.setBounds(180, 280, 240, 30);
+		cmbx_discountType.setBounds(180, 330, 240, 30);
+		txt_discountValue.setBounds(180, 380, 240, 30);
+		
+		cmbx_category.setFont(f3);
+		txt_itemId.setFont(f3);
+		txt_itemName.setFont(f3);
+		txt_costPrice.setFont(f3);
+		txt_sellingPrice.setFont(f3);
+		cmbx_discountType.setFont(f3);
+		txt_discountValue.setFont(f3);
 		
 		ArrayList<String> categoryList = Utility.readFile("Item-Categories.ASL");
 		
@@ -98,8 +119,9 @@ public class MenuItemEditor_Dialog extends JDialog{
 		add(cmbx_discountType);
 		add(txt_discountValue);
 		
-		JButton btn_Submit = new JButton("Submit");
-		btn_Submit.setBounds(180, 390, 80, 35);
+		JButtonT1 btn_Submit = new JButtonT1("Submit", "img\\btn.png", 6);
+		btn_Submit.setBounds(220, 440, 100, 40);
+		btn_Submit.setFont(new Font(null, Font.BOLD, 16));
 		btn_Submit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MenuItem item = null;

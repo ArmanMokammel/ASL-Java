@@ -107,15 +107,23 @@ public class CustomerWindow extends JDialog{
 					selCustomer = entriesFiltered.get(table.getSelectedRow());
 					OrderController.getOrder().setCustomer(selCustomer);
 					Order_Screen.setCustomer(selCustomer);
-					if(selCustomer.getSpecialDiscountType() == DiscountType.Value)
-						OrderController.getOrder().setTotal(OrderController.getOrder().getSubTotal() - selCustomer.getSpecialDiscount());
-					else if (selCustomer.getSpecialDiscountType() == DiscountType.Percentage)
-						OrderController.getOrder().setTotal(Math.round((OrderController.getOrder().getSubTotal() * (100 - selCustomer.getSpecialDiscount()) / 100.0) * 100.0) / 100.0);
-					else
-						OrderController.getOrder().setTotal(OrderController.getOrder().getSubTotal());
 					
+					double discountVal = 0;
+					
+					if(selCustomer.getSpecialDiscountType() == DiscountType.Value)
+						discountVal = OrderController.getOrder().getSubTotal() - selCustomer.getSpecialDiscount();
+//						OrderController.getOrder().setTotal(OrderController.getOrder().getSubTotal() - selCustomer.getSpecialDiscount());
+					else if (selCustomer.getSpecialDiscountType() == DiscountType.Percentage)
+						discountVal = Math.round((OrderController.getOrder().getSubTotal() * (100 - selCustomer.getSpecialDiscount()) / 100.0) * 100.0) / 100.0;
+//						OrderController.getOrder().setTotal(Math.round((OrderController.getOrder().getSubTotal() * (100 - selCustomer.getSpecialDiscount()) / 100.0) * 100.0) / 100.0);
+					else
+						discountVal = OrderController.getOrder().getSubTotal();
+//						OrderController.getOrder().setTotal(OrderController.getOrder().getSubTotal());
+					
+					OrderController.getOrder().setTotal(discountVal);
 					OrderController.getOrder().setAmountDue(OrderController.getOrder().getTotal() - OrderController.getOrder().getAmountPaid());
 
+					Panel_E.discount.setText(Double.toString(OrderController.getOrder().getSubTotal() - discountVal));
 					Panel_E.total.setText(Double.toString(OrderController.getOrder().getTotal()));
 					Panel_E.amtDue.setText(Double.toString(OrderController.getOrder().getAmountDue()));
 					dispose();
@@ -128,6 +136,9 @@ public class CustomerWindow extends JDialog{
 		btn_2.setBounds(5, 80, 215, 70);
 		btn_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(table.getSelectedRow() == -1)
+					return;
+				
 				int row;
 				selCustomer = entriesFiltered.get(table.getSelectedRow());
 				

@@ -21,7 +21,7 @@ import Utilities.Utility;
 public class Account_Panel extends JPanelX{
 	
 	public DefaultTableModel model;
-	public LinkedList<Account> accountList = new LinkedList<Account>();
+	public LinkedList<Account> accountList;
 	private MainWindow window;
 
 	public Account_Panel(MainWindow window){

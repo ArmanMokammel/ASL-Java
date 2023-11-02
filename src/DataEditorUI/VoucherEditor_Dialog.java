@@ -43,25 +43,22 @@ public class VoucherEditor_Dialog extends JDialog{
 		setContentPane(Bg_Icon);
 		
 		JLabel lbl_title = new JLabel("Voucher");
-		JLabel lbl_customer = new JLabel("Customer:");
-		JLabel lbl_voucherId = new JLabel("Voucher ID:");
-		JLabel lbl_voucher = new JLabel("Voucher:");
-		JLabel lbl_value = new JLabel("Value:");
+		JLabel lbl_customer = new JLabel("Customer:", SwingConstants.RIGHT);
+		JLabel lbl_voucherId = new JLabel("Voucher ID:", SwingConstants.RIGHT);
+		JLabel lbl_voucher = new JLabel("Voucher:", SwingConstants.RIGHT);
+		JLabel lbl_value = new JLabel("Value:", SwingConstants.RIGHT);
 		
-		lbl_title.setBounds(200, 60, 130, 30);
 		lbl_title.setFont(f1);
-		lbl_customer.setBounds(30, 150, 140, 30);
 		lbl_customer.setFont(f2);
-		lbl_customer.setHorizontalAlignment(SwingConstants.RIGHT);
-		lbl_voucherId.setBounds(30, 200, 140, 30);
 		lbl_voucherId.setFont(f2);
-		lbl_voucherId.setHorizontalAlignment(SwingConstants.RIGHT);
-		lbl_voucher.setBounds(30, 250, 140, 30);
 		lbl_voucher.setFont(f2);
-		lbl_voucher.setHorizontalAlignment(SwingConstants.RIGHT);
-		lbl_value.setBounds(30, 300, 140, 30);
 		lbl_value.setFont(f2);
-		lbl_value.setHorizontalAlignment(SwingConstants.RIGHT);
+		
+		lbl_title.setBounds(210, 60, 130, 30);
+		lbl_customer.setBounds(30, 150, 140, 30);
+		lbl_voucherId.setBounds(30, 200, 140, 30);
+		lbl_voucher.setBounds(30, 250, 140, 30);
+		lbl_value.setBounds(30, 300, 140, 30);
 		
 		add(lbl_title);
 		add(lbl_customer);
@@ -70,12 +67,13 @@ public class VoucherEditor_Dialog extends JDialog{
 		add(lbl_value);		
 		
 		txt_customer.setBounds(180, 150, 240, 30);
-		txt_customer.setFont(f3);
 		txt_voucherId.setBounds(180, 200, 240, 30);
-		txt_voucherId.setFont(f3);
 		txt_voucher.setBounds(180, 250, 240, 30);
-		txt_voucher.setFont(f3);
 		txt_value.setBounds(180, 300, 240, 30);
+		
+		txt_customer.setFont(f3);
+		txt_voucherId.setFont(f3);
+		txt_voucher.setFont(f3);
 		txt_value.setFont(f3);
 
 		add(txt_customer);

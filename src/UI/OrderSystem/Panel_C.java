@@ -88,20 +88,30 @@ public class Panel_C extends JPanelX{
 			ordItem.setDiscountedPrice(item.getSellingPrice());
 		
 		OrderController.getOrder().setSubTotal(OrderController.getOrder().getSubTotal() + ordItem.getQuantity() * ordItem.getDiscountedPrice());
+		
+		double discountVal = 0;
 		if(OrderController.getOrder().getCustomer() != null) {
 			Customer customer = OrderController.getOrder().getCustomer();
+			
 			if(customer.getSpecialDiscountType() == DiscountType.Value)
-				OrderController.getOrder().setTotal(OrderController.getOrder().getSubTotal() - customer.getSpecialDiscount());
+				discountVal = OrderController.getOrder().getSubTotal() - customer.getSpecialDiscount();
+//				OrderController.getOrder().setTotal(OrderController.getOrder().getSubTotal() - selCustomer.getSpecialDiscount());
 			else if (customer.getSpecialDiscountType() == DiscountType.Percentage)
-				OrderController.getOrder().setTotal(Math.round((OrderController.getOrder().getSubTotal() * (100 - customer.getSpecialDiscount()) / 100.0) * 100.0) / 100.0);
+				discountVal = Math.round((OrderController.getOrder().getSubTotal() * (100 - customer.getSpecialDiscount()) / 100.0) * 100.0) / 100.0;
+//				OrderController.getOrder().setTotal(Math.round((OrderController.getOrder().getSubTotal() * (100 - selCustomer.getSpecialDiscount()) / 100.0) * 100.0) / 100.0);
 			else
-				OrderController.getOrder().setTotal(OrderController.getOrder().getSubTotal());
+				discountVal = OrderController.getOrder().getSubTotal();
+//				OrderController.getOrder().setTotal(OrderController.getOrder().getSubTotal());
+			
 		}
 		else {
-			OrderController.getOrder().setTotal(OrderController.getOrder().getSubTotal());
+//			OrderController.getOrder().setTotal(OrderController.getOrder().getSubTotal());
 		}
+		OrderController.getOrder().setTotal(discountVal);
+
 		OrderController.getOrder().setAmountDue(OrderController.getOrder().getTotal() - OrderController.getOrder().getAmountPaid());
 		Panel_E.subTotal.setText(Double.toString(OrderController.getOrder().getSubTotal()));
+		Panel_E.discount.setText(Double.toString(OrderController.getOrder().getSubTotal() - discountVal));
 		Panel_E.total.setText(Double.toString(OrderController.getOrder().getTotal()));
 		Panel_E.amtDue.setText(Double.toString(OrderController.getOrder().getAmountDue()));
 		model.addRow(new Object[] {"", item.getItemId(), item.getItemName(), item.getSellingPrice(), ordItem.getDiscountedPrice(), ordItem.getQuantity(), ordItem.getQuantity() * ordItem.getDiscountedPrice()});
@@ -120,20 +130,30 @@ public class Panel_C extends JPanelX{
 		OrderController.getOrder().setSubTotal(OrderController.getOrder().getSubTotal() - ordItem.getQuantity() * ordItem.getDiscountedPrice());
 		ordItem.setQuantity(quantity);
 		OrderController.getOrder().setSubTotal(OrderController.getOrder().getSubTotal() + quantity * ordItem.getDiscountedPrice());
+		
+		double discountVal = 0;
 		if(OrderController.getOrder().getCustomer() != null) {
 			Customer customer = OrderController.getOrder().getCustomer();
+			
 			if(customer.getSpecialDiscountType() == DiscountType.Value)
-				OrderController.getOrder().setTotal(OrderController.getOrder().getSubTotal() - customer.getSpecialDiscount());
+				discountVal = OrderController.getOrder().getSubTotal() - customer.getSpecialDiscount();
+//				OrderController.getOrder().setTotal(OrderController.getOrder().getSubTotal() - selCustomer.getSpecialDiscount());
 			else if (customer.getSpecialDiscountType() == DiscountType.Percentage)
-				OrderController.getOrder().setTotal(Math.round((OrderController.getOrder().getSubTotal() * (100 - customer.getSpecialDiscount()) / 100.0) * 100.0) / 100.0);
+				discountVal = Math.round((OrderController.getOrder().getSubTotal() * (100 - customer.getSpecialDiscount()) / 100.0) * 100.0) / 100.0;
+//				OrderController.getOrder().setTotal(Math.round((OrderController.getOrder().getSubTotal() * (100 - selCustomer.getSpecialDiscount()) / 100.0) * 100.0) / 100.0);
 			else
-				OrderController.getOrder().setTotal(OrderController.getOrder().getSubTotal());
+				discountVal = OrderController.getOrder().getSubTotal();
+//				OrderController.getOrder().setTotal(OrderController.getOrder().getSubTotal());
+			
 		}
 		else {
-			OrderController.getOrder().setTotal(OrderController.getOrder().getSubTotal());
+//			OrderController.getOrder().setTotal(OrderController.getOrder().getSubTotal());
 		}
+		OrderController.getOrder().setTotal(discountVal);
+		
 		OrderController.getOrder().setAmountDue(OrderController.getOrder().getTotal() - OrderController.getOrder().getAmountPaid());
 		Panel_E.subTotal.setText(Double.toString(OrderController.getOrder().getSubTotal()));
+		Panel_E.discount.setText(Double.toString(OrderController.getOrder().getSubTotal() - discountVal));
 		Panel_E.total.setText(Double.toString(OrderController.getOrder().getTotal()));
 		Panel_E.amtDue.setText(Double.toString(OrderController.getOrder().getAmountDue()));
 		model.removeRow(row);
@@ -146,20 +166,30 @@ public class Panel_C extends JPanelX{
 		OrderMenuItem ordItem = OrderController.getOrder().getItems().get(row);
 		OrderController.getOrder().setSubTotal(OrderController.getOrder().getSubTotal() - ordItem.getQuantity() * ordItem.getDiscountedPrice());
 		OrderController.getOrder().removeItem(row);
+		
+		double discountVal = 0;
 		if(OrderController.getOrder().getCustomer() != null) {
 			Customer customer = OrderController.getOrder().getCustomer();
+			
 			if(customer.getSpecialDiscountType() == DiscountType.Value)
-				OrderController.getOrder().setTotal(OrderController.getOrder().getSubTotal() - customer.getSpecialDiscount());
+				discountVal = OrderController.getOrder().getSubTotal() - customer.getSpecialDiscount();
+//				OrderController.getOrder().setTotal(OrderController.getOrder().getSubTotal() - selCustomer.getSpecialDiscount());
 			else if (customer.getSpecialDiscountType() == DiscountType.Percentage)
-				OrderController.getOrder().setTotal(Math.round((OrderController.getOrder().getSubTotal() * (100 - customer.getSpecialDiscount()) / 100.0) * 100.0) / 100.0);
+				discountVal = Math.round((OrderController.getOrder().getSubTotal() * (100 - customer.getSpecialDiscount()) / 100.0) * 100.0) / 100.0;
+//				OrderController.getOrder().setTotal(Math.round((OrderController.getOrder().getSubTotal() * (100 - selCustomer.getSpecialDiscount()) / 100.0) * 100.0) / 100.0);
 			else
-				OrderController.getOrder().setTotal(OrderController.getOrder().getSubTotal());
+				discountVal = OrderController.getOrder().getSubTotal();
+//				OrderController.getOrder().setTotal(OrderController.getOrder().getSubTotal());
+			
 		}
 		else {
-			OrderController.getOrder().setTotal(OrderController.getOrder().getSubTotal());
+//			OrderController.getOrder().setTotal(OrderController.getOrder().getSubTotal());
 		}
+		OrderController.getOrder().setTotal(discountVal);
+		
 		OrderController.getOrder().setAmountDue(OrderController.getOrder().getTotal() - OrderController.getOrder().getAmountPaid());
 		Panel_E.subTotal.setText(Double.toString(OrderController.getOrder().getSubTotal()));
+		Panel_E.discount.setText(Double.toString(OrderController.getOrder().getSubTotal() - discountVal));
 		Panel_E.total.setText(Double.toString(OrderController.getOrder().getTotal()));
 		Panel_E.amtDue.setText(Double.toString(OrderController.getOrder().getAmountDue()));
 		model.removeRow(row);		

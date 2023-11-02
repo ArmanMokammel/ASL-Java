@@ -24,7 +24,7 @@ import UI.MainWindow;
 public class Customer_Panel extends JPanelX{
 	
 	public DefaultTableModel model;
-	public LinkedList<Customer> customerList = new LinkedList<Customer>();
+	public LinkedList<Customer> customerList;
 	private MainWindow window;
 	
 	public Customer_Panel(MainWindow window){

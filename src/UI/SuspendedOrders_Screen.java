@@ -172,6 +172,7 @@ public class SuspendedOrders_Screen extends JDialog{
 					}
 					
 					Panel_E.subTotal.setText(Double.toString(selOrder.getSubTotal()));
+					Panel_E.discount.setText("0.0");
 					Panel_E.total.setText(Double.toString(selOrder.getTotal()));
 					Panel_E.amtPaid.setText(Double.toString(selOrder.getAmountPaid()));
 					

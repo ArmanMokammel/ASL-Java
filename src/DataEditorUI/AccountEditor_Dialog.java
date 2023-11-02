@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+import CustomComponents.JButtonT1;
 import Data.Account;
 import Enum.AccountType;
 import Enum.InputType;
@@ -43,20 +44,31 @@ public class AccountEditor_Dialog extends JDialog{
 		Bg_Icon.setOpaque(true);
 		setContentPane(Bg_Icon);
 		
-		JLabel lbl_userID = new JLabel("User ID:");
-		JLabel lbl_password = new JLabel("Password:");
-		JLabel lbl_name = new JLabel("Name:");
-		JLabel lbl_employeeID = new JLabel("Employee ID:");
-		JLabel lbl_email = new JLabel("Email Address:");
-		JLabel lbl_accountType = new JLabel("Account type:");
+		JLabel lbl_title = new JLabel("Account");
+		JLabel lbl_userID = new JLabel("User ID:", SwingConstants.RIGHT);
+		JLabel lbl_password = new JLabel("Password:", SwingConstants.RIGHT);
+		JLabel lbl_name = new JLabel("Name:", SwingConstants.RIGHT);
+		JLabel lbl_employeeID = new JLabel("Employee ID:", SwingConstants.RIGHT);
+		JLabel lbl_email = new JLabel("Email Address:", SwingConstants.RIGHT);
+		JLabel lbl_accountType = new JLabel("Account type:", SwingConstants.RIGHT);
 		
-		lbl_userID.setBounds(50, 50, 100, 30);
-		lbl_password.setBounds(50, 100, 100, 30);
-		lbl_accountType.setBounds(50, 150, 100, 30);
-		lbl_name.setBounds(50, 200, 100, 30);
-		lbl_employeeID.setBounds(50, 250, 100, 30);
-		lbl_email.setBounds(50, 300, 100, 30);
+		lbl_title.setBounds(210, 40, 130, 30);
+		lbl_userID.setBounds(30, 110, 140, 30);
+		lbl_password.setBounds(30, 160, 140, 30);
+		lbl_accountType.setBounds(30, 210, 140, 30);
+		lbl_name.setBounds(30, 260, 140, 30);
+		lbl_employeeID.setBounds(30, 310, 140, 30);
+		lbl_email.setBounds(30, 360, 140, 30);
 		
+		lbl_title.setFont(f1);
+		lbl_userID.setFont(f2);
+		lbl_password.setFont(f2);
+		lbl_accountType.setFont(f2);
+		lbl_name.setFont(f2);
+		lbl_employeeID.setFont(f2);
+		lbl_email.setFont(f2);
+		
+		add(lbl_title);
 		add(lbl_userID);
 		add(lbl_password);
 		add(lbl_name);
@@ -64,12 +76,19 @@ public class AccountEditor_Dialog extends JDialog{
 		add(lbl_email);
 		add(lbl_accountType);
 		
-		txt_userID.setBounds(160, 50, 200, 30);
-		txt_password.setBounds(160, 100, 200, 30);
-		cmbx_accountType.setBounds(160, 150, 200, 30);
-		txt_name.setBounds(160, 200, 200, 30);
-		txt_employeeID.setBounds(160, 250, 200, 30);
-		txt_email.setBounds(160, 300, 200, 30);
+		txt_userID.setBounds(180, 110, 240, 30);
+		txt_password.setBounds(180, 160, 240, 30);
+		cmbx_accountType.setBounds(180, 210, 240, 30);
+		txt_name.setBounds(180, 260, 240, 30);
+		txt_employeeID.setBounds(180, 310, 240, 30);
+		txt_email.setBounds(180, 360, 240, 30);
+		
+		txt_userID.setFont(f3);
+		txt_password.setFont(f3);
+		cmbx_accountType.setFont(f3);
+		txt_name.setFont(f3);
+		txt_employeeID.setFont(f3);
+		txt_email.setFont(f3);
 		
 		add(txt_userID);
 		add(txt_password);
@@ -78,8 +97,9 @@ public class AccountEditor_Dialog extends JDialog{
 		add(txt_email);
 		add(cmbx_accountType);
 		
-		JButton btn_submit = new JButton("Submit");
-		btn_submit.setBounds(180, 350, 80, 35);
+		JButtonT1 btn_submit = new JButtonT1("Submit", "img\\btn.png", 6);
+		btn_submit.setBounds(220, 430, 100, 40);
+		btn_submit.setFont(new Font(null, Font.BOLD, 16));
 		btn_submit.addActionListener(new ActionListener() {
 		
 			public void actionPerformed(ActionEvent e) {

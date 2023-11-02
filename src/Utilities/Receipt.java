@@ -86,6 +86,7 @@ public class Receipt {
 			Paragraph para3 = new Paragraph();
 			para3.setFontSize(8).setFixedLeading(10);
 			para3.add("Date: " + dtf.format(date) + "\t\t\t\t\t\t\t\t\t\tTime: " + ttf.format(now) +"\r\n");
+			para3.add("Order No: " + order.getOrderNo() + "\r\n");
 			para3.add("Invoice To: " + (order.getCustomer() != null ? order.getCustomer().getCustomerName() : "") +"\r\n");
 			para3.add("Served By: " + MainWindow.account.getUserID());
 			
@@ -127,8 +128,8 @@ public class Receipt {
 
 			table2.addCell(new Paragraph("Gross Total :").setFontSize(8).setFirstLineIndent(5));
 			table2.addCell(new Paragraph(Double.toString(order.getSubTotal())).setFontSize(8).setTextAlignment(TextAlignment.RIGHT));
-			table2.addCell(new Paragraph("Discount @0.0% :").setFontSize(8).setFirstLineIndent(5));
-			table2.addCell(new Paragraph("XX.XX").setFontSize(8).setTextAlignment(TextAlignment.RIGHT));
+			table2.addCell(new Paragraph("Discount @" + order.getCustomer().getSpecialDiscount() + "% :").setFontSize(8).setFirstLineIndent(5));
+			table2.addCell(new Paragraph(Double.toString(order.getSubTotal()) + "LOL").setFontSize(8).setTextAlignment(TextAlignment.RIGHT));
 			
 			RemoveBorder(table2);
 			document.add(table2);
@@ -140,24 +141,7 @@ public class Receipt {
 			
 			RemoveBorder(table3);
 			document.add(table3);
-			document.add(new Paragraph());
-			
-			Table table4 = new Table(columnWidth2);
-			table4.addCell(new Paragraph("SD (Included) 0.00% :").setFontSize(8).setFirstLineIndent(5));
-			table4.addCell(new Paragraph("XX.XX").setFontSize(8).setTextAlignment(TextAlignment.RIGHT));
-			table4.addCell(new Paragraph("VAT (Included) 0.00% :").setFontSize(8).setFirstLineIndent(5));
-			table4.addCell(new Paragraph("XX.XX").setFontSize(8).setTextAlignment(TextAlignment.RIGHT));
 
-			RemoveBorder(table4);
-			document.add(table4);
-			document.add(new Paragraph());
-			
-			Table table5 = new Table(columnWidth2);
-			table5.addCell(new Paragraph("Grand Total :").setFontSize(8).setFirstLineIndent(5));
-			table5.addCell(new Paragraph("XX.XX").setFontSize(8).setTextAlignment(TextAlignment.RIGHT));
-			
-			RemoveBorder(table5);
-			document.add(table5);
 			document.add(new Paragraph().setFixedLeading(5));
 			document.add(new LineSeparator(d));
 			
