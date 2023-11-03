@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.swing.Box;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -37,7 +36,7 @@ public class Panel_D extends JPanel implements ActionListener{
 		
 		for(String s : categoryList) {
 			JButton b = new JButton(s);
-			b.setPreferredSize(new Dimension(240, 70));
+			b.setPreferredSize(new Dimension(240, 80));
 			b.addActionListener(this);
 			pnl.add(b);
 			pnl.add(Box.createRigidArea(new Dimension(0, 10)));
@@ -59,8 +58,7 @@ public class Panel_D extends JPanel implements ActionListener{
 		JScrollPane pnl_2 = new JScrollPane(pannal);
 		pnl_1.getVerticalScrollBar().setUnitIncrement(10);
 		pnl_2.getVerticalScrollBar().setUnitIncrement(20);
-		BoxLayout layout = new BoxLayout(pannal, BoxLayout.Y_AXIS);
-		pannal.setLayout(layout);
+		pannal.setLayout(new WrapLayout());
 		pannal.setBackground(Color.green);
 				
 		pnl_1.setBounds(10, 10, 280, 700);

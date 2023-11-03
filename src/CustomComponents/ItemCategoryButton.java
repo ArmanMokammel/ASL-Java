@@ -20,8 +20,7 @@ public class ItemCategoryButton extends JButton implements ActionListener{
 		super(item.getItemName());
 		this.item = item;
 		this.itemsPanel = itemsPanel;
-		setMaximumSize(new Dimension(550, 100));
-		setPreferredSize(new Dimension(550, 100));
+		setPreferredSize(new Dimension(270, 100));
 		addActionListener(this);
 	}
 

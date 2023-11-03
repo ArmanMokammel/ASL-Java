@@ -96,6 +96,13 @@ public class Welcome_Panel extends JPanel {
 				window.swapPanel(new Customer_Panel(window));
 			}
 		});
+		
+		MenuButton btn6 = new MenuButton("Sale History", img, new Color(255, 235, 156));
+		btn6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new SaleHistory_Window();
+			}
+		});
 
 		pnl.setBounds(210, 150, 800, 300);
 		
@@ -105,6 +112,7 @@ public class Welcome_Panel extends JPanel {
 		pnl.add(btn3);
 		pnl.add(btn4);
 		pnl.add(btn5);
+		pnl.add(btn6);
 		
 		add(lbl_Welcome);
 		add(lbl_Welcome2);

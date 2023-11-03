@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 
 import CustomCell.TableEditRemove_Editor;
 import CustomCell.TableEditRemove_Renderer;
@@ -31,7 +32,7 @@ public class Customer_Panel extends JPanelX{
 		this.window = window;
 		customerList = new LinkedList<Customer>();
 		setLayout(null);
-		setBounds(30, 150, window.getWidth() - 70, 550);
+		setBounds(30, 150, window.getWidth() - 70, 660);
 		setBackground(new Color(0,0,0,0));
 		
 		JButton btn_Add = new JButton("New Customer");
@@ -65,13 +66,18 @@ public class Customer_Panel extends JPanelX{
 		};
 		
 		table.setRowHeight(40);
-		table.getTableHeader().setReorderingAllowed(false);
+
+		JTableHeader tableHeader = table.getTableHeader();
+		tableHeader.setReorderingAllowed(false);
+		tableHeader.setBackground(new Color(117, 68, 0));
+		tableHeader.setForeground(Color.white);
+
 		TableEditRemove_Renderer renderer = new TableEditRemove_Renderer();
 		table.getColumnModel().getColumn(8).setCellRenderer(renderer);
 		table.getColumnModel().getColumn(8).setCellEditor(new TableEditRemove_Editor(this));
 		
 		JScrollPane sp = new JScrollPane(table);
-		sp.setBounds(70, 60, getWidth() - 180, 400);
+		sp.setBounds(70, 60, getWidth() - 180, 595);
 				
 		add(btn_Add);
 		add(sp);

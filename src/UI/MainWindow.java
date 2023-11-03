@@ -127,11 +127,17 @@ public class MainWindow extends JFrame{
 			}
 		});
 		
-		MenuButton btn6 = new MenuButton("Settings", img, null);
+		MenuButton btn6 = new MenuButton("Sale History", img, null);
 		btn6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Settings_Screen screen = new Settings_Screen("Settings");
-				
+				new SaleHistory_Window();				
+			}
+		});
+		
+		MenuButton btn7 = new MenuButton("Settings", img, null);
+		btn7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new Settings_Screen("Settings");			
 			}
 		});
 		
@@ -153,16 +159,6 @@ public class MainWindow extends JFrame{
 			}
 		});
 		
-		ButtonGroup btnGroup = new ButtonGroup();
-		
-		btnGroup.add(btn);
-		btnGroup.add(btn1);
-		btnGroup.add(btn2);
-		btnGroup.add(btn3);
-		btnGroup.add(btn4);
-		btnGroup.add(btn5);
-		btnGroup.add(btn6);
-		
 		pnl_Items.setBorder(new EmptyBorder(0, 0, 0, 60));
 		pnl_Items.setBackground(Color.orange);		
 		pnl_Items.add(btn);
@@ -172,6 +168,7 @@ public class MainWindow extends JFrame{
 		pnl_Items.add(btn4);
 		pnl_Items.add(btn5);
 		pnl_Items.add(btn6);
+		pnl_Items.add(btn7);
 		
 		add(btn_Logout);
 		pnl_Head.add(pnl_Items);

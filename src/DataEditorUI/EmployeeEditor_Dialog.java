@@ -3,6 +3,7 @@ package DataEditorUI;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -13,7 +14,10 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import CustomComponents.JButtonT1;
+import CustomComponents.SearchableComboBox;
+import Data.Account;
 import Data.Employee;
+import Enum.AccountType;
 import Enum.InputType;
 import Exception.InputException;
 import UI.MainWindow;
@@ -22,12 +26,12 @@ import Utilities.Utility;
 
 public class EmployeeEditor_Dialog extends JDialog{
 	
-	private JTextField txt_employeeID = new JTextField();
-	private JTextField txt_employeeName = new JTextField();
-	private JComboBox<String> cmbx_gender = new JComboBox<> (new String[] {"Male", "Female"});
-	private JTextField txt_phoneNo = new JTextField();
-	private JTextField txt_email = new JTextField();
-	private JTextField txt_accountId = new JTextField();
+	private JTextField txt_employeeID;
+	private JTextField txt_employeeName;
+	private JComboBox<String> cmbx_gender;
+	private JTextField txt_phoneNo;
+	private JTextField txt_email;
+	private SearchableComboBox txt_accountId;
 
 	int A;
 	String B, C, D, E, F;
@@ -41,6 +45,20 @@ public class EmployeeEditor_Dialog extends JDialog{
 		Font f1 = new Font(null, Font.BOLD, 32);
 		Font f2 = new Font(null, Font.BOLD, 18);
 		Font f3 = new Font(null, Font.PLAIN, 16);
+		
+		txt_employeeID = new JTextField();
+		txt_employeeName = new JTextField();
+		cmbx_gender = new JComboBox<> (new String[] {"Male", "Female"});
+		txt_phoneNo = new JTextField();
+		txt_email = new JTextField();
+		
+		ArrayList<String> lines = Utility.readFile("Accounts.ASL");
+		ArrayList<String> accountIds = new ArrayList<String>();
+		for(String line: lines) {
+			accountIds.add(line.split("\t")[0]);
+		}
+		
+		txt_accountId = new SearchableComboBox(accountIds);
 		
 		JLabel Bg_Icon = new JLabel();
 		ImageIcon background = new ImageIcon(Utility.getImage("img\\Editor_UI.png"));
@@ -114,7 +132,7 @@ public class EmployeeEditor_Dialog extends JDialog{
 					C = Utility.checkString(cmbx_gender, lbl_gender);
 					D = Utility.checkString(txt_phoneNo, lbl_phoneNo, InputType.Alphanumeric);
 					E = Utility.checkString(txt_email, lbl_email, InputType.Email);
-				    F = Utility.checkString(txt_accountId, lbl_accountId, InputType.Alphanumeric);
+				    F = (String)txt_accountId.getSelectedItem();
 				    employee = new Employee(A, B, C, D, E, F);
 				}
 				catch (InputException e2) {
@@ -145,6 +163,6 @@ public class EmployeeEditor_Dialog extends JDialog{
 		cmbx_gender.setSelectedItem(gender);
 		txt_phoneNo.setText(phoneNo);
 		txt_email.setText(email);
-		txt_accountId.setText(accountId);
+		txt_accountId.setSelectedItem(accountId);
 	}
 }

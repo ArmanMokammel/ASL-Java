@@ -12,6 +12,7 @@ import java.util.LinkedList;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 
 import CustomCell.TableEditRemove_Editor;
 import CustomCell.TableEditRemove_Renderer;
@@ -31,7 +32,7 @@ public class Voucher_Panel extends JPanelX{
 		this.window = window;
 		voucherList = new LinkedList<Discount_Voucher>();
 		setLayout(null);
-		setBounds(30, 150, window.getWidth() - 70, 550);
+		setBounds(30, 150, window.getWidth() - 70, 660);
 		setBackground(new Color(0,0,0,0));
 
 		JButton btn_Add = new JButton("New Voucher");
@@ -63,13 +64,18 @@ public class Voucher_Panel extends JPanelX{
 		table.setOpaque(false);
 		table.setBackground(new Color(253, 253, 214));
 		table.setRowHeight(40);
-		table.getTableHeader().setReorderingAllowed(false);
+
+		JTableHeader tableHeader = table.getTableHeader();
+		tableHeader.setReorderingAllowed(false);
+		tableHeader.setBackground(new Color(117, 68, 0));
+		tableHeader.setForeground(Color.white);
+
 		TableEditRemove_Renderer renderer = new TableEditRemove_Renderer();
 		table.getColumnModel().getColumn(4).setCellRenderer(renderer);
 		table.getColumnModel().getColumn(4).setCellEditor(new TableEditRemove_Editor(this));
 		
 		JScrollPane sp = new JScrollPane(table);
-		sp.setBounds(70, 60, getWidth() - 180, 400);
+		sp.setBounds(70, 60, getWidth() - 180, 595);
 		sp.getViewport().setOpaque(false);
 				
 		add(btn_Add);

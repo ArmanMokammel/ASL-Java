@@ -11,6 +11,7 @@ import java.util.Map;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 
 import CustomCell.TableEditRemove_Editor;
 import CustomCell.TableEditRemove_Renderer;
@@ -34,8 +35,9 @@ public class Item_Panel extends JPanelX{
 		itemList = new LinkedList<MenuItem>();
 		items = new HashMap<String, ArrayList<MenuItem>>();
 		setLayout(null);
-		setBounds(30, 150, window.getWidth() - 70, 550);
+		setBounds(30, 150, window.getWidth() - 70, 660);
 		setBackground(new Color(0,0,0,0));
+		setOpaque(false);
 		
 		cmbx_ItemCategory = new JComboBox<String>();
 		cmbx_ItemCategory.setBounds(70, 0, 200, 40);
@@ -89,13 +91,18 @@ public class Item_Panel extends JPanelX{
 		};
 		
 		table.setRowHeight(40);
-		table.getTableHeader().setReorderingAllowed(false);
+
+		JTableHeader tableHeader = table.getTableHeader();
+		tableHeader.setReorderingAllowed(false);
+		tableHeader.setBackground(new Color(117, 68, 0));
+		tableHeader.setForeground(Color.white);
+
 		TableEditRemove_Renderer renderer = new TableEditRemove_Renderer();
 		table.getColumnModel().getColumn(7).setCellRenderer(renderer);
 		table.getColumnModel().getColumn(7).setCellEditor(new TableEditRemove_Editor(this));
 		
 		JScrollPane sp = new JScrollPane(table);
-		sp.setBounds(70, 60, getWidth() - 180, 400);
+		sp.setBounds(70, 60, getWidth() - 180, 595);
 				
 		cmbx_ItemCategory.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
