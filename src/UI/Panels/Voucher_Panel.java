@@ -45,7 +45,6 @@ public class Voucher_Panel extends JPanelX{
 		
 		model = new DefaultTableModel();
 		model.addColumn("SL");
-		model.addColumn("Customer");
 		model.addColumn("Voucher ID");
 		model.addColumn("Voucher Code");
 		model.addColumn("Value");
@@ -54,7 +53,7 @@ public class Voucher_Panel extends JPanelX{
 		JTable table = new JTable(model) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
-				if(column == 5)
+				if(column == 4)
 					return true;
 				else
 					return false;
@@ -66,23 +65,10 @@ public class Voucher_Panel extends JPanelX{
 		table.setRowHeight(40);
 		table.getTableHeader().setReorderingAllowed(false);
 		TableEditRemove_Renderer renderer = new TableEditRemove_Renderer();
-		table.getColumnModel().getColumn(5).setCellRenderer(renderer);
-		table.getColumnModel().getColumn(5).setCellEditor(new TableEditRemove_Editor(this));
+		table.getColumnModel().getColumn(4).setCellRenderer(renderer);
+		table.getColumnModel().getColumn(4).setCellEditor(new TableEditRemove_Editor(this));
 		
-		JScrollPane sp = new JScrollPane(table) {
-			@Override
-			protected void paintComponent(Graphics g) {
-				super.paintComponent(g);
-				Graphics2D g2d = (Graphics2D) g;
-				g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
-				int w = getWidth(), h = getHeight();
-				Color color1 = new Color(242, 228, 70);
-				Color color2 = new Color(240, 240, 201);
-				GradientPaint gp = new GradientPaint(0, 0, color1, 0, h, color2);
-				g2d.setPaint(gp);
-				g2d.fillRect(0, 0, w, h);
-			}
-		};
+		JScrollPane sp = new JScrollPane(table);
 		sp.setBounds(70, 60, getWidth() - 180, 400);
 		sp.getViewport().setOpaque(false);
 				
@@ -92,15 +78,15 @@ public class Voucher_Panel extends JPanelX{
 		ArrayList<String> lines = Utility.readFile("Discount-Vouchers.ASL");
 		for(String line: lines) {
 			String[] datas = line.split("\t");
-			voucherList.add(new Discount_Voucher(datas[0], Integer.parseInt(datas[1]), datas[2], Double.parseDouble(datas[3])));
-			model.addRow(new Object[] {voucherList.size(), datas[0], datas[1], datas[2], datas[3]});
+			voucherList.add(new Discount_Voucher(Integer.parseInt(datas[0]), datas[1], Double.parseDouble(datas[2])));
+			model.addRow(new Object[] {voucherList.size(), datas[0], datas[1], datas[2]});
 		}
 	}
 	
 	public void editRow(int row) {
 		Discount_Voucher voucher = (Discount_Voucher) voucherList.get(row);
 		VoucherEditor_Dialog dialog = new VoucherEditor_Dialog(window, this, "Edit Voucher" , row);
-		dialog.setVoucherDetails(voucher.getCustomer(), voucher.getVoucherId(), voucher.getVoucher(), voucher.getValue());
+		dialog.setVoucherDetails(voucher.getVoucherId(), voucher.getVoucher(), voucher.getValue());
 		dialog.setVisible(true);
 	}
 	

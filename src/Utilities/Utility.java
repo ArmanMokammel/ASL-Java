@@ -77,7 +77,7 @@ public class Utility {
 			return Integer.parseInt(component.getText());
 		}
 		else {
-			throwException(component, "Error at " + label.getText() + "\n" + "Integer Values Only");
+			throwException(component, "Error at " + label.getText() + "\n" + "Positive Integer Values Only");
 		}
 		return -1;
 	}
@@ -92,7 +92,7 @@ public class Utility {
 			return Double.parseDouble(component.getText());
 		}
 		else {
-			throwException(component, "Error at " + label.getText() + "\n" + "Double Values Only");
+			throwException(component, "Error at " + label.getText() + "\n" + "Positive Double Values Only");
 		}
 		return -1;
 	}
@@ -114,7 +114,10 @@ public class Utility {
 	
 	private static boolean tryParseInt(String s) {
 		try {
-			Integer.parseInt(s);
+			if(!(Integer.parseInt(s) >= 0)) {
+				return false;
+			}
+			
 		} catch (Exception e) {
 			return false;
 		}
@@ -123,7 +126,9 @@ public class Utility {
 	
 	private static boolean tryParseDouble(String s) {
 		try {
-			Double.parseDouble(s);
+			if(!(Double.parseDouble(s) >= 0.0)) {
+				return false;
+			}
 		} catch (Exception e) {
 			return false;
 		}
@@ -147,22 +152,22 @@ public class Utility {
 	public static void writeAllToFile(String fileName, boolean append, List<?> obj) {
 		File file = new File(fileName);
 		FileWriter fr;
-		boolean string = false;
+//		boolean string = false;
 		try {
 			fr = new FileWriter(file, append);
 			for(Object object : obj) {
 				if(object instanceof String) {
-					string = true;
-					fr.write(object.toString());
+//					string = true;
+					fr.write(object.toString() + "\n");
 				}
 				else {					
 					fr.write(object.toString());
 				}
 			}
 			
-			if(string) {
-				fr.write("\n");
-			}
+//			if(string) {
+//				fr.write("\n");
+//			}
 			
 			fr.close();
 			

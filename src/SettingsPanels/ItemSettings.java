@@ -39,10 +39,7 @@ public class ItemSettings extends JPanelX{
 				categories = new LinkedList<String>();
 				int count = ItemSettings.this.model.getRowCount();
 				for(int i = 0; i < count; i++) {
-					if(i != count-1)
-						categories.add((String)model.getValueAt(i, 1) + "\n");
-					else
-						categories.add((String)model.getValueAt(i, 1));
+					categories.add((String)model.getValueAt(i, 1));
 				}
 				Utility.writeAllToFile("Item-Categories.ASL", false, categories);
 				JOptionPane.showMessageDialog(ItemSettings.this, "Saved Successfully!");

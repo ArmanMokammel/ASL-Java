@@ -13,16 +13,17 @@ import Data.Account;
 import Enum.AccountType;
 import Enum.InputType;
 import Exception.InputException;
+import UI.MainWindow;
 import Utilities.Utility;
 
 public class Profile_Screen extends JDialog {
 
-	private JTextField txt_userID = new JTextField();
-	private JTextField txt_password = new JTextField();
-	private JTextField txt_name = new JTextField();
-	private JTextField txt_email = new JTextField();
-	private JTextField txt_employeeID = new JTextField();
-	private JTextField txt_accountType = new JTextField();
+	private JTextField txt_userID;
+	private JTextField txt_password;
+	private JTextField txt_name;
+	private JTextField txt_email;
+	private JTextField txt_employeeID;
+	private JTextField txt_accountType;
 
 	private String A, B, D, E;
 	private String C;
@@ -37,6 +38,13 @@ public class Profile_Screen extends JDialog {
 		Font f1 = new Font(null, Font.BOLD, 32);
 		Font f2 = new Font(null, Font.BOLD, 18);
 		Font f3 = new Font(null, Font.PLAIN, 16);
+		
+		txt_userID = new JTextField();
+		txt_password = new JTextField();
+		txt_name = new JTextField();
+		txt_email = new JTextField();
+		txt_employeeID = new JTextField();
+		txt_accountType = new JTextField();
 
 		txt_userID.setEditable(false);
 		txt_employeeID.setEditable(false);
@@ -129,11 +137,13 @@ public class Profile_Screen extends JDialog {
 				
 				for(int i = 0; i < accountList.size(); i++){
 					if(accountList.get(i).split("\t")[0].equals(A)) {
-						accountList.set(i, account.toString());
+						accountList.set(i, account.toString().substring(0, account.toString().length() - 1));
 					}
 				}
 				
 				Utility.writeAllToFile("Accounts.ASL", false, accountList);
+				
+				MainWindow.account = account;
 
 				dispose();
 			}

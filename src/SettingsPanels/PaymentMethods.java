@@ -39,10 +39,7 @@ public class PaymentMethods extends JPanelX{
 				paymentMethods = new LinkedList<String>();
 				int count = PaymentMethods.this.model.getRowCount();
 				for(int i = 0; i < count; i++) {
-					if(i != count-1)
-						paymentMethods.add((String)model.getValueAt(i, 1) + "\n");
-					else
-						paymentMethods.add((String)model.getValueAt(i, 1));
+					paymentMethods.add((String)model.getValueAt(i, 1));
 				}
 				Utility.writeAllToFile("Payment-Methods.ASL", false, paymentMethods);
 				JOptionPane.showMessageDialog(PaymentMethods.this, "Saved Successfully!");

@@ -2,24 +2,14 @@ package Data;
 
 public class Discount_Voucher {
 	
-	private String customer;
 	private int voucherId;
 	private String voucher;
 	private double value;
 	
-	public Discount_Voucher(String customer, int voucherId, String voucher, double value) {
-		this.customer = customer.equals(null) ? "" : customer;
+	public Discount_Voucher(int voucherId, String voucher, double value) {
 		this.voucherId = voucherId;
 		this.voucher = voucher;
 		this.value = value;
-	}
-
-	public String getCustomer() {
-		return customer;
-	}
-
-	public void setCustomer(String customer) {
-		this.customer = customer;
 	}
 
 	public int getVoucherId() {
@@ -47,6 +37,6 @@ public class Discount_Voucher {
 	}
 	
 	public String toString() {
-		return customer + "\t" + voucherId + "\t" + voucher + "\t" + value + "\n";
+		return voucherId + "\t" + voucher + "\t" + value + "\n";
 	}
 }

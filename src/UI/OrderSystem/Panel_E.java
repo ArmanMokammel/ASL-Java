@@ -57,7 +57,7 @@ public class Panel_E extends JPanelX{
 		
 		for(String voucher: vouchers) {
 			String[] datas = voucher.split("\t");
-			Discount_Voucher vch = new Discount_Voucher(datas[0], Integer.parseInt(datas[1]), datas[2], Double.parseDouble(datas[3]));
+			Discount_Voucher vch = new Discount_Voucher(Integer.parseInt(datas[0]), datas[1], Double.parseDouble(datas[2]));
 			discountVouchers.add(vch);
 		}
 						

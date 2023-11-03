@@ -88,11 +88,10 @@ public class VoucherEditor_Dialog extends JDialog{
 			public void actionPerformed(ActionEvent e) {
 				Discount_Voucher voucher = null;
 				try {
-					A = txt_customer.getText().isBlank() ? "" : Utility.checkString(txt_customer, lbl_customer, InputType.Alphabetic);
 					B = Utility.checkInt(txt_voucherId, lbl_voucherId);
 					C = Utility.checkString(txt_voucher, lbl_voucher, InputType.Alphanumeric);
 					D = Utility.checkDouble(txt_value, lbl_value);
-					voucher = new Discount_Voucher(A, B, C, D);
+					voucher = new Discount_Voucher(B, C, D);
 				} catch (InputException e2) {
 					Utility.showErrorMessage(e2);
 					return;
@@ -100,12 +99,12 @@ public class VoucherEditor_Dialog extends JDialog{
 				if(row != -1) {
 					parent.voucherList.set(row, voucher);
 					parent.model.removeRow(row);
-					parent.model.insertRow(row, new Object[] {row + 1, voucher.getCustomer(), voucher.getVoucherId(), voucher.getVoucher(), voucher.getValue()});
+					parent.model.insertRow(row, new Object[] {row + 1, voucher.getVoucherId(), voucher.getVoucher(), voucher.getValue()});
 					Utility.writeAllToFile("Discount-Vouchers.ASL", false, parent.voucherList);
 				}
 				else {
 					parent.voucherList.add(voucher);
-					parent.model.addRow(new Object[] {parent.voucherList.size(), voucher.getCustomer(), voucher.getVoucherId(), voucher.getVoucher(), voucher.getValue()});
+					parent.model.addRow(new Object[] {parent.voucherList.size(), voucher.getVoucherId(), voucher.getVoucher(), voucher.getValue()});
 					Utility.writeToFile("Discount-Vouchers.ASL", true, voucher);
 				}
 				dispose();
@@ -114,8 +113,7 @@ public class VoucherEditor_Dialog extends JDialog{
 		add(btn_Submit);
 	}
 	
-	public void setVoucherDetails(String customer, int voucherId, String voucher, double value) {
-		txt_customer.setText(customer);
+	public void setVoucherDetails(int voucherId, String voucher, double value) {
 		txt_voucherId.setText(Integer.toString(voucherId));
 		txt_voucherId.setEditable(false);
 		txt_voucher.setText(voucher);

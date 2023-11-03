@@ -70,7 +70,7 @@ public class CustomerEditor_Dialog extends JDialog{
 		Bg_Icon.setOpaque(true);
 		setContentPane(Bg_Icon);
 		
-		JLabel lbl_title = new JLabel("Item");
+		JLabel lbl_title = new JLabel("Customer");
 		JLabel lbl_customerID = new JLabel("Customer ID:", SwingConstants.RIGHT);
 		JLabel lbl_customerName = new JLabel("Customer Name:", SwingConstants.RIGHT);
 		JLabel lbl_gender = new JLabel("Gender:", SwingConstants.RIGHT);
@@ -79,7 +79,7 @@ public class CustomerEditor_Dialog extends JDialog{
 		JLabel lbl_discountType = new JLabel("Discount Type:", SwingConstants.RIGHT);
 		JLabel lbl_specialDiscount = new JLabel("Special Discount:", SwingConstants.RIGHT);
 		
-		lbl_title.setBounds(240, 25, 80, 30);
+		lbl_title.setBounds(200, 25, 160, 30);
 		lbl_customerID.setBounds(30, 80, 140, 30);
 		lbl_customerName.setBounds(30, 130, 140, 30);
 		lbl_gender.setBounds(30, 180, 140, 30);
