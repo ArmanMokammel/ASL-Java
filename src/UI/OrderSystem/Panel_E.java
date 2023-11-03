@@ -274,6 +274,7 @@ public class Panel_E extends JPanelX{
 				Receipt.generateReceipt();
 				OrderController.incrementOrder();
 				OrderController.resetOrder();
+				Order_Screen.setCustomer(null);
 				Panel_A.txt_orderNo.setText(OrderController.getOrder().getOrderNo());
 				model.setRowCount(0);
 				Panel_C.model.setRowCount(0);

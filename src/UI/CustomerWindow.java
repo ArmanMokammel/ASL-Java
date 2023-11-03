@@ -150,6 +150,7 @@ public class CustomerWindow extends JDialog{
 						dlg.setCustomerDetails(selCustomer.getCustomerId(), selCustomer.getCustomerName(), selCustomer.getGender(), selCustomer.getEmail(), selCustomer.getPhoneNo(), selCustomer.getSpecialDiscountType(), selCustomer.getSpecialDiscount());
 						comboFilter("");
 						dlg.setVisible(true);
+						entriesFiltered = new ArrayList<Customer>(customerList);
 					}
 				}
 				

@@ -10,8 +10,6 @@ public class Account {
 	private String email;
 	private int employeeID;
 	
-	
-
 	public Account(String userID, String password, AccountType accountType, String name, String email, int employeeID) {
 		this.userID = userID;
 		this.password = password;

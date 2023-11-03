@@ -144,6 +144,7 @@ public class Order {
 		ord.subTotal = order.getSubTotal();
 		ord.total = order.getTotal();
 		ord.amountPaid = order.getAmountPaid();
+		ord.amountDue = order.getAmountDue();
 		
 		return ord;
 	}

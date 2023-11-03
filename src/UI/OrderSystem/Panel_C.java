@@ -95,18 +95,14 @@ public class Panel_C extends JPanelX{
 			
 			if(customer.getSpecialDiscountType() == DiscountType.Value)
 				discountVal = OrderController.getOrder().getSubTotal() - customer.getSpecialDiscount();
-//				OrderController.getOrder().setTotal(OrderController.getOrder().getSubTotal() - selCustomer.getSpecialDiscount());
 			else if (customer.getSpecialDiscountType() == DiscountType.Percentage)
 				discountVal = Math.round((OrderController.getOrder().getSubTotal() * (100 - customer.getSpecialDiscount()) / 100.0) * 100.0) / 100.0;
-//				OrderController.getOrder().setTotal(Math.round((OrderController.getOrder().getSubTotal() * (100 - selCustomer.getSpecialDiscount()) / 100.0) * 100.0) / 100.0);
 			else
 				discountVal = OrderController.getOrder().getSubTotal();
-//				OrderController.getOrder().setTotal(OrderController.getOrder().getSubTotal());
 			
 		}
 		else {
 			discountVal = OrderController.getOrder().getSubTotal();
-//			OrderController.getOrder().setTotal(OrderController.getOrder().getSubTotal());
 		}
 		OrderController.getOrder().setTotal(discountVal);
 
@@ -139,17 +135,14 @@ public class Panel_C extends JPanelX{
 			
 			if(customer.getSpecialDiscountType() == DiscountType.Value)
 				discountVal = OrderController.getOrder().getSubTotal() - customer.getSpecialDiscount();
-//				OrderController.getOrder().setTotal(OrderController.getOrder().getSubTotal() - selCustomer.getSpecialDiscount());
 			else if (customer.getSpecialDiscountType() == DiscountType.Percentage)
 				discountVal = Math.round((OrderController.getOrder().getSubTotal() * (100 - customer.getSpecialDiscount()) / 100.0) * 100.0) / 100.0;
-//				OrderController.getOrder().setTotal(Math.round((OrderController.getOrder().getSubTotal() * (100 - selCustomer.getSpecialDiscount()) / 100.0) * 100.0) / 100.0);
 			else
 				discountVal = OrderController.getOrder().getSubTotal();
-//				OrderController.getOrder().setTotal(OrderController.getOrder().getSubTotal());
 			
 		}
 		else {
-//			OrderController.getOrder().setTotal(OrderController.getOrder().getSubTotal());
+			discountVal = OrderController.getOrder().getSubTotal();
 		}
 		OrderController.getOrder().setTotal(discountVal);
 		
@@ -176,17 +169,14 @@ public class Panel_C extends JPanelX{
 			
 			if(customer.getSpecialDiscountType() == DiscountType.Value)
 				discountVal = OrderController.getOrder().getSubTotal() - customer.getSpecialDiscount();
-//				OrderController.getOrder().setTotal(OrderController.getOrder().getSubTotal() - selCustomer.getSpecialDiscount());
 			else if (customer.getSpecialDiscountType() == DiscountType.Percentage)
 				discountVal = Math.round((OrderController.getOrder().getSubTotal() * (100 - customer.getSpecialDiscount()) / 100.0) * 100.0) / 100.0;
-//				OrderController.getOrder().setTotal(Math.round((OrderController.getOrder().getSubTotal() * (100 - selCustomer.getSpecialDiscount()) / 100.0) * 100.0) / 100.0);
 			else
 				discountVal = OrderController.getOrder().getSubTotal();
-//				OrderController.getOrder().setTotal(OrderController.getOrder().getSubTotal());
 			
 		}
 		else {
-//			OrderController.getOrder().setTotal(OrderController.getOrder().getSubTotal());
+			discountVal = OrderController.getOrder().getSubTotal();
 		}
 		OrderController.getOrder().setTotal(discountVal);
 		

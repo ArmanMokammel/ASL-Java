@@ -54,6 +54,8 @@ public class OrderController {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMdd");
 		Utility.writeToFile("Data.ASL", false, dtf.format(date) + "\n" + lastOrderNo + "\n12" + "\n");
 		order.setOrderNo(dtf.format(date) + lastOrderNo);
+		Panel_A.txt_orderNo.setText(dtf.format(date) + lastOrderNo);
+		OrderController.getOrder().setOrderNo(dtf.format(date) + lastOrderNo);
 	}
 	
 	public static void resetOrder() {

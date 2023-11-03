@@ -125,6 +125,7 @@ public class SuspendedOrders_Screen extends JDialog{
 			ord.setSubTotal(Double.parseDouble(amounts[0]));
 			ord.setTotal(Double.parseDouble(amounts[1]));
 			ord.setAmountPaid(Double.parseDouble(amounts[2]));
+			ord.setAmountDue(ord.getTotal() - ord.getAmountPaid());
 						
 			orderList.add(ord);
 			
@@ -172,9 +173,10 @@ public class SuspendedOrders_Screen extends JDialog{
 					}
 					
 					Panel_E.subTotal.setText(Double.toString(selOrder.getSubTotal()));
-					Panel_E.discount.setText("0.0");
+					Panel_E.discount.setText(Double.toString(selOrder.getCustomer() == null ? 0 : selOrder.getCustomer().getSpecialDiscount()));
 					Panel_E.total.setText(Double.toString(selOrder.getTotal()));
 					Panel_E.amtPaid.setText(Double.toString(selOrder.getAmountPaid()));
+					Panel_E.amtDue.setText(Double.toString(selOrder.getAmountDue()));
 					
 					File file = new File("Suspended Orders\\" + selOrder.getOrderNo() + ".txt");
 					file.delete();
