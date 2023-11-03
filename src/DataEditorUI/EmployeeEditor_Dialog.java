@@ -132,7 +132,7 @@ public class EmployeeEditor_Dialog extends JDialog{
 					C = Utility.checkString(cmbx_gender, lbl_gender);
 					D = Utility.checkString(txt_phoneNo, lbl_phoneNo, InputType.Alphanumeric);
 					E = Utility.checkString(txt_email, lbl_email, InputType.Email);
-				    F = (String)txt_accountId.getSelectedItem();
+				    F = txt_accountId.getSelectedItem() == null || ((String)txt_accountId.getSelectedItem()).equals("") ? "None" : (String)txt_accountId.getSelectedItem();
 				    employee = new Employee(A, B, C, D, E, F);
 				}
 				catch (InputException e2) {
@@ -163,6 +163,6 @@ public class EmployeeEditor_Dialog extends JDialog{
 		cmbx_gender.setSelectedItem(gender);
 		txt_phoneNo.setText(phoneNo);
 		txt_email.setText(email);
-		txt_accountId.setSelectedItem(accountId);
+		txt_accountId.setSelectedItem(accountId.equals("None") ? null : accountId);
 	}
 }
