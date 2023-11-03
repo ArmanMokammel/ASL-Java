@@ -151,8 +151,6 @@ public class MenuItemEditor_Dialog extends JDialog{
 					}
 				}
 				else {
-					parent.itemList.add(item);
-					parent.model.addRow(new Object[] {parent.itemList.size(), item.getItemId(), item.getItemName(), item.getCostPrice(), item.getSellingPrice(), item.getDiscountValue(), item.getDiscountType()});
 					for(Map.Entry<String, ArrayList<MenuItem>> itms : parent.items.entrySet()) {
 						if(itms.getKey().equals(item.getCategory())) {
 							ArrayList<MenuItem> c = itms.getValue();

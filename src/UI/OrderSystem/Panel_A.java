@@ -3,6 +3,7 @@ package UI.OrderSystem;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 
 import javax.swing.*;
 
@@ -17,7 +18,7 @@ public class Panel_A extends JPanel {
 	
 	public static JLabel txt_orderNo;
 	public static JComboBox<String> cmbx_orderType;
-			
+				
 	public Panel_A(Order_Screen window) {
 		setLayout(null);
 
@@ -69,11 +70,11 @@ public class Panel_A extends JPanel {
 		pnl_3.setBounds(700, 10, 400, 120);
 		pnl_3.setBackground(null);
 		
-		JButton btn_1 = new JButton("Logout");
-		btn_1.setBounds(10, 20, 120, 80);
-		btn_1.setBackground(new Color(255, 220, 113));
-		btn_1.setOpaque(true);
-		btn_1.addActionListener(new ActionListener() {
+		JButton btn_logOut = new JButton("Logout");
+		btn_logOut.setBounds(10, 20, 120, 80);
+		btn_logOut.setBackground(new Color(255, 220, 113));
+		btn_logOut.setOpaque(true);
+		btn_logOut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Login_Screen lg = new Login_Screen();
 				lg.createUI();
@@ -91,33 +92,49 @@ public class Panel_A extends JPanel {
 		btn_3.setBounds(0, 0, 125, 60);
 		btn_3.setBackground(new Color(255, 220, 113));
 		btn_3.setOpaque(true);
-		
-		JButton btn_4 = new JButton("Sale History");
-		btn_4.setBounds(125, 0, 125, 60);
-		btn_4.setBackground(new Color(255, 220, 113));
-		btn_4.setOpaque(true);
-		btn_4.addActionListener(new ActionListener() {
+		   
+		JButton btn_selHis = new JButton("Sale History");
+		btn_selHis.setBounds(125, 0, 125, 60);
+		btn_selHis.setBackground(new Color(255, 220, 113));
+		btn_selHis.setOpaque(true);	
+		btn_selHis.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SaleHistory_Window window = new SaleHistory_Window();
 				window.setVisible(true);				
 			}
 		});
 		
-		JButton btn_2 = new JButton("Suspended Orders");
-		btn_2.setBounds(0, 70, 250, 50);
-		btn_2.addActionListener(new ActionListener() {
+		JButton btn_susOrd = new JButton("Suspended Orders");
+		btn_susOrd.setBounds(0, 70, 250, 50);
+		btn_susOrd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new SuspendedOrders_Screen(window);
 			}
 		});
 		
-		pnl_3_A.add(btn_2);
+		pnl_3_A.add(btn_susOrd);
 		pnl_3_A.add(btn_3);
-		pnl_3_A.add(btn_4);
+		pnl_3_A.add(btn_selHis);
 		
-		pnl_3.add(btn_1);
+		pnl_3.add(btn_logOut);
 		pnl_3.add(pnl_3_A);
 		
 		add(pnl_3);
+		
+		
+		AbstractAction buttonPressed = new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ((JButton)e.getSource()).doClick();
+            }
+        };
+        
+        btn_selHis.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_1, KeyEvent.CTRL_DOWN_MASK), "selHis");
+        btn_susOrd.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_2, KeyEvent.CTRL_DOWN_MASK), "susOrd");
+        btn_logOut.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "logOut");
+        
+        btn_selHis.getActionMap().put("selHis", buttonPressed);
+        btn_susOrd.getActionMap().put("susOrd", buttonPressed);
+        btn_logOut.getActionMap().put("logOut", buttonPressed);
 	}
 }

@@ -11,10 +11,10 @@ import javax.swing.table.DefaultTableModel;
 
 import CustomCell.TableEditRemove_Editor;
 import CustomCell.TableEditRemove_Renderer;
+import CustomComponents.JPanelX;
 import Data.Account;
 import DataEditorUI.*;
 import Enum.AccountType;
-import UI.JPanelX;
 import UI.MainWindow;
 import Utilities.Utility;
 
@@ -75,7 +75,7 @@ public class Account_Panel extends JPanelX{
 		for(String line: lines) {
 			String[] datas = line.split("\t");
 			accountList.add(new Account(datas[0], datas[1], AccountType.valueOf(datas[2]), datas[3], datas[4], Integer.parseInt(datas[5])));
-			model.addRow(new Object[] {accountList.size(), datas[0], AccountType.valueOf(datas[2]),datas[3], datas[4], Integer.parseInt(datas[5])});
+			model.addRow(new Object[] {accountList.size(), datas[0], datas[2],datas[3], datas[4], datas[5]});
 		}
 	}
 

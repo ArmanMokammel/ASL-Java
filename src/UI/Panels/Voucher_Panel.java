@@ -15,9 +15,9 @@ import javax.swing.table.DefaultTableModel;
 
 import CustomCell.TableEditRemove_Editor;
 import CustomCell.TableEditRemove_Renderer;
+import CustomComponents.JPanelX;
 import Data.Discount_Voucher;
 import DataEditorUI.VoucherEditor_Dialog;
-import UI.JPanelX;
 import UI.MainWindow;
 import Utilities.Utility;
 
@@ -93,7 +93,7 @@ public class Voucher_Panel extends JPanelX{
 		for(String line: lines) {
 			String[] datas = line.split("\t");
 			voucherList.add(new Discount_Voucher(datas[0], Integer.parseInt(datas[1]), datas[2], Double.parseDouble(datas[3])));
-			model.addRow(new Object[] {voucherList.size(), datas[0], Integer.parseInt(datas[1]), datas[2], Double.parseDouble(datas[3])});
+			model.addRow(new Object[] {voucherList.size(), datas[0], datas[1], datas[2], datas[3]});
 		}
 	}
 	

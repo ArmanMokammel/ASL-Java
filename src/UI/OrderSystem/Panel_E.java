@@ -3,6 +3,7 @@ package UI.OrderSystem;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.util.ArrayList;
 
@@ -12,12 +13,12 @@ import javax.swing.table.JTableHeader;
 
 import CustomCell.TableRemove_Editor;
 import CustomCell.TableRemove_Renderer;
+import CustomComponents.JPanelX;
 import CustomComponents.SearchableComboBox;
 import Data.Discount_Voucher;
 import Data.OrderController;
 import Data.Payment;
 import Exception.InputException;
-import UI.JPanelX;
 import UI.Order_Screen;
 import Utilities.Receipt;
 import Utilities.Utility;
@@ -34,12 +35,12 @@ public class Panel_E extends JPanelX{
 	public static JLabel total;
 	public static JLabel amtPaid;
 	public static JLabel amtDue;
+	public static JTextField amt;
 	
 	private ArrayList<Discount_Voucher> discountVouchers;
 	
 	private JPanel pnl_1;
 	private JPanel pnl_2;
-	private JTextField txt_2;
 	private SearchableComboBox cmbx_2;
 			
 	public Panel_E() {
@@ -134,12 +135,12 @@ public class Panel_E extends JPanelX{
 		cmbx_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(((String)cmbx_1.getSelectedItem()).equals("Voucher")) {
-					pnl_2.remove(txt_2);
+					pnl_2.remove(amt);
 					pnl_2.add(cmbx_2);
 					pnl_2.updateUI();
 				} else {
 					pnl_2.remove(cmbx_2);
-					pnl_2.add(txt_2);
+					pnl_2.add(amt);
 					pnl_2.updateUI();
 				}				
 			}
@@ -148,8 +149,8 @@ public class Panel_E extends JPanelX{
 		JLabel lbl_11 = new JLabel("Amount:");
 		lbl_11.setBounds(10, 60, 90, 30);
 		
-		txt_2 = new JTextField();
-		txt_2.setBounds(110, 60, 150, 30);
+		amt = new JTextField();
+		amt.setBounds(110, 60, 150, 30);
 		
 		ArrayList<String> voucherId = new ArrayList<String>();
 		for(Discount_Voucher v : discountVouchers) {
@@ -158,12 +159,12 @@ public class Panel_E extends JPanelX{
 		cmbx_2 = new SearchableComboBox(voucherId);
 		cmbx_2.setBounds(110, 60, 150, 30);
 		
-		JButton btn_1 = new JButton("<html><center>"+"Add"+"<br>"+"Payment"+"</center></html>");
-		btn_1.setBounds(280, 20, 85, 70);
-		btn_1.setBackground(new Color(93, 130, 84));
-		btn_1.setForeground(Color.white);
-		btn_1.setOpaque(true);
-		btn_1.addActionListener(new ActionListener() {
+		JButton btn_addPayment = new JButton("<html><center>"+"Add"+"<br>"+"Payment"+"</center></html>");
+		btn_addPayment.setBounds(280, 20, 85, 70);
+		btn_addPayment.setBackground(new Color(93, 130, 84));
+		btn_addPayment.setForeground(Color.white);
+		btn_addPayment.setOpaque(true);
+		btn_addPayment.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					A = (String)cmbx_1.getSelectedItem();
@@ -177,7 +178,7 @@ public class Panel_E extends JPanelX{
 						}
 					}
 					else {
-						B = Utility.checkDouble(txt_2, lbl_11);
+						B = Utility.checkDouble(amt, lbl_11);
 					}
 					
 					OrderController.getOrder().addPayment(new Payment(A, B));
@@ -185,6 +186,7 @@ public class Panel_E extends JPanelX{
 					OrderController.getOrder().setAmountDue(OrderController.getOrder().getTotal() - OrderController.getOrder().getAmountPaid());
 					amtPaid.setText(Double.toString(OrderController.getOrder().getAmountPaid()));
 					amtDue.setText(Double.toString(OrderController.getOrder().getAmountDue()));
+					amt.setText(Double.toString(OrderController.getOrder().getAmountDue()));
 					Panel_E.model.addRow(new Object[] {"", A, B});
 				} catch (InputException e1) {
 					Utility.showErrorMessage(e1);
@@ -219,9 +221,9 @@ public class Panel_E extends JPanelX{
 		scrollPane.setBounds(10, 100, 465, 100);
 		scrollPane.getViewport().setBackground(new Color(145, 214, 150));
 		
-		JButton btn_2 = new JButton("Hold");
-		btn_2.setBounds(10, 260, 100, 30);
-		btn_2.addActionListener(new ActionListener() {
+		JButton btn_hold = new JButton("Hold");
+		btn_hold.setBounds(10, 260, 100, 30);
+		btn_hold.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				OrderController.suspendCurrentOrder();
 				File dir = new File("Suspended Orders");
@@ -239,12 +241,13 @@ public class Panel_E extends JPanelX{
 				total.setText("0.0");
 				amtPaid.setText("0.0");
 				amtDue.setText("0.0");
+				amt.setText("");
 			}
 		});
 		
-		JButton btn_3 = new JButton("Cancel");
-		btn_3.setBounds(140, 260, 100, 30);
-		btn_3.addActionListener(new ActionListener() {
+		JButton btn_cancel = new JButton("Cancel");
+		btn_cancel.setBounds(140, 260, 100, 30);
+		btn_cancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				OrderController.resetOrder();
 				Order_Screen.setCustomer(null);
@@ -255,12 +258,13 @@ public class Panel_E extends JPanelX{
 				total.setText("0.0");
 				amtPaid.setText("0.0");
 				amtDue.setText("0.0");
+				amt.setText("");
 			}
 		});
 		
-		JButton btn_4 = new JButton("Finish");
-		btn_4.setBounds(250, 260, 100, 30);
-		btn_4.addActionListener(new ActionListener() {
+		JButton btn_finish = new JButton("Finish");
+		btn_finish.setBounds(250, 260, 100, 30);
+		btn_finish.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				File dir = new File("Orders");
 				if (!dir.exists()){
@@ -278,20 +282,38 @@ public class Panel_E extends JPanelX{
 				total.setText("0.0");
 				amtPaid.setText("0.0");
 				amtDue.setText("0.0");
+				amt.setText("");
 			}
 		});
 		
 		pnl_2.add(lbl_10);
 		pnl_2.add(cmbx_1);
 		pnl_2.add(lbl_11);
-		pnl_2.add(txt_2);
-		pnl_2.add(btn_1);
+		pnl_2.add(amt);
+		pnl_2.add(btn_addPayment);
 		pnl_2.add(scrollPane);
-		pnl_2.add(btn_2);
-		pnl_2.add(btn_3);
-		pnl_2.add(btn_4);
+		pnl_2.add(btn_hold);
+		pnl_2.add(btn_cancel);
+		pnl_2.add(btn_finish);
 		
 		add(pnl_2);
+		
+		AbstractAction buttonPressed = new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ((JButton)e.getSource()).doClick();
+            }
+        };
+        
+        btn_addPayment.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_3, KeyEvent.ALT_DOWN_MASK), "addPay");        
+        btn_finish.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_4, KeyEvent.ALT_DOWN_MASK), "finishOrd");        
+        btn_hold.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_5, KeyEvent.ALT_DOWN_MASK), "holdOrd");        
+        btn_cancel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_6, KeyEvent.ALT_DOWN_MASK), "cancelOrd");        
+        
+        btn_addPayment.getActionMap().put("addPay", buttonPressed);
+        btn_finish.getActionMap().put("finishOrd", buttonPressed);
+        btn_hold.getActionMap().put("holdOrd", buttonPressed);
+        btn_cancel.getActionMap().put("cancelOrd", buttonPressed);
 	}
 
 	@Override
@@ -303,6 +325,7 @@ public class Panel_E extends JPanelX{
 		OrderController.getOrder().setAmountDue(OrderController.getOrder().getTotal() - OrderController.getOrder().getAmountPaid());
 		amtPaid.setText(Double.toString(OrderController.getOrder().getAmountPaid()));
 		amtDue.setText(Double.toString(OrderController.getOrder().getAmountDue()));
+		amt.setText(Double.toString(OrderController.getOrder().getAmountDue()));
 		OrderController.getOrder().removePayment(row);		
 		model.removeRow(row);
 	}

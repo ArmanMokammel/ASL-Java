@@ -13,9 +13,9 @@ import javax.swing.table.DefaultTableModel;
 
 import CustomCell.TableEditRemove_Editor;
 import CustomCell.TableEditRemove_Renderer;
+import CustomComponents.JPanelX;
 import Data.Employee;
 import DataEditorUI.EmployeeEditor_Dialog;
-import UI.JPanelX;
 import UI.MainWindow;
 import Utilities.Utility;
 
@@ -77,7 +77,7 @@ public class Employee_Panel extends JPanelX{
 		for(String line: lines) {
 			String[] datas = line.split("\t");
 			employeeList.add(new Employee(Integer.parseInt(datas[0]), datas[1], datas[2], datas[3], datas[4], datas[5]));
-			model.addRow(new Object[] {employeeList.size(), Integer.parseInt(datas[0]), datas[1], datas[2], datas[3], datas[4], datas[5]});
+			model.addRow(new Object[] {employeeList.size(), datas[0], datas[1], datas[2], datas[3], datas[4], datas[5]});
 		}
 	}
 

@@ -14,10 +14,10 @@ import javax.swing.table.DefaultTableModel;
 
 import CustomCell.TableEditRemove_Editor;
 import CustomCell.TableEditRemove_Renderer;
+import CustomComponents.JPanelX;
 import Data.MenuItem;
 import DataEditorUI.MenuItemEditor_Dialog;
 import Enum.DiscountType;
-import UI.JPanelX;
 import UI.MainWindow;
 import Utilities.Utility;
 

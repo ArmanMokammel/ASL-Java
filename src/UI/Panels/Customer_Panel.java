@@ -13,12 +13,12 @@ import javax.swing.table.DefaultTableModel;
 
 import CustomCell.TableEditRemove_Editor;
 import CustomCell.TableEditRemove_Renderer;
+import CustomComponents.JPanelX;
 import Data.Customer;
 import DataEditorUI.CustomerEditor_Dialog;
 import Utilities.Utility;
 
 import Enum.DiscountType;
-import UI.JPanelX;
 import UI.MainWindow; 
 
 public class Customer_Panel extends JPanelX{
@@ -80,7 +80,7 @@ public class Customer_Panel extends JPanelX{
 		for(String line: lines) {
 			String[] datas = line.split("\t");
 			customerList.add(new Customer(Integer.parseInt(datas[0]), datas[1], datas[2], datas[3], datas[4], DiscountType.valueOf(datas[5]), Double.parseDouble(datas[6])));
-			model.addRow(new Object[] {customerList.size(), Integer.parseInt(datas[0]), datas[1], datas[2], datas[3], datas[4], DiscountType.valueOf(datas[5]), Double.parseDouble(datas[6])});
+			model.addRow(new Object[] {customerList.size(), datas[0], datas[1], datas[2], datas[3], datas[4], datas[5], datas[6]});
 		}
 	}
 	

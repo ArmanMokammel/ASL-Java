@@ -1,4 +1,4 @@
-package UI;
+package CustomComponents;
 
 import javax.swing.JPanel;
 

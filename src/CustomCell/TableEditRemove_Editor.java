@@ -11,7 +11,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellEditor;
 
 import CustomComponents.EditRemove_Pane;
-import UI.JPanelX;
+import CustomComponents.JPanelX;
 
 public class TableEditRemove_Editor extends AbstractCellEditor implements TableCellEditor {
 

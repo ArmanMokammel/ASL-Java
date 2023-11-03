@@ -11,7 +11,7 @@ import javax.swing.table.JTableHeader;
 
 import CustomCell.TableRemove_Editor;
 import CustomCell.TableRemove_Renderer;
-import UI.JPanelX;
+import CustomComponents.JPanelX;
 import Utilities.Utility;
 
 public class PaymentMethods extends JPanelX{

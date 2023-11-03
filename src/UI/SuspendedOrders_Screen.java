@@ -37,7 +37,7 @@ import Utilities.Utility;
 public class SuspendedOrders_Screen extends JDialog{
 	
 	public LinkedList<Order> orderList;
-	private ArrayList<Order> entriesFiltered = new ArrayList<Order>();
+	private ArrayList<Order> entriesFiltered;
 	public DefaultTableModel model;
 	private Order selOrder;
 	
@@ -199,9 +199,9 @@ public class SuspendedOrders_Screen extends JDialog{
 		model.setRowCount(0);
 
 		for (Order ord : orderList) {			
-			if (Integer.toString(ord.getCustomer().getCustomerId()).startsWith(enteredText)) {
+			if (Integer.toString((ord.getCustomer() == null ? 0 : ord.getCustomer().getCustomerId())).startsWith(enteredText)) {
 				entriesFiltered.add(ord);
-				model.addRow(new Object[] {entriesFiltered.size(), ord.getBranch(), ord.getOrderNo(), ord.getAccountId(), ord.getCustomer().getCustomerId(), ord.getTotal()});
+				model.addRow(new Object[] {entriesFiltered.size(), ord.getBranch(), ord.getOrderNo(), ord.getAccountId(), ord.getCustomer() == null ? "None" : ord.getCustomer().getCustomerId(), ord.getTotal()});
 			}
 		}
 	}

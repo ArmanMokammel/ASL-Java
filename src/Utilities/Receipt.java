@@ -128,7 +128,7 @@ public class Receipt {
 
 			table2.addCell(new Paragraph("Gross Total :").setFontSize(8).setFirstLineIndent(5));
 			table2.addCell(new Paragraph(Double.toString(order.getSubTotal())).setFontSize(8).setTextAlignment(TextAlignment.RIGHT));
-			table2.addCell(new Paragraph("Discount @" + order.getCustomer().getSpecialDiscount() + "% :").setFontSize(8).setFirstLineIndent(5));
+			table2.addCell(new Paragraph("Discount @" + (order.getCustomer() == null ? "0.0" : order.getCustomer().getSpecialDiscount() + "% :")).setFontSize(8).setFirstLineIndent(5));
 			table2.addCell(new Paragraph(Double.toString(order.getSubTotal()) + "LOL").setFontSize(8).setTextAlignment(TextAlignment.RIGHT));
 			
 			RemoveBorder(table2);

@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.TableCellEditor;
 
-import UI.JPanelX;
+import CustomComponents.JPanelX;
 
 public class TableRemove_Editor extends AbstractCellEditor implements TableCellEditor, ActionListener {
 	

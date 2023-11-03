@@ -126,6 +126,7 @@ public class CustomerWindow extends JDialog{
 					Panel_E.discount.setText(Double.toString(OrderController.getOrder().getSubTotal() - discountVal));
 					Panel_E.total.setText(Double.toString(OrderController.getOrder().getTotal()));
 					Panel_E.amtDue.setText(Double.toString(OrderController.getOrder().getAmountDue()));
+					Panel_E.amt.setText(Double.toString(OrderController.getOrder().getAmountDue()));
 					dispose();
 				}
 				

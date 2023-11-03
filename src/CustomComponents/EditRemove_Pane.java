@@ -8,8 +8,6 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-import UI.JPanelX;
-
 public class EditRemove_Pane extends JPanel{
 	
 	private JButton edit;

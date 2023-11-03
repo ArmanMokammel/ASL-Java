@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 
 import javax.swing.*;
 
@@ -12,9 +13,7 @@ import UI.CustomerWindow;
 import UI.Order_Screen;
 
 public class Panel_B extends JPanel{
-	
-	private Order_Screen window;
-	
+		
 	private static JPanel container;
 	private static JPanel pnl_1;
 	private static  JPanel pnl_2;
@@ -27,7 +26,6 @@ public class Panel_B extends JPanel{
 	public Panel_E p;
 	
 	public Panel_B(Order_Screen window, Panel_E p) {
-		this.window = window;
 		this.p = p;
 		setLayout(null);
 		
@@ -51,9 +49,9 @@ public class Panel_B extends JPanel{
 		
 		txt_1.setBounds(80, 50, 380, 30);
 		
-		JButton btn_1 = new JButton("New Customer");
-		btn_1.setBounds(100, 100, 120, 30);
-		btn_1.addActionListener(new ActionListener() {
+		JButton btn_addCustomer = new JButton("New Customer");
+		btn_addCustomer.setBounds(100, 100, 120, 30);
+		btn_addCustomer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Thread t = new Thread() {
 					@Override
@@ -65,9 +63,9 @@ public class Panel_B extends JPanel{
 			}
 		});
 		
-		JButton btn_3 = new JButton("View Customers");
-		btn_3.setBounds(230, 100, 130, 30);
-		btn_3.addActionListener(new ActionListener() {
+		JButton btn_viewCustomers = new JButton("View Customers");
+		btn_viewCustomers.setBounds(230, 100, 130, 30);
+		btn_viewCustomers.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new CustomerWindow(window, false);			
 			}
@@ -76,8 +74,8 @@ public class Panel_B extends JPanel{
 		pnl_1.add(lbl_1);
 		pnl_1.add(txt_1);
 		pnl_1.add(lbl_2);
-		pnl_1.add(btn_1);
-		pnl_1.add(btn_3);
+		pnl_1.add(btn_addCustomer);
+		pnl_1.add(btn_viewCustomers);
 		
 		container.add(pnl_1);
 		
@@ -103,12 +101,12 @@ public class Panel_B extends JPanel{
 		lbl_8.setBounds(90, 100, 370, 30);
 		lbl_8.setOpaque(true);
 		
-		JButton btn_2 = new JButton("Remove Customer");
-		btn_2.setBounds(180, 150, 140, 30);
-		btn_2.setBackground(new Color(255, 49, 49));
-		btn_2.setForeground(Color.white);
-		btn_2.setOpaque(true);
-		btn_2.addActionListener(new ActionListener() {
+		JButton btn_rmvCustomer = new JButton("Remove Customer");
+		btn_rmvCustomer.setBounds(180, 150, 140, 30);
+		btn_rmvCustomer.setBackground(new Color(255, 49, 49));
+		btn_rmvCustomer.setForeground(Color.white);
+		btn_rmvCustomer.setOpaque(true);
+		btn_rmvCustomer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {			
 				OrderController.getOrder().setTotal(OrderController.getOrder().getSubTotal());
 				OrderController.getOrder().setAmountDue(OrderController.getOrder().getTotal() - OrderController.getOrder().getAmountPaid());
@@ -117,6 +115,7 @@ public class Panel_B extends JPanel{
 				Panel_E.discount.setText("0.0");
 				Panel_E.total.setText(Double.toString(OrderController.getOrder().getTotal()));
 				Panel_E.amtDue.setText(Double.toString(OrderController.getOrder().getAmountDue()));
+				Panel_E.amt.setText(Double.toString(OrderController.getOrder().getAmountDue()));
 			}
 		});
 		
@@ -126,13 +125,26 @@ public class Panel_B extends JPanel{
 		pnl_2.add(lbl_6);
 		pnl_2.add(lbl_7);
 		pnl_2.add(lbl_8);
-		pnl_2.add(btn_2);
+		pnl_2.add(btn_rmvCustomer);
 		
 		pnl_2.setSize(new Dimension(590, 190));
 		pnl_1.setSize(new Dimension(590, 190));
 
 		
 		add(container);
+		
+		AbstractAction buttonPressed = new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ((JButton)e.getSource()).doClick();
+            }
+        };
+        
+        btn_viewCustomers.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_1, KeyEvent.ALT_DOWN_MASK), "viewCus");        
+        btn_addCustomer.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_2, KeyEvent.ALT_DOWN_MASK), "addCus");
+        
+        btn_viewCustomers.getActionMap().put("viewCus", buttonPressed);
+        btn_addCustomer.getActionMap().put("addCus", buttonPressed);
 	}
 	
 	public static void swapPanel(int n) {

@@ -11,7 +11,6 @@ import Data.MenuItem;
 import Data.OrderController;
 import Data.OrderMenuItem;
 import Enum.DiscountType;
-import UI.JPanelX;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -19,6 +18,7 @@ import javax.swing.table.JTableHeader;
 
 import CustomCell.TableEditRemove_Editor;
 import CustomCell.TableEditRemove_Renderer;
+import CustomComponents.JPanelX;
 
 public class Panel_C extends JPanelX{
 	
@@ -105,6 +105,7 @@ public class Panel_C extends JPanelX{
 			
 		}
 		else {
+			discountVal = OrderController.getOrder().getSubTotal();
 //			OrderController.getOrder().setTotal(OrderController.getOrder().getSubTotal());
 		}
 		OrderController.getOrder().setTotal(discountVal);
@@ -114,6 +115,7 @@ public class Panel_C extends JPanelX{
 		Panel_E.discount.setText(Double.toString(OrderController.getOrder().getSubTotal() - discountVal));
 		Panel_E.total.setText(Double.toString(OrderController.getOrder().getTotal()));
 		Panel_E.amtDue.setText(Double.toString(OrderController.getOrder().getAmountDue()));
+		Panel_E.amt.setText(Double.toString(OrderController.getOrder().getAmountDue()));
 		model.addRow(new Object[] {"", item.getItemId(), item.getItemName(), item.getSellingPrice(), ordItem.getDiscountedPrice(), ordItem.getQuantity(), ordItem.getQuantity() * ordItem.getDiscountedPrice()});
 	}
 
@@ -156,6 +158,7 @@ public class Panel_C extends JPanelX{
 		Panel_E.discount.setText(Double.toString(OrderController.getOrder().getSubTotal() - discountVal));
 		Panel_E.total.setText(Double.toString(OrderController.getOrder().getTotal()));
 		Panel_E.amtDue.setText(Double.toString(OrderController.getOrder().getAmountDue()));
+		Panel_E.amt.setText(Double.toString(OrderController.getOrder().getAmountDue()));
 		model.removeRow(row);
 		model.insertRow(row, new Object[] {"", ordItem.getItem().getItemId(), ordItem.getItem().getItemName(), ordItem.getItem().getSellingPrice(), ordItem.getDiscountedPrice(), ordItem.getQuantity(), ordItem.getQuantity() * ordItem.getDiscountedPrice()});
 		
@@ -192,6 +195,7 @@ public class Panel_C extends JPanelX{
 		Panel_E.discount.setText(Double.toString(OrderController.getOrder().getSubTotal() - discountVal));
 		Panel_E.total.setText(Double.toString(OrderController.getOrder().getTotal()));
 		Panel_E.amtDue.setText(Double.toString(OrderController.getOrder().getAmountDue()));
+		Panel_E.amt.setText(Double.toString(OrderController.getOrder().getAmountDue()));
 		model.removeRow(row);		
 	}
 }

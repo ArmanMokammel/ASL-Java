@@ -7,6 +7,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import javax.swing.AbstractAction;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -46,22 +47,16 @@ public class Order_Screen extends JFrame{
 		setLayout(null);
 		this.getContentPane().setBackground(Color.black);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent e) {
-				System.out.println(e.getKeyCode());
+		
+		this.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_F1, 0), "FullScreen");
+
+		this.getRootPane().getActionMap().put("FullScreen", new AbstractAction() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+                setUndecorated(isUndecorated() ? false : true);
+                setVisible(true);			
 			}
 		});
-		
-		this.getRootPane().registerKeyboardAction (new ActionListener ()
-        {
-            public void actionPerformed (final ActionEvent e)
-            {
-            	dispose();
-                setUndecorated(isUndecorated() ? false : true);
-                setVisible(true);
-            }
-        }, KeyStroke.getKeyStroke ( KeyEvent.VK_F1, 0 ), JComponent.WHEN_IN_FOCUSED_WINDOW );
 		
 		Panel_A pnl_1 = new Panel_A(this);
 		Panel_C pnl_3 = new Panel_C();
