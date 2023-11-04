@@ -100,7 +100,7 @@ public class SaleHistory_Window extends JFrame {
 			String[] customerData = order.get(2).split("\t");
 			String[] amounts = order.get(3).split("\t");
 			
-			String[] stuff = { datas[0], datas[1], datas[2], customerData[0], amounts[0]};
+			String[] stuff = { datas[0], datas[1], datas[2], customerData[0], amounts[1]};
 			
 			orderList.add(stuff);
 			model.addRow(new Object[] {orderList.size(), stuff[0], stuff[1], stuff[2], stuff[3], stuff[4]});
