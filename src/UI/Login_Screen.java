@@ -66,10 +66,7 @@ public class Login_Screen extends JFrame {
 		JPasswordField txt_pass = new JPasswordField();
 		txt_pass.setBounds(240, 300, 200, 30);
 		txt_pass.setFont(f2);
-
-		txt_userId.setText("Arman");
-		txt_pass.setText("123");
-
+		
 		JLabel lbl_forgetPass = new JLabel("forgot password");
 		lbl_forgetPass.setForeground(Color.BLUE.brighter());
 		lbl_forgetPass.setBounds(330, 340, 100, 30);
