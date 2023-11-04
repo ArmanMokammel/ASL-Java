@@ -11,6 +11,7 @@ import java.util.LinkedList;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 
 import Data.Customer;
 import Data.OrderController;
@@ -31,12 +32,14 @@ public class CustomerWindow extends JDialog{
 		super(window, "Customer", true);
 		setSize(1000, 800);
 		setLayout(null);
-		setLocationRelativeTo(null);
+		setLocationRelativeTo(null);		
 		
 		customerList = new LinkedList<Customer>();
 		entriesFiltered = new ArrayList<Customer>();
 		
 		Font f1 = new Font(null, Font.BOLD, 40);
+		Font f2 = new Font(null, Font.BOLD, 16);
+		Font f3 = new Font(null, Font.PLAIN, 16);
 		
 		JLabel lbl_title = new JLabel("Customer Search");
 		lbl_title.setBounds(330, 20, 350, 50);
@@ -85,7 +88,14 @@ public class CustomerWindow extends JDialog{
 		
 		JTable table = new JTable(model);
 		table.setRowHeight(40);
-		table.getTableHeader().setReorderingAllowed(false);
+		table.setBackground(new Color(253, 253, 214));
+		table.setFont(f3);
+		
+		JTableHeader tableHeader = table.getTableHeader();
+		tableHeader.setReorderingAllowed(false);
+		tableHeader.setBackground(new Color(117, 68, 0));
+		tableHeader.setForeground(Color.white);
+		tableHeader.setFont(f2);
 		
 		JScrollPane sp = new JScrollPane(table);
 		sp.setBounds(5, 30, 735, 625);
@@ -112,13 +122,10 @@ public class CustomerWindow extends JDialog{
 					
 					if(selCustomer.getSpecialDiscountType() == DiscountType.Value)
 						discountVal = OrderController.getOrder().getSubTotal() - selCustomer.getSpecialDiscount();
-//						OrderController.getOrder().setTotal(OrderController.getOrder().getSubTotal() - selCustomer.getSpecialDiscount());
 					else if (selCustomer.getSpecialDiscountType() == DiscountType.Percentage)
 						discountVal = Math.round((OrderController.getOrder().getSubTotal() * (100 - selCustomer.getSpecialDiscount()) / 100.0) * 100.0) / 100.0;
-//						OrderController.getOrder().setTotal(Math.round((OrderController.getOrder().getSubTotal() * (100 - selCustomer.getSpecialDiscount()) / 100.0) * 100.0) / 100.0);
 					else
 						discountVal = OrderController.getOrder().getSubTotal();
-//						OrderController.getOrder().setTotal(OrderController.getOrder().getSubTotal());
 					
 					OrderController.getOrder().setTotal(discountVal);
 					OrderController.getOrder().setAmountDue(OrderController.getOrder().getTotal() - OrderController.getOrder().getAmountPaid());

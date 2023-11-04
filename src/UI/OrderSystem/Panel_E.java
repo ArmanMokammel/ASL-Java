@@ -1,6 +1,7 @@
 package UI.OrderSystem;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -45,12 +46,21 @@ public class Panel_E extends JPanelX{
 			
 	public Panel_E() {
 		setLayout(null);
+		setBorder(BorderFactory.createLineBorder(Color.white, 2));
 		
-		subTotal = new JLabel("0.0");
-		discount = new JLabel("0.0");
-		total = new JLabel("0.0");
-		amtPaid = new JLabel("0.0");
-		amtDue = new JLabel("0.0");
+		subTotal = new JLabel("0.0", SwingConstants.RIGHT);
+		discount = new JLabel("0.0", SwingConstants.RIGHT);
+		total = new JLabel("0.0", SwingConstants.RIGHT);
+		amtPaid = new JLabel("0.0", SwingConstants.RIGHT);
+		amtDue = new JLabel("0.0", SwingConstants.RIGHT);
+		
+		Font f1 = new Font(null, Font.BOLD, 22);
+		Font f2 = new Font(null, Font.BOLD, 20);
+		Font f3 = new Font(null, Font.BOLD, 18);
+		
+		JLabel lbl_title = new JLabel("Payments");
+		lbl_title.setBounds(390, 0, 120, 30);
+		lbl_title.setFont(f1);
 		
 		ArrayList<String> vouchers = Utility.readFile("Discount-Vouchers.ASL");
 		discountVouchers = new ArrayList<Discount_Voucher>();
@@ -62,45 +72,55 @@ public class Panel_E extends JPanelX{
 		}
 						
 		pnl_1 = new JPanel();
-		pnl_1.setBounds(10, 0, 400, 250);
+		pnl_1.setBounds(20, 35, 400, 250);
 		pnl_1.setBackground(Color.lightGray);
 		pnl_1.setLayout(null);
 		
 		JLabel lbl_subTotal = new JLabel("Sub-Total:");
-		lbl_subTotal.setBounds(10, 20, 70, 30);
+		lbl_subTotal.setBounds(10, 10, 150, 30);
+		lbl_subTotal.setFont(f2);
 		
-		subTotal.setBounds(80, 20, 100, 30);
+		subTotal.setBounds(230, 10, 150, 30);
 		subTotal.setOpaque(true);
+		subTotal.setFont(f2);
 		
 		JLabel lbl_discount = new JLabel("Discount:");
-		lbl_discount.setBounds(10, 60, 70, 30);
+		lbl_discount.setBounds(10, 50, 150, 30);
+		lbl_discount.setFont(f2);
 
-		discount.setBounds(80, 60, 100, 30);
+		discount.setBounds(230, 50, 150, 30);
 		discount.setOpaque(true);
+		discount.setFont(f2);
 		
 		JSeparator sp = new JSeparator();
-		sp.setBounds(0, 110, 485, 10);
+		sp.setBounds(0, 95, 485, 10);
 		
 		JLabel lbl_total = new JLabel("Total:");
-		lbl_total.setBounds(10, 120, 70, 30);
+		lbl_total.setBounds(10, 110, 150, 30);
+		lbl_total.setFont(f2);
 		
-		total.setBounds(80, 120, 100, 30);
+		total.setBounds(230, 110, 150, 30);
 		total.setOpaque(true);
+		total.setFont(f2);
 		
 		JSeparator sp2 = new JSeparator();
-		sp2.setBounds(0, 160, 485, 10);
+		sp2.setBounds(0, 150, 485, 10);
 		
 		JLabel lbl_amtPaid = new JLabel("Amount Paid:");
-		lbl_amtPaid.setBounds(10, 170, 80, 30);
+		lbl_amtPaid.setBounds(10, 160, 150, 30);
+		lbl_amtPaid.setFont(f2);
 		
-		amtPaid.setBounds(90, 170, 100, 30);
+		amtPaid.setBounds(230, 160, 150, 30);
 		amtPaid.setOpaque(true);
+		amtPaid.setFont(f2);
 		
 		JLabel lbl_amtDue = new JLabel("Amount Due:");
-		lbl_amtDue.setBounds(10, 210, 80, 30);
+		lbl_amtDue.setBounds(10, 200, 150, 30);
+		lbl_amtDue.setFont(f2);
 		
-		amtDue.setBounds(90, 210, 100, 30);
+		amtDue.setBounds(230, 200, 150, 30);
 		amtDue.setOpaque(true);
+		amtDue.setFont(f2);
 		
 		pnl_1.add(lbl_subTotal);
 		pnl_1.add(subTotal);
@@ -115,23 +135,26 @@ public class Panel_E extends JPanelX{
 		pnl_1.add(lbl_amtDue);
 		pnl_1.add(amtDue);
 		
+		add(lbl_title);
 		add(pnl_1);
 		
 		
 		
 		pnl_2 = new JPanel();
 		pnl_2.setLayout(null);
-		pnl_2.setBounds(430, 0, 565, 300);
+		pnl_2.setBounds(440, 35, 565, 250);
 		pnl_2.setBackground(Color.lightGray);
 		
-		JLabel lbl_10 = new JLabel("Payment Type:");
-		lbl_10.setBounds(10, 20, 90, 30);
+		JLabel lbl_10 = new JLabel("Payment Type:", SwingConstants.RIGHT);
+		lbl_10.setBounds(50, 10, 140, 30);
+		lbl_10.setFont(f3);
 		
 		ArrayList<String> options = Utility.readFile("Payment-Methods.ASL");
 		options.add("Voucher");
 		
 		JComboBox<String> cmbx_1 = new JComboBox<String>(options.toArray(new String[options.size()]));
-		cmbx_1.setBounds(110, 20, 150, 30);
+		cmbx_1.setBounds(200, 10, 150, 30);
+		cmbx_1.setFont(f3);
 		cmbx_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(((String)cmbx_1.getSelectedItem()).equals("Voucher")) {
@@ -146,24 +169,28 @@ public class Panel_E extends JPanelX{
 			}
 		});
 		
-		JLabel lbl_11 = new JLabel("Amount:");
-		lbl_11.setBounds(10, 60, 90, 30);
+		JLabel lbl_11 = new JLabel("Amount:", SwingConstants.RIGHT);
+		lbl_11.setBounds(50, 50, 140, 30);
+		lbl_11.setFont(f3);
 		
 		amt = new JTextField();
-		amt.setBounds(110, 60, 150, 30);
+		amt.setBounds(200, 50, 150, 30);
+		amt.setFont(f3);
 		
 		ArrayList<String> voucherId = new ArrayList<String>();
 		for(Discount_Voucher v : discountVouchers) {
 			voucherId.add(v.getVoucher());
 		}
 		cmbx_2 = new SearchableComboBox(voucherId);
-		cmbx_2.setBounds(110, 60, 150, 30);
+		cmbx_2.setBounds(200, 50, 150, 30);
+		cmbx_2.setFont(f3);
 		
 		JButton btn_addPayment = new JButton("<html><center>"+"Add"+"<br>"+"Payment"+"</center></html>");
-		btn_addPayment.setBounds(280, 20, 85, 70);
+		btn_addPayment.setBounds(370, 10, 105, 70);
 		btn_addPayment.setBackground(new Color(93, 130, 84));
 		btn_addPayment.setForeground(Color.white);
 		btn_addPayment.setOpaque(true);
+		btn_addPayment.setFont(new Font(null, Font.BOLD, 16));
 		btn_addPayment.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -218,11 +245,12 @@ public class Panel_E extends JPanelX{
 		tableHeader.setForeground(Color.white);
 		
 		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(10, 100, 465, 100);
+		scrollPane.setBounds(50, 90, 465, 100);
 		scrollPane.getViewport().setBackground(new Color(145, 214, 150));
 		
 		JButton btn_hold = new JButton("Hold");
-		btn_hold.setBounds(10, 260, 100, 30);
+		btn_hold.setBounds(50, 200, 100, 40);
+		btn_hold.setFont(f3);
 		btn_hold.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				OrderController.suspendCurrentOrder();
@@ -246,7 +274,8 @@ public class Panel_E extends JPanelX{
 		});
 		
 		JButton btn_cancel = new JButton("Cancel");
-		btn_cancel.setBounds(140, 260, 100, 30);
+		btn_cancel.setBounds(305, 200, 100, 40);
+		btn_cancel.setFont(f3);
 		btn_cancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				OrderController.resetOrder();
@@ -263,7 +292,8 @@ public class Panel_E extends JPanelX{
 		});
 		
 		JButton btn_finish = new JButton("Finish");
-		btn_finish.setBounds(250, 260, 100, 30);
+		btn_finish.setBounds(415, 200, 100, 40);
+		btn_finish.setFont(f3);
 		btn_finish.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				File dir = new File("Orders");

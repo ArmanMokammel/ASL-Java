@@ -2,6 +2,7 @@ package UI;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -22,6 +23,7 @@ import CustomComponents.MenuButton;
 import Data.Account;
 import DataEditorUI.Profile_Screen;
 import UI.Panels.*;
+import Utilities.Utility;
 
 public class MainWindow extends JFrame{
 	
@@ -72,32 +74,22 @@ public class MainWindow extends JFrame{
 		pnl_Items.setOpaque(false);
 		
 		pnl_Head.setBackground(Color.orange);
-		Image image = null;
-		try {
-			image = ImageIO.read(new File("img\\Placeholder.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		Image dimg = image.getScaledInstance(60, 60, Image.SCALE_SMOOTH);
-		
-		ImageIcon img = new ImageIcon(dimg);
-		
-		MenuButton btn = new MenuButton("Vouchers", img, null);
+				
+		MenuButton btn = new MenuButton("Vouchers", Utility.getImageIcon("img\\DiscountVoucher.png", 60, 60), null);
 		btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainWindow.this.swapPanel(new Voucher_Panel(MainWindow.this));
 			}
 		});
 		
-		MenuButton btn1 = new MenuButton("Accounts", img, null);
+		MenuButton btn1 = new MenuButton("Accounts", Utility.getImageIcon("img\\Add_User.png", 60, 60), null);
 		btn1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainWindow.this.swapPanel(new Account_Panel(MainWindow.this));				
 			}
 		});
 		
-		MenuButton btn2 = new MenuButton("Order", img, null);
+		MenuButton btn2 = new MenuButton("Order", Utility.getImageIcon("img\\Order.png", 60, 60), null);
 		btn2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Order_Screen window = new Order_Screen(false);
@@ -106,42 +98,42 @@ public class MainWindow extends JFrame{
 			}
 		});
 		
-		MenuButton btn3 = new MenuButton("Items", img, null);
+		MenuButton btn3 = new MenuButton("Items", Utility.getImageIcon("img\\Item.png", 60, 60), null);
 		btn3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainWindow.this.swapPanel(new Item_Panel(MainWindow.this));								
 			}
 		});
 		
-		MenuButton btn4 = new MenuButton("Employees", img, null);
+		MenuButton btn4 = new MenuButton("Employees", Utility.getImageIcon("img\\Employees.png", 60, 60), null);
 		btn4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainWindow.this.swapPanel(new Employee_Panel(MainWindow.this));				
 			}
 		});
 		
-		MenuButton btn5 = new MenuButton("Customers", img, null);
+		MenuButton btn5 = new MenuButton("Customers", Utility.getImageIcon("img\\Customers.png", 60, 60), null);
 		btn5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainWindow.this.swapPanel(new Customer_Panel(MainWindow.this));
 			}
 		});
 		
-		MenuButton btn6 = new MenuButton("Sale History", img, null);
+		MenuButton btn6 = new MenuButton("Sale History", Utility.getImageIcon("img\\SaleHistory.png", 60, 60), null);
 		btn6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new SaleHistory_Window();				
 			}
 		});
 		
-		MenuButton btn7 = new MenuButton("Settings", img, null);
+		MenuButton btn7 = new MenuButton("Settings", Utility.getImageIcon("img\\Settings.png", 60, 60), null);
 		btn7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new Settings_Screen("Settings");			
 			}
 		});
 		
-		MenuButton btnA = new MenuButton("Profile", img, null);
+		MenuButton btnA = new MenuButton("Profile", Utility.getImageIcon("img\\User.png", 60, 60), null);
 		btnA.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Profile_Screen profileScreen = new Profile_Screen(MainWindow.this, "Profile");
@@ -150,7 +142,7 @@ public class MainWindow extends JFrame{
 			}
 		});
 		
-		MenuButton btn_Logout = new MenuButton("Logout", img, null);
+		MenuButton btn_Logout = new MenuButton("Logout", Utility.getImageIcon("img\\Logout.png", 60, 60), new Color(250, 240, 200));
 		btn_Logout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Login_Screen lg = new Login_Screen();
@@ -176,6 +168,7 @@ public class MainWindow extends JFrame{
 		
 		JLabel lb2 = new JLabel("Copyright ASL", SwingConstants.CENTER);
 		lb2.setOpaque(true);
+		lb2.setFont(new Font(null, Font.BOLD, 18));
 		lb2.setBackground(Color.lightGray);
 		
 		add(pnl_Head);
@@ -185,7 +178,7 @@ public class MainWindow extends JFrame{
 
 		setVisible(true);
 		pnl_Head.setBounds(0,0, getWidth(), 110);
-		btn_Logout.setBounds(getWidth() - 120, getHeight() - 200, 100, 100);
+		btn_Logout.setBounds(getWidth() - 140, getHeight() - 200, 100, 100);
 		lb2.setBounds(0, getHeight() - 88, getWidth(), 50);
 		pnl.setBounds(30, 150, getWidth() - 70, 550);
 		currentPanel = pnl;				

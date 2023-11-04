@@ -1,6 +1,7 @@
 package UI.Panels;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -15,6 +16,7 @@ import javax.swing.table.JTableHeader;
 
 import CustomCell.TableEditRemove_Editor;
 import CustomCell.TableEditRemove_Renderer;
+import CustomComponents.JButtonT1;
 import CustomComponents.JPanelX;
 import Data.MenuItem;
 import DataEditorUI.MenuItemEditor_Dialog;
@@ -35,12 +37,15 @@ public class Item_Panel extends JPanelX{
 		itemList = new LinkedList<MenuItem>();
 		items = new HashMap<String, ArrayList<MenuItem>>();
 		setLayout(null);
-		setBounds(30, 150, window.getWidth() - 70, 660);
-		setBackground(new Color(0,0,0,0));
+		setBounds(30, 150, window.getWidth() - 70, 685);
 		setOpaque(false);
 		
+		Font f1 = new Font(null, Font.BOLD, 16);
+		Font f2 = new Font(null, Font.PLAIN, 16);
+		
 		cmbx_ItemCategory = new JComboBox<String>();
-		cmbx_ItemCategory.setBounds(70, 0, 200, 40);
+		cmbx_ItemCategory.setBounds(70, 10, 200, 40);
+		cmbx_ItemCategory.setFont(f1);
 		
 		ArrayList<String> categoryList = Utility.readFile("Item-Categories.ASL");
 		
@@ -61,8 +66,9 @@ public class Item_Panel extends JPanelX{
 		cmbx_ItemCategory.setSelectedItem(null);
 		
 		
-		JButton btn_Add = new JButton("New Item");
-		btn_Add.setBounds(getWidth() - 245, 0, 130, 40);
+		JButton btn_Add = new JButtonT1("New Item", "img\\btn.png", 6);
+		btn_Add.setBounds(getWidth() - 260, 6, 150, 50);
+		btn_Add.setFont(new Font(null, Font.BOLD, 16));
 		btn_Add.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MenuItemEditor_Dialog dialog = new MenuItemEditor_Dialog(window, Item_Panel.this,"New Item", -1);
@@ -91,18 +97,21 @@ public class Item_Panel extends JPanelX{
 		};
 		
 		table.setRowHeight(40);
+		table.setBackground(new Color(253, 253, 214));
+		table.setFont(f2);
 
 		JTableHeader tableHeader = table.getTableHeader();
 		tableHeader.setReorderingAllowed(false);
 		tableHeader.setBackground(new Color(117, 68, 0));
 		tableHeader.setForeground(Color.white);
+		tableHeader.setFont(f1);
 
 		TableEditRemove_Renderer renderer = new TableEditRemove_Renderer();
 		table.getColumnModel().getColumn(7).setCellRenderer(renderer);
 		table.getColumnModel().getColumn(7).setCellEditor(new TableEditRemove_Editor(this));
 		
 		JScrollPane sp = new JScrollPane(table);
-		sp.setBounds(70, 60, getWidth() - 180, 595);
+		sp.setBounds(70, 76, getWidth() - 180, 600);
 				
 		cmbx_ItemCategory.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

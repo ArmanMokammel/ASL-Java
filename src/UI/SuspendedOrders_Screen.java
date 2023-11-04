@@ -20,6 +20,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 
 import Data.Customer;
 import Data.MenuItem;
@@ -48,6 +49,8 @@ public class SuspendedOrders_Screen extends JDialog{
 		setLayout(null);
 		
 		Font f1 = new Font(null, Font.BOLD, 40);
+		Font f2 = new Font(null, Font.BOLD, 16);
+		Font f3 = new Font(null, Font.PLAIN, 16);
 		
 		JLabel lbl_title = new JLabel("Suspended Orders");
 		lbl_title.setBounds(325, 20, 355, 50);
@@ -136,7 +139,14 @@ public class SuspendedOrders_Screen extends JDialog{
 		
 		JTable table = new JTable(model);
 		table.setRowHeight(40);
-		table.getTableHeader().setReorderingAllowed(false);
+		table.setBackground(new Color(253, 253, 214));
+		table.setFont(f3);
+		
+		JTableHeader tableHeader = table.getTableHeader();
+		tableHeader.setReorderingAllowed(false);
+		tableHeader.setBackground(new Color(117, 68, 0));
+		tableHeader.setForeground(Color.white);
+		tableHeader.setFont(f2);
 		
 		JScrollPane sp = new JScrollPane(table);
 		sp.setBounds(5, 30, 735, 625);

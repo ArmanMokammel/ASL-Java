@@ -1,6 +1,7 @@
 package UI.OrderSystem;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -27,6 +28,16 @@ public class Panel_C extends JPanelX{
 	public Panel_C() {
 		setLayout(null);
 		
+		Font f1 = new Font(null, Font.BOLD, 22);
+		Font f2 = new Font(null, Font.BOLD, 16);
+		
+		setBorder(BorderFactory.createLineBorder(Color.white, 2));
+		
+		JLabel lbl_title = new JLabel("Selected Items");
+		lbl_title.setBounds(450, 5, 160, 30);
+		lbl_title.setFont(f1);
+		lbl_title.setForeground(Color.white);
+		
 		model = new DefaultTableModel();
 		model.addColumn("");
 		model.addColumn("Item ID");
@@ -48,6 +59,7 @@ public class Panel_C extends JPanelX{
 		table.setOpaque(false);
 		table.setBackground(new Color(253, 253, 214));
 		table.setRowHeight(40);
+		table.setFont(new Font(null, Font.PLAIN, 16));
 		table.getColumnModel().getColumn(0).setCellRenderer(new TableEditRemove_Renderer());
 		table.getColumnModel().getColumn(0).setCellEditor(new TableEditRemove_Editor(this));
 		
@@ -55,6 +67,7 @@ public class Panel_C extends JPanelX{
 		tableHeader.setReorderingAllowed(false);
 		tableHeader.setBackground(new Color(0, 51, 118));
 		tableHeader.setForeground(Color.white);
+		tableHeader.setFont(f2);
 		
 		JScrollPane sp = new JScrollPane(table) {
 			@Override
@@ -70,9 +83,10 @@ public class Panel_C extends JPanelX{
 				g2d.fillRect(0, 0, w, h);
 			}
 		};
-		sp.setBounds(20, 20, 1000, 450);
+		sp.setBounds(20, 45, 1000, 450);
 		sp.getViewport().setOpaque(false);
-						
+			
+		add(lbl_title);
 		add(sp);
 	}
 	

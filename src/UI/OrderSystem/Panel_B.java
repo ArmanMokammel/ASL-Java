@@ -2,6 +2,7 @@ package UI.OrderSystem;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -18,8 +19,6 @@ public class Panel_B extends JPanel{
 	private static JPanel pnl_1;
 	private static  JPanel pnl_2;
 	
-	public JTextField txt_1 = new JTextField();
-	
 	public static JLabel lbl_4 = new JLabel();
 	public static JLabel lbl_6 = new JLabel();
 	public static JLabel lbl_8 = new JLabel();
@@ -29,6 +28,9 @@ public class Panel_B extends JPanel{
 		this.p = p;
 		setLayout(null);
 		
+		Font f1 = new Font(null, Font.BOLD, 20);
+		Font f2 = new Font(null, Font.BOLD, 16);
+		
 		container = new JPanel();
 		container.setSize(590, 190);
 		container.setLayout(null);
@@ -37,20 +39,19 @@ public class Panel_B extends JPanel{
 		pnl_1 = new JPanel();
 		pnl_1.setLayout(null);
 		pnl_1.setBackground(null);
+		pnl_1.setBorder(BorderFactory.createLineBorder(Color.white, 2));
 		
 		JLabel lbl_1 = new JLabel("Select Customer", SwingConstants.CENTER);
-		lbl_1.setBounds(0, 10, 585, 30);
+		lbl_1.setBounds(2, 30, 583, 30);
 		lbl_1.setOpaque(true);
 		lbl_1.setBackground(Color.blue);
 		lbl_1.setForeground(Color.white);
+		lbl_1.setFont(f1);
 		
-		JLabel lbl_2 = new JLabel("Customer:");
-		lbl_2.setBounds(10, 50, 60, 30);
-		
-		txt_1.setBounds(80, 50, 380, 30);
-		
+				
 		JButton btn_addCustomer = new JButton("New Customer");
-		btn_addCustomer.setBounds(100, 100, 120, 30);
+		btn_addCustomer.setBounds(110, 80, 170, 40);
+		btn_addCustomer.setFont(f2);
 		btn_addCustomer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Thread t = new Thread() {
@@ -64,7 +65,8 @@ public class Panel_B extends JPanel{
 		});
 		
 		JButton btn_viewCustomers = new JButton("View Customers");
-		btn_viewCustomers.setBounds(230, 100, 130, 30);
+		btn_viewCustomers.setBounds(300, 80, 170, 40);
+		btn_viewCustomers.setFont(f2);
 		btn_viewCustomers.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new CustomerWindow(window, false);			
@@ -72,8 +74,6 @@ public class Panel_B extends JPanel{
 		});
 		
 		pnl_1.add(lbl_1);
-		pnl_1.add(txt_1);
-		pnl_1.add(lbl_2);
 		pnl_1.add(btn_addCustomer);
 		pnl_1.add(btn_viewCustomers);
 		
@@ -82,30 +82,38 @@ public class Panel_B extends JPanel{
 		pnl_2 = new JPanel();
 		pnl_2.setLayout(null);
 		pnl_2.setBackground(null);
+		pnl_2.setBorder(BorderFactory.createLineBorder(Color.white, 2));
 		
-		JLabel lbl_3 = new JLabel("Customer:");
-		lbl_3.setBounds(10, 20, 70, 30);
+		JLabel lbl_3 = new JLabel("Customer:", SwingConstants.RIGHT);
+		lbl_3.setBounds(10, 20, 100, 30);
+		lbl_3.setFont(f2);
 		
-		lbl_4.setBounds(90, 20, 370, 30);
+		lbl_4.setBounds(120, 20, 370, 30);
 		lbl_4.setOpaque(true);
+		lbl_4.setFont(f2);
 		
-		JLabel lbl_5 = new JLabel("ID:");
-		lbl_5.setBounds(10, 60, 70, 30);
+		JLabel lbl_5 = new JLabel("ID:", SwingConstants.RIGHT);
+		lbl_5.setBounds(10, 60, 100, 30);
+		lbl_5.setFont(f2);
 		
-		lbl_6.setBounds(90, 60, 370, 30);
+		lbl_6.setBounds(120, 60, 370, 30);
 		lbl_6.setOpaque(true);
+		lbl_6.setFont(f2);
 		
-		JLabel lbl_7 = new JLabel("Discount %:");
-		lbl_7.setBounds(10, 100, 70, 30);
+		JLabel lbl_7 = new JLabel("Discount %:", SwingConstants.RIGHT);
+		lbl_7.setBounds(10, 100, 100, 30);
+		lbl_7.setFont(f2);
 		
-		lbl_8.setBounds(90, 100, 370, 30);
+		lbl_8.setBounds(120, 100, 370, 30);
 		lbl_8.setOpaque(true);
+		lbl_8.setFont(f2);
 		
 		JButton btn_rmvCustomer = new JButton("Remove Customer");
-		btn_rmvCustomer.setBounds(180, 150, 140, 30);
+		btn_rmvCustomer.setBounds(160, 140, 180, 30);
 		btn_rmvCustomer.setBackground(new Color(255, 49, 49));
 		btn_rmvCustomer.setForeground(Color.white);
 		btn_rmvCustomer.setOpaque(true);
+		btn_rmvCustomer.setFont(f2);
 		btn_rmvCustomer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {			
 				OrderController.getOrder().setTotal(OrderController.getOrder().getSubTotal());

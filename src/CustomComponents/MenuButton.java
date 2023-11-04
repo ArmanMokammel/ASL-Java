@@ -1,6 +1,7 @@
 package CustomComponents;
 
 import java.awt.Color;
+import java.awt.Font;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -19,6 +20,7 @@ public class MenuButton extends JButton  {
 		setHorizontalTextPosition(SwingConstants.CENTER);
 		setIconTextGap(5);
 		setFocusPainted(false);
+		setFont(new Font(null, Font.BOLD, 15));
 
 		UIManager.put("Button.select", new Color(0.38f, 0.38f, 0.38f, .2f ));
 	}

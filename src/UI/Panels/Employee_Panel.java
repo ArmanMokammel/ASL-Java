@@ -1,6 +1,7 @@
 package UI.Panels;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import javax.swing.table.JTableHeader;
 
 import CustomCell.TableEditRemove_Editor;
 import CustomCell.TableEditRemove_Renderer;
+import CustomComponents.JButtonT1;
 import CustomComponents.JPanelX;
 import Data.Employee;
 import DataEditorUI.EmployeeEditor_Dialog;
@@ -30,11 +32,15 @@ public class Employee_Panel extends JPanelX{
 		this.window = window;
 		employeeList = new LinkedList<Employee>();
 		setLayout(null);
-		setBounds(30, 150, window.getWidth() - 70, 660);
-		setBackground(new Color(0,0,0,0));
+		setBounds(30, 150, window.getWidth() - 70, 685);
+		setOpaque(false);
 		
-		JButton btn_Add = new JButton("New Employee");
-		btn_Add.setBounds(getWidth() - 245, 0, 130, 40);
+		Font f1 = new Font(null, Font.BOLD, 16);
+		Font f2 = new Font(null, Font.PLAIN, 16);
+		
+		JButton btn_Add = new JButtonT1("New Employee", "img\\btn.png", 6);
+		btn_Add.setBounds(getWidth() - 260, 6, 150, 50);
+		btn_Add.setFont(new Font(null, Font.BOLD, 16));
 		btn_Add.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				EmployeeEditor_Dialog dialog = new EmployeeEditor_Dialog(window, Employee_Panel.this,"New Employee", -1);
@@ -63,18 +69,21 @@ public class Employee_Panel extends JPanelX{
 		};
 		
 		table.setRowHeight(40);
+		table.setBackground(new Color(253, 253, 214));
+		table.setFont(f2);
 
 		JTableHeader tableHeader = table.getTableHeader();
 		tableHeader.setReorderingAllowed(false);
 		tableHeader.setBackground(new Color(117, 68, 0));
 		tableHeader.setForeground(Color.white);
+		tableHeader.setFont(f1);
 
 		TableEditRemove_Renderer renderer = new TableEditRemove_Renderer();
 		table.getColumnModel().getColumn(7).setCellRenderer(renderer);
 		table.getColumnModel().getColumn(7).setCellEditor(new TableEditRemove_Editor(this));
 		
 		JScrollPane sp = new JScrollPane(table);
-		sp.setBounds(70, 60, getWidth() - 180, 595);
+		sp.setBounds(70, 76, getWidth() - 180, 600);
 				
 		add(btn_Add);
 		add(sp);

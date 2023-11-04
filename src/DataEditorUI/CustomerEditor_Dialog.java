@@ -70,6 +70,8 @@ public class CustomerEditor_Dialog extends JDialog{
 		Bg_Icon.setOpaque(true);
 		setContentPane(Bg_Icon);
 		
+		txt_specialDiscount.setText("0.0");
+		
 		JLabel lbl_title = new JLabel("Customer");
 		JLabel lbl_customerID = new JLabel("Customer ID:", SwingConstants.RIGHT);
 		JLabel lbl_customerName = new JLabel("Customer Name:", SwingConstants.RIGHT);
@@ -80,13 +82,13 @@ public class CustomerEditor_Dialog extends JDialog{
 		JLabel lbl_specialDiscount = new JLabel("Special Discount:", SwingConstants.RIGHT);
 		
 		lbl_title.setBounds(200, 25, 160, 30);
-		lbl_customerID.setBounds(30, 80, 140, 30);
-		lbl_customerName.setBounds(30, 130, 140, 30);
-		lbl_gender.setBounds(30, 180, 140, 30);
-		lbl_email.setBounds(30, 230, 140, 30);
-		lbl_phoneNo.setBounds(30, 280, 140, 30);
-		lbl_discountType.setBounds(30, 330, 140, 30);
-		lbl_specialDiscount.setBounds(30, 380, 140, 30);
+		lbl_customerID.setBounds(30, 80, 155, 30);
+		lbl_customerName.setBounds(30, 130, 150, 30);
+		lbl_gender.setBounds(30, 180, 155, 30);
+		lbl_email.setBounds(30, 230, 155, 30);
+		lbl_phoneNo.setBounds(30, 280, 155, 30);
+		lbl_discountType.setBounds(30, 330, 155, 30);
+		lbl_specialDiscount.setBounds(30, 380, 155, 30);
 		
 		lbl_title.setFont(f1);
 		lbl_customerID.setFont(f2);
@@ -106,13 +108,13 @@ public class CustomerEditor_Dialog extends JDialog{
 		add(lbl_discountType);
 		add(lbl_specialDiscount);
 		
-		txt_customerID.setBounds(180, 80, 240, 30);
-		txt_customerName.setBounds(180, 130, 240, 30);
-		cmbx_gender.setBounds(180, 180, 240, 30);
-		txt_email.setBounds(180, 230, 240, 30);
-		txt_phoneNo.setBounds(180, 280, 240, 30);
-		cmbx_discountType.setBounds(180, 330, 240, 30);
-		txt_specialDiscount.setBounds(180, 380, 240, 30);
+		txt_customerID.setBounds(195, 80, 240, 30);
+		txt_customerName.setBounds(195, 130, 240, 30);
+		cmbx_gender.setBounds(195, 180, 240, 30);
+		txt_email.setBounds(195, 230, 240, 30);
+		txt_phoneNo.setBounds(195, 280, 240, 30);
+		cmbx_discountType.setBounds(195, 330, 240, 30);
+		txt_specialDiscount.setBounds(195, 380, 240, 30);
 		
 		txt_customerID.setFont(f3);
 		txt_customerName.setFont(f3);

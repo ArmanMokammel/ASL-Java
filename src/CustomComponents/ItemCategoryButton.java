@@ -1,6 +1,8 @@
 package CustomComponents;
 
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -21,6 +23,8 @@ public class ItemCategoryButton extends JButton implements ActionListener{
 		this.item = item;
 		this.itemsPanel = itemsPanel;
 		setPreferredSize(new Dimension(270, 100));
+		setFont(new Font(null, Font.BOLD, 22));
+		setBackground(new Color(70, 212, 93));
 		addActionListener(this);
 	}
 

@@ -48,9 +48,6 @@ public class Settings_Screen extends JFrame{
 		
 		panelA.add(btnItemSettings);
 		panelA.add(btnPaymentMethods);
-		panelA.add(new Settings_Button("Settings 3"));
-		panelA.add(new Settings_Button("Settings 4"));
-		panelA.add(new Settings_Button("Settings 5"));
 				
 		add(panelA);
 		add(panelB);

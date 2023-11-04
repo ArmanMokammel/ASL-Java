@@ -75,12 +75,12 @@ public class EmployeeEditor_Dialog extends JDialog{
 		JLabel lbl_accountId = new JLabel("Account ID:", SwingConstants.RIGHT);
 		
 		lbl_title.setBounds(200, 40, 150, 30);
-		lbl_employeeID.setBounds(30, 110, 140, 30);
-		lbl_employeeName.setBounds(30, 160, 140, 30);
-		lbl_gender.setBounds(30, 210, 140, 30);
-		lbl_phoneNo.setBounds(30, 260, 140, 30);
-		lbl_email.setBounds(30, 310, 140, 30);
-		lbl_accountId.setBounds(30, 360, 140, 30);
+		lbl_employeeID.setBounds(30, 110, 155, 30);
+		lbl_employeeName.setBounds(30, 160, 155, 30);
+		lbl_gender.setBounds(30, 210, 155, 30);
+		lbl_phoneNo.setBounds(30, 260, 155, 30);
+		lbl_email.setBounds(30, 310, 155, 30);
+		lbl_accountId.setBounds(30, 360, 155, 30);
 		
 		lbl_title.setFont(f1);
 		lbl_employeeID.setFont(f2);
@@ -98,12 +98,12 @@ public class EmployeeEditor_Dialog extends JDialog{
 		add(lbl_email);
 		add(lbl_accountId);
 		
-		txt_employeeID.setBounds(180, 110, 240, 30);
-		txt_employeeName.setBounds(180, 160, 240, 30);
-		cmbx_gender.setBounds(180, 210, 240, 30);
-		txt_phoneNo.setBounds(180, 260, 240, 30);
-		txt_email.setBounds(180, 310, 240, 30);
-		txt_accountId.setBounds(180, 360, 240, 30);
+		txt_employeeID.setBounds(195, 110, 240, 30);
+		txt_employeeName.setBounds(195, 160, 240, 30);
+		cmbx_gender.setBounds(195, 210, 240, 30);
+		txt_phoneNo.setBounds(195, 260, 240, 30);
+		txt_email.setBounds(195, 310, 240, 30);
+		txt_accountId.setBounds(195, 360, 240, 30);
 		
 		txt_employeeID.setFont(f3);
 		txt_employeeName.setFont(f3);

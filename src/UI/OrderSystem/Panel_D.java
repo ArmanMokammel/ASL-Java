@@ -2,13 +2,16 @@ package UI.OrderSystem;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
@@ -27,6 +30,19 @@ public class Panel_D extends JPanel implements ActionListener{
 	public Panel_D(Panel_C itemsPanel) {
 		setLayout(null);
 		this.itemsPanel = itemsPanel;
+		setBorder(BorderFactory.createLineBorder(Color.white, 2));
+		
+		Font f1 = new Font(null, Font.BOLD, 22);
+		
+		JLabel lbl_title1 = new JLabel("Categories");
+		lbl_title1.setBounds(85, 7, 110, 30);
+		lbl_title1.setFont(f1);
+		lbl_title1.setForeground(Color.white);
+		
+		JLabel lbl_title2 = new JLabel("Items");
+		lbl_title2.setBounds(550, 7, 70, 30);
+		lbl_title2.setFont(f1);
+		lbl_title2.setForeground(Color.white);
 		
 		ArrayList<String> categoryList = Utility.readFile("Item-Categories.ASL");
 		ArrayList<String> lines = Utility.readFile("Menu-Items.ASL");
@@ -37,6 +53,9 @@ public class Panel_D extends JPanel implements ActionListener{
 		for(String s : categoryList) {
 			JButton b = new JButton(s);
 			b.setPreferredSize(new Dimension(240, 80));
+			b.setFont(f1);
+			b.setBackground(new Color(214, 66, 17));
+			b.setForeground(Color.white);
 			b.addActionListener(this);
 			pnl.add(b);
 			pnl.add(Box.createRigidArea(new Dimension(0, 10)));
@@ -61,9 +80,11 @@ public class Panel_D extends JPanel implements ActionListener{
 		pannal.setLayout(new WrapLayout());
 		pannal.setBackground(Color.green);
 				
-		pnl_1.setBounds(10, 10, 280, 700);
-		pnl_2.setBounds(290, 10, 590, 700);
+		pnl_1.setBounds(10, 50, 280, 700);
+		pnl_2.setBounds(290, 50, 590, 700);
 		
+		add(lbl_title1);
+		add(lbl_title2);
 		add(pnl_1);
 		add(pnl_2);
 		
@@ -79,7 +100,6 @@ public class Panel_D extends JPanel implements ActionListener{
 			pannal.add(new ItemCategoryButton(s, Panel_D.this.itemsPanel));
 			pannal.add(Box.createRigidArea(new Dimension(0, 10)));
 		}
-		pannal.revalidate();
-		pannal.repaint();
+		pannal.updateUI();
 	}
 }
