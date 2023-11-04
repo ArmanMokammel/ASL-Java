@@ -1,11 +1,10 @@
-Burger
-Sandwich
-Appetizer
-Fries
-Sushi
+Popular
+Snacks
+Paratha & Ruti
+Dal & Vegetable
+Curry
+Rice
+Dessert
 Beverage
-Hot Coffee
-Cold Coffee
-Iced Drinks
-Wraptor
-Chicken Kabab
+Juice
+Tea & Coffee
