@@ -89,7 +89,12 @@ public class SuspendedOrders_Screen extends JDialog{
 		model.addColumn("Customer");
 		model.addColumn("Amount");
 		
-		List<File> files = Utility.getFiles(".txt", new File("Suspended Orders"));
+		File f = new File("Suspended Orders");
+		if(!f.exists()) {
+			f.mkdir();
+		}
+		
+		List<File> files = Utility.getFiles(".txt", f);
 		for(File file: files) {
 			System.out.println(file.getName());
 			ArrayList<String> order = Utility.readFile("Suspended Orders\\" + file.getName());
