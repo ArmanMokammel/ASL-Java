@@ -22,6 +22,7 @@ import javax.swing.border.EmptyBorder;
 import CustomComponents.MenuButton;
 import Data.Account;
 import DataEditorUI.Profile_Screen;
+import Enum.AccountType;
 import UI.Panels.*;
 import Utilities.Utility;
 
@@ -154,10 +155,16 @@ public class MainWindow extends JFrame{
 		pnl_Items.setBorder(new EmptyBorder(0, 0, 0, 60));
 		pnl_Items.setBackground(Color.orange);		
 		pnl_Items.add(btn);
-		pnl_Items.add(btn1);
+		
+		if(account.getAccountType() == AccountType.SuperAdmin)
+			pnl_Items.add(btn1);
+		
 		pnl_Items.add(btn2);
 		pnl_Items.add(btn3);
-		pnl_Items.add(btn4);
+		
+		if(account.getAccountType() == AccountType.SuperAdmin)
+			pnl_Items.add(btn4);
+			
 		pnl_Items.add(btn5);
 		pnl_Items.add(btn6);
 		pnl_Items.add(btn7);
