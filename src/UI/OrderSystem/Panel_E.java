@@ -57,6 +57,8 @@ public class Panel_E extends JPanelX{
 		Font f1 = new Font(null, Font.BOLD, 22);
 		Font f2 = new Font(null, Font.BOLD, 20);
 		Font f3 = new Font(null, Font.BOLD, 18);
+		Font f4 = new Font(null, Font.BOLD, 16);
+		Font f5 = new Font(null, Font.PLAIN, 16);
 		
 		JLabel lbl_title = new JLabel("Payments");
 		lbl_title.setBounds(390, 0, 120, 30);
@@ -236,6 +238,7 @@ public class Panel_E extends JPanelX{
 		JTable table = new JTable(model);
 		table.setBackground(new Color(214, 241, 216));
 		table.setRowHeight(30);
+		table.setFont(f5);
 		
 		table.getColumnModel().getColumn(0).setCellRenderer(new TableRemove_Renderer());
 		table.getColumnModel().getColumn(0).setCellEditor(new TableRemove_Editor(this));
@@ -243,6 +246,7 @@ public class Panel_E extends JPanelX{
 		JTableHeader tableHeader = table.getTableHeader();
 		tableHeader.setBackground(Color.black);
 		tableHeader.setForeground(Color.white);
+		tableHeader.setFont(f4);
 		
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setBounds(50, 90, 465, 100);
