@@ -90,8 +90,13 @@ public class SaleHistory_Window extends JFrame {
 		model.addColumn("Served By");
 		model.addColumn("Customer");
 		model.addColumn("Amount");
+		
+		File f = new File("Orders");
+		if(!f.exists()) {
+			f.mkdir();
+		}
 
-		List<File> files = Utility.getFiles(".txt", new File("Orders"));
+		List<File> files = Utility.getFiles(".txt", f);
 		for (File file : files) {
 			System.out.println(file.getName());
 			ArrayList<String> order = Utility.readFile("Orders\\" + file.getName());
