@@ -30,8 +30,6 @@ public class Login_Screen extends JFrame {
 		Font f1 = new Font(null, Font.BOLD, 20);
 		Font f2 = new Font(null, Font.PLAIN, 18);
 
-//		save();
-
 		setSize(615, 647);
 		setLayout(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -82,6 +80,11 @@ public class Login_Screen extends JFrame {
 				JOptionPane.showMessageDialog(Login_Screen.this, "Sorry, Arman decided you shall not get access");
 			}
 		});
+		
+		File f = new File("Accounts.ASL");
+		if(!f.exists()) {
+			save();
+		}
 
 		JButtonT1 btn = new JButtonT1("Login", "img\\btn.png", 6);
 		btn.setBounds(250, 390, 100, 40);
@@ -120,11 +123,9 @@ public class Login_Screen extends JFrame {
 		FileWriter fr;
 		try {
 			fr = new FileWriter(file, false);
-			fr.write("Arman\t123\tSuperAdmin\tArman Mokammel\tarmanmokammel@gmail.com\t12\n");
+			fr.write("SYSADM\tadmin\tSuperAdmin\tArman Mokammel\tarmanmokammel@bolbona.com\t0\n");
 			
 			fr.close();
-			
-			JOptionPane.showMessageDialog(Login_Screen.this, "Saved Successfully!");
 		} catch (IOException e1) {
 			System.out.println("SZZ Error");
 		}

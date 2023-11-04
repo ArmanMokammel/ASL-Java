@@ -13,6 +13,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import CustomComponents.MenuButton;
+import Enum.AccountType;
 import UI.*;
 import Utilities.Utility;
 
@@ -97,10 +98,16 @@ public class Welcome_Panel extends JPanel {
 		pnl.setBounds(210, 150, 800, 300);
 		
 		pnl.add(btn);
-		pnl.add(btn1);
+		
+		if(MainWindow.account.getAccountType() == AccountType.SuperAdmin)
+			pnl.add(btn1);
+			
 		pnl.add(btn2);
 		pnl.add(btn3);
-		pnl.add(btn4);
+		
+		if(MainWindow.account.getAccountType() == AccountType.SuperAdmin)
+			pnl.add(btn4);
+		
 		pnl.add(btn5);
 		pnl.add(btn6);
 		
