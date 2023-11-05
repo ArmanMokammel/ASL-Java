@@ -129,8 +129,20 @@ public class Receipt {
 
 			table2.addCell(new Paragraph("Gross Total :").setFontSize(8).setFirstLineIndent(5));
 			table2.addCell(new Paragraph(Double.toString(order.getSubTotal())).setFontSize(8).setTextAlignment(TextAlignment.RIGHT));
-			table2.addCell(new Paragraph("Discount @" + (order.getCustomer() == null || order.getCustomer().getSpecialDiscountType() == DiscountType.None ? "0.0" : order.getCustomer().getSpecialDiscount() + "% :")).setFontSize(8).setFirstLineIndent(5));
-			table2.addCell(new Paragraph(Double.toString(order.getSubTotal())).setFontSize(8).setTextAlignment(TextAlignment.RIGHT));
+			if(order.getCustomer() == null || order.getCustomer().getSpecialDiscountType() == DiscountType.None) {
+				
+				table2.addCell(new Paragraph("Discount @0.0%:").setFontSize(8).setFirstLineIndent(5));
+				table2.addCell(new Paragraph("0.0").setFontSize(8).setTextAlignment(TextAlignment.RIGHT));
+			}
+			else if(order.getCustomer().getSpecialDiscountType() == DiscountType.Value) {
+				table2.addCell(new Paragraph("Discount:").setFontSize(8).setFirstLineIndent(5));
+				table2.addCell(new Paragraph(Double.toString(order.getCustomer().getSpecialDiscount())).setFontSize(8).setTextAlignment(TextAlignment.RIGHT));
+			}
+			else if(order.getCustomer().getSpecialDiscountType() == DiscountType.Percentage) {
+				table2.addCell(new Paragraph("Discount @"+ Double.toString(order.getCustomer().getSpecialDiscount()) + "%:").setFontSize(8).setFirstLineIndent(5));
+				double discountVal = Math.round((OrderController.getOrder().getSubTotal() * (100 - order.getCustomer().getSpecialDiscount()) / 100.0) * 100.0) / 100.0;
+				table2.addCell(new Paragraph(Double.toString(OrderController.getOrder().getSubTotal() - discountVal)).setFontSize(8).setTextAlignment(TextAlignment.RIGHT));
+			}
 			
 			RemoveBorder(table2);
 			document.add(table2);
