@@ -1,6 +1,5 @@
 package DataEditorUI;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,14 +16,13 @@ import Utilities.Utility;
 
 public class VoucherEditor_Dialog extends JDialog{
 	
-	private JTextField txt_customer = new JTextField();
 	private JTextField txt_voucherId = new JTextField();
 	private JTextField txt_voucher = new JTextField();
 	private JTextField txt_value = new JTextField();
 	
-	private String A, C;
-	private int B;
-	private double D;
+	private String B;
+	private int A;
+	private double C;
 		
 	public VoucherEditor_Dialog(MainWindow frame, Voucher_Panel parent, String title, int row) {
 		super(frame, title, true);
@@ -43,40 +41,33 @@ public class VoucherEditor_Dialog extends JDialog{
 		setContentPane(Bg_Icon);
 		
 		JLabel lbl_title = new JLabel("Voucher");
-		JLabel lbl_customer = new JLabel("Customer:", SwingConstants.RIGHT);
 		JLabel lbl_voucherId = new JLabel("Voucher ID:", SwingConstants.RIGHT);
 		JLabel lbl_voucher = new JLabel("Voucher:", SwingConstants.RIGHT);
 		JLabel lbl_value = new JLabel("Value:", SwingConstants.RIGHT);
 		
 		lbl_title.setFont(f1);
-		lbl_customer.setFont(f2);
 		lbl_voucherId.setFont(f2);
 		lbl_voucher.setFont(f2);
 		lbl_value.setFont(f2);
 		
 		lbl_title.setBounds(210, 60, 130, 30);
-		lbl_customer.setBounds(30, 150, 140, 30);
 		lbl_voucherId.setBounds(30, 200, 140, 30);
 		lbl_voucher.setBounds(30, 250, 140, 30);
 		lbl_value.setBounds(30, 300, 140, 30);
 		
 		add(lbl_title);
-		add(lbl_customer);
 		add(lbl_voucherId);
 		add(lbl_voucher);
 		add(lbl_value);		
 		
-		txt_customer.setBounds(180, 150, 240, 30);
 		txt_voucherId.setBounds(180, 200, 240, 30);
 		txt_voucher.setBounds(180, 250, 240, 30);
 		txt_value.setBounds(180, 300, 240, 30);
 		
-		txt_customer.setFont(f3);
 		txt_voucherId.setFont(f3);
 		txt_voucher.setFont(f3);
 		txt_value.setFont(f3);
 
-		add(txt_customer);
 		add(txt_voucherId);
 		add(txt_voucher);
 		add(txt_value);
@@ -88,10 +79,10 @@ public class VoucherEditor_Dialog extends JDialog{
 			public void actionPerformed(ActionEvent e) {
 				Discount_Voucher voucher = null;
 				try {
-					B = Utility.checkInt(txt_voucherId, lbl_voucherId);
-					C = Utility.checkString(txt_voucher, lbl_voucher, InputType.Alphanumeric);
-					D = Utility.checkDouble(txt_value, lbl_value);
-					voucher = new Discount_Voucher(B, C, D);
+					A = Utility.checkInt(txt_voucherId, lbl_voucherId);
+					B = Utility.checkString(txt_voucher, lbl_voucher, InputType.Alphanumeric);
+					C = Utility.checkDouble(txt_value, lbl_value);
+					voucher = new Discount_Voucher(A, B, C);
 				} catch (InputException e2) {
 					Utility.showErrorMessage(e2);
 					return;

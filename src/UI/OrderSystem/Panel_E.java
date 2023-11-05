@@ -37,6 +37,7 @@ public class Panel_E extends JPanelX{
 	public static JLabel amtPaid;
 	public static JLabel amtDue;
 	public static JTextField amt;
+	private JLabel lbl_vchAmt;
 	
 	private ArrayList<Discount_Voucher> discountVouchers;
 	
@@ -162,18 +163,20 @@ public class Panel_E extends JPanelX{
 				if(((String)cmbx_1.getSelectedItem()).equals("Voucher")) {
 					pnl_2.remove(amt);
 					pnl_2.add(cmbx_2);
+					lbl_vchAmt.setText("Voucher Code:");
 					pnl_2.updateUI();
 				} else {
 					pnl_2.remove(cmbx_2);
 					pnl_2.add(amt);
+					lbl_vchAmt.setText("Amount:");
 					pnl_2.updateUI();
 				}				
 			}
 		});
 		
-		JLabel lbl_11 = new JLabel("Amount:", SwingConstants.RIGHT);
-		lbl_11.setBounds(50, 50, 140, 30);
-		lbl_11.setFont(f3);
+		lbl_vchAmt = new JLabel("Amount:", SwingConstants.RIGHT);
+		lbl_vchAmt.setBounds(50, 50, 140, 30);
+		lbl_vchAmt.setFont(f3);
 		
 		amt = new JTextField();
 		amt.setBounds(200, 50, 150, 30);
@@ -198,7 +201,7 @@ public class Panel_E extends JPanelX{
 				try {
 					A = (String)cmbx_1.getSelectedItem();
 					if(A.equals("Voucher")) {
-						Utility.checkString(cmbx_2, lbl_11);
+						Utility.checkString(cmbx_2, lbl_vchAmt);
 						for(Discount_Voucher v : discountVouchers) {
 							if(((String)cmbx_2.getSelectedItem()).equals(v.getVoucher())){								
 								B = v.getValue();
@@ -207,7 +210,7 @@ public class Panel_E extends JPanelX{
 						}
 					}
 					else {
-						B = Utility.checkDouble(amt, lbl_11);
+						B = Utility.checkDouble(amt, lbl_vchAmt);
 					}
 					
 					OrderController.getOrder().addPayment(new Payment(A, B));
@@ -323,7 +326,7 @@ public class Panel_E extends JPanelX{
 		
 		pnl_2.add(lbl_10);
 		pnl_2.add(cmbx_1);
-		pnl_2.add(lbl_11);
+		pnl_2.add(lbl_vchAmt);
 		pnl_2.add(amt);
 		pnl_2.add(btn_addPayment);
 		pnl_2.add(scrollPane);
