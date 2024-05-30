@@ -7,4 +7,3 @@ This was a CSE215 project submitted at NSU.
 - [Arman Mokammel](https://www.github.com/ArmanMokammel)
 - Soraiyah Samantha
 - Sabrina Sabnam Farhana
-- 
